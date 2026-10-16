@@ -1,0 +1,77 @@
+name: Explorar OSM (temporal)
+
+# Baja de OpenStreetMap lo necesario para ubicar con precisión radares publicados en diarios
+# (calles de La Plata y Mar del Plata, rutas 2 y 11, mojones) y la fecha de edición de los radares.
+# Deja todo 20 minutos en la rama "exploracion" y después la borra. Este archivo se quita enseguida.
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/explorar-osm.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  bajar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Consultar Overpass
+        run: |
+          mkdir -p crudo && cd crudo
+          cat > consultar.py <<'PY'
+          import json, sys, time, urllib.parse, urllib.request
+          SERVIDORES = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]
+          def overpass(q):
+              ultimo = None
+              for intento in range(4):
+                  for s in SERVIDORES:
+                      try:
+                          req = urllib.request.Request(s, data=urllib.parse.urlencode({"data": q}).encode(),
+                                                       headers={"User-Agent": "radares-ba/1.2 (exploracion)"})
+                          with urllib.request.urlopen(req, timeout=400) as r:
+                              return r.read()
+                      except Exception as e:
+                          ultimo = e
+                  time.sleep(20 * (intento + 1))
+              raise ultimo
+          AREA = '(area["ISO3166-2"="AR-B"];area["ISO3166-2"="AR-C"];)->.a;'
+          consultas = {
+              "osm_radares_meta.json": '[out:json][timeout:300];' + AREA +
+                  '(node["highway"="speed_camera"](area.a);node["enforcement"](area.a);'
+                  'relation["type"="enforcement"](area.a););out meta;>;out skel qt;',
+              "mojones.json": '[out:json][timeout:300];area["ISO3166-2"="AR-B"]->.p;'
+                  'node["highway"="milestone"](area.p);out body;',
+              "rutas_2_11.json": '[out:json][timeout:300];area["ISO3166-2"="AR-B"]->.p;'
+                  'way["highway"]["ref"~"(^|;) *(RP|AU)? *(2|11)( |;|$)"](area.p);out body;>;out skel qt;',
+              "calles_la_plata.json": '[out:json][timeout:300];'
+                  'way["highway"]["name"](-35.02,-58.08,-34.84,-57.86);out body;>;out skel qt;',
+              "calles_mar_del_plata.json": '[out:json][timeout:300];'
+                  'way["highway"]["name"](-38.12,-57.66,-37.90,-57.50);out body;>;out skel qt;',
+          }
+          for nombre, q in consultas.items():
+              try:
+                  datos = overpass(q)
+                  open(nombre, "wb").write(datos)
+                  print(nombre, len(datos))
+              except Exception as e:
+                  print(nombre, "ERROR", e)
+              time.sleep(10)
+          PY
+          python3 consultar.py | tee estado.txt
+          ls -la >> estado.txt
+      - name: Dejar en la rama "exploracion" 20 minutos
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          cd crudo
+          git init -q -b exploracion
+          git config user.name "explorador"
+          git config user.email "actions@users.noreply.github.com"
+          git add .
+          git commit -q -m "Datos de OSM para revisar"
+          URL="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push -q -f "$URL" exploracion
+          sleep 1200
+          git push -q "$URL" --delete exploracion || true
