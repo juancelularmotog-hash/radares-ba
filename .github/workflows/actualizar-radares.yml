@@ -21,7 +21,7 @@ concurrency:
 jobs:
   actualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90   # con Provincia tarda unos 35 minutos; el script corta las consultas lentas a los 50
     steps:
       - uses: actions/checkout@v5
 

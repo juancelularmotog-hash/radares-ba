@@ -608,8 +608,13 @@ def limite_de_calle(t, rumbo_tramo, dir_radar):
     return min(candidatos) if candidatos else None
 
 
-def enriquecer(radares, urbanos_fijos):
-    """Completa vmax, sentido y nombre de calle de los radares que no los tienen."""
+LIMITE_ENRIQUECER = 50 * 60  # segundos; si Overpass anda lento, lo que falte se completa con lo de la vez anterior
+
+
+def enriquecer(radares, urbanos_fijos, conocidos=frozenset()):
+    """Completa vmax, sentido y nombre de calle de los radares que no los tienen.
+    Primero consulta los radares nuevos (los que no estaban en la lista anterior), que no tienen
+    datos previos para reutilizar si se acaba el tiempo."""
     def falta_limite(r):
         return r.get("tipo") in ("velocidad", "otro") and not r.get("vmax")
 
@@ -618,8 +623,14 @@ def enriquecer(radares, urbanos_fijos):
         return r.get("dir") is None and r.get("sentido") != "ambos"
 
     pendientes = [r for r in radares if falta_limite(r) or falta_sentido(r) or not r.get("nombre")]
+    pendientes.sort(key=lambda r: r["id"] in conocidos)
     completados = {"vmax_calle": 0, "vmax_estimado": 0, "sentido": 0, "nombre": 0}
+    inicio = time.monotonic()
     for i in range(0, len(pendientes), 40):
+        if time.monotonic() - inicio > LIMITE_ENRIQUECER:
+            print(f"  Completar límites: se cortó por tiempo en el lote {i // 40 + 1}; "
+                  f"los {len(pendientes) - i} radares restantes usan lo de la vez anterior", file=sys.stderr)
+            break
         lote = pendientes[i:i + 40]
         consulta = "[out:json][timeout:180];"
         for r in lote:
@@ -764,7 +775,7 @@ def main():
     # Lo completado la vez anterior se reutiliza si esta vez Overpass no responde.
     previo_por_id = {r["id"]: r for r in previos}
     urbanos = {r["id"] for r in radares if r.get("fuente") == "CABA"}
-    completados = enriquecer(radares, urbanos)
+    completados = enriquecer(radares, urbanos, frozenset(previo_por_id))
     for r in radares:
         p = previo_por_id.get(r["id"])
         if not p:
