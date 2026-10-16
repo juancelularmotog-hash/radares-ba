@@ -105,7 +105,18 @@ public class ServicioRadares extends Service implements LocationListener {
             stopSelf();
             return START_NOT_STICKY;
         }
-        if (!activo) arrancar();
+        if (!activo) {
+            arrancar();
+        } else {
+            // Ya estaba andando (por ejemplo, se volvió a abrir la app): solo se renueva la notificación.
+            try {
+                Notification n = notificacion(textoNotif.isEmpty() ? "Te aviso cuando haya un radar adelante." : textoNotif);
+                if (Build.VERSION.SDK_INT >= 29) startForeground(ID_NOTIF, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+                else startForeground(ID_NOTIF, n);
+            } catch (Exception ignorada) {
+                // sigue con la notificación anterior
+            }
+        }
         return START_NOT_STICKY;
     }
 

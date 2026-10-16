@@ -953,7 +953,7 @@
     const g = $('gpsEstado'); g.className = 'gps mal';
     if (e.code === 1) {
       g.textContent = 'Sin permiso de ubicación';
-      toast(NATIVO ? 'No hay permiso para usar tu ubicación. Activalo en los ajustes de Android para Radares BA.' : 'No hay permiso para usar tu ubicación. En el iPhone: Configuración → Privacidad → Localización → Safari → "Al usar la app".', 8000);
+      toast(NATIVO ? 'Radares BA necesita tu ubicación precisa. Activala en Ajustes → Apps → Radares BA → Permisos → Ubicación: "Permitir solo con la app en uso" y "Usar ubicación precisa".' : 'No hay permiso para usar tu ubicación. En el iPhone: Configuración → Privacidad → Localización → Safari → "Al usar la app".', 10000);
       terminarViaje();
     } else if (e.code === 3) {
       g.textContent = 'Esperando señal GPS…';

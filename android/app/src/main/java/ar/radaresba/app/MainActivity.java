@@ -200,7 +200,7 @@ public class MainActivity extends Activity {
     }
 
     /** Funciones que la app web puede llamar como window.RadaresAndroid.xxx(). */
-    private final class Puente {
+    public final class Puente {
         @JavascriptInterface
         public void datos(String json) {
             ServicioRadares.guardarDatos(getApplicationContext(), json);
