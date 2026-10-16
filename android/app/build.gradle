@@ -1,0 +1,46 @@
+plugins {
+    id "com.android.application"
+}
+
+// En GitHub Actions el número de compilación sube solo, así cada APK nuevo se instala encima del anterior.
+def numero = (System.getenv("GITHUB_RUN_NUMBER") ?: "1") as int
+
+android {
+    namespace "ar.radaresba.app"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "ar.radaresba.app"
+        minSdk 26
+        targetSdk 34
+        versionCode numero
+        versionName "1.0." + numero
+    }
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file("radares-ba.keystore")
+            storePassword "radaresba"
+            keyAlias "radares"
+            keyPassword "radaresba"
+            storeType "pkcs12"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}

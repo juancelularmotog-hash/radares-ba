@@ -3,7 +3,7 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.0';
+  const VERSION = '2.0.1';
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -279,6 +279,7 @@
     div.className = 'pop';
     const s = document.createElement('strong'); s.textContent = t.nombre; div.appendChild(s);
     const n = document.createElement('div'); n.textContent = r.nombre || 'Sin descripción'; div.appendChild(n);
+    if (r.detalle && r.detalle !== r.nombre) { const de = document.createElement('div'); de.className = 'pop-f'; de.textContent = r.detalle; div.appendChild(de); }
     const lim = textoLimite(r);
     if (lim) { const l = document.createElement('div'); l.textContent = lim; div.appendChild(l); }
     if (r.dir != null) {
@@ -382,7 +383,15 @@
     let tipo = 'velocidad';
     if (enf.includes('traffic_signals')) tipo = 'semaforo';
     else if (enf && !enf.includes('maxspeed') && !enf.includes('average_speed') && t.highway !== 'speed_camera') tipo = 'otro';
-    return { id: 'osm-' + id, lat, lon, tipo, vmax: parseVmax(t.maxspeed), dir: parseDir(t.direction), nombre: t.name || t.description || t.ref || '', fuente: 'OSM' };
+    // Hay cámaras de semáforo o de carril cargadas como radar de velocidad; la descripción lo aclara.
+    const texto = [t.name, t.description, t.note].filter(Boolean).join(' ');
+    if (tipo === 'velocidad' && !/velocidad|cinem[oó]metro|radar/i.test(texto)) {
+      if (/luz roja|sem[aá]foro|senda peatonal/i.test(texto)) tipo = 'semaforo';
+      else if (/carril/i.test(texto)) tipo = 'otro';
+    }
+    const r = { id: 'osm-' + id, lat, lon, tipo, vmax: parseVmax(t.maxspeed), dir: parseDir(t.direction), nombre: t.name || t.ref || t.description || '', fuente: 'OSM' };
+    if (t.description) r.detalle = String(t.description).slice(0, 120);
+    return r;
   }
   function agruparPeajes(puntos) {
     const grupos = [];
@@ -920,6 +929,10 @@
     pedirWakeLock();
     nat('pantalla', true);
     nat('iniciar');
+    if (NATIVO && nat('bateriaLibre') === false && !LS.get('avisoBateria', false)) {
+      LS.set('avisoBateria', true);
+      toast('Para que los avisos no se corten con la pantalla bloqueada, en el menú tocá "Permitir avisos en segundo plano".', 9000);
+    }
   }
   function terminarViaje(desdeNativo) {
     if (watchId != null) navigator.geolocation.clearWatch(watchId);
@@ -1403,7 +1416,7 @@
   $('btnMenu').onclick = () => {
     const abierto = !$('panel').hidden;
     cerrarHojas();
-    if (!abierto) { ocultarToast(); cargarAjustesEnPanel(); actualizarResumen(); mostrarNovedades(); $('panel').hidden = false; }
+    if (!abierto) { ocultarToast(); cargarAjustesEnPanel(); actualizarResumen(); mostrarNovedades(); revisarBateria(); $('panel').hidden = false; }
   };
   $('btnRuta').onclick = abrirRuta;
   $('btnAgregar').onclick = () => abrirAgregar();
@@ -1460,9 +1473,22 @@
       nat('datos', JSON.stringify(datos));
     }, 400);
   }
+  function revisarBateria() {
+    if (NATIVO) $('bloqueBateria').hidden = nat('bateriaLibre') !== false;
+  }
+  $('btnBateria').onclick = () => nat('pedirBateria');
   window.__radaresNativo = {
     detenido() { if (viajeActivo && !simulacion) terminarViaje(true); },
-    activo() { return viajeActivo; }
+    activo() { return viajeActivo; },
+    // Botón "atrás" de Android: primero cierra lo que esté abierto.
+    atras() {
+      if (hudActivo) { cerrarHud(); return true; }
+      if (!$('intro').hidden) { $('btnIntroOk').click(); return true; }
+      if (eligiendoDestino) { eligiendoDestino = false; $('hojaRuta').hidden = false; return true; }
+      if (!$('panel').hidden || !$('hojaRuta').hidden || !$('hojaAgregar').hidden) { cerrarHojas(); return true; }
+      return false;
+    },
+    volvio() { revisarBateria(); }
   };
   function urlApk() {
     let usuario = 'juancelularmotog-hash', repoNombre = 'radares-ba';

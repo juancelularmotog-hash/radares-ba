@@ -183,6 +183,12 @@ def direccion(v):
     return DIRS.get(str(v).upper().strip())
 
 
+# Hay cámaras de semáforo o de carril cargadas en OpenStreetMap como radar de velocidad; la descripción lo aclara.
+SOLO_SEMAFORO = re.compile(r"luz roja|sem[aá]foro|senda peatonal", re.I)
+SOLO_CARRIL = re.compile(r"carril", re.I)
+MIDE_VELOCIDAD = re.compile(r"velocidad|cinem[oó]metro|radar", re.I)
+
+
 def radar_osm(t, lat, lon, ident):
     enf = str(t.get("enforcement", "")).lower()
     tipo = "velocidad"
@@ -190,11 +196,20 @@ def radar_osm(t, lat, lon, ident):
         tipo = "semaforo"
     elif enf and "maxspeed" not in enf and "average_speed" not in enf and t.get("highway") != "speed_camera":
         tipo = "otro"
-    return {
+    texto = " ".join(str(t.get(k) or "") for k in ("name", "description", "note"))
+    if tipo == "velocidad" and not MIDE_VELOCIDAD.search(texto):
+        if SOLO_SEMAFORO.search(texto):
+            tipo = "semaforo"
+        elif SOLO_CARRIL.search(texto):
+            tipo = "otro"
+    r = {
         "id": f"osm-{ident}", "lat": round(lat, 6), "lon": round(lon, 6), "tipo": tipo,
         "vmax": velocidad(t.get("maxspeed")), "dir": direccion(t.get("direction")),
-        "nombre": t.get("name") or t.get("description") or t.get("ref") or "", "fuente": "OSM",
+        "nombre": t.get("name") or t.get("ref") or "", "fuente": "OSM",
     }
+    if t.get("description"):
+        r["detalle"] = str(t["description"])[:120]
+    return r
 
 
 def fuente_osm():
@@ -457,6 +472,12 @@ def main():
             r["vmax"], r["vmaxFuente"] = p["vmax"], p["vmaxFuente"]
         if r.get("dir") is None and p.get("dir") is not None and p.get("dirInferida"):
             r["dir"], r["dirInferida"] = p["dir"], True
+        if not r.get("nombre") and p.get("nombre") and p.get("nombre") != r.get("detalle"):
+            r["nombre"] = p["nombre"]
+    # Si no se encontró la calle, queda al menos la descripción del aparato.
+    for r in radares:
+        if not r.get("nombre") and r.get("detalle"):
+            r["nombre"] = r.pop("detalle")
     print("Completados:", completados)
     print("Con límite:", sum(1 for r in radares if r.get("vmax")), "de", len(radares))
 
