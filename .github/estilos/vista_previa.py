@@ -63,10 +63,11 @@ LIB = ('<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/ma
 
 from playwright.sync_api import sync_playwright
 informe = []
-VISTAS = {'la_plata': (-34.9205, -57.9536), 'autopista': (-34.8389, -58.0701)}
+VISTAS = {'la_plata': (-34.9147, -57.9585), 'autopista': (-34.8392, -58.0712)}
 with sync_playwright() as p:
     nav = p.chromium.launch()
-    for (ide, nombre, url, vector, modo, invertir, maxn, sub) in ESTILOS:
+    ELEGIDOS = {'osm', 'osm_noche', 'ign', 'ign_oscuro', 'ofm_liberty', 'ofm_positron', 'ofm_fiord', 'carto_voyager', 'carto_dark', 'esri_satelite', 'hot', 'ign_gris'}
+    for (ide, nombre, url, vector, modo, invertir, maxn, sub) in [e for e in ESTILOS if e[0] in ELEGIDOS]:
         sitio = SALIDA.parent / ('sitio_' + ide)
         if sitio.exists():
             shutil.rmtree(sitio)
@@ -94,7 +95,7 @@ with sync_playwright() as p:
             pg.wait_for_timeout(1500)
             pg.click('#btnCentrar')
             pg.wait_for_timeout(1500)
-            pg.evaluate("document.getElementById('puntoMenu').hidden = true")
+            pg.evaluate("document.getElementById('puntoMenu').hidden = true; const a = document.getElementById('autoIcono'); if (a) a.closest('.leaflet-marker-icon').style.display = 'none'")
             try:
                 pg.wait_for_load_state('networkidle', timeout=20000)
             except Exception:
