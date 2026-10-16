@@ -3,7 +3,18 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.6';
+  const VERSION = '2.0.7';
+  // Lo que cambió en la app (se muestra en Novedades). La primera es la versión actual.
+  const CAMBIOS_APP = [
+    ['2.0.7', ['Las novedades tienen su propia pantalla: Menú › Novedades. Ahí también quedan las actualizaciones anteriores y los cambios de la app.']],
+    ['2.0.6', ['Fotomultas de Berisso y tótems de AUBASA que multan en la Autopista Buenos Aires-La Plata.',
+      'Radares de Provincia mal cargados, puestos en su lugar (la ficha lo aclara).',
+      'Los lugares con un aparato por mano avisan en los dos sentidos.']],
+    ['2.0.5', ['Fotomultas publicadas en diarios (en verde) y radares de la comunidad (en violeta), sin los que nadie revisa desde 2018.',
+      'Botón para volver a tu ubicación cuando mirás otra parte del mapa.']],
+    ['2.0.4', ['Radares autorizados por la ANSV en rutas nacionales.']],
+    ['2.0.3', ['Listado oficial de radares de Provincia (Infracciones BA).']]
+  ];
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -27,6 +38,7 @@
   let propios = LS.get('radaresPropios', []);
   let ocultos = new Set(LS.get('radaresOcultos', []));
   let novedades = LS.get('novedades', null);
+  let novedadesAnteriores = LS.get('novedadesAnteriores', []);
 
   const TIPOS = {
     velocidad: { nombre: 'Radar de velocidad', clase: 't-vel' },
@@ -424,10 +436,17 @@
     if (anterior && anterior.generado && j.generado && anterior.generado !== j.generado && Array.isArray(anterior.radares) && anterior.radares.length > 20) {
       const { nuevos, quitados, cambiados } = calcularNovedades(anterior.radares, j.radares);
       if (nuevos.length || quitados.length || cambiados.length) {
-        const corto = (x) => ({ id: x.id, lat: x.lat, lon: x.lon, tipo: x.tipo, tipoNuevo: x.tipoNuevo, vmax: x.vmax || null, nombre: x.nombre || '' });
+        // La anterior pasa a "Actualizaciones anteriores" (las últimas 5, con menos detalle para no llenar el celular).
+        if (hayCambios(novedades)) {
+          const recorte = (l) => (l || []).slice(0, 60);
+          novedadesAnteriores = [Object.assign({}, novedades, { nuevos: recorte(novedades.nuevos), quitados: recorte(novedades.quitados), cambiados: recorte(novedades.cambiados) })]
+            .concat(novedadesAnteriores).slice(0, 5);
+          LS.set('novedadesAnteriores', novedadesAnteriores);
+        }
+        const corto = (x) => ({ id: x.id, lat: x.lat, lon: x.lon, tipo: x.tipo, tipoNuevo: x.tipoNuevo, vmax: x.vmax || null, nombre: x.nombre || '', fuente: x.fuente || '' });
         novedades = {
           fecha: j.generado, nuevos: nuevos.slice(0, 300).map(corto), quitados: quitados.slice(0, 300).map(corto), cambiados: cambiados.slice(0, 300).map(corto),
-          totalNuevos: nuevos.length, totalQuitados: quitados.length, totalCambiados: cambiados.length, visto: false
+          totalNuevos: nuevos.length, totalQuitados: quitados.length, totalCambiados: cambiados.length, visto: false, abierto: false
         };
         LS.set('novedades', novedades);
         avisarNovedades = true;
@@ -544,11 +563,12 @@
     mostrarNovedades();
     if (avisarNovedades) {
       avisarNovedades = false;
-      if (!$('panel').hidden) return; // con el menú abierto, las novedades ya se ven ahí
+      if (!$('panel').hidden || !$('hojaNovedades').hidden) return; // ya se ven en el menú o en Novedades
       const n = novedades.totalNuevos || 0;
-      toast('Novedades en los radares: ' + textoNovedades(novedades) + '.' + (n ? ' Los nuevos se marcan en el mapa.' : '') + ' El detalle está en el menú.', 9000);
+      toast('Novedades en los radares: ' + textoNovedades(novedades) + '.' + (n ? ' Los nuevos se marcan en el mapa.' : '') + ' Las ves en Menú › Novedades.', 9000);
     }
   }
+  const hayCambios = (nv) => !!(nv && (nv.totalNuevos || nv.totalQuitados || nv.totalCambiados));
   // "3 radares nuevos, 2 que ya no están y 5 que cambiaron de tipo"
   function textoNovedades(nv) {
     const n = nv.totalNuevos || 0, q = nv.totalQuitados || 0, c = nv.totalCambiados || 0;
@@ -579,7 +599,7 @@
     actualizando = false;
     const hayNovedades = avisarNovedades;
     recalcularBase();
-    $('estadoAct').textContent = 'Listo. ' + partes.join(' · ') + '.' + (hayNovedades ? ' Hay novedades: mirá más abajo.' : '');
+    $('estadoAct').textContent = 'Listo. ' + partes.join(' · ') + '.' + (hayNovedades ? ' Hay novedades: tocá «Novedades», arriba de todo.' : '');
     if (!hayNovedades) toast('Radares actualizados: ' + base.length + ' radares y ' + peajes.length + ' peajes.');
   }
 
@@ -607,30 +627,109 @@
     if (!$('btnActualizar').disabled) $('estadoAct').textContent = txt;
   }
 
+  // ---------- Novedades: pantalla propia (Menú › Novedades); en el menú queda solo la entrada ----------
+  const fechaNov = (nv) => { const f = new Date(nv.fecha); return isNaN(f) ? '' : f.toLocaleDateString('es-AR'); };
+  const versionSinVer = () => LS.get('versionVista', null) !== VERSION;
+  const novedadSinVer = () => hayCambios(novedades) && !novedades.abierto;
+  // Entrada del menú y puntito amarillo cuando hay algo que todavía no miraste.
   function mostrarNovedades() {
-    const bloque = $('bloqueNovedades');
-    if (!novedades || (!novedades.totalNuevos && !novedades.totalQuitados && !novedades.totalCambiados)) { bloque.hidden = true; return; }
-    bloque.hidden = false;
-    const f = new Date(novedades.fecha);
-    $('novedadesTxt').textContent = 'Actualización del ' + (isNaN(f) ? '' : f.toLocaleDateString('es-AR')) + ': ' + textoNovedades(novedades) + '.';
-    const lista = $('novedadesLista');
-    lista.textContent = '';
+    const sinVer = novedadSinVer() || versionSinVer();
+    $('puntoMenu').hidden = !sinVer;
+    $('puntoNovedades').hidden = !sinVer;
+    let txt = 'Lo último que cambió en los radares y en la app';
+    if (novedadSinVer()) txt = 'Actualización del ' + fechaNov(novedades) + ': ' + textoNovedades(novedades);
+    else if (versionSinVer()) txt = 'Nueva versión ' + VERSION + ': mirá qué cambió';
+    else if (hayCambios(novedades)) txt = 'Última actualización (' + fechaNov(novedades) + '): ' + textoNovedades(novedades);
+    $('novedadesResumen').textContent = txt;
+    if (!$('hojaNovedades').hidden) llenarNovedades();
+  }
+  function marcadorMini(x) {
+    const t = TIPOS[x.tipo] || TIPOS.otro;
+    const m = document.createElement('span');
+    m.className = 'mk mini ' + t.clase + (x.fuente === 'prensa' ? ' f-prensa' : x.fuente === 'OSM' ? ' f-osm' : '');
+    if (x.tipo === 'semaforo') m.innerHTML = '<i></i><i></i><i></i>';
+    return m;
+  }
+  // Listas de una actualización: nuevos, los que ya no están y los que cambiaron de tipo.
+  function listasNovedad(nv, caja, max) {
     const nombreTipo = (t) => (TIPOS[t] || TIPOS.otro).nombre;
-    const agregar = (x, clase) => {
-      const li = document.createElement('li');
-      const b = document.createElement('button'); b.type = 'button';
-      const k = document.createElement('span'); k.className = 'km'; k.textContent = { nuevo: 'Nuevo', quitado: 'Quitado', cambio: 'Cambió' }[clase];
-      const d = document.createElement('span'); d.className = 'det';
-      d.textContent = clase === 'cambio' ? nombreTipo(x.tipo) + ' → ' + nombreTipo(x.tipoNuevo) : nombreTipo(x.tipo) + (x.vmax ? ' · máx. ' + x.vmax : '');
-      const sm = document.createElement('small'); sm.textContent = x.nombre || 'Sin descripción'; d.appendChild(sm);
-      b.append(k, d);
-      b.onclick = () => { cerrarHojas(); irA(x.lat, x.lon, 17); if (clase === 'quitado') marcaQuitado(x); };
-      li.appendChild(b); lista.appendChild(li);
+    const grupos = [['nuevos', 'totalNuevos', 'Nuevos', 'nuevo'], ['quitados', 'totalQuitados', 'Ya no están', 'quitado'], ['cambiados', 'totalCambiados', 'Cambiaron de tipo', 'cambio']];
+    for (const [k, kt, titulo, clase] of grupos) {
+      const lista = nv[k] || [];
+      if (!lista.length) continue;
+      const h = document.createElement('h4'); h.className = 'nov-grupo'; h.textContent = titulo + ' (' + (nv[kt] || lista.length) + ')';
+      const ol = document.createElement('ol'); ol.className = 'lista-ruta lista-nov';
+      for (const x of lista.slice(0, max)) {
+        const li = document.createElement('li');
+        const b = document.createElement('button'); b.type = 'button';
+        const icono = marcadorMini(clase === 'cambio' ? Object.assign({}, x, { tipo: x.tipoNuevo }) : x);
+        if (clase === 'quitado') icono.classList.add('mk-inst');
+        const ico = document.createElement('span'); ico.className = 'ico'; ico.appendChild(icono);
+        const d = document.createElement('span'); d.className = 'det';
+        d.textContent = clase === 'cambio' ? nombreTipo(x.tipo) + ' → ' + nombreTipo(x.tipoNuevo) : nombreTipo(x.tipo) + (x.vmax ? ' · máx. ' + x.vmax : '');
+        const sm = document.createElement('small'); sm.textContent = x.nombre || 'Sin descripción'; d.appendChild(sm);
+        b.append(ico, d);
+        b.onclick = () => { cerrarHojas(); irA(x.lat, x.lon, 17); if (clase === 'quitado') marcaQuitado(x); };
+        li.appendChild(b); ol.appendChild(li);
+      }
+      const resto = (nv[kt] || lista.length) - Math.min(lista.length, max);
+      caja.append(h, ol);
+      if (resto > 0) { const p = document.createElement('p'); p.className = 'nota'; p.textContent = 'Y ' + resto + ' más.'; caja.appendChild(p); }
+    }
+  }
+  function llenarNovedades() {
+    const caja = $('novedadesListas');
+    caja.textContent = '';
+    if (hayCambios(novedades)) {
+      $('novedadesTxt').textContent = 'Actualización del ' + fechaNov(novedades) + ': ' + textoNovedades(novedades) + '.' +
+        (novedades.totalNuevos && !novedades.visto ? ' Los nuevos se resaltan en amarillo en el mapa durante dos semanas.' : '') +
+        ' Tocá uno para verlo en el mapa.';
+      listasNovedad(novedades, caja, 150);
+    } else {
+      const fr = repo && repo.generado ? new Date(repo.generado) : null;
+      $('novedadesTxt').textContent = 'Todavía no hubo cambios desde que usás la app.' +
+        (fr && !isNaN(fr) ? ' La lista se revisa todas las semanas; la última es del ' + fr.toLocaleDateString('es-AR') + '.' : ' La lista se revisa todas las semanas.');
+    }
+    $('btnNovedadesVistas').hidden = !(hayCambios(novedades) && novedades.totalNuevos && !novedades.visto);
+    // Actualizaciones anteriores, plegadas.
+    const ant = $('novedadesAnteriores');
+    ant.textContent = '';
+    for (const nv of novedadesAnteriores.filter(hayCambios)) {
+      const det = document.createElement('details'); det.className = 'nov-ant';
+      const s = document.createElement('summary'); s.textContent = fechaNov(nv) + ': ' + textoNovedades(nv);
+      det.appendChild(s);
+      listasNovedad(nv, det, 60);
+      ant.appendChild(det);
+    }
+    $('bloqueNovAnteriores').hidden = !ant.children.length;
+    // Cambios en la app: las últimas tres versiones a la vista y las demás plegadas.
+    const cam = $('cambiosApp');
+    cam.textContent = '';
+    const version = ([v, items], caja) => {
+      const div = document.createElement('div'); div.className = 'cambio-app';
+      const t = document.createElement('b'); t.textContent = 'Versión ' + v + (v === VERSION ? ' (la que tenés)' : '');
+      const ul = document.createElement('ul');
+      for (const it of items) { const li = document.createElement('li'); li.textContent = it; ul.appendChild(li); }
+      div.append(t, ul); caja.appendChild(div);
     };
-    (novedades.nuevos || []).slice(0, 40).forEach((x) => agregar(x, 'nuevo'));
-    (novedades.quitados || []).slice(0, 20).forEach((x) => agregar(x, 'quitado'));
-    (novedades.cambiados || []).slice(0, 20).forEach((x) => agregar(x, 'cambio'));
-    $('btnNovedadesVistas').hidden = !!novedades.visto;
+    CAMBIOS_APP.slice(0, 3).forEach((c) => version(c, cam));
+    if (CAMBIOS_APP.length > 3) {
+      const det = document.createElement('details'); det.className = 'nov-ant';
+      const s = document.createElement('summary'); s.textContent = 'Versiones anteriores';
+      det.appendChild(s);
+      CAMBIOS_APP.slice(3).forEach((c) => version(c, det));
+      cam.appendChild(det);
+    }
+  }
+  function abrirNovedades() {
+    cerrarHojas();
+    llenarNovedades();
+    $('hojaNovedades').hidden = false;
+    $('hojaNovedades').scrollTop = 0;
+    // Abrir la pantalla cuenta como visto (el resaltado del mapa sigue hasta que lo saques o pasen dos semanas).
+    if (novedades && hayCambios(novedades) && !novedades.abierto) { novedades.abierto = true; LS.set('novedades', novedades); }
+    LS.set('versionVista', VERSION);
+    mostrarNovedades();
   }
   let capaQuitado = null;
   function marcaQuitado(x) {
@@ -1490,6 +1589,7 @@
   function cerrarHojas() {
     $('panel').hidden = true;
     $('hojaRuta').hidden = true;
+    $('hojaNovedades').hidden = true;
     if (agregando) cerrarAgregar();
     actualizarChipRuta();
   }
@@ -1542,9 +1642,12 @@
     const n = ocultos.size; ocultos.clear(); LS.set('radaresOcultos', []); dibujarRadares();
     toast(n ? 'Se restauraron ' + n + ' radares.' : 'No había radares ocultos.');
   };
+  $('btnNovedades').onclick = abrirNovedades;
+  $('btnNovedadesVolver').onclick = () => { $('btnMenu').click(); };
   $('btnNovedadesVistas').onclick = () => {
     if (novedades) { novedades.visto = true; LS.set('novedades', novedades); }
     dibujarRadares(); mostrarNovedades();
+    toast('Listo: los radares nuevos ya no se resaltan en el mapa.');
   };
   $('btnProbarSonido').onclick = () => {
     if (NATIVO) { nat('probarSonido'); return; }
@@ -1595,6 +1698,7 @@
       if (hudActivo) { cerrarHud(); return true; }
       if (!$('intro').hidden) { $('btnIntroOk').click(); return true; }
       if (eligiendoDestino) { eligiendoDestino = false; $('hojaRuta').hidden = false; return true; }
+      if (!$('hojaNovedades').hidden) { $('btnMenu').click(); return true; } // de Novedades se vuelve al menú
       if (!$('panel').hidden || !$('hojaRuta').hidden || !$('hojaAgregar').hidden) { cerrarHojas(); return true; }
       return false;
     },
@@ -1620,7 +1724,10 @@
     $('linkApk').href = urlApk();
     $('introInstalar').innerHTML = 'En Android conviene <b>la app</b>, que avisa con la pantalla bloqueada: descargala desde el menú.';
   }
-  if (!LS.get('introVisto', false)) $('intro').hidden = false;
+  if (!LS.get('introVisto', false)) {
+    $('intro').hidden = false;
+    LS.set('versionVista', VERSION); // a quien recién empieza no hace falta contarle qué cambió en la app
+  }
   $('btnIntroOk').onclick = () => { LS.set('introVisto', true); $('intro').hidden = true; };
   aplicarModoMapa();
   prepararRotacion();

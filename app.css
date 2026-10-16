@@ -304,7 +304,31 @@ select, input[type="text"], input[type="search"] {
 .lista-ruta .km { flex: none; width: 66px; font: 700 18px/1 var(--f-num); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .lista-ruta .det { min-width: 0; font-size: 14px; line-height: 1.25; }
 .lista-ruta .det small { display: block; color: var(--fg-suave); }
-#novedadesLista .km { width: 74px; font-size: 14px; letter-spacing: .4px; text-transform: uppercase; }
+/* ---------- Novedades: entrada en el menú y pantalla propia ---------- */
+.entrada {
+  width: 100%; display: flex; align-items: center; gap: 12px; text-align: left;
+  padding: 12px 14px; border-radius: 14px; border: 1px solid var(--hud-borde); background: transparent;
+}
+.entrada .ent-txt { flex: 1; min-width: 0; }
+.entrada b { display: block; font-family: var(--f-num); font-size: 21px; font-weight: 700; letter-spacing: .3px; line-height: 1.1; }
+.entrada small { display: block; margin-top: 2px; font-size: 13.5px; line-height: 1.3; color: var(--fg-suave); }
+.entrada .flecha { flex: none; font-size: 30px; line-height: 1; color: var(--fg-suave); }
+.punto { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--acento); box-shadow: 0 0 0 2px var(--hud-solido); }
+#btnMenu { position: relative; }
+#btnMenu .punto { position: absolute; top: 9px; right: 9px; box-shadow: 0 0 0 2px var(--hud); }
+.volver { flex: none; width: 40px; height: 44px; margin-left: -10px; border: 0; background: transparent; font-size: 36px; line-height: 1; color: var(--fg-suave); }
+#hojaNovedades .hoja-cab h2 { flex: 1; min-width: 0; }
+.hoja h4.nov-grupo { margin: 14px 0 0; font-size: 14px; font-weight: 600; }
+.lista-nov li button { gap: 12px; }
+.lista-nov .ico { flex: none; width: 22px; display: grid; place-items: center; }
+.lista-nov .mk.mini.mk-inst { opacity: .45; }
+details.nov-ant { margin-top: 8px; border: 1px solid var(--hud-borde); border-radius: 12px; padding: 10px 12px; }
+details.nov-ant summary { cursor: pointer; font-weight: 600; font-size: 14.5px; }
+details.nov-ant[open] summary { margin-bottom: 4px; }
+.cambio-app { margin-top: 10px; font-size: 14.5px; }
+.cambio-app:first-child { margin-top: 0; }
+.cambio-app ul { margin: 4px 0 0; padding-left: 20px; color: var(--fg-suave); }
+.cambio-app li { margin-block: 3px; }
 .campos { display: grid; gap: 6px; margin-block: 12px; }
 .campos label { font-size: 14px; color: var(--fg-suave); margin-top: 6px; }
 .check { display: flex; align-items: center; gap: 10px; min-height: 40px; }
