@@ -3,7 +3,7 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.5';
+  const VERSION = '2.0.6';
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -217,9 +217,15 @@
       }
       if (dup) {
         if (!dup.vmax && r.vmax) { dup.vmax = r.vmax; dup.vmaxFuente = r.vmaxFuente; }
-        // El sentido solo se copia si es el mismo punto; Provincia y la ANSV informan el suyo y en los diarios no se sabe.
-        if (dup.dir == null && r.dir != null && !conUbicacionOficial(dup) && dup.fuente !== 'prensa' &&
-            dist(dup.lat, dup.lon, r.lat, r.lon) < 30) { dup.dir = r.dir; dup.dirInferida = r.dirInferida; }
+        const mismoPunto = dist(dup.lat, dup.lon, r.lat, r.lon) < 30;
+        if (mismoPunto && dup.dir != null && r.dir != null && difAng(dup.dir, r.dir) > 90) {
+          // Un aparato por mano en el mismo lugar: queda uno que controla los dos sentidos (igual que en el script).
+          dup.dir = null; delete dup.dirInferida; dup.sentido = 'ambos';
+        } else if (dup.dir == null && r.dir != null && dup.sentido !== 'ambos' && !conUbicacionOficial(dup) &&
+            dup.fuente !== 'prensa' && mismoPunto) {
+          // El sentido solo se copia si es el mismo punto; Provincia y la ANSV informan el suyo y en los diarios no se sabe.
+          dup.dir = r.dir; dup.dirInferida = r.dirInferida;
+        }
         if (!dup.nombre && r.nombre) dup.nombre = r.nombre;
         continue;
       }
@@ -313,7 +319,10 @@
       const o = document.createElement('div');
       o.textContent = 'Controla a quienes van hacia el ' + cardinal(r.dir) + (r.dirInferida ? ' (deducido por la mano de la calle)' : '');
       div.appendChild(o);
+    } else if (r.sentido === 'ambos' && !/sentidos/.test(r.detalle || '')) {
+      const o = document.createElement('div'); o.textContent = 'Controla los dos sentidos'; div.appendChild(o);
     }
+    if (r.corregido) { const c = document.createElement('div'); c.className = 'pop-f'; c.textContent = 'Ubicación corregida: ' + r.corregido; div.appendChild(c); }
     if (!activo(r)) { const ins = document.createElement('div'); ins.className = 'pop-aviso'; ins.textContent = 'Todavía no multa: no te da aviso.'; div.appendChild(ins); }
     const f = document.createElement('div'); f.className = 'pop-f';
     f.textContent = 'Fuente: ' + (FUENTES[r.fuente] || r.fuente);

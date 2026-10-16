@@ -9,7 +9,9 @@ Fuentes:
   - OpenStreetMap: radares y peajes cargados por la comunidad en CABA y Provincia (consultas Overpass).
   - data/prensa.json: radares y cámaras publicados en diarios, ubicados con precisión con calles y mojones de
     OpenStreetMap. Si coinciden con uno oficial, queda el oficial.
-  - data/manual.json: correcciones y agregados revisados a mano (opcional).
+  - data/manual.json: correcciones y agregados revisados a mano (opcional). En "corregir" van aparatos de
+    Provincia con las coordenadas mal cargadas y su ubicación verificada (se aplica mientras Provincia siga
+    publicando las mismas coordenadas).
 
 De OpenStreetMap se descartan los radares que nadie revisó desde 2018 o antes y los que los propios
 mapeadores marcaron como dudosos.
@@ -446,6 +448,9 @@ def radar_oficial(grupo, fuente):
         # Ruta y kilómetro de cada aparato, para cruzar Provincia con la ANSV (no se publica).
         "_tramos": sorted({(e["ruta"], e["num"]) for e in grupo if e.get("ruta") and e["num"] is not None}),
     }
+    corregidos = sorted({e["corregido"] for e in grupo if e.get("corregido")})
+    if corregidos:
+        r["corregido"] = " ".join(corregidos)
     en_km = any(e["es_km"] for e in grupo)
     if len(sentidos) == 2:
         r["sentido"] = "ambos"
@@ -464,10 +469,39 @@ def radar_oficial(grupo, fuente):
     return r
 
 
+def correcciones_manuales():
+    """Aparatos de Provincia con coordenadas mal cargadas y la ubicación verificada a mano."""
+    try:
+        return json.loads(MANUAL.read_text(encoding="utf-8")).get("corregir", []) if MANUAL.exists() else []
+    except Exception as e:
+        print(f"  data/manual.json no se pudo leer ({e})", file=sys.stderr)
+        return []
+
+
+def corregir_equipos(equipos, correcciones):
+    """Mueve cada aparato corregido a mano. Solo si Provincia sigue publicando las mismas coordenadas
+    ("desde"): si las arreglan, vale lo de ellos."""
+    hechas = 0
+    for c in correcciones:
+        desde = c.get("desde") or []
+        if len(desde) != 2 or not isinstance(c.get("lat"), (int, float)) or not isinstance(c.get("lon"), (int, float)):
+            continue
+        for e in equipos:
+            if (e["serie"] != c.get("serie") or e["lat"] is None or e["lon"] is None
+                    or dist(e["lat"], e["lon"], desde[0], desde[1]) > 50):
+                continue
+            e["lat"], e["lon"] = c["lat"], c["lon"]
+            e["lat_txt"], e["lon_txt"] = f'{c["lat"]:.6f}', f'{c["lon"]:.6f}'
+            e["corregido"] = c.get("motivo") or "Ubicación corregida a mano"
+            hechas += 1
+    return hechas
+
+
 def fuente_pba():
     equipos = leer_equipos_pba(html_pba())
     if len(equipos) < 100:
         raise ValueError(f"la página trajo solo {len(equipos)} radares; puede haber cambiado")
+    corregidos = corregir_equipos(equipos, correcciones_manuales())
     validos = [e for e in equipos if coordenada_valida(e)]
     descartados = [e for e in equipos if not coordenada_valida(e)]
     por_punto = {}
@@ -493,7 +527,7 @@ def fuente_pba():
     for e in descartados:
         print(f"  PBA descartado (ubicación dudosa): {e['serie']} · {e['calle']} {e['km']} · "
               f"{e['lat_txt']}, {e['lon_txt']}", file=sys.stderr)
-    ESTADISTICAS["PBA"] = {"equipos": len(equipos), "descartados": len(descartados)}
+    ESTADISTICAS["PBA"] = {"equipos": len(equipos), "descartados": len(descartados), "corregidos": corregidos}
     if not out:
         raise ValueError("sin radares válidos")
     return out
@@ -937,10 +971,18 @@ def deduplicar(lista):
                     for x in grilla.get((ca + i, co + j), []) if mismo_radar(x, r)), None)
         if dup:
             dup["vmax"] = dup.get("vmax") or r.get("vmax")
+            mismo_punto = dist(dup["lat"], dup["lon"], r["lat"], r["lon"]) < 30
+            if (mismo_punto and dup.get("dir") is not None and r.get("dir") is not None
+                    and dif_ang(dup["dir"], r["dir"]) > 90):
+                # Un aparato por mano en el mismo lugar (cada uno mirando a un sentido): queda uno solo que
+                # controla los dos sentidos, para que avise yendo para cualquier lado.
+                dup["dir"] = None
+                dup.pop("dirInferida", None)
+                dup["sentido"] = "ambos"
             # El sentido solo se copia si es el mismo punto (a más distancia puede ser la otra mano o la otra
             # calle de la esquina). Provincia y la ANSV informan el suyo, y en los diarios no se sabe.
-            if (dup.get("dir") is None and dup.get("fuente") not in OFICIALES_CON_UBICACION + ("prensa",)
-                    and dist(dup["lat"], dup["lon"], r["lat"], r["lon"]) < 30):
+            elif (dup.get("dir") is None and dup.get("sentido") != "ambos" and mismo_punto
+                    and dup.get("fuente") not in OFICIALES_CON_UBICACION + ("prensa",)):
                 dup["dir"] = r.get("dir")
             dup["nombre"] = dup.get("nombre") or r.get("nombre")
             continue
@@ -997,11 +1039,13 @@ def main():
     print(f"Provincia: {reubicados} radares de rutas nacionales quedan en la ubicación de la ANSV")
 
     # Radares y cámaras publicados en diarios (ubicados a mano). Si coinciden con uno oficial, queda el oficial.
+    # El sentido solo va cuando se sabe en qué mano está (en rutas y autopistas); en las esquinas, no.
     prensa = []
     if PRENSA.exists():
         for r in json.loads(PRENSA.read_text(encoding="utf-8")):
             if isinstance(r.get("lat"), (int, float)) and isinstance(r.get("lon"), (int, float)) and r.get("id"):
-                prensa.append(dict(r, fuente="prensa", vmax=r.get("vmax"), dir=None))
+                sentido = r.get("dir") if isinstance(r.get("dir"), (int, float)) else None
+                prensa.append(dict(r, fuente="prensa", vmax=r.get("vmax"), dir=sentido))
         fuentes.append({"id": "prensa", "url": "data/prensa.json", "cantidad": len(prensa), "estado": "ok"})
 
     # El orden importa entre fuentes de igual prioridad: si dos coinciden, queda la primera.
@@ -1029,7 +1073,7 @@ def main():
             continue
         if r.get("tipo") in ("velocidad", "otro") and not r.get("vmax") and p.get("vmax") and p.get("vmaxFuente"):
             r["vmax"], r["vmaxFuente"] = p["vmax"], p["vmaxFuente"]
-        if r.get("dir") is None and p.get("dir") is not None and p.get("dirInferida"):
+        if r.get("dir") is None and r.get("sentido") != "ambos" and p.get("dir") is not None and p.get("dirInferida"):
             r["dir"], r["dirInferida"] = p["dir"], True
         if not r.get("nombre") and p.get("nombre") and p.get("nombre") != r.get("detalle"):
             r["nombre"] = p["nombre"]

@@ -1,5 +1,27 @@
 {
-  "nota": "Correcciones revisadas a mano. 'agregar': radares que faltan en las fuentes (con lat, lon, tipo, vmax, nombre). 'quitar': ids de radares que ya no existen.",
+  "nota": "Correcciones revisadas a mano. 'agregar': radares que faltan en las fuentes (con lat, lon, tipo, vmax, nombre). 'quitar': ids de radares que ya no existen. 'corregir': aparatos de Provincia (por número de serie) con las coordenadas mal cargadas; se mueven a lat/lon solo mientras Provincia siga publicando las coordenadas de 'desde'.",
   "agregar": [],
-  "quitar": []
+  "quitar": [],
+  "corregir": [
+    {
+      "serie": "210",
+      "desde": [
+        -34.80137,
+        -58.19045
+      ],
+      "lat": -34.801314,
+      "lon": -58.164751,
+      "motivo": "Provincia lo publica en una calle de Berazategui, con coordenadas copiadas de otros dos aparatos. Está en el ramal de la autopista a la Ruta 2, en la otra mano del de sentido ascendente (así figura en El Día en 2017 y en OpenStreetMap)."
+    },
+    {
+      "serie": "212",
+      "desde": [
+        -34.82136,
+        -58.19045
+      ],
+      "lat": -34.90916,
+      "lon": -58.17147,
+      "motivo": "Provincia lo publica sobre el Camino Belgrano, en Berazategui. Está en el km 42 de la Ruta 2, mano hacia La Plata, donde lo ubican Parabrisas (2020) y OpenStreetMap, también con 100 km/h."
+    }
+  ]
 }
