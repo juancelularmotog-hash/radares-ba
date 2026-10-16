@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-16T12:15:42+00:00",
+ "generado": "2026-10-16T13:11:21+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -8,18 +8,27 @@
    "estado": "ok"
   },
   {
+   "id": "ANSV",
+   "url": "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales",
+   "cantidad": 74,
+   "estado": "ok",
+   "equipos": 145,
+   "descartados": 4
+  },
+  {
    "id": "PBA",
    "url": "https://infraccionesba.gba.gob.ar/equiposDeConstatacion",
    "cantidad": 413,
    "estado": "ok",
    "equipos": 649,
-   "descartados": 29
+   "descartados": 29,
+   "reubicadosPorANSV": 35
   },
   {
    "id": "OSM",
    "url": "https://www.openstreetmap.org",
    "cantidad": 1040,
-   "estado": "error: HTTP Error 500: Internal Server Error"
+   "estado": "ok"
   },
   {
    "id": "Peajes",
@@ -35,6 +44,917 @@
   }
  ],
  "radares": [
+  {
+   "id": "ansv--39.51665,-62.67491-velocidad",
+   "lat": -39.51665,
+   "lon": -62.67491,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 808,5 (Villarino)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--39.51084,-62.67171-velocidad",
+   "lat": -39.510842,
+   "lon": -62.671709,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 807,7 (Villarino)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--39.26343,-62.59848-velocidad",
+   "lat": -39.263428,
+   "lon": -62.598479,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 779,5 (Villarino)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--39.25017,-62.59401-velocidad",
+   "lat": -39.250175,
+   "lon": -62.594005,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 778 (Villarino)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--38.82080,-62.69959-velocidad",
+   "lat": -38.8208,
+   "lon": -62.699595,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Nacional 22, km 733 (Villarino)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--38.81521,-62.69113-velocidad",
+   "lat": -38.815211,
+   "lon": -62.691133,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Nacional 22, km 732 (Villarino)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--38.73202,-62.30659-velocidad",
+   "lat": -38.732022,
+   "lon": -62.306586,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 691,5 (Bahia Blanca)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--38.72789,-62.31201-velocidad",
+   "lat": -38.727889,
+   "lon": -62.312011,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 692,3 (Bahia Blanca)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--38.69032,-62.33518-velocidad",
+   "lat": -38.690323,
+   "lon": -62.335178,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 35, km 8,9 (Bahia Blanca)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--38.03753,-60.13343-velocidad",
+   "lat": -38.037529,
+   "lon": -60.133429,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 452,5 (Adolfo Gonzalez Chávez)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--38.03160,-60.12602-velocidad",
+   "lat": -38.031604,
+   "lon": -60.126015,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 451,6 (Adolfo Gonzalez Chávez)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--36.27796,-63.15294-velocidad",
+   "lat": -36.277956,
+   "lon": -63.15294,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 5, km 496,08 (Pellegrini)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--36.25022,-61.10377-velocidad",
+   "lat": -36.25022,
+   "lon": -61.103771,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Nacional 226, km 398 (Bolivar)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--36.23292,-61.14106-velocidad",
+   "lat": -36.232919,
+   "lon": -61.141057,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 226, km 402 (Bolivar)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.63760,-59.79580-velocidad",
+   "lat": -35.6376,
+   "lon": -59.7958,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 184 (Saladillo)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--35.62002,-59.77205-velocidad",
+   "lat": -35.620017,
+   "lon": -59.772049,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 181 (Saladillo)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--35.58258,-61.13790-velocidad",
+   "lat": -35.582582,
+   "lon": -61.137905,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 5, km 291,4 (9 de Julio)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.44200,-59.52948-velocidad",
+   "lat": -35.441998,
+   "lon": -59.529477,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 151 (Roque Perez)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--35.40208,-60.76655-velocidad",
+   "lat": -35.40208,
+   "lon": -60.76655,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 5, km 253 (9 de Julio)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.39939,-59.41006-velocidad",
+   "lat": -35.399386,
+   "lon": -59.410056,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 138,8 (Roque Perez)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.39740,-60.74790-velocidad",
+   "lat": -35.397397,
+   "lon": -60.747898,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 5, km 251 (9 de Julio)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.39691,-59.40661-velocidad",
+   "lat": -35.396912,
+   "lon": -59.406612,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 138,4 (Roque Perez)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--35.37703,-59.37078-velocidad",
+   "lat": -35.377026,
+   "lon": -59.370776,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 134,5 (Roque Perez)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--35.24845,-59.17217-velocidad",
+   "lat": -35.248455,
+   "lon": -59.172169,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 111 (Lobos)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--35.17116,-59.05649-velocidad",
+   "lat": -35.171164,
+   "lon": -59.056491,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 97 (Lobos)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--35.14256,-60.45892-velocidad",
+   "lat": -35.142558,
+   "lon": -60.458916,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 5, km 210,7 (Bragado)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--35.13236,-60.44732-velocidad",
+   "lat": -35.132362,
+   "lon": -60.447317,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 5, km 209,1 (Bragado)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--35.10478,-58.95765-velocidad",
+   "lat": -35.104779,
+   "lon": -58.957651,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 85 (Lobos)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.09561,-58.92643-velocidad",
+   "lat": -35.095612,
+   "lon": -58.926434,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 82 (Cañuelas)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--35.05800,-58.79627-velocidad",
+   "lat": -35.058004,
+   "lon": -58.796271,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 69,5 (Cañuelas)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--35.05547,-60.26826-velocidad",
+   "lat": -35.055466,
+   "lon": -60.268262,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 5, km 189,8 (Alberti)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.04978,-60.25227-velocidad",
+   "lat": -35.049783,
+   "lon": -60.252268,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 5, km 188,2 (Alberti)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.04594,-58.76820-velocidad",
+   "lat": -35.04594,
+   "lon": -58.768202,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 66,5 (Cañuelas)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--35.00175,-58.72047-velocidad",
+   "lat": -35.00175,
+   "lon": -58.720469,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 60 (Cañuelas)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--34.98049,-58.70038-velocidad",
+   "lat": -34.980489,
+   "lon": -58.700378,
+   "tipo": "velocidad",
+   "vmax": 130,
+   "dir": null,
+   "nombre": "Ruta Nacional 205, km 57 (Cañuelas)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--34.90703,-58.70302-velocidad",
+   "lat": -34.907028,
+   "lon": -58.703024,
+   "tipo": "velocidad",
+   "vmax": 40,
+   "dir": null,
+   "nombre": "Ruta Nacional 3, km 47,6 (Marcos Paz)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--34.63273,-58.66601-velocidad",
+   "lat": -34.632733,
+   "lon": -58.666008,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 25 (Ituzaingó)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--34.63017,-58.74248-velocidad",
+   "lat": -34.630166,
+   "lon": -58.74248,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 32,1 (Moreno)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.62816,-58.70896-velocidad",
+   "lat": -34.628164,
+   "lon": -58.708957,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 29 (Ituzaingó)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.61378,-58.85735-velocidad",
+   "lat": -34.613782,
+   "lon": -58.857353,
+   "tipo": "velocidad",
+   "vmax": 100,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 43,2 (Moreno)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.60961,-60.44365-velocidad",
+   "lat": -34.60961,
+   "lon": -60.44365,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 204,4 (Chacabuco)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--34.60771,-60.44610-velocidad",
+   "lat": -34.607711,
+   "lon": -60.446103,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 204,7 (Chacabuco)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--34.57013,-60.96110-velocidad",
+   "lat": -34.570134,
+   "lon": -60.961104,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 159 (Junin)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.51430,-58.52030-velocidad",
+   "lat": -34.5143,
+   "lon": -58.5203,
+   "tipo": "velocidad",
+   "vmax": 130,
+   "dir": null,
+   "nombre": "Panamericana (Colectora este), km 16,4 (Vicente Lopez)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--34.48357,-58.62652-velocidad",
+   "lat": -34.48357,
+   "lon": -58.626517,
+   "tipo": "velocidad",
+   "vmax": 130,
+   "dir": null,
+   "nombre": "Ruta Nacional 9, km 27 (Tigre)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--34.47441,-60.84273-velocidad",
+   "lat": -34.474412,
+   "lon": -60.842727,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 143,4 (Junin)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--34.47122,-58.67729-velocidad",
+   "lat": -34.471221,
+   "lon": -58.677291,
+   "tipo": "velocidad",
+   "vmax": 100,
+   "dir": 296,
+   "nombre": "Ruta Nacional 9, km 32 (Tigre)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--34.46959,-59.99866-velocidad",
+   "lat": -34.469586,
+   "lon": -59.998658,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 157,1 (Carmen de Areco)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--34.46950,-59.99971-velocidad",
+   "lat": -34.469499,
+   "lon": -59.99971,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 157,2 (Carmen de Areco)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--34.44151,-58.70454-velocidad",
+   "lat": -34.441512,
+   "lon": -58.704537,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 9, km 36 (Tigre)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--34.43714,-59.91583-velocidad",
+   "lat": -34.437139,
+   "lon": -59.915831,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 148 (Carmen de Areco)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "ansv--34.43578,-59.91279-velocidad",
+   "lat": -34.435779,
+   "lon": -59.912789,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Nacional 7, km 147,7 (Carmen de Areco)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--34.39399,-59.02637-velocidad",
+   "lat": -34.393985,
+   "lon": -59.02637,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 8, km 67,5 (Exaltación de la Cruz)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.37838,-60.76496-velocidad",
+   "lat": -34.378381,
+   "lon": -60.764963,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 130,1 (Rojas)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.37343,-59.13378-velocidad",
+   "lat": -34.37343,
+   "lon": -59.13378,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Nacional 8, km 78 (Exaltación de la Cruz)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.30005,-59.32735-velocidad",
+   "lat": -34.30005,
+   "lon": -59.32735,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Nacional 8, km 98 (San Andrés de Giles)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.17964,-58.96506-velocidad",
+   "lat": -34.179636,
+   "lon": -58.965064,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 9, km 75,4 (Campana)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.08290,-60.64028-velocidad",
+   "lat": -34.082896,
+   "lon": -60.640284,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 94,7 (Pergamino)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--34.07681,-58.99488-velocidad",
+   "lat": -34.076808,
+   "lon": -58.994877,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 12, km 89,7 (Campana)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--33.95842,-58.95771-velocidad",
+   "lat": -33.958415,
+   "lon": -58.957714,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 12, km 103 (Campana)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--33.93671,-60.66382-velocidad",
+   "lat": -33.936705,
+   "lon": -60.663822,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 8, km 234 (Pergamino)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--33.93229,-59.42036-velocidad",
+   "lat": -33.932288,
+   "lon": -59.420356,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 9, km 127,3 (Baradero)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--33.92779,-60.37736-velocidad",
+   "lat": -33.92779,
+   "lon": -60.37736,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 8, km 206 (Pergamino)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--33.92505,-60.38738-velocidad",
+   "lat": -33.92505,
+   "lon": -60.38738,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 8, km 207 (Pergamino)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--33.85947,-60.51198-velocidad",
+   "lat": -33.85947,
+   "lon": -60.511984,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 66 (Pergamino)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--33.60561,-60.36190-velocidad",
+   "lat": -33.605606,
+   "lon": -60.361896,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 34,1 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--33.58894,-60.35276-velocidad",
+   "lat": -33.588944,
+   "lon": -60.352762,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 32,1 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--33.52817,-60.31918-velocidad",
+   "lat": -33.528174,
+   "lon": -60.319178,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 24,8 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--33.52066,-60.31509-velocidad",
+   "lat": -33.520656,
+   "lon": -60.315087,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 23,9 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--33.40978,-60.24192-velocidad",
+   "lat": -33.40978,
+   "lon": -60.241923,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 9,8 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "ansv--33.40152,-60.23405-velocidad",
+   "lat": -33.401522,
+   "lon": -60.234053,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 8,6 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "ansv--33.37943,-60.21052-velocidad",
+   "lat": -33.379431,
+   "lon": -60.21052,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 188, km 5,2 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--33.36510,-60.25366-velocidad",
+   "lat": -33.3651,
+   "lon": -60.253659,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 9, km 231,1 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "ansv--33.34916,-60.27483-velocidad",
+   "lat": -33.349156,
+   "lon": -60.274831,
+   "tipo": "velocidad",
+   "vmax": null,
+   "dir": null,
+   "nombre": "Ruta Nacional 9, km 233,7 (San Nicolas de los Arroyos)",
+   "fuente": "ANSV",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
   {
    "id": "caba--34.69884,-58.45633-velocidad",
    "lat": -34.698835,
@@ -115,8 +1035,8 @@
    "dir": 201,
    "nombre": "AU. DELLEPIANE - KM 2.3",
    "fuente": "CABA",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
+   "vmaxFuente": "calle",
+   "dirInferida": true
   },
   {
    "id": "caba--34.66477,-58.51467-velocidad",
@@ -188,8 +1108,8 @@
    "dir": 219,
    "nombre": "AU. AU1 - AU6 RAMAL DE TRANSICIÓN - KM 0.1",
    "fuente": "CABA",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
+   "vmaxFuente": "calle",
+   "dirInferida": true
   },
   {
    "id": "caba--34.64717,-58.37474-velocidad",
@@ -2899,16 +3819,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n10573633045",
-   "lat": -35.376963,
-   "lon": -59.370589,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205",
-   "fuente": "OSM"
-  },
-  {
    "id": "osm-n13954721229",
    "lat": -35.330869,
    "lon": -57.463508,
@@ -3036,26 +3946,6 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n10068195011",
-   "lat": -35.143014,
-   "lon": -60.459356,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 90.0,
-   "nombre": "Ruta Nacional 5",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n10068195012",
-   "lat": -35.132621,
-   "lon": -60.447603,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 190.0,
-   "nombre": "Ruta Nacional 5",
    "fuente": "OSM"
   },
   {
@@ -4843,8 +5733,8 @@
    "dir": 167,
    "nombre": "",
    "fuente": "OSM",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n666655068",
@@ -5196,8 +6086,8 @@
    "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
    "detalle": "Verificador de carriles",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5931269090",
@@ -5240,8 +6130,8 @@
    "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
    "detalle": "Verificador de carriles",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n180484525",
@@ -5298,8 +6188,8 @@
    "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
    "detalle": "Verificador de carriles",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n2847934417",
@@ -5355,8 +6245,8 @@
    "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
    "detalle": "Verificador de carriles",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n12749880103",
@@ -5389,8 +6279,8 @@
    "dir": 224,
    "nombre": "Concepción Arenal",
    "fuente": "OSM",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n12704894184",
@@ -5433,8 +6323,8 @@
    "nombre": "Avenida Callao",
    "fuente": "OSM",
    "detalle": "Verificador de carriles",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n13565820248",
@@ -5445,8 +6335,8 @@
    "dir": 97,
    "nombre": "Avenida Corrientes",
    "fuente": "OSM",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n4599156131",
@@ -7355,30 +8245,6 @@
    "detalle": "Controla los dos sentidos"
   },
   {
-   "id": "pba--39.25048,-62.59395-velocidad",
-   "lat": -39.250482,
-   "lon": -62.593948,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 3, km 778,8",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
-   "id": "pba--39.24919,-62.59405-velocidad",
-   "lat": -39.249189,
-   "lon": -62.594052,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 3, km 779,2",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
    "id": "pba--38.84217,-60.07914-velocidad",
    "lat": -38.84217,
    "lon": -60.07914,
@@ -7386,18 +8252,6 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 73, km 1",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
-   "id": "pba--38.82125,-62.70163-velocidad",
-   "lat": -38.82125,
-   "lon": -62.70163,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Ruta Nacional 22, km 733",
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia los km más bajos)"
@@ -7439,18 +8293,6 @@
    "detalle": "Controla el sentido ascendente (hacia la numeración más alta)"
   },
   {
-   "id": "pba--38.73756,-62.57244-velocidad",
-   "lat": -38.73756,
-   "lon": -62.57244,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Ruta Nacional 22, km 732",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
    "id": "pba--38.72756,-62.21068-velocidad",
    "lat": -38.72756,
    "lon": -62.21068,
@@ -7461,18 +8303,6 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia la numeración más alta)"
-  },
-  {
-   "id": "pba--38.72678,-62.31337-velocidad",
-   "lat": -38.726781,
-   "lon": -62.313367,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 3, km 692,3",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
    "id": "pba--38.72541,-62.20807-velocidad",
@@ -7497,18 +8327,6 @@
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
-  },
-  {
-   "id": "pba--38.70799,-62.31253-velocidad",
-   "lat": -38.70799,
-   "lon": -62.31253,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 35, km 8,9",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
   },
   {
    "id": "pba--38.70670,-62.31404-velocidad",
@@ -7545,18 +8363,6 @@
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
-   "id": "pba--38.70081,-62.33302-velocidad",
-   "lat": -38.70081,
-   "lon": -62.33302,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 3, km 807,7",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
   },
   {
    "id": "pba--38.68948,-62.25804-velocidad",
@@ -7653,18 +8459,6 @@
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
-  },
-  {
-   "id": "pba--38.01667,-60.10737-velocidad",
-   "lat": -38.016673,
-   "lon": -60.107368,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 3, km 452,5",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
   },
   {
    "id": "pba--38.00973,-57.65671-velocidad",
@@ -8332,30 +9126,6 @@
    "detalle": "Controla los dos sentidos"
   },
   {
-   "id": "pba--35.63321,-60.39614-velocidad",
-   "lat": -35.633214,
-   "lon": -60.396142,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 181",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
-   "id": "pba--35.63100,-59.78414-velocidad",
-   "lat": -35.630998,
-   "lon": -59.784143,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 184",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
    "id": "pba--35.62312,-58.01832-velocidad",
    "lat": -35.62312,
    "lon": -58.01832,
@@ -8515,30 +9285,6 @@
    "detalle": "Controla el sentido ascendente (hacia los km más altos)"
   },
   {
-   "id": "pba--35.47995,-59.62405-velocidad",
-   "lat": -35.479946,
-   "lon": -59.624049,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 82,3",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
-  },
-  {
-   "id": "pba--35.47984,-59.62367-velocidad",
-   "lat": -35.479839,
-   "lon": -59.62367,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 111",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
-  },
-  {
    "id": "pba--35.42915,-60.94441-velocidad",
    "lat": -35.429148,
    "lon": -60.944415,
@@ -8599,18 +9345,6 @@
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
   },
   {
-   "id": "pba--35.40108,-59.41290-velocidad",
-   "lat": -35.40108,
-   "lon": -59.4129,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 151",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
-  },
-  {
    "id": "pba--35.38148,-57.36711-velocidad",
    "lat": -35.38148,
    "lon": -57.36711,
@@ -8621,30 +9355,6 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia la numeración más alta)"
-  },
-  {
-   "id": "pba--35.37624,-59.36858-velocidad",
-   "lat": -35.37624,
-   "lon": -59.368581,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 138,4",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
-  },
-  {
-   "id": "pba--35.37614,-59.36936-velocidad",
-   "lat": -35.376139,
-   "lon": -59.369363,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 134,5",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
   },
   {
    "id": "pba--35.34333,-58.05015-velocidad",
@@ -8695,30 +9405,6 @@
    "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
-   "id": "pba--35.29426,-59.87391-velocidad",
-   "lat": -35.294257,
-   "lon": -59.873914,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 181",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
-   "id": "pba--35.24572,-60.60004-velocidad",
-   "lat": -35.24572,
-   "lon": -60.60004,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 5, km 209,1",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
    "id": "pba--35.22742,-57.71859-velocidad",
    "lat": -35.227422,
    "lon": -57.718593,
@@ -8729,18 +9415,6 @@
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
-   "id": "pba--35.20726,-59.10603-velocidad",
-   "lat": -35.207261,
-   "lon": -59.106033,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 97,5",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
   },
   {
    "id": "pba--35.19741,-59.11050-velocidad",
@@ -8803,18 +9477,6 @@
    "detalle": "Controla los dos sentidos"
   },
   {
-   "id": "pba--35.11511,-60.42335-velocidad",
-   "lat": -35.115107,
-   "lon": -60.423351,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 5, km 210,7",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
    "id": "pba--35.10707,-58.96533-velocidad",
    "lat": -35.10707,
    "lon": -58.965325,
@@ -8845,7 +9507,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "Ruta provincial 210, km 60,5",
+   "nombre": "Ruta Provincial 210, km 60,5",
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia los km más altos)"
@@ -8858,30 +9520,6 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Ruta Provincial 210, km 55",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
-   "id": "pba--35.07804,-58.66014-velocidad",
-   "lat": -35.078043,
-   "lon": -58.660142,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 82",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
-  },
-  {
-   "id": "pba--35.05195,-58.77942-velocidad",
-   "lat": -35.05195,
-   "lon": -58.77942,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 184",
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia los km más bajos)"
@@ -8909,18 +9547,6 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
-   "id": "pba--35.02964,-58.02968-velocidad",
-   "lat": -35.029637,
-   "lon": -58.029678,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205, km 69,5",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
    "id": "pba--35.02925,-58.44489-velocidad",
@@ -10265,18 +10891,6 @@
    "detalle": "Controla los dos sentidos"
   },
   {
-   "id": "pba--34.63015,-58.74196-velocidad",
-   "lat": -34.63015,
-   "lon": -58.741956,
-   "tipo": "velocidad",
-   "vmax": 110,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 32,1",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
-  },
-  {
    "id": "pba--34.62642,-59.41393-velocidad",
    "lat": -34.626417,
    "lon": -59.41393,
@@ -10299,18 +10913,6 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia la numeración más alta)"
-  },
-  {
-   "id": "pba--34.62386,-58.88954-velocidad",
-   "lat": -34.623859,
-   "lon": -58.889543,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 43,2",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
   },
   {
    "id": "pba--34.62326,-58.69815-velocidad",
@@ -10371,18 +10973,6 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
-   "id": "pba--34.61499,-58.85287-velocidad",
-   "lat": -34.61499,
-   "lon": -58.85287,
-   "tipo": "velocidad",
-   "vmax": 110,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 29",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
    "id": "pba--34.61341,-58.55269-semaforo",
@@ -10592,18 +11182,6 @@
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
   },
   {
-   "id": "pba--34.58279,-60.44813-velocidad",
-   "lat": -34.582793,
-   "lon": -60.448128,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 204,7",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
    "id": "pba--34.58057,-58.40503-velocidad",
    "lat": -34.58057,
    "lon": -58.40503,
@@ -10782,30 +11360,6 @@
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
-  },
-  {
-   "id": "pba--34.55637,-60.95316-velocidad",
-   "lat": -34.556367,
-   "lon": -60.953164,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 188, km 159",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
-  },
-  {
-   "id": "pba--34.55469,-59.04555-velocidad",
-   "lat": -34.55469,
-   "lon": -59.04555,
-   "tipo": "velocidad",
-   "vmax": 110,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 29",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
   },
   {
    "id": "pba--34.55260,-58.44559-velocidad",
@@ -11391,30 +11945,6 @@
    "detalle": "Controla el sentido ascendente (hacia la numeración más alta)"
   },
   {
-   "id": "pba--34.46964,-59.99904-velocidad",
-   "lat": -34.469641,
-   "lon": -59.999043,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 157,2",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
-  },
-  {
-   "id": "pba--34.46910,-60.00712-velocidad",
-   "lat": -34.4691,
-   "lon": -60.007122,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 204,4",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
    "id": "pba--34.46878,-58.56112-velocidad",
    "lat": -34.468785,
    "lon": -58.561121,
@@ -11474,18 +12004,6 @@
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
-  },
-  {
-   "id": "pba--34.46267,-59.59788-velocidad",
-   "lat": -34.46267,
-   "lon": -59.59788,
-   "tipo": "velocidad",
-   "vmax": 110,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 25",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
    "id": "pba--34.46103,-61.13977-velocidad",
@@ -11634,18 +12152,6 @@
    "detalle": "Controla los dos sentidos"
   },
   {
-   "id": "pba--34.43640,-59.91416-velocidad",
-   "lat": -34.436403,
-   "lon": -59.914155,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 7, km 147,7",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
    "id": "pba--34.43515,-58.68484-velocidad",
    "lat": -34.435147,
    "lon": -58.684842,
@@ -11656,18 +12162,6 @@
    "fuente": "PBA",
    "sentido": "ambos",
    "detalle": "Controla los dos sentidos"
-  },
-  {
-   "id": "pba--34.43459,-60.84621-velocidad",
-   "lat": -34.434588,
-   "lon": -60.846211,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 188, km 143,4",
-   "fuente": "PBA",
-   "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
   },
   {
    "id": "pba--34.43337,-59.46910-velocidad",
@@ -11838,18 +12332,6 @@
    "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
-   "id": "pba--34.37350,-59.13334-velocidad",
-   "lat": -34.373504,
-   "lon": -59.133339,
-   "tipo": "velocidad",
-   "vmax": 110,
-   "dir": null,
-   "nombre": "Ruta Nacional 8, km 78",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
-  },
-  {
    "id": "pba--34.34324,-59.06625-velocidad",
    "lat": -34.34324,
    "lon": -59.06625,
@@ -11920,18 +12402,6 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
-   "id": "pba--34.30572,-59.33453-velocidad",
-   "lat": -34.305721,
-   "lon": -59.334535,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Ruta Nacional 8, km 98",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
   },
   {
    "id": "pba--34.29639,-59.10137-velocidad",
@@ -12052,18 +12522,6 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia los km más altos)"
-  },
-  {
-   "id": "pba--34.19170,-60.71020-velocidad",
-   "lat": -34.1917,
-   "lon": -60.7102,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Ruta nacional 188, km 130,1",
-   "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
   },
   {
    "id": "pba--34.17924,-59.00350-velocidad",
