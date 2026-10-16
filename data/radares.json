@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-16T00:38:38+00:00",
+ "generado": "2026-10-16T01:36:19+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -11,6 +11,12 @@
    "id": "OSM",
    "url": "https://www.openstreetmap.org",
    "cantidad": 1040,
+   "estado": "ok"
+  },
+  {
+   "id": "Peajes",
+   "url": "https://www.openstreetmap.org",
+   "cantidad": 81,
    "estado": "ok"
   },
   {
@@ -76,10 +82,11 @@
    "lat": -34.673378,
    "lon": -58.500386,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. EVA PERÓN - 7280",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.66785,-58.47463-velocidad",
@@ -96,10 +103,12 @@
    "lat": -34.667696,
    "lon": -58.474928,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 100,
+   "dir": 201,
    "nombre": "AU. DELLEPIANE - KM 2.3",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.66477,-58.51467-velocidad",
@@ -147,9 +156,10 @@
    "lon": -58.500498,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 132,
    "nombre": "POLA 1205 ENTRE AV. J.B.ALBERDI Y BRAGADO",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.64926,-58.50992-velocidad",
@@ -166,10 +176,12 @@
    "lat": -34.647662,
    "lon": -58.464551,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 219,
    "nombre": "AU. AU1 - AU6 RAMAL DE TRANSICIÓN - KM 0.1",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.64717,-58.37474-velocidad",
@@ -206,10 +218,11 @@
    "lat": -34.646162,
    "lon": -58.484752,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "AU. PERITO MORENO - KM 4.8",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.64604,-58.52058-video",
@@ -226,10 +239,11 @@
    "lat": -34.645308,
    "lon": -58.486354,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 100,
    "dir": null,
    "nombre": "AU. PERITO MORENO - KM 4.5",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.64273,-58.48179-velocidad",
@@ -237,9 +251,10 @@
    "lon": -58.481786,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 44,
    "nombre": "AV. DIRECTORIO - 4155",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.64178,-58.49130-video",
@@ -256,10 +271,11 @@
    "lat": -34.64009,
    "lon": -58.376556,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 100,
    "dir": null,
    "nombre": "AU. ARTURO FRONDIZI - KM 1.3",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.63947,-58.51176-video",
@@ -357,9 +373,10 @@
    "lon": -58.469959,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 70,
    "nombre": "AV. DIRECTORIO - 3078",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.63601,-58.41354-velocidad",
@@ -396,30 +413,33 @@
    "lat": -34.635783,
    "lon": -58.499819,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 100,
    "dir": null,
    "nombre": "AU. PERITO MORENO - KM 2.9",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.63490,-58.52745-velocidad",
    "lat": -34.6349,
    "lon": -58.527448,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
    "nombre": "AU. PERITO MORENO - KM 0.3",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.63481,-58.37771-velocidad",
    "lat": -34.634808,
    "lon": -58.37771,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 100,
    "dir": null,
    "nombre": "AU. ARTURO FRONDIZI - KM 2.0",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.63421,-58.51242-velocidad",
@@ -437,9 +457,10 @@
    "lon": -58.462747,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 251,
    "nombre": "BONIFACIO 2501 ENTRE CULPINA Y VARELA",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.63180,-58.44049-video",
@@ -457,9 +478,10 @@
    "lon": -58.400724,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 172,
    "nombre": "AV. JUJUY - 1794",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.63095,-58.47002-video",
@@ -506,20 +528,22 @@
    "lat": -34.629026,
    "lon": -58.530079,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "AU. GENERAL PAZ - KM 13.1",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62875,-58.42634-velocidad",
    "lat": -34.628748,
    "lon": -58.42634,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "AU. 25 DE MAYO - KM 4.1",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62786,-58.45910-video",
@@ -536,10 +560,11 @@
    "lat": -34.627679,
    "lon": -58.379081,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 100,
    "dir": null,
    "nombre": "AU. ARTURO FRONDIZI - KM 2.6",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62758,-58.39362-velocidad",
@@ -547,9 +572,10 @@
    "lon": -58.39362,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 258,
    "nombre": "AV. JUAN DE GARAY - 2046",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62725,-58.39029-video",
@@ -647,9 +673,10 @@
    "lon": -58.423261,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 169,
    "nombre": "33 ORIENTALES 903 ENTRE CARLOS CALVO Y EEUU",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62462,-58.52134-velocidad",
@@ -657,9 +684,10 @@
    "lon": -58.521342,
    "tipo": "velocidad",
    "vmax": 40,
-   "dir": null,
+   "dir": 313,
    "nombre": "CALLE IRIGOYEN - 1761",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62433,-58.44580-velocidad",
@@ -687,9 +715,10 @@
    "lon": -58.381532,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 177,
    "nombre": "LIMA 1365 Y CONSTITUCIÓN",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62382,-58.40307-velocidad",
@@ -697,9 +726,10 @@
    "lon": -58.403072,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 82,
    "nombre": "AV. SAN JUAN - 2735",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62380,-58.39268-velocidad",
@@ -717,9 +747,10 @@
    "lon": -58.400497,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 81,
    "nombre": "AV. SAN JUAN - 2507",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62306,-58.44055-video",
@@ -737,9 +768,10 @@
    "lon": -58.379774,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
+   "dir": 357,
    "nombre": "AU. 25 DE MAYO - KM 8.4",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62211,-58.37624-velocidad",
@@ -747,9 +779,10 @@
    "lon": -58.376237,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 87,
    "nombre": "AV. SAN JUAN - 730",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62196,-58.38190-video",
@@ -777,9 +810,10 @@
    "lon": -58.396973,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 267,
    "nombre": "CARLOS CALVO 2195 Y PASCO",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.62011,-58.37997-video",
@@ -807,9 +841,10 @@
    "lon": -58.403085,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 264,
    "nombre": "AV. INDEPENDENCIA - 2660",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.61851,-58.39568-video",
@@ -837,19 +872,22 @@
    "lon": -58.429025,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 80,
    "nombre": "ROSARIO 21 Y AV. LA PLATA",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.61812,-58.38983-velocidad",
    "lat": -34.618124,
    "lon": -58.389834,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 265,
    "nombre": "AV. INDEPENDENCIA - 1668",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.61798,-58.43616-video",
@@ -867,9 +905,10 @@
    "lon": -58.369575,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 179,
    "nombre": "AV. PASEO COLON 753 E INDEPENDENCIA",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.61548,-58.41144-video",
@@ -877,9 +916,10 @@
    "lon": -58.411437,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 85,
    "nombre": "BELGRANO AV. 3218 Y 24 DE NOVIEMBRE",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.61528,-58.41374-velocidad",
@@ -896,10 +936,11 @@
    "lat": -34.614512,
    "lon": -58.366223,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "PASEO DEL BAJO KM 1.5",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.61437,-58.47877-video",
@@ -907,9 +948,10 @@
    "lon": -58.478771,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 57,
    "nombre": "CESAR DÍAZ 2898 ENTRE AV. NAZCA Y TERRADA",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.61370,-58.45949-video",
@@ -917,9 +959,10 @@
    "lon": -58.459485,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 337,
    "nombre": "AV. GAONA 2300 Y DONATO ÁLVAREZ",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.61301,-58.39156-video",
@@ -957,9 +1000,10 @@
    "lon": -58.454193,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 242,
    "nombre": "AV. GAONA - 1852",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.61167,-58.38197-video",
@@ -967,9 +1011,10 @@
    "lon": -58.381969,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 180,
    "nombre": "LIMA 281 Y MORENO",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.61030,-58.46633-video",
@@ -996,10 +1041,12 @@
    "lat": -34.608993,
    "lon": -58.379718,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 264,
    "nombre": "AV. DE MAYO - 930",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.60833,-58.41484-velocidad",
@@ -1007,9 +1054,10 @@
    "lon": -58.414838,
    "tipo": "velocidad",
    "vmax": 40,
-   "dir": null,
+   "dir": 60,
    "nombre": "AV. DÍAZ VÉLEZ - 3420",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.60751,-58.40442-video",
@@ -1017,9 +1065,10 @@
    "lon": -58.40442,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 265,
    "nombre": "PERÓN 2687 Y CASTELLI",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.60745,-58.40648-video",
@@ -1037,9 +1086,10 @@
    "lon": -58.416078,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 276,
    "nombre": "BILLINGHURST 301 ENTRE PERÓN Y SARMIENTO",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.60566,-58.45456-video",
@@ -1057,9 +1107,10 @@
    "lon": -58.389474,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 266,
    "nombre": "MONTEVIDEO 300 ENTRE PERÓN Y SARMIENTO",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.60491,-58.40423-video",
@@ -1097,9 +1148,10 @@
    "lon": -58.458316,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 227,
    "nombre": "AV. JUAN B. JUSTO 3969 Y AV. SAN MARTIN",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.60372,-58.40216-video",
@@ -1107,9 +1159,10 @@
    "lon": -58.40216,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 357,
    "nombre": "LARREA 477 Y LAVALLE",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.60160,-58.37067-video",
@@ -1117,9 +1170,10 @@
    "lon": -58.370665,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 175,
    "nombre": "ALEM, LEANDRO N. AV. 518 Y LAVALLE",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.60078,-58.45129-velocidad",
@@ -1167,9 +1221,10 @@
    "lon": -58.393118,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 355,
    "nombre": "CALLAO AV. 858 Y PARAGUAY",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.59851,-58.42852-velocidad",
@@ -1177,19 +1232,22 @@
    "lon": -58.428523,
    "tipo": "velocidad",
    "vmax": 50,
-   "dir": null,
+   "dir": 242,
    "nombre": "AV. ESTADO DE ISRAEL - 4488",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.59782,-58.41966-velocidad",
    "lat": -34.597818,
    "lon": -58.419661,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 50,
+   "dir": 271,
    "nombre": "AV. CÓRDOBA - 3762",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.59758,-58.42200-video",
@@ -1197,9 +1255,10 @@
    "lon": -58.422001,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 271,
    "nombre": "AV. CÓRDOBA 3907 ENTRE GASCÓN Y A. FIGUEROA",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.59569,-58.44355-video",
@@ -1216,10 +1275,11 @@
    "lat": -34.595415,
    "lon": -58.445046,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. JUAN B. JUSTO - 2650",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.59497,-58.42871-video",
@@ -1227,9 +1287,10 @@
    "lon": -58.428715,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 307,
    "nombre": "AV. CÓRDOBA 4471 Y ARAOZ",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.59478,-58.49413-video",
@@ -1297,9 +1358,10 @@
    "lon": -58.375147,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 214,
    "nombre": "RAMOS MEJIA, JOSE MARIA, DR. AV. 1304 Y DEL LIBERTADOR AV.",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.59159,-58.44797-video",
@@ -1317,9 +1379,10 @@
    "lon": -58.391239,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 43,
    "nombre": "CALLAO AV. 1588 Y LOPEZ, VICENTE",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.59060,-58.48031-velocidad",
@@ -1336,10 +1399,11 @@
    "lat": -34.588939,
    "lon": -58.464781,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. ELCANO - 4510",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.58794,-58.46390-velocidad",
@@ -1357,9 +1421,10 @@
    "lon": -58.433923,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 133,
    "nombre": "GORRITI 5300 ENTRE GODOY CRUZ Y URIARTE",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.58760,-58.39680-video",
@@ -1377,9 +1442,10 @@
    "lon": -58.503966,
    "tipo": "velocidad",
    "vmax": 30,
-   "dir": null,
+   "dir": 54,
    "nombre": "AV. GRAL. MOSCONI - 3043",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.58710,-58.50332-video",
@@ -1387,9 +1453,10 @@
    "lon": -58.503325,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 53,
    "nombre": "AV. MOSCONI 3000 Y ARGERICH",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.58675,-58.45523-video",
@@ -1417,9 +1484,10 @@
    "lon": -58.391703,
    "tipo": "velocidad",
    "vmax": 70,
-   "dir": null,
+   "dir": 299,
    "nombre": "AV. FIGUEROA ALCORTA - 2210",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.58273,-58.44853-video",
@@ -1436,20 +1504,22 @@
    "lat": -34.582714,
    "lon": -58.381579,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "AU. ARTURO HUMBERTO ILLIA - KM 1.2",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.57911,-58.38208-velocidad",
    "lat": -34.579106,
    "lon": -58.382082,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "PASEO DEL BAJO KM 6.0",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.57847,-58.42604-video",
@@ -1477,9 +1547,10 @@
    "lon": -58.475799,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 56,
    "nombre": "LA PAMPA 4704 ENTRE ÁLVAREZ THOMAS Y COMBATIENTES DE MALVINAS",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.57549,-58.48483-video",
@@ -1497,9 +1568,10 @@
    "lon": -58.413855,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 218,
    "nombre": "AV. SARMIENTO - 3480",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.57341,-58.49683-video",
@@ -1507,19 +1579,21 @@
    "lon": -58.496832,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 326,
    "nombre": "CERETTI 2997 Y AV. CONGRESO - TOMÁS A. LE BRETÓN",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.57304,-58.50382-velocidad",
    "lat": -34.573042,
    "lon": -58.503825,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. DE LOS CONSTITUYENTES - 5880",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.57190,-58.42551-velocidad",
@@ -1527,9 +1601,10 @@
    "lon": -58.425513,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 235,
    "nombre": "AV. DORREGO - 3370",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.57116,-58.44535-video",
@@ -1547,9 +1622,10 @@
    "lon": -58.464171,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 324,
    "nombre": "SUPERI 1803 Y LA PAMPA",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.57011,-58.41063-velocidad",
@@ -1566,40 +1642,47 @@
    "lat": -34.56825,
    "lon": -58.41608,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 319,
    "nombre": "AV. FIGUEROA ALCORTA - 4740",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56734,-58.40718-velocidad",
    "lat": -34.567341,
    "lon": -58.407185,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 100,
+   "dir": 309,
    "nombre": "AU. ARTURO HUMBERTO ILLIA - KM 3.9",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56721,-58.50441-velocidad",
    "lat": -34.567206,
    "lon": -58.504409,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 239,
    "nombre": "CALLE CRISOLOGO LARRALDE - 6037",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56690,-58.42092-velocidad",
    "lat": -34.566905,
    "lon": -58.420924,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. DORREGO - 3700",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56553,-58.45382-video",
@@ -1617,39 +1700,45 @@
    "lon": -58.481138,
    "tipo": "velocidad",
    "vmax": 40,
-   "dir": null,
+   "dir": 327,
    "nombre": "CALLE HOLMBERG - 3015",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.56347,-58.41515-velocidad",
    "lat": -34.563469,
    "lon": -58.415145,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 100,
+   "dir": 126,
    "nombre": "AU. LEOPOLDO LUGONES - KM 4.9",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56281,-58.49536-velocidad",
    "lat": -34.562812,
    "lon": -58.495362,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 240,
    "nombre": "CALLE CRISOLOGO LARRALDE - 5295",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56242,-58.44035-velocidad",
    "lat": -34.562421,
    "lon": -58.440355,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. DEL LIBERTADOR - 5275",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56203,-58.45946-video",
@@ -1657,9 +1746,10 @@
    "lon": -58.459456,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 325,
    "nombre": "AMENABAR 2209 Y AV. OLAZABAL - AV. MENDOZA",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.56078,-58.49221-velocidad",
@@ -1667,9 +1757,10 @@
    "lon": -58.492214,
    "tipo": "velocidad",
    "vmax": 40,
-   "dir": null,
+   "dir": 331,
    "nombre": "CALLE GALVÁN - 3640",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.56068,-58.45603-video",
@@ -1687,9 +1778,10 @@
    "lon": -58.49607,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 188,
    "nombre": "AV. TRIUNVIRATO - 6300",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.55979,-58.44517-velocidad",
@@ -1727,39 +1819,44 @@
    "lon": -58.428843,
    "tipo": "velocidad",
    "vmax": 70,
-   "dir": null,
+   "dir": 314,
    "nombre": "AV. FIGUEROA ALCORTA - 6184",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.55796,-58.48657-velocidad",
    "lat": -34.557964,
    "lon": -58.486566,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. DONADO - 3660",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.55403,-58.49738-velocidad",
    "lat": -34.554033,
    "lon": -58.49738,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 145,
    "nombre": "AV. RICARDO BALBIN - 4640",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.55385,-58.50196-velocidad",
    "lat": -34.553849,
    "lon": -58.501957,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "AU. GENERAL PAZ - KM 4.3",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.55206,-58.42661-velocidad",
@@ -1777,9 +1874,10 @@
    "lon": -58.438831,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
+   "dir": 123,
    "nombre": "AU. LEOPOLDO LUGONES - KM 7.6",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.54792,-58.43856-velocidad",
@@ -1787,9 +1885,10 @@
    "lon": -58.438557,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
+   "dir": 305,
    "nombre": "AU. INTENDENTE CANTILO - KM 7.55",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.54420,-58.48606-video",
@@ -1797,9 +1896,10 @@
    "lon": -58.486064,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 107,
    "nombre": "VEDIA 3438 Y SUPERI",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.54308,-58.46140-velocidad",
@@ -1817,9 +1917,10 @@
    "lon": -58.449202,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
+   "dir": 125,
    "nombre": "AU. LEOPOLDO LUGONES - KM 8.7",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.54200,-58.44897-velocidad",
@@ -1827,9 +1928,10 @@
    "lon": -58.448972,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
+   "dir": 304,
    "nombre": "AU. INTENDENTE CANTILO - KM 8.7",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.54138,-58.47415-video",
@@ -1846,10 +1948,11 @@
    "lat": -34.541081,
    "lon": -58.474297,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. CABILDO - 4740",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.53758,-58.45969-velocidad",
@@ -1857,9 +1960,10 @@
    "lon": -58.459687,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
+   "dir": 133,
    "nombre": "AU. LEOPOLDO LUGONES - KM 9.8",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "caba--34.53709,-58.45919-velocidad",
@@ -1867,9 +1971,10 @@
    "lon": -58.459187,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
+   "dir": 317,
    "nombre": "AU. INTENDENTE CANTILO - KM 9.86",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "dirInferida": true
   },
   {
    "id": "osm-n12258204624",
@@ -1878,7 +1983,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida de la Constitución Nacional",
    "fuente": "OSM"
   },
   {
@@ -1888,7 +1993,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Boulevard Juan de la Piedra",
    "fuente": "OSM"
   },
   {
@@ -1898,7 +2003,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida de la Constitución Nacional",
    "fuente": "OSM"
   },
   {
@@ -1908,7 +2013,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 220.0,
-   "nombre": "",
+   "nombre": "Ruta Nacional 3 Don Juan Manuel de Rosas",
    "fuente": "OSM"
   },
   {
@@ -1918,7 +2023,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 30.0,
-   "nombre": "",
+   "nombre": "Ruta Nacional 3 Don Juan Manuel de Rosas",
    "fuente": "OSM"
   },
   {
@@ -1927,9 +2032,10 @@
    "lon": -62.237866,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 134,
+   "nombre": "Luis María Drago",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n300947034",
@@ -1938,7 +2044,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 130.0,
-   "nombre": "",
+   "nombre": "Avenida Eduardo Sívori",
    "fuente": "OSM"
   },
   {
@@ -1947,9 +2053,10 @@
    "lon": -62.242129,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 135,
+   "nombre": "Luis María Drago",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n297486023",
@@ -1958,7 +2065,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Láinez",
    "fuente": "OSM"
   },
   {
@@ -1968,7 +2075,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Colón",
    "fuente": "OSM"
   },
   {
@@ -1978,7 +2085,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "14 de Julio",
    "fuente": "OSM"
   },
   {
@@ -1988,7 +2095,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "14 de Julio",
    "fuente": "OSM"
   },
   {
@@ -1998,7 +2105,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía de Circunvalación Raúl Alfonsín",
    "fuente": "OSM"
   },
   {
@@ -2008,7 +2115,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía de Circunvalación Raúl Alfonsín",
    "fuente": "OSM"
   },
   {
@@ -2018,7 +2125,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -2028,7 +2135,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 75",
    "fuente": "OSM"
   },
   {
@@ -2038,7 +2145,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lobería",
    "fuente": "OSM"
   },
   {
@@ -2048,7 +2155,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lobería",
    "fuente": "OSM"
   },
   {
@@ -2058,7 +2165,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lobería",
    "fuente": "OSM"
   },
   {
@@ -2066,10 +2173,11 @@
    "lat": -38.206783,
    "lon": -57.69667,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Ruta Provincial 11",
+   "fuente": "OSM",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-n1263811845",
@@ -2078,7 +2186,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Paseo Costanero Presidente Arturo Umberto Illia",
    "fuente": "OSM"
   },
   {
@@ -2087,9 +2195,10 @@
    "lon": -57.547664,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 189,
+   "nombre": "Avenida de los Trabajadores",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n353135695",
@@ -2097,9 +2206,10 @@
    "lon": -57.546737,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 195,
+   "nombre": "Avenida de los Trabajadores",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n286365596",
@@ -2108,7 +2218,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Patricio Peralta Ramos",
    "fuente": "OSM"
   },
   {
@@ -2118,7 +2228,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Leandro N. Alem",
    "fuente": "OSM"
   },
   {
@@ -2128,7 +2238,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan B. Justo",
    "fuente": "OSM"
   },
   {
@@ -2138,7 +2248,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 75.0,
-   "nombre": "",
+   "nombre": "Avenida Presidente Perón",
    "fuente": "OSM"
   },
   {
@@ -2148,7 +2258,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan B. Justo",
    "fuente": "OSM"
   },
   {
@@ -2158,7 +2268,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Pedro Luro",
    "fuente": "OSM"
   },
   {
@@ -2168,7 +2278,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Champagnat",
    "fuente": "OSM"
   },
   {
@@ -2178,7 +2288,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Independencia",
    "fuente": "OSM"
   },
   {
@@ -2188,7 +2298,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Independencia",
    "fuente": "OSM"
   },
   {
@@ -2198,7 +2308,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Arturo Alió",
    "fuente": "OSM"
   },
   {
@@ -2206,10 +2316,11 @@
    "lat": -37.970685,
    "lon": -57.543537,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 295.0,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Avenida Constitución",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n6189959459",
@@ -2218,7 +2329,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Constitución",
    "fuente": "OSM"
   },
   {
@@ -2228,7 +2339,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Félix U. Camet",
    "fuente": "OSM"
   },
   {
@@ -2238,7 +2349,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Constitución",
    "fuente": "OSM"
   },
   {
@@ -2248,7 +2359,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Constitución",
    "fuente": "OSM"
   },
   {
@@ -2258,7 +2369,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -2268,7 +2379,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -2278,7 +2389,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2288,7 +2399,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -2298,7 +2409,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lunghi",
    "fuente": "OSM"
   },
   {
@@ -2308,7 +2419,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lunghi",
    "fuente": "OSM"
   },
   {
@@ -2317,9 +2428,10 @@
    "lon": -57.766632,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 166,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n3455585868",
@@ -2327,9 +2439,10 @@
    "lon": -57.766281,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 354,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n253765291",
@@ -2338,7 +2451,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2348,7 +2461,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Buenos Aires",
    "fuente": "OSM"
   },
   {
@@ -2358,7 +2471,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2368,7 +2481,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
    "fuente": "OSM"
   },
   {
@@ -2378,7 +2491,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
    "fuente": "OSM"
   },
   {
@@ -2388,7 +2501,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
    "fuente": "OSM"
   },
   {
@@ -2398,7 +2511,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 50 Gobernador Bartolomé Mitre",
    "fuente": "OSM"
   },
   {
@@ -2408,7 +2521,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 50 Gobernador Bartolomé Mitre",
    "fuente": "OSM"
   },
   {
@@ -2418,7 +2531,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
    "fuente": "OSM"
   },
   {
@@ -2428,7 +2541,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2438,7 +2551,7 @@
    "tipo": "velocidad",
    "vmax": 110,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 74 Gobernador Mariano Acosta",
    "fuente": "OSM"
   },
   {
@@ -2448,7 +2561,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 74 Gobernador Mariano Acosta",
    "fuente": "OSM"
   },
   {
@@ -2456,10 +2569,11 @@
    "lat": -36.99126,
    "lon": -60.317078,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 110,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Ruta Provincial 51 Eduardo Laporte",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5173324553",
@@ -2468,7 +2582,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 51 Eduardo Laporte",
    "fuente": "OSM"
   },
   {
@@ -2478,7 +2592,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Azul - Olavarría",
    "fuente": "OSM"
   },
   {
@@ -2488,7 +2602,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Del Valle",
    "fuente": "OSM"
   },
   {
@@ -2498,7 +2612,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Pringles",
    "fuente": "OSM"
   },
   {
@@ -2508,7 +2622,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Colón",
    "fuente": "OSM"
   },
   {
@@ -2518,7 +2632,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Colón",
    "fuente": "OSM"
   },
   {
@@ -2528,7 +2642,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -2538,7 +2652,7 @@
    "tipo": "velocidad",
    "vmax": 110,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Azul - Olavarría",
    "fuente": "OSM"
   },
   {
@@ -2548,7 +2662,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 51",
    "fuente": "OSM"
   },
   {
@@ -2558,7 +2672,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 30",
    "fuente": "OSM"
   },
   {
@@ -2568,7 +2682,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 45.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 50 Gobernador Bartolomé Mitre",
    "fuente": "OSM"
   },
   {
@@ -2578,7 +2692,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 225.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 30",
    "fuente": "OSM"
   },
   {
@@ -2588,7 +2702,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2597,9 +2711,10 @@
    "lon": -56.714574,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 358,
+   "nombre": "Ruta Provincial 11",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2461077370",
@@ -2608,7 +2723,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2618,7 +2733,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2628,7 +2743,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2638,7 +2753,7 @@
    "tipo": "velocidad",
    "vmax": 110,
    "dir": 0.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2648,7 +2763,7 @@
    "tipo": "velocidad",
    "vmax": 110,
    "dir": 180.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2657,9 +2772,10 @@
    "lon": -56.909609,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 274,
+   "nombre": "Ruta Provincial 11",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n1077336379",
@@ -2668,7 +2784,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 90.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2676,10 +2792,12 @@
    "lat": -36.425836,
    "lon": -56.872818,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "vmax": 120,
+   "dir": 70,
+   "nombre": "Ruta Provincial 11",
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n2325657957",
@@ -2688,7 +2806,7 @@
    "tipo": "velocidad",
    "vmax": 110,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 63",
    "fuente": "OSM"
   },
   {
@@ -2698,7 +2816,7 @@
    "tipo": "velocidad",
    "vmax": 110,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 63",
    "fuente": "OSM"
   },
   {
@@ -2708,7 +2826,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 63",
    "fuente": "OSM"
   },
   {
@@ -2718,7 +2836,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 63",
    "fuente": "OSM"
   },
   {
@@ -2727,9 +2845,10 @@
    "lon": -57.708174,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 162,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n6145988910",
@@ -2737,9 +2856,10 @@
    "lon": -57.707774,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 347,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n6196211112",
@@ -2747,9 +2867,10 @@
    "lon": -57.742168,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 322,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n6196211111",
@@ -2757,9 +2878,10 @@
    "lon": -57.742686,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 141,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5553389079",
@@ -2768,7 +2890,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 65 Ministro Carlos Rodríguez Jáuregui",
    "fuente": "OSM"
   },
   {
@@ -2777,9 +2899,10 @@
    "lon": -57.811501,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 152,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n253708579",
@@ -2787,9 +2910,10 @@
    "lon": -57.810994,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 335,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2461069015",
@@ -2797,9 +2921,10 @@
    "lon": -57.820173,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 170,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2461069011",
@@ -2807,9 +2932,10 @@
    "lon": -57.819599,
    "tipo": "velocidad",
    "vmax": 80,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 345,
+   "nombre": "Autovía Juan Manuel Fangio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n9170392547",
@@ -2818,7 +2944,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 61",
    "fuente": "OSM"
   },
   {
@@ -2828,7 +2954,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -2848,7 +2974,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -2858,7 +2984,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 226",
    "fuente": "OSM"
   },
   {
@@ -2878,7 +3004,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -2888,7 +3014,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -2898,7 +3024,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Gobernador Domingo A. Mercante",
    "fuente": "OSM"
   },
   {
@@ -2908,7 +3034,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
    "fuente": "OSM"
   },
   {
@@ -2918,7 +3044,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 5",
    "fuente": "OSM"
   },
   {
@@ -2928,7 +3054,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Del Encuentro",
    "fuente": "OSM"
   },
   {
@@ -2938,7 +3064,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 11",
    "fuente": "OSM"
   },
   {
@@ -2948,7 +3074,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Costanera General Martín Miguel de Güemes",
    "fuente": "OSM"
   },
   {
@@ -2958,7 +3084,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Costanera Pedro Urruty",
    "fuente": "OSM"
   },
   {
@@ -2968,7 +3094,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -2978,7 +3104,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -2988,7 +3114,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
    "fuente": "OSM"
   },
   {
@@ -2998,7 +3124,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
    "fuente": "OSM"
   },
   {
@@ -3008,7 +3134,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -3018,7 +3144,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
    "fuente": "OSM"
   },
   {
@@ -3028,7 +3154,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -3038,7 +3164,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
    "fuente": "OSM"
   },
   {
@@ -3048,7 +3174,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 340.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 65 Ministro Carlos Rodríguez Jáuregui",
    "fuente": "OSM"
   },
   {
@@ -3058,7 +3184,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 150.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 65 Ministro Carlos Rodríguez Jáuregui",
    "fuente": "OSM"
   },
   {
@@ -3068,7 +3194,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -3078,7 +3204,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 270.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 215",
    "fuente": "OSM"
   },
   {
@@ -3098,7 +3224,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 150.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
    "fuente": "OSM"
   },
   {
@@ -3108,7 +3234,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 230.0,
-   "nombre": "",
+   "nombre": "Ruta Nacional 205",
    "fuente": "OSM"
   },
   {
@@ -3118,7 +3244,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 60.0,
-   "nombre": "",
+   "nombre": "Ruta Nacional 205",
    "fuente": "OSM"
   },
   {
@@ -3128,7 +3254,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 330.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
    "fuente": "OSM"
   },
   {
@@ -3138,7 +3264,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 205",
    "fuente": "OSM"
   },
   {
@@ -3148,7 +3274,7 @@
    "tipo": "velocidad",
    "vmax": 120,
    "dir": 2.0,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -3158,7 +3284,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 132.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
    "fuente": "OSM"
   },
   {
@@ -3168,7 +3294,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 314.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
    "fuente": "OSM"
   },
   {
@@ -3178,7 +3304,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 215",
    "fuente": "OSM"
   },
   {
@@ -3188,7 +3314,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 205",
    "fuente": "OSM"
   },
   {
@@ -3198,7 +3324,7 @@
    "tipo": "velocidad",
    "vmax": 120,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -3208,7 +3334,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
    "fuente": "OSM"
   },
   {
@@ -3218,7 +3344,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 310.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -3228,7 +3354,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -3238,7 +3364,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 320.0,
-   "nombre": "",
+   "nombre": "Avenida Raúl Alfonsín",
    "fuente": "OSM"
   },
   {
@@ -3248,7 +3374,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 45.0,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -3258,7 +3384,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 230.0,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -3268,7 +3394,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 160.0,
-   "nombre": "",
+   "nombre": "Mariano Moreno",
    "fuente": "OSM"
   },
   {
@@ -3278,7 +3404,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -3288,7 +3414,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 210",
    "fuente": "OSM"
   },
   {
@@ -3298,7 +3424,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -3308,7 +3434,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 90.0,
-   "nombre": "",
+   "nombre": "Ruta Nacional 5",
    "fuente": "OSM"
   },
   {
@@ -3318,7 +3444,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 190.0,
-   "nombre": "",
+   "nombre": "Ruta Nacional 5",
    "fuente": "OSM"
   },
   {
@@ -3328,7 +3454,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 46 Gobernador Mariano Saavedra",
    "fuente": "OSM"
   },
   {
@@ -3338,7 +3464,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 280.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 46 Gobernador Mariano Saavedra",
    "fuente": "OSM"
   },
   {
@@ -3358,7 +3484,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 205",
    "fuente": "OSM"
   },
   {
@@ -3368,7 +3494,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 48",
    "fuente": "OSM"
   },
   {
@@ -3378,7 +3504,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 205",
    "fuente": "OSM"
   },
   {
@@ -3387,9 +3513,10 @@
    "lon": -58.759736,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 135,
+   "nombre": "Libertad",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2857010504",
@@ -3397,9 +3524,10 @@
    "lon": -58.760532,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 135,
+   "nombre": "Libertad",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n11260178559",
@@ -3408,7 +3536,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 205",
    "fuente": "OSM"
   },
   {
@@ -3418,7 +3546,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 45.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -3428,7 +3556,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 225.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -3448,7 +3576,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 58",
    "fuente": "OSM"
   },
   {
@@ -3458,7 +3586,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 205",
    "fuente": "OSM"
   },
   {
@@ -3468,7 +3596,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -3478,7 +3606,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Rivadavia",
    "fuente": "OSM"
   },
   {
@@ -3488,7 +3616,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -3498,7 +3626,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 220.0,
-   "nombre": "",
+   "nombre": "Avenida 520",
    "fuente": "OSM"
   },
   {
@@ -3508,7 +3636,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 220.0,
-   "nombre": "",
+   "nombre": "Avenida 66",
    "fuente": "OSM"
   },
   {
@@ -3518,7 +3646,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -3528,7 +3656,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 320.0,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -3538,7 +3666,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 120.0,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -3548,7 +3676,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -3558,7 +3686,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -3568,7 +3696,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 205",
    "fuente": "OSM"
   },
   {
@@ -3578,7 +3706,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 35.0,
-   "nombre": "",
+   "nombre": "Avenida 44",
    "fuente": "OSM"
   },
   {
@@ -3588,7 +3716,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 210.0,
-   "nombre": "",
+   "nombre": "Avenida 66",
    "fuente": "OSM"
   },
   {
@@ -3598,7 +3726,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 7",
    "fuente": "OSM"
   },
   {
@@ -3608,7 +3736,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 210.0,
-   "nombre": "",
+   "nombre": "Avenida 60",
    "fuente": "OSM"
   },
   {
@@ -3617,9 +3745,10 @@
    "lon": -57.963708,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 131,
+   "nombre": "Avenida 31",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n11066137492",
@@ -3628,7 +3757,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 52",
    "fuente": "OSM"
   },
   {
@@ -3637,9 +3766,10 @@
    "lon": -57.963317,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 312,
+   "nombre": "Avenida 31",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n11066116039",
@@ -3648,7 +3778,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 210.0,
-   "nombre": "",
+   "nombre": "Avenida 44",
    "fuente": "OSM"
   },
   {
@@ -3658,7 +3788,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 3.0,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -3668,7 +3798,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 38",
    "fuente": "OSM"
   },
   {
@@ -3678,7 +3808,7 @@
    "tipo": "velocidad",
    "vmax": 120,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -3688,7 +3818,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -3698,7 +3828,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 180.0,
-   "nombre": "",
+   "nombre": "Boulevard 82",
    "fuente": "OSM"
   },
   {
@@ -3708,7 +3838,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 0.0,
-   "nombre": "",
+   "nombre": "Boulevard 82",
    "fuente": "OSM"
   },
   {
@@ -3718,7 +3848,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -3728,7 +3858,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -3738,7 +3868,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 300.0,
-   "nombre": "",
+   "nombre": "Calle 6",
    "fuente": "OSM"
   },
   {
@@ -3748,7 +3878,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3758,7 +3888,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 220.0,
-   "nombre": "",
+   "nombre": "Avenida 520",
    "fuente": "OSM"
   },
   {
@@ -3768,7 +3898,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3778,7 +3908,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM"
   },
   {
@@ -3788,7 +3918,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3798,7 +3928,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 35.0,
-   "nombre": "",
+   "nombre": "Avenida 520",
    "fuente": "OSM"
   },
   {
@@ -3808,7 +3938,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -3818,7 +3948,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 35.0,
-   "nombre": "",
+   "nombre": "Avenida 520",
    "fuente": "OSM"
   },
   {
@@ -3828,7 +3958,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -3838,7 +3968,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3858,7 +3988,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3868,7 +3998,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3878,7 +4008,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 30",
    "fuente": "OSM"
   },
   {
@@ -3888,7 +4018,7 @@
    "tipo": "velocidad",
    "vmax": 120,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -3898,7 +4028,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3908,7 +4038,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3938,7 +4068,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3948,7 +4078,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 280.0,
-   "nombre": "",
+   "nombre": "Camino Parque Centenario",
    "fuente": "OSM"
   },
   {
@@ -3958,7 +4088,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Acceso Zabala",
    "fuente": "OSM"
   },
   {
@@ -3968,7 +4098,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -3978,7 +4108,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 100.0,
-   "nombre": "",
+   "nombre": "Camino Parque Centenario",
    "fuente": "OSM"
   },
   {
@@ -3988,7 +4118,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -3998,7 +4128,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Doctor Ricardo Balbín",
    "fuente": "OSM"
   },
   {
@@ -4008,7 +4138,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Monteverde",
    "fuente": "OSM"
   },
   {
@@ -4018,7 +4148,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -4028,7 +4158,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Monteverde",
    "fuente": "OSM"
   },
   {
@@ -4038,7 +4168,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Monteverde",
    "fuente": "OSM"
   },
   {
@@ -4048,7 +4178,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Padre Obispo Jorge Novak",
    "fuente": "OSM"
   },
   {
@@ -4058,7 +4188,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Padre Obispo Jorge Novak",
    "fuente": "OSM"
   },
   {
@@ -4068,7 +4198,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Padre Obispo Jorge Novak",
    "fuente": "OSM"
   },
   {
@@ -4076,10 +4206,11 @@
    "lat": -34.815236,
    "lon": -58.277378,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n2099062441",
@@ -4098,7 +4229,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lacaze",
    "fuente": "OSM"
   },
   {
@@ -4116,10 +4247,12 @@
    "lat": -34.809104,
    "lon": -58.278208,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 267,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n3710901938",
@@ -4128,7 +4261,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Padre Obispo Jorge Novak",
    "fuente": "OSM"
   },
   {
@@ -4138,7 +4271,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lacaze",
    "fuente": "OSM"
   },
   {
@@ -4148,7 +4281,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Padre Obispo Jorge Novak",
    "fuente": "OSM"
   },
   {
@@ -4158,7 +4291,7 @@
    "tipo": "velocidad",
    "vmax": 30,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lacaze",
    "fuente": "OSM"
   },
   {
@@ -4168,7 +4301,7 @@
    "tipo": "velocidad",
    "vmax": 30,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lacaze",
    "fuente": "OSM"
   },
   {
@@ -4186,10 +4319,11 @@
    "lat": -34.805775,
    "lon": -58.278386,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n10635283801",
@@ -4198,7 +4332,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "La Horqueta",
    "fuente": "OSM"
   },
   {
@@ -4208,7 +4342,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Doctor Marcos Paz",
    "fuente": "OSM"
   },
   {
@@ -4216,10 +4350,11 @@
    "lat": -34.804082,
    "lon": -58.27819,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n648281838",
@@ -4238,7 +4373,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "La Horqueta",
    "fuente": "OSM"
   },
   {
@@ -4248,7 +4383,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Doctor Ricardo Balbín",
    "fuente": "OSM"
   },
   {
@@ -4258,7 +4393,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "General Frías",
    "fuente": "OSM"
   },
   {
@@ -4268,7 +4403,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Antártida Argentina",
    "fuente": "OSM"
   },
   {
@@ -4278,7 +4413,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Camino de Cintura",
    "fuente": "OSM"
   },
   {
@@ -4286,10 +4421,11 @@
    "lat": -34.796879,
    "lon": -58.161028,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 130,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Autopista Doctor Ricardo Balbín",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n14207351887",
@@ -4298,7 +4434,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Libres del Sur",
    "fuente": "OSM"
   },
   {
@@ -4308,7 +4444,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -4318,7 +4454,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Lacaze",
    "fuente": "OSM"
   },
   {
@@ -4328,7 +4464,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -4338,7 +4474,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -4348,7 +4484,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36",
    "fuente": "OSM"
   },
   {
@@ -4356,10 +4492,11 @@
    "lat": -34.793544,
    "lon": -58.248031,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": 125.0,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r9969151",
@@ -4368,7 +4505,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 36",
    "fuente": "OSM"
   },
   {
@@ -4376,10 +4513,11 @@
    "lat": -34.791885,
    "lon": -58.27891,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n3314616063",
@@ -4398,7 +4536,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta de la Tradición",
    "fuente": "OSM"
   },
   {
@@ -4416,10 +4554,11 @@
    "lat": -34.788821,
    "lon": -58.277429,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5077708880",
@@ -4428,7 +4567,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta de la Tradición",
    "fuente": "OSM"
   },
   {
@@ -4438,7 +4577,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida José Garibaldi",
    "fuente": "OSM"
   },
   {
@@ -4446,10 +4585,11 @@
    "lat": -34.780614,
    "lon": -58.279074,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n648955172",
@@ -4458,7 +4598,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -4466,10 +4606,11 @@
    "lat": -34.780114,
    "lon": -58.279436,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8963836",
@@ -4488,7 +4629,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Paso bajo nivel Manuel Belgrano",
    "fuente": "OSM"
   },
   {
@@ -4498,7 +4639,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan XXIII",
    "fuente": "OSM"
   },
   {
@@ -4508,7 +4649,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM"
   },
   {
@@ -4518,7 +4659,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Almirante Brown",
    "fuente": "OSM"
   },
   {
@@ -4528,7 +4669,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Calchaquí",
    "fuente": "OSM"
   },
   {
@@ -4538,7 +4679,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan XXIII",
    "fuente": "OSM"
   },
   {
@@ -4548,7 +4689,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Calchaquí",
    "fuente": "OSM"
   },
   {
@@ -4556,10 +4697,11 @@
    "lat": -34.774392,
    "lon": -58.267055,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 129.0,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-n6196873214",
@@ -4568,7 +4710,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan XXIII",
    "fuente": "OSM"
   },
   {
@@ -4578,7 +4720,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Vicente Oliden",
    "fuente": "OSM"
   },
   {
@@ -4587,9 +4729,10 @@
    "lon": -58.436321,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 238,
+   "nombre": "Avenida Juan XXIII",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n10573580949",
@@ -4608,7 +4751,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "José Eusebio Colombres",
    "fuente": "OSM"
   },
   {
@@ -4618,7 +4761,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Francisco Narciso de Laprida",
    "fuente": "OSM"
   },
   {
@@ -4628,7 +4771,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Camino Negro",
    "fuente": "OSM"
   },
   {
@@ -4638,7 +4781,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -4658,7 +4801,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -4668,7 +4811,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Doctor Ricardo Balbín",
    "fuente": "OSM"
   },
   {
@@ -4678,7 +4821,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Alberto Larroque",
    "fuente": "OSM"
   },
   {
@@ -4688,7 +4831,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Camino Negro",
    "fuente": "OSM"
   },
   {
@@ -4698,7 +4841,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "El Hornero",
    "fuente": "OSM"
   },
   {
@@ -4708,7 +4851,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Camino Negro",
    "fuente": "OSM"
   },
   {
@@ -4718,7 +4861,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Diego Armando Maradona",
    "fuente": "OSM"
   },
   {
@@ -4738,7 +4881,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Belgrano",
    "fuente": "OSM"
   },
   {
@@ -4748,7 +4891,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Intendente Esteban Crovara",
    "fuente": "OSM"
   },
   {
@@ -4758,7 +4901,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Intendente Esteban Crovara",
    "fuente": "OSM"
   },
   {
@@ -4777,9 +4920,10 @@
    "lon": -58.460482,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 42,
+   "nombre": "Avenida Coronel Roca",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n312115374",
@@ -4787,9 +4931,10 @@
    "lon": -58.460743,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 222,
+   "nombre": "Avenida Coronel Roca",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n691884687",
@@ -4798,7 +4943,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Don Bosco",
    "fuente": "OSM"
   },
   {
@@ -4826,20 +4971,22 @@
    "lat": -34.677231,
    "lon": -58.579618,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 55.0,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Venezuela",
+   "fuente": "OSM",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-n5197072240",
    "lat": -34.676002,
    "lon": -58.365034,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-r8850352",
@@ -4858,7 +5005,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "General Güemes",
    "fuente": "OSM"
   },
   {
@@ -4878,7 +5025,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Don Bosco",
    "fuente": "OSM"
   },
   {
@@ -4886,10 +5033,11 @@
    "lat": -34.675388,
    "lon": -58.364579,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-r8850353",
@@ -4908,7 +5056,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Mujeres Argentinas",
    "fuente": "OSM"
   },
   {
@@ -4918,7 +5066,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida General Paz",
    "fuente": "OSM"
   },
   {
@@ -4928,7 +5076,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 35.0,
-   "nombre": "",
+   "nombre": "Avenida Coronel Roca",
    "fuente": "OSM"
   },
   {
@@ -4948,7 +5096,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Diego Armando Maradona",
    "fuente": "OSM"
   },
   {
@@ -4958,7 +5106,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -4968,7 +5116,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -4978,7 +5126,7 @@
    "tipo": "velocidad",
    "vmax": 70,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 27 de Febrero",
    "fuente": "OSM"
   },
   {
@@ -4988,7 +5136,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 250.0,
-   "nombre": "",
+   "nombre": "Avenida Néstor Carlos Kirchner",
    "fuente": "OSM"
   },
   {
@@ -4997,9 +5145,10 @@
    "lon": -58.366884,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 313,
+   "nombre": "Avenida Bartolomé Mitre",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n317681370",
@@ -5008,7 +5157,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -5018,7 +5167,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Rivadavia",
    "fuente": "OSM"
   },
   {
@@ -5028,7 +5177,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Emilio Castro",
    "fuente": "OSM"
   },
   {
@@ -5038,7 +5187,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 250.0,
-   "nombre": "",
+   "nombre": "Avenida Intendente Francisco Rabanal",
    "fuente": "OSM"
   },
   {
@@ -5068,7 +5217,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 0.0,
-   "nombre": "",
+   "nombre": "Doctor José María Casullo",
    "fuente": "OSM"
   },
   {
@@ -5076,10 +5225,11 @@
    "lat": -34.652884,
    "lon": -58.551682,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-n305098789",
@@ -5087,19 +5237,21 @@
    "lon": -58.551947,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 317,
+   "nombre": "Avenida General San Martín",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5342756069",
    "lat": -34.651535,
    "lon": -58.50248,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r7906554",
@@ -5118,7 +5270,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Bartolomé Mitre",
    "fuente": "OSM"
   },
   {
@@ -5127,9 +5279,10 @@
    "lon": -58.625352,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 181,
+   "nombre": "General Juan José Valle",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n10111556907",
@@ -5138,7 +5291,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 275.0,
-   "nombre": "",
+   "nombre": "Autopista Teniente General Luis Dellepiane",
    "fuente": "OSM"
   },
   {
@@ -5146,10 +5299,11 @@
    "lat": -34.647937,
    "lon": -58.628057,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": 275.0,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Presidente Sarmiento",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5941662581",
@@ -5157,9 +5311,10 @@
    "lon": -58.464271,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 217,
    "nombre": "Au. 25 de Mayo y Pergamino",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n232581794",
@@ -5167,9 +5322,10 @@
    "lon": -58.486641,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 45,
+   "nombre": "Avenida Directorio",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n317680414",
@@ -5178,7 +5334,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Rivadavia",
    "fuente": "OSM"
   },
   {
@@ -5216,10 +5372,11 @@
    "lat": -34.646105,
    "lon": -58.520307,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": 175.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r17581561",
@@ -5227,9 +5384,10 @@
    "lon": -58.520307,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 173,
    "nombre": "Radar Av. Lisandro de la Torre y Tonelero",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n13546524722",
@@ -5258,7 +5416,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Rivadavia",
    "fuente": "OSM"
   },
   {
@@ -5268,7 +5426,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Presidente Arturo Frondizi",
    "fuente": "OSM"
   },
   {
@@ -5277,19 +5435,22 @@
    "lon": -58.47189,
    "tipo": "velocidad",
    "vmax": 20,
-   "dir": null,
+   "dir": 314,
    "nombre": "Mariano Acosta",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5343622104",
    "lat": -34.641389,
    "lon": -58.480045,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 42,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n232636724",
@@ -5297,9 +5458,10 @@
    "lon": -58.479926,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 46,
    "nombre": "Radar Av. Directorio y Lacarra",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5966208751",
@@ -5337,19 +5499,21 @@
    "lon": -58.55847,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 85,
+   "nombre": "Doctor Gabriel Ardoino",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n11895492897",
    "lat": -34.639328,
    "lon": -58.511715,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 95.0,
    "nombre": "Av. Rivadavia y Miralla",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r17581357",
@@ -5368,7 +5532,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Rivadavia",
    "fuente": "OSM"
   },
   {
@@ -5376,10 +5540,11 @@
    "lat": -34.637892,
    "lon": -58.56413,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Avenida Gaona",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n9170742410",
@@ -5388,7 +5553,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Francisco Piovano Norte",
    "fuente": "OSM"
   },
   {
@@ -5396,10 +5561,11 @@
    "lat": -34.637482,
    "lon": -58.49987,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 80.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r17580460",
@@ -5416,10 +5582,11 @@
    "lat": -34.637215,
    "lon": -58.40595,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r7909413",
@@ -5437,9 +5604,10 @@
    "lon": -58.405616,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 49,
+   "nombre": "Avenida Caseros",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5344008330",
@@ -5496,10 +5664,12 @@
    "lat": -34.634981,
    "lon": -58.530788,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 167,
    "nombre": "",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n666655068",
@@ -5508,7 +5678,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -5518,7 +5688,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Vélez Sársfield",
    "fuente": "OSM"
   },
   {
@@ -5536,10 +5706,11 @@
    "lat": -34.632095,
    "lon": -60.959515,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Ruta Provincial 65 Ministro Carlos Rodríguez Jáuregui",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n199822934",
@@ -5548,7 +5719,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Carrasco",
    "fuente": "OSM"
   },
   {
@@ -5556,20 +5727,22 @@
    "lat": -34.631414,
    "lon": -58.492201,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n11893600210",
    "lat": -34.630798,
    "lon": -58.470022,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 75.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r17580362",
@@ -5586,10 +5759,11 @@
    "lat": -34.630176,
    "lon": -58.467238,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 75.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r17580320",
@@ -5607,9 +5781,10 @@
    "lon": -58.482496,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 74,
    "nombre": "Av. Avellaneda y Bahía Blanca",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n417329887",
@@ -5617,9 +5792,10 @@
    "lon": -58.482315,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 74,
    "nombre": "Radar Av. Avellaneda y Bahía Blanca",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2306447498",
@@ -5638,7 +5814,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan Bautista Justo",
    "fuente": "OSM"
   },
   {
@@ -5648,7 +5824,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida General Paz",
    "fuente": "OSM"
   },
   {
@@ -5656,10 +5832,12 @@
    "lat": -34.627744,
    "lon": -58.379821,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 87,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-n206107604",
@@ -5676,10 +5854,11 @@
    "lat": -34.627679,
    "lon": -58.459208,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 65.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r17580316",
@@ -5698,7 +5877,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 30",
    "fuente": "OSM"
   },
   {
@@ -5717,19 +5896,22 @@
    "lon": -58.380174,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 186,
    "nombre": "Radar Av. Garay y Lima",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5957319783",
    "lat": -34.626319,
    "lon": -58.379987,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 253,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n9170431509",
@@ -5738,7 +5920,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 30",
    "fuente": "OSM"
   },
   {
@@ -5748,7 +5930,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 225.0,
-   "nombre": "",
+   "nombre": "Camino al Parque Natural Laguna de Gómez",
    "fuente": "OSM"
   },
   {
@@ -5766,10 +5948,11 @@
    "lat": -34.623911,
    "lon": -58.483232,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n195723156",
@@ -5777,19 +5960,21 @@
    "lon": -58.400436,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 81,
    "nombre": "Radar Av. San Juan esquina Alberti",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n10111556906",
    "lat": -34.623287,
    "lon": -58.684276,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 20,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "José Hernández",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n226823106",
@@ -5798,7 +5983,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Presidente Arturo Frondizi",
    "fuente": "OSM"
   },
   {
@@ -5806,10 +5991,11 @@
    "lat": -34.622899,
    "lon": -58.440602,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 275.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n206163539",
@@ -5817,9 +6003,10 @@
    "lon": -58.44086,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 276,
    "nombre": "Radar Av. Juan B. Alberdi y Centenera",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n9170788058",
@@ -5828,7 +6015,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Martín Fierro",
    "fuente": "OSM"
   },
   {
@@ -5837,19 +6024,22 @@
    "lon": -58.391496,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 87,
+   "nombre": "Avenida San Juan",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5951220656",
    "lat": -34.622633,
    "lon": -58.390075,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 20,
+   "dir": 86,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n195585088",
@@ -5857,19 +6047,22 @@
    "lon": -58.389895,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 87,
    "nombre": "Radar Av. San Juan y Solís",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5957296417",
    "lat": -34.622185,
    "lon": -58.381669,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 87,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n243462105",
@@ -5877,9 +6070,10 @@
    "lon": -58.381433,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 87,
    "nombre": "Radar Av. San Juan y Lima",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n9170788059",
@@ -5888,7 +6082,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Martín Fierro",
    "fuente": "OSM"
   },
   {
@@ -5896,10 +6090,11 @@
    "lat": -34.621673,
    "lon": -58.444226,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8742918",
@@ -5916,10 +6111,12 @@
    "lat": -34.621311,
    "lon": -58.456412,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 67,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r7923304",
@@ -5927,9 +6124,10 @@
    "lon": -58.456412,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 67,
    "nombre": "Radar Av. Avellaneda y Donato Alvarez",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n193842685",
@@ -5937,9 +6135,10 @@
    "lon": -58.456076,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 68,
+   "nombre": "Avenida Avellaneda",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n195723424",
@@ -5947,29 +6146,33 @@
    "lon": -58.418077,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 265,
    "nombre": "Radar Deteccion de violacion de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5931278857",
    "lat": -34.621068,
    "lon": -58.417872,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 265,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n11892248668",
    "lat": -34.620271,
    "lon": -58.440905,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 245.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal.",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r17578850",
@@ -5977,19 +6180,22 @@
    "lon": -58.440905,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 242,
    "nombre": "Radar Av. Rivadavia y Del Barco Centenera",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5954047158",
    "lat": -34.61991,
    "lon": -58.380149,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 357,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n237640615",
@@ -5997,29 +6203,33 @@
    "lon": -58.380158,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 357,
    "nombre": "Radar Bernardo De Irigoyen y Carlos Calvo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5951235610",
    "lat": -34.619248,
    "lon": -58.391686,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 358,
    "nombre": "Verificador de carriles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5931269090",
    "lat": -34.618314,
    "lon": -58.428805,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": 80.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8742945",
@@ -6027,9 +6237,10 @@
    "lon": -58.428805,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 80,
    "nombre": "Radar Rosario y Av. La Plata",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n195978137",
@@ -6037,9 +6248,10 @@
    "lon": -58.436458,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 242,
    "nombre": "Radar Av. Rivadavia y Acoyte",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n194139380",
@@ -6048,7 +6260,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida La Plata",
    "fuente": "OSM"
   },
   {
@@ -6056,20 +6268,23 @@
    "lat": -34.618199,
    "lon": -58.436253,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 245.0,
    "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal.",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5951241467",
    "lat": -34.617537,
    "lon": -58.391687,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 0,
    "nombre": "Verificador de carriles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n180484525",
@@ -6077,19 +6292,22 @@
    "lon": -58.368736,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 355,
+   "nombre": "Avenida Paseo Colón",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5954035825",
    "lat": -34.616937,
    "lon": -58.369437,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 175,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8771373",
@@ -6097,9 +6315,10 @@
    "lon": -58.369437,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 175,
    "nombre": "Radar Av. Paseo Colon y Av. Independencia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5353555942",
@@ -6107,9 +6326,10 @@
    "lon": -58.463762,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 330,
    "nombre": "Av. Boyaca (Ascendente)",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n6938672468",
@@ -6118,7 +6338,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Camino Parque del Buen Ayre",
    "fuente": "OSM"
   },
   {
@@ -6126,20 +6346,23 @@
    "lat": -34.614178,
    "lon": -60.497372,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Ruta Nacional 7 Libertador General San Martín",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5951257342",
    "lat": -34.613966,
    "lon": -58.391716,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 359,
    "nombre": "Verificador de carriles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n2847934417",
@@ -6147,19 +6370,22 @@
    "lon": -58.45945,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 245,
+   "nombre": "Avenida Gaona",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n10558362190",
    "lat": -34.613757,
    "lon": -58.459128,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 244,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r15320662",
@@ -6167,9 +6393,10 @@
    "lon": -58.459128,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 244,
    "nombre": "Radar Av. Gaona y Donato Álvarez",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n12749878528",
@@ -6178,7 +6405,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 220.0,
-   "nombre": "",
+   "nombre": "Concepción Arenal",
    "fuente": "OSM"
   },
   {
@@ -6187,39 +6414,45 @@
    "lon": -58.381833,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 182,
    "nombre": "Radar Lima y Moreno",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n4515682196",
    "lat": -34.611776,
    "lon": -58.381826,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 180,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5951288464",
    "lat": -34.611618,
    "lon": -58.391801,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 358,
    "nombre": "Verificador de carriles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n12749880103",
    "lat": -34.610495,
    "lon": -58.627695,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": 220.0,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Concepción Arenal",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n437564727",
@@ -6227,29 +6460,34 @@
    "lon": -58.405946,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 266,
    "nombre": "Radar Av. Rivadavia y Av. Jujuy",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5966241623",
    "lat": -34.610097,
    "lon": -58.405735,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 265,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n720727401",
    "lat": -34.60989,
    "lon": -58.626992,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "vmax": 60,
+   "dir": 224,
+   "nombre": "Concepción Arenal",
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n12704894184",
@@ -6258,7 +6496,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 220.0,
-   "nombre": "",
+   "nombre": "Felipe Pastre",
    "fuente": "OSM"
   },
   {
@@ -6268,7 +6506,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 3.0,
-   "nombre": "",
+   "nombre": "Vicente Camargo",
    "fuente": "OSM"
   },
   {
@@ -6277,39 +6515,46 @@
    "lon": -58.439295,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 144,
    "nombre": "Radar Av. Angel Gallardo y Marechal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5968648999",
    "lat": -34.605545,
    "lon": -58.43917,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 30,
+   "dir": 242,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5953989601",
    "lat": -34.604598,
    "lon": -58.392294,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 356,
    "nombre": "Verificador de carriles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n13565820248",
    "lat": -34.604595,
    "lon": -58.405125,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "vmax": 50,
+   "dir": 97,
+   "nombre": "Avenida Corrientes",
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n4599156131",
@@ -6326,10 +6571,11 @@
    "lat": -34.604252,
    "lon": -58.458299,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n81834174",
@@ -6337,9 +6583,10 @@
    "lon": -58.407822,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 101,
+   "nombre": "Avenida Corrientes",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n6085432976",
@@ -6348,7 +6595,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -6358,7 +6605,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -6367,9 +6614,10 @@
    "lon": -58.385355,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 85,
    "nombre": "Radar Talcahuano y Viamonte",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2461097952",
@@ -6377,9 +6625,10 @@
    "lon": -58.385363,
    "tipo": "velocidad",
    "vmax": 40,
-   "dir": null,
+   "dir": 176,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2461888044",
@@ -6396,30 +6645,33 @@
    "lat": -34.596472,
    "lon": -58.403103,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Verificador de carriles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5968611667",
    "lat": -34.595768,
    "lon": -58.388551,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Verificador de carriles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5966428618",
    "lat": -34.595469,
    "lon": -58.382932,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n237634175",
@@ -6438,7 +6690,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Santa Fe",
    "fuente": "OSM"
   },
   {
@@ -6446,10 +6698,11 @@
    "lat": -34.595307,
    "lon": -58.380929,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8788979",
@@ -6466,10 +6719,12 @@
    "lat": -34.595014,
    "lon": -58.428909,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 50,
+   "dir": 307,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8796258",
@@ -6477,9 +6732,10 @@
    "lon": -58.428909,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 307,
    "nombre": "Radar Av. Córdoba y Aráoz",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n81830139",
@@ -6487,9 +6743,10 @@
    "lon": -58.42918,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 307,
+   "nombre": "Avenida Córdoba",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-r11505353",
@@ -6498,7 +6755,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Francisco Beiró",
    "fuente": "OSM"
   },
   {
@@ -6507,19 +6764,22 @@
    "lon": -58.412635,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 181,
+   "nombre": "Sánchez de Bustamante",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2295185153",
    "lat": -34.594454,
    "lon": -58.429809,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 50,
+   "dir": 307,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8796256",
@@ -6527,9 +6787,10 @@
    "lon": -58.429809,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 307,
    "nombre": "Radar Av. Córdoba y Scalabrini Ortiz",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n81830138",
@@ -6537,9 +6798,10 @@
    "lon": -58.430077,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 306,
+   "nombre": "Avenida Córdoba",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n92600039",
@@ -6547,29 +6809,33 @@
    "lon": -58.412256,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 209,
    "nombre": "Radar Sánchez de Bustamante y Paraguay",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5971823026",
    "lat": -34.594005,
    "lon": -58.412202,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 207,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5966404958",
    "lat": -34.593697,
    "lon": -58.373558,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8788950",
@@ -6588,7 +6854,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Leandro N. Alem",
    "fuente": "OSM"
   },
   {
@@ -6596,10 +6862,12 @@
    "lat": -34.592882,
    "lon": -58.432203,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 50,
+   "dir": 309,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n81830136",
@@ -6607,9 +6875,10 @@
    "lon": -58.432373,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 308,
    "nombre": "Radar Av. Córdoba y Amenia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n4582237855",
@@ -6626,10 +6895,11 @@
    "lat": -34.592449,
    "lon": -58.376006,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n13414762368",
@@ -6638,7 +6908,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 120.0,
-   "nombre": "",
+   "nombre": "Avenida Julio Argentino Roca",
    "fuente": "OSM"
   },
   {
@@ -6658,7 +6928,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 140.0,
-   "nombre": "",
+   "nombre": "Darwin Passaponti",
    "fuente": "OSM"
   },
   {
@@ -6666,10 +6936,11 @@
    "lat": -34.591335,
    "lon": -58.439528,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n6098915751",
@@ -6678,7 +6949,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 320.0,
-   "nombre": "",
+   "nombre": "Darwin Passaponti",
    "fuente": "OSM"
   },
   {
@@ -6696,20 +6967,23 @@
    "lat": -34.591012,
    "lon": -58.478488,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n3053655463",
    "lat": -34.590777,
    "lon": -58.38155,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 40,
+   "dir": 360,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n237654889",
@@ -6717,9 +6991,10 @@
    "lon": -58.381478,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 19,
    "nombre": "Radar Av. Carlos Pellegrini 1515",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5968791481",
@@ -6736,10 +7011,11 @@
    "lat": -34.588304,
    "lon": -58.382694,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n193816816",
@@ -6756,20 +7032,23 @@
    "lat": -34.588029,
    "lon": -58.396547,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Verificador de carriles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5968892003",
    "lat": -34.587668,
    "lon": -58.440027,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 50,
+   "dir": 309,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n7012931618",
@@ -6778,7 +7057,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "1016 - Avenida Presidente Raúl Alfonsín",
    "fuente": "OSM"
   },
   {
@@ -6787,9 +7066,10 @@
    "lon": -58.440151,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 308,
    "nombre": "Radar Av. Córdoba y Fitz Roy",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n218032765",
@@ -6797,9 +7077,10 @@
    "lon": -58.50347,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 53,
    "nombre": "Radar Av. Mosconi y Argerich",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n82570822",
@@ -6808,7 +7089,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida de los Incas",
    "fuente": "OSM"
   },
   {
@@ -6816,20 +7097,23 @@
    "lat": -34.582944,
    "lon": -58.47654,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5968866687",
    "lat": -34.582806,
    "lon": -58.44873,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 50,
+   "dir": 297,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n82664797",
@@ -6837,9 +7121,10 @@
    "lon": -58.448866,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 297,
    "nombre": "Radar Av. Córdoba y Jorge Newbery",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n1258956125",
@@ -6847,9 +7132,10 @@
    "lon": -58.40155,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 110,
+   "nombre": "Avenida Del Libertador",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n673258826",
@@ -6858,7 +7144,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Arturo Illia",
    "fuente": "OSM"
   },
   {
@@ -6866,10 +7152,12 @@
    "lat": -34.581631,
    "lon": -58.421032,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 60,
+   "dir": 130,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8796441",
@@ -6877,9 +7165,10 @@
    "lon": -58.421032,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 130,
    "nombre": "Radar Av. Santa Fe",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n7042932884",
@@ -6888,7 +7177,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Papa Francisco",
    "fuente": "OSM"
   },
   {
@@ -6898,7 +7187,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 285.0,
-   "nombre": "",
+   "nombre": "79 - 25 de Mayo",
    "fuente": "OSM"
   },
   {
@@ -6908,7 +7197,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 100.0,
-   "nombre": "",
+   "nombre": "79 - 25 de Mayo",
    "fuente": "OSM"
   },
   {
@@ -6918,7 +7207,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Intendente Bullrich",
    "fuente": "OSM"
   },
   {
@@ -6928,7 +7217,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "69 - Acceso Presidente Néstor Kirchner",
    "fuente": "OSM"
   },
   {
@@ -6936,10 +7225,11 @@
    "lat": -34.57762,
    "lon": -58.426565,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8796446",
@@ -6958,7 +7248,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 28 Gobernador Martín Rodríguez",
    "fuente": "OSM"
   },
   {
@@ -6968,7 +7258,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 64 - Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -6978,7 +7268,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 64 - Presidente Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -6996,10 +7286,11 @@
    "lat": -34.573614,
    "lon": -58.480501,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n82623789",
@@ -7007,9 +7298,10 @@
    "lon": -58.48066,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 55,
    "nombre": "Radar Av. Álvarez Thomas y Av. Olazábal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n13028843131",
@@ -7018,7 +7310,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Las Tipas",
    "fuente": "OSM"
   },
   {
@@ -7028,7 +7320,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "228 - Avenida Fray Manuel de Torres",
    "fuente": "OSM"
   },
   {
@@ -7038,7 +7330,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": 75.0,
-   "nombre": "",
+   "nombre": "Camino Parque del Buen Ayre",
    "fuente": "OSM"
   },
   {
@@ -7048,7 +7340,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": 260.0,
-   "nombre": "",
+   "nombre": "Camino Parque del Buen Ayre",
    "fuente": "OSM"
   },
   {
@@ -7058,7 +7350,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Papa Francisco",
    "fuente": "OSM"
   },
   {
@@ -7067,9 +7359,10 @@
    "lon": -58.416459,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": null,
+   "dir": 310,
    "nombre": "Radar Av. F. Alcorta (Izquierda)",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5974791100",
@@ -7087,9 +7380,10 @@
    "lon": -58.406428,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
+   "dir": 309,
    "nombre": "Radar",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5974791101",
@@ -7106,10 +7400,11 @@
    "lat": -34.566498,
    "lon": -59.110975,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-r9892247",
@@ -7118,7 +7413,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "18 - Avenida Humberto Primo",
    "fuente": "OSM"
   },
   {
@@ -7128,7 +7423,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Monroe",
    "fuente": "OSM"
   },
   {
@@ -7138,7 +7433,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Cabildo",
    "fuente": "OSM"
   },
   {
@@ -7146,10 +7441,11 @@
    "lat": -34.565258,
    "lon": -58.47106,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n3713013825",
@@ -7168,7 +7464,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 101 - Doctor Ricardo Balbín",
    "fuente": "OSM"
   },
   {
@@ -7176,10 +7472,11 @@
    "lat": -34.562969,
    "lon": -58.438011,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 70,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n196280458",
@@ -7197,9 +7494,10 @@
    "lon": -58.416626,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
+   "dir": 132,
    "nombre": "Av. Leopoldo Lugones (Descendente)",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2148093677",
@@ -7218,7 +7516,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "1000 - Avenida Carlos Pellegrini",
    "fuente": "OSM"
   },
   {
@@ -7228,7 +7526,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 310.0,
-   "nombre": "",
+   "nombre": "Avenida 1 - Avenida de los Constituyentes (GSM) / Avenida de los Constituyentes (VL)",
    "fuente": "OSM"
   },
   {
@@ -7237,9 +7535,10 @@
    "lon": -58.505022,
    "tipo": "velocidad",
    "vmax": 40,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 201,
+   "nombre": "Juan Bautista de La Salle",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5357474611",
@@ -7257,9 +7556,10 @@
    "lon": -58.424061,
    "tipo": "velocidad",
    "vmax": 100,
-   "dir": null,
+   "dir": 309,
    "nombre": "Radar",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5357147781",
@@ -7276,10 +7576,12 @@
    "lat": -34.553628,
    "lon": -58.434552,
    "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
+   "vmax": 70,
+   "dir": 308,
    "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8009832",
@@ -7287,9 +7589,10 @@
    "lon": -58.434552,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 308,
    "nombre": "Radar Av. Figueroa Alcorta y La Pampa",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n7034959589",
@@ -7298,7 +7601,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 22.0,
-   "nombre": "",
+   "nombre": "Avenida General Paz",
    "fuente": "OSM"
   },
   {
@@ -7308,7 +7611,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Papa Francisco",
    "fuente": "OSM"
   },
   {
@@ -7338,7 +7641,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 200.0,
-   "nombre": "",
+   "nombre": "Diagonal 190 - Brigadier General Juan Manuel de Rosas",
    "fuente": "OSM"
   },
   {
@@ -7368,7 +7671,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Cabildo",
    "fuente": "OSM"
   },
   {
@@ -7376,10 +7679,11 @@
    "lat": -34.541478,
    "lon": -58.537805,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-r7166146",
@@ -7398,7 +7702,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Bernardo Ader",
    "fuente": "OSM"
   },
   {
@@ -7417,9 +7721,10 @@
    "lon": -58.468463,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 159,
+   "nombre": "Avenida del Libertador",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n317601267",
@@ -7428,7 +7733,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 28 Gobernador Martín Rodríguez",
    "fuente": "OSM"
   },
   {
@@ -7436,10 +7741,11 @@
    "lat": -34.530632,
    "lon": -61.403984,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Ruta Nacional 7",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n3219621564",
@@ -7448,7 +7754,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7458,7 +7764,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 160.0,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7468,7 +7774,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Maipú",
    "fuente": "OSM"
   },
   {
@@ -7476,10 +7782,11 @@
    "lat": -34.527821,
    "lon": -58.470839,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Avenida del Libertador",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n9982221417",
@@ -7488,7 +7795,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 230.0,
-   "nombre": "",
+   "nombre": "Avenida General Juan Gregorio Lemos",
    "fuente": "OSM"
   },
   {
@@ -7498,7 +7805,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -7508,7 +7815,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 140.0,
-   "nombre": "",
+   "nombre": "Esteban Echeverría",
    "fuente": "OSM"
   },
   {
@@ -7518,7 +7825,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 335.0,
-   "nombre": "",
+   "nombre": "Avenida Maipú",
    "fuente": "OSM"
   },
   {
@@ -7528,7 +7835,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 340.0,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7538,7 +7845,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Venancio Castro",
    "fuente": "OSM"
   },
   {
@@ -7548,7 +7855,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "",
+   "nombre": "Acceso Norte",
    "fuente": "OSM"
   },
   {
@@ -7558,7 +7865,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 220.0,
-   "nombre": "",
+   "nombre": "Avenida Avelino Rolón",
    "fuente": "OSM"
   },
   {
@@ -7566,10 +7873,11 @@
    "lat": -34.504849,
    "lon": -61.559143,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Ruta Nacional 7 Libertador General San Martín",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n935007154",
@@ -7578,7 +7886,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida General Juan Gregorio Lemos",
    "fuente": "OSM"
   },
   {
@@ -7588,7 +7896,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 10.0,
-   "nombre": "",
+   "nombre": "Camino Parque del Buen Ayre",
    "fuente": "OSM"
   },
   {
@@ -7598,7 +7906,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "",
+   "nombre": "Acceso Norte",
    "fuente": "OSM"
   },
   {
@@ -7608,7 +7916,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 34",
    "fuente": "OSM"
   },
   {
@@ -7628,7 +7936,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7638,7 +7946,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 240.0,
-   "nombre": "",
+   "nombre": "Avenida de la Unidad Nacional",
    "fuente": "OSM"
   },
   {
@@ -7648,7 +7956,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7658,7 +7966,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7668,7 +7976,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7678,7 +7986,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Dardo Rocha",
    "fuente": "OSM"
   },
   {
@@ -7688,7 +7996,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Sesquicentenario",
    "fuente": "OSM"
   },
   {
@@ -7698,7 +8006,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7708,7 +8016,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Dardo Rocha",
    "fuente": "OSM"
   },
   {
@@ -7718,7 +8026,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7727,9 +8035,10 @@
    "lon": -58.596076,
    "tipo": "velocidad",
    "vmax": 40,
-   "dir": null,
+   "dir": 6,
    "nombre": "",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n4326374728",
@@ -7737,19 +8046,21 @@
    "lon": -58.525407,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 117,
    "nombre": "",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n5992927671",
    "lat": -34.487373,
    "lon": -58.485644,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-r8824696",
@@ -7768,7 +8079,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Venancio Castro",
    "fuente": "OSM"
   },
   {
@@ -7778,7 +8089,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7788,7 +8099,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Sir Alexander Fleming",
    "fuente": "OSM"
   },
   {
@@ -7798,7 +8109,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 55.0,
-   "nombre": "",
+   "nombre": "Avenida de la Unidad Nacional",
    "fuente": "OSM"
   },
   {
@@ -7808,7 +8119,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 240.0,
-   "nombre": "",
+   "nombre": "Avenida Bernabé Márquez",
    "fuente": "OSM"
   },
   {
@@ -7818,7 +8129,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 60.0,
-   "nombre": "",
+   "nombre": "Avenida Bernabé Márquez",
    "fuente": "OSM"
   },
   {
@@ -7828,7 +8139,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida de la Unidad Nacional",
    "fuente": "OSM"
   },
   {
@@ -7838,7 +8149,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "",
+   "nombre": "Acceso Norte",
    "fuente": "OSM"
   },
   {
@@ -7848,7 +8159,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Camino Boulogne - Bancalari",
    "fuente": "OSM"
   },
   {
@@ -7858,7 +8169,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 240.0,
-   "nombre": "",
+   "nombre": "Avenida Uruguay",
    "fuente": "OSM"
   },
   {
@@ -7868,7 +8179,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 240.0,
-   "nombre": "",
+   "nombre": "Avenida Bernabé Márquez",
    "fuente": "OSM"
   },
   {
@@ -7878,7 +8189,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 60.0,
-   "nombre": "",
+   "nombre": "Avenida del Sesquicentenario",
    "fuente": "OSM"
   },
   {
@@ -7888,7 +8199,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 80.0,
-   "nombre": "",
+   "nombre": "Avenida Ángel Torcuato de Alvear",
    "fuente": "OSM"
   },
   {
@@ -7908,7 +8219,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Bernabé Márquez",
    "fuente": "OSM"
   },
   {
@@ -7918,7 +8229,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Provincia de Buenos Aires",
    "fuente": "OSM"
   },
   {
@@ -7938,7 +8249,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Bernabé Márquez",
    "fuente": "OSM"
   },
   {
@@ -7948,7 +8259,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7958,7 +8269,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -7968,7 +8279,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -7978,7 +8289,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Camino Bancalari - Benavídez",
    "fuente": "OSM"
   },
   {
@@ -7988,7 +8299,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -7998,7 +8309,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -8018,7 +8329,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Arturo Umberto Illia",
    "fuente": "OSM"
   },
   {
@@ -8028,7 +8339,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 320.0,
-   "nombre": "",
+   "nombre": "Avenida Andrés Rolón",
    "fuente": "OSM"
   },
   {
@@ -8038,7 +8349,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -8048,7 +8359,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Viaducto Ciudad de El Talar",
    "fuente": "OSM"
   },
   {
@@ -8058,7 +8369,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Camino Bancalari - Benavídez",
    "fuente": "OSM"
   },
   {
@@ -8068,7 +8379,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -8078,7 +8389,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -8088,7 +8399,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 315.0,
-   "nombre": "",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM"
   },
   {
@@ -8098,7 +8409,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Arturo Umberto Illia",
    "fuente": "OSM"
   },
   {
@@ -8108,7 +8419,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 60.0,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -8118,7 +8429,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 240.0,
-   "nombre": "",
+   "nombre": "Avenida Hipólito Yrigoyen",
    "fuente": "OSM"
   },
   {
@@ -8128,7 +8439,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Centenario",
    "fuente": "OSM"
   },
   {
@@ -8138,7 +8449,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 305.0,
-   "nombre": "",
+   "nombre": "Avenida Centenario",
    "fuente": "OSM"
   },
   {
@@ -8148,7 +8459,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Nicolás Avellaneda",
    "fuente": "OSM"
   },
   {
@@ -8158,7 +8469,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 70.0,
-   "nombre": "",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -8168,7 +8479,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Nicolás Avellaneda",
    "fuente": "OSM"
   },
   {
@@ -8178,7 +8489,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 240.0,
-   "nombre": "",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -8188,7 +8499,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 150.0,
-   "nombre": "",
+   "nombre": "Juan Bautista de Lasalle",
    "fuente": "OSM"
   },
   {
@@ -8198,7 +8509,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -8208,7 +8519,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "",
+   "nombre": "Acceso Norte Ramal Tigre",
    "fuente": "OSM"
   },
   {
@@ -8218,7 +8529,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Crisólogo Larralde",
    "fuente": "OSM"
   },
   {
@@ -8228,7 +8539,7 @@
    "tipo": "velocidad",
    "vmax": 100,
    "dir": 135.0,
-   "nombre": "",
+   "nombre": "Acceso Norte Ramal Tigre",
    "fuente": "OSM"
   },
   {
@@ -8238,7 +8549,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": 335.0,
-   "nombre": "",
+   "nombre": "Acceso Norte Ramal Tigre",
    "fuente": "OSM"
   },
   {
@@ -8258,7 +8569,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": 285.0,
-   "nombre": "",
+   "nombre": "Acceso Norte Ramal Pilar",
    "fuente": "OSM"
   },
   {
@@ -8268,7 +8579,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Patricias Argentinas",
    "fuente": "OSM"
   },
   {
@@ -8278,7 +8589,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Santiago de Liniers",
    "fuente": "OSM"
   },
   {
@@ -8288,7 +8599,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 320.0,
-   "nombre": "",
+   "nombre": "Camino de los Remeros",
    "fuente": "OSM"
   },
   {
@@ -8298,7 +8609,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 140.0,
-   "nombre": "",
+   "nombre": "Camino de los Remeros",
    "fuente": "OSM"
   },
   {
@@ -8308,7 +8619,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Chacabuco",
    "fuente": "OSM"
   },
   {
@@ -8316,10 +8627,11 @@
    "lat": -34.412205,
    "lon": -58.619886,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": 205.0,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Camino de los Remeros",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n9170524192",
@@ -8328,7 +8640,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 51",
    "fuente": "OSM"
   },
   {
@@ -8338,7 +8650,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida General Juan Domingo Perón",
    "fuente": "OSM"
   },
   {
@@ -8346,10 +8658,11 @@
    "lat": -34.411103,
    "lon": -58.712963,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Avenida General Juan Domingo Perón",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5209001012",
@@ -8358,7 +8671,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Constitución",
    "fuente": "OSM"
   },
   {
@@ -8367,9 +8680,10 @@
    "lon": -58.668492,
    "tipo": "velocidad",
    "vmax": 20,
-   "dir": null,
+   "dir": 24,
    "nombre": "",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n2601878544",
@@ -8378,7 +8692,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Doctor René Favaloro",
    "fuente": "OSM"
   },
   {
@@ -8388,7 +8702,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Agustín M. García",
    "fuente": "OSM"
   },
   {
@@ -8398,7 +8712,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Agustín M. García",
    "fuente": "OSM"
   },
   {
@@ -8408,7 +8722,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Agustín M. García",
    "fuente": "OSM"
   },
   {
@@ -8418,7 +8732,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Agustín M. García",
    "fuente": "OSM"
   },
   {
@@ -8428,7 +8742,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Pedro Eugenio Aramburu",
    "fuente": "OSM"
   },
   {
@@ -8438,7 +8752,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 47",
    "fuente": "OSM"
   },
   {
@@ -8448,7 +8762,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 47",
    "fuente": "OSM"
   },
   {
@@ -8458,7 +8772,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 47",
    "fuente": "OSM"
   },
   {
@@ -8468,7 +8782,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 325.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 39",
    "fuente": "OSM"
   },
   {
@@ -8478,7 +8792,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 39",
    "fuente": "OSM"
   },
   {
@@ -8528,7 +8842,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 31 Gobernador José Luis Cantilo",
    "fuente": "OSM"
   },
   {
@@ -8548,7 +8862,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 70.0,
-   "nombre": "",
+   "nombre": "Ruta 4 - Avenida Libertador San Martín",
    "fuente": "OSM"
   },
   {
@@ -8558,7 +8872,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 32 Ministro Rodolfo Moreno",
    "fuente": "OSM"
   },
   {
@@ -8568,7 +8882,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 32 Ministro Rodolfo Moreno",
    "fuente": "OSM"
   },
   {
@@ -8578,7 +8892,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 40.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -8588,7 +8902,7 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": 220.0,
-   "nombre": "",
+   "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
    "fuente": "OSM"
   },
   {
@@ -8598,7 +8912,7 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Pedro Eugenio Aramburu",
    "fuente": "OSM"
   },
   {
@@ -8608,7 +8922,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -8618,7 +8932,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 31 Gobernador José Luis Cantilo",
    "fuente": "OSM"
   },
   {
@@ -8628,7 +8942,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 31 Gobernador José Luis Cantilo",
    "fuente": "OSM"
   },
   {
@@ -8638,7 +8952,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 31 Gobernador José Luis Cantilo",
    "fuente": "OSM"
   },
   {
@@ -8648,7 +8962,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida 6 de Julio",
    "fuente": "OSM"
   },
   {
@@ -8658,7 +8972,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 6",
    "fuente": "OSM"
   },
   {
@@ -8666,10 +8980,11 @@
    "lat": -34.120555,
    "lon": -59.015707,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Ruta Nacional 12",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n6174670631",
@@ -8678,7 +8993,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Antártida Argentina",
    "fuente": "OSM"
   },
   {
@@ -8688,7 +9003,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Antártida Argentina",
    "fuente": "OSM"
   },
   {
@@ -8698,7 +9013,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Antártida Argentina",
    "fuente": "OSM"
   },
   {
@@ -8708,7 +9023,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Antártida Argentina",
    "fuente": "OSM"
   },
   {
@@ -8716,10 +9031,11 @@
    "lat": -34.102865,
    "lon": -59.032747,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 40,
    "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "nombre": "Avenida Gallesio",
+   "fuente": "OSM",
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n10695262737",
@@ -8728,7 +9044,7 @@
    "tipo": "velocidad",
    "vmax": 120,
    "dir": 215.0,
-   "nombre": "",
+   "nombre": "Complejo Ferrovial Zárate - Brazo Largo",
    "fuente": "OSM"
   },
   {
@@ -8738,7 +9054,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Presidente Doctor Arturo Frondizi",
    "fuente": "OSM"
   },
   {
@@ -8748,7 +9064,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Doctor Ricardo Balbín",
    "fuente": "OSM"
   },
   {
@@ -8758,7 +9074,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Malvinas Argentinas",
    "fuente": "OSM"
   },
   {
@@ -8768,7 +9084,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Juan B. Justo",
    "fuente": "OSM"
   },
   {
@@ -8778,7 +9094,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Dr Aquileo Buccar",
    "fuente": "OSM"
   },
   {
@@ -8788,7 +9104,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Boulevard Rocha",
    "fuente": "OSM"
   },
   {
@@ -8798,7 +9114,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida Presidente Doctor Arturo Umberto Illia",
    "fuente": "OSM"
   },
   {
@@ -8807,9 +9123,10 @@
    "lon": -60.580098,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 204,
+   "nombre": "Estrada",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n614445282",
@@ -8817,9 +9134,10 @@
    "lon": -60.574875,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "",
-   "fuente": "OSM"
+   "dir": 21,
+   "nombre": "Merced",
+   "fuente": "OSM",
+   "dirInferida": true
   },
   {
    "id": "osm-n614470629",
@@ -8828,7 +9146,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Boulevard Marcelino Ugarte",
    "fuente": "OSM"
   },
   {
@@ -8838,7 +9156,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Doctor Rodríguez Jáuregui",
    "fuente": "OSM"
   },
   {
@@ -8848,7 +9166,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Doctor Rodríguez Jáuregui",
    "fuente": "OSM"
   },
   {
@@ -8858,7 +9176,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Boulevard Paraguay",
    "fuente": "OSM"
   },
   {
@@ -8868,7 +9186,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "",
+   "nombre": "Boulevard Paraguay",
    "fuente": "OSM"
   },
   {
@@ -8878,7 +9196,7 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Provincial 32 Ministro Rodolfo Moreno",
    "fuente": "OSM"
   },
   {
@@ -8888,7 +9206,7 @@
    "tipo": "velocidad",
    "vmax": 120,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Pedro Eugenio Aramburu",
    "fuente": "OSM"
   },
   {
@@ -8898,7 +9216,7 @@
    "tipo": "velocidad",
    "vmax": 120,
    "dir": null,
-   "nombre": "",
+   "nombre": "Autopista Pedro Eugenio Aramburu",
    "fuente": "OSM"
   },
   {
@@ -8908,7 +9226,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Ruta Nacional 188",
    "fuente": "OSM"
   },
   {
@@ -8918,7 +9236,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "",
+   "nombre": "Avenida del Libertador (RN188)",
    "fuente": "OSM"
   },
   {
@@ -8928,8 +9246,496 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 40.0,
-   "nombre": "",
+   "nombre": "Ruta Nacional 188",
    "fuente": "OSM"
+  }
+ ],
+ "peajes": [
+  {
+   "id": "peaje-n8893028189",
+   "lat": -38.71489,
+   "lon": -62.164677,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n3866209913",
+   "lat": -37.884777,
+   "lon": -57.902105,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n247688276",
+   "lat": -37.733688,
+   "lon": -57.445862,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n246682739",
+   "lat": -37.373021,
+   "lon": -59.008032,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n1061908398",
+   "lat": -37.035939,
+   "lon": -57.142982,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n1091546195",
+   "lat": -36.861748,
+   "lon": -60.12274,
+   "nombre": "Peaje Hinojo"
+  },
+  {
+   "id": "peaje-n2704913191",
+   "lat": -36.846686,
+   "lon": -57.866656,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n253907651",
+   "lat": -36.428185,
+   "lon": -57.351007,
+   "nombre": "Peaje La Huella"
+  },
+  {
+   "id": "peaje-n5041086201",
+   "lat": -35.918179,
+   "lon": -62.556098,
+   "nombre": "Trenque Lauquen"
+  },
+  {
+   "id": "peaje-n2928555227",
+   "lat": -35.360467,
+   "lon": -60.702881,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n253932149",
+   "lat": -35.307553,
+   "lon": -58.053599,
+   "nombre": "Estación Samborombón"
+  },
+  {
+   "id": "peaje-n678973741",
+   "lat": -35.14294,
+   "lon": -58.740302,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n2505826564",
+   "lat": -35.09714,
+   "lon": -58.931518,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n1599491707",
+   "lat": -34.854014,
+   "lon": -58.551482,
+   "nombre": "Peaje Tristán Suárez"
+  },
+  {
+   "id": "peaje-n480191010",
+   "lat": -34.830836,
+   "lon": -58.509179,
+   "nombre": "Peaje Monte Grande"
+  },
+  {
+   "id": "peaje-n249763564",
+   "lat": -34.80978,
+   "lon": -58.54337,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n2665589283",
+   "lat": -34.784294,
+   "lon": -58.1532,
+   "nombre": "Estación de Peaje \"Gutiérrez\""
+  },
+  {
+   "id": "peaje-n441262863",
+   "lat": -34.774106,
+   "lon": -58.163504,
+   "nombre": "Estación de Peaje Hudson"
+  },
+  {
+   "id": "peaje-n1493828536",
+   "lat": -34.753699,
+   "lon": -58.190789,
+   "nombre": "Berazategui"
+  },
+  {
+   "id": "peaje-n967830430",
+   "lat": -34.716378,
+   "lon": -58.236983,
+   "nombre": "Quilmes"
+  },
+  {
+   "id": "peaje-n3161526959",
+   "lat": -34.709061,
+   "lon": -58.503678,
+   "nombre": "Peaje Mercado Central"
+  },
+  {
+   "id": "peaje-n316524015",
+   "lat": -34.704551,
+   "lon": -58.499545,
+   "nombre": "Peaje Boulogne Sur Mer"
+  },
+  {
+   "id": "peaje-n2049605085",
+   "lat": -34.701102,
+   "lon": -58.274657,
+   "nombre": "Bernal"
+  },
+  {
+   "id": "peaje-n481302215",
+   "lat": -34.699016,
+   "lon": -58.495917,
+   "nombre": "Peaje Riccheri (Aguero)"
+  },
+  {
+   "id": "peaje-n315202861",
+   "lat": -34.651174,
+   "lon": -58.353148,
+   "nombre": "Estación Dock Sud"
+  },
+  {
+   "id": "peaje-n4336963925",
+   "lat": -34.650426,
+   "lon": -58.465937,
+   "nombre": "AUSA"
+  },
+  {
+   "id": "peaje-n11915981346",
+   "lat": -34.647901,
+   "lon": -58.4779,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n6434676821",
+   "lat": -34.647975,
+   "lon": -58.464178,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n2637745953",
+   "lat": -34.645053,
+   "lon": -59.294276,
+   "nombre": "Peaje Olivera"
+  },
+  {
+   "id": "peaje-n259313129",
+   "lat": -34.632818,
+   "lon": -58.665156,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n265676836",
+   "lat": -34.632685,
+   "lon": -58.624835,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n809648134",
+   "lat": -34.632502,
+   "lon": -58.611113,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n311346315",
+   "lat": -34.632268,
+   "lon": -58.598104,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n259317280",
+   "lat": -34.631415,
+   "lon": -58.6525,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n2207692755",
+   "lat": -34.63146,
+   "lon": -58.675188,
+   "nombre": "Estación Ituzaingó"
+  },
+  {
+   "id": "peaje-n2097561839",
+   "lat": -34.631247,
+   "lon": -58.571889,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n2836727443",
+   "lat": -34.629567,
+   "lon": -58.557172,
+   "nombre": "Grupo Concesionario del Oeste S.A."
+  },
+  {
+   "id": "peaje-n2118750670",
+   "lat": -34.628866,
+   "lon": -58.692656,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n259313562",
+   "lat": -34.62914,
+   "lon": -58.713335,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n1355647636",
+   "lat": -34.628353,
+   "lon": -58.705486,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n942090551",
+   "lat": -34.628072,
+   "lon": -58.728071,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n1500798684",
+   "lat": -34.625243,
+   "lon": -58.400093,
+   "nombre": "Peaje Alberti"
+  },
+  {
+   "id": "peaje-n245021388",
+   "lat": -34.615109,
+   "lon": -58.719325,
+   "nombre": "Estación Oeste"
+  },
+  {
+   "id": "peaje-n298926309",
+   "lat": -34.609286,
+   "lon": -58.714566,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n691344408",
+   "lat": -34.602325,
+   "lon": -58.900869,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n2721681550",
+   "lat": -34.596258,
+   "lon": -58.935491,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n2442093800",
+   "lat": -34.593563,
+   "lon": -58.946137,
+   "nombre": "Autopistas del Oeste"
+  },
+  {
+   "id": "peaje-n2722497996",
+   "lat": -34.588416,
+   "lon": -58.969349,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n298830087",
+   "lat": -34.583735,
+   "lon": -58.676713,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n2387637817",
+   "lat": -34.582704,
+   "lon": -58.995838,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n478717865",
+   "lat": -34.579998,
+   "lon": -59.007606,
+   "nombre": "Peaje Luján"
+  },
+  {
+   "id": "peaje-n3314365383",
+   "lat": -34.579313,
+   "lon": -61.093986,
+   "nombre": "Peaje Junin"
+  },
+  {
+   "id": "peaje-n3207131961",
+   "lat": -34.573329,
+   "lon": -58.395949,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n288973972",
+   "lat": -34.571285,
+   "lon": -58.400648,
+   "nombre": "Telepeaje"
+  },
+  {
+   "id": "peaje-n298932878",
+   "lat": -34.569025,
+   "lon": -58.655742,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n298932760",
+   "lat": -34.568499,
+   "lon": -58.649333,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n318024225",
+   "lat": -34.568055,
+   "lon": -58.639484,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n5265026326",
+   "lat": -34.566753,
+   "lon": -58.406448,
+   "nombre": "Telepeaje"
+  },
+  {
+   "id": "peaje-n1329175672",
+   "lat": -34.564424,
+   "lon": -58.631458,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n318023359",
+   "lat": -34.56019,
+   "lon": -58.627912,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n1408771137",
+   "lat": -34.533399,
+   "lon": -58.597133,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n6119601120",
+   "lat": -34.532223,
+   "lon": -60.901913,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n3648113471",
+   "lat": -34.519849,
+   "lon": -59.308912,
+   "nombre": "Estación de Peaje \"Villa Espil\""
+  },
+  {
+   "id": "peaje-n898413756",
+   "lat": -34.513058,
+   "lon": -58.521696,
+   "nombre": "Estación Debenedetti"
+  },
+  {
+   "id": "peaje-n337656840",
+   "lat": -34.503424,
+   "lon": -58.589716,
+   "nombre": "CEAMSE"
+  },
+  {
+   "id": "peaje-n32726763",
+   "lat": -34.498369,
+   "lon": -58.550936,
+   "nombre": "Estación Márquez"
+  },
+  {
+   "id": "peaje-n2493949393",
+   "lat": -34.491115,
+   "lon": -58.566033,
+   "nombre": "Estación San Martín Descendente"
+  },
+  {
+   "id": "peaje-n307452505",
+   "lat": -34.488474,
+   "lon": -58.579565,
+   "nombre": "Estación Camino Real Descendente"
+  },
+  {
+   "id": "peaje-n323122803",
+   "lat": -34.487809,
+   "lon": -58.589478,
+   "nombre": "Estación Buen Ayre"
+  },
+  {
+   "id": "peaje-n1458097148",
+   "lat": -34.486117,
+   "lon": -58.609029,
+   "nombre": "Autopistas del Sol"
+  },
+  {
+   "id": "peaje-n32728289",
+   "lat": -34.486097,
+   "lon": -58.559678,
+   "nombre": "Autopistas del Sol"
+  },
+  {
+   "id": "peaje-n603451894",
+   "lat": -34.483714,
+   "lon": -58.626267,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n481280026",
+   "lat": -34.477158,
+   "lon": -58.656666,
+   "nombre": "Autopistas del Sol"
+  },
+  {
+   "id": "peaje-n30491494",
+   "lat": -34.460822,
+   "lon": -58.709435,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n30958678",
+   "lat": -34.459214,
+   "lon": -58.690754,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n4598707920",
+   "lat": -34.455918,
+   "lon": -58.693064,
+   "nombre": ""
+  },
+  {
+   "id": "peaje-n248471060",
+   "lat": -34.403014,
+   "lon": -59.013831,
+   "nombre": "Peaje Larena"
+  },
+  {
+   "id": "peaje-n249484205",
+   "lat": -34.284531,
+   "lon": -59.36352,
+   "nombre": "Peaje Solís"
+  },
+  {
+   "id": "peaje-n4749961938",
+   "lat": -34.212304,
+   "lon": -58.958448,
+   "nombre": "Estación de Peaje \"Exaltación de la Cruz\" (próximamente)"
+  },
+  {
+   "id": "peaje-n455765322",
+   "lat": -34.118083,
+   "lon": -59.011307,
+   "nombre": "Estación Zárate"
+  },
+  {
+   "id": "peaje-n2246707093",
+   "lat": -34.101173,
+   "lon": -59.15035,
+   "nombre": "Peaje Zárate ruta 9"
   }
  ]
 }
