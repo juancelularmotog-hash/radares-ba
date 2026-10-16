@@ -1,0 +1,5 @@
+{
+  "nota": "Correcciones revisadas a mano. 'agregar': radares que faltan en las fuentes (con lat, lon, tipo, vmax, nombre). 'quitar': ids de radares que ya no existen.",
+  "agregar": [],
+  "quitar": []
+}

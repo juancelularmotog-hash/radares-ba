@@ -1,0 +1,9 @@
+{
+  "generado": null,
+  "nota": "Lista inicial de ejemplo. Se completa sola con la primera actualización automática (GitHub Actions) o con el botón 'Actualizar radares' de la app.",
+  "fuentes": [],
+  "radares": [
+    { "id": "caba--34.62278,-58.37977-velocidad", "lat": -34.62278, "lon": -58.379774, "tipo": "velocidad", "vmax": null, "dir": null, "nombre": "AU. 25 DE MAYO - KM 8.4", "fuente": "CABA" },
+    { "id": "caba--34.62306,-58.44055-video", "lat": -34.6230642, "lon": -58.4405459, "tipo": "video", "vmax": null, "dir": null, "nombre": "AV. JUAN B. ALBERDI 890 Y CENTENERA", "fuente": "CABA" }
+  ]
+}

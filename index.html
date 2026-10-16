@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es-AR" data-mapa="noche">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Radares BA</title>
+<meta name="description" content="Mapa de radares de CABA y Provincia de Buenos Aires con avisos al acercarte.">
+<meta name="theme-color" content="#11161d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Radares BA">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="lib/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="mapa" aria-label="Mapa"></div>
+
+<!-- Velocímetro -->
+<div class="hud hud-vel" id="hudVel">
+  <div class="vel-num"><span id="vel">--</span><small>km/h</small></div>
+  <div class="gps" id="gpsEstado">GPS apagado</div>
+</div>
+
+<!-- Próximo radar -->
+<div class="hud hud-prox" id="hudProx" hidden>
+  <div class="senal" id="proxSenal"><span id="proxVmax">?</span></div>
+  <div class="prox-info">
+    <div class="prox-dist" id="proxDist">— m</div>
+    <div class="prox-tipo" id="proxTipo">Radar</div>
+  </div>
+</div>
+
+<!-- Aviso grande -->
+<div class="alerta" id="alerta" role="alert" hidden><span id="alertaTxt"></span></div>
+
+<!-- Mensajes cortos -->
+<div class="toast" id="toast" role="status" hidden></div>
+
+<!-- Botón centrar (aparece al mover el mapa) -->
+<button class="btn-flotante" id="btnCentrar" aria-label="Volver a mi posición" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /><circle cx="12" cy="12" r="7" fill="none"/></svg>
+  Seguir
+</button>
+
+<!-- Barra inferior -->
+<nav class="barra">
+  <button class="btn-principal" id="btnViaje">Iniciar viaje</button>
+  <button class="btn-icono" id="btnAgregar" aria-label="Agregar un radar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+  </button>
+  <button class="btn-icono" id="btnMenu" aria-label="Ajustes y datos">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+</nav>
+
+<!-- Hoja: agregar radar -->
+<section class="hoja" id="hojaAgregar" hidden aria-label="Agregar radar">
+  <header class="hoja-cab"><h2>Agregar un radar</h2><button class="cerrar" data-cerrar="hojaAgregar" aria-label="Cerrar">×</button></header>
+  <p class="nota" id="agregarAyuda">Tocá el mapa donde está el radar, o usá tu posición actual.</p>
+  <button class="btn-sec" id="btnAquiEstoy">Usar mi posición actual</button>
+  <div id="agForm" hidden>
+  <div class="campos">
+    <label for="agTipo">Tipo</label>
+    <select id="agTipo">
+      <option value="velocidad">Radar de velocidad</option>
+      <option value="semaforo">Cámara de semáforo</option>
+      <option value="video">Cámara de control</option>
+      <option value="otro">Otro control</option>
+    </select>
+    <label for="agVmax">Velocidad máxima</label>
+    <select id="agVmax">
+      <option value="">No sé</option>
+      <option>20</option><option>30</option><option>40</option><option>50</option><option>60</option>
+      <option>70</option><option>80</option><option>90</option><option>100</option><option>110</option>
+      <option>120</option><option>130</option>
+    </select>
+    <label for="agNombre">Referencia (opcional)</label>
+    <input id="agNombre" type="text" placeholder="Ej.: Ruta 2 km 85, mano a la costa" maxlength="80">
+  </div>
+  <button class="btn-principal ancho" id="btnGuardarRadar" disabled>Guardar radar</button>
+  </div>
+</section>
+
+<!-- Panel: ajustes y datos -->
+<section class="hoja hoja-alta" id="panel" hidden aria-label="Ajustes">
+  <header class="hoja-cab"><h2>Radares BA</h2><button class="cerrar" data-cerrar="panel" aria-label="Cerrar">×</button></header>
+
+  <div class="bloque">
+    <h3>Datos</h3>
+    <div class="resumen" id="resumen"></div>
+    <button class="btn-principal ancho" id="btnActualizar">Actualizar radares</button>
+    <p class="nota" id="estadoAct"></p>
+  </div>
+
+  <div class="bloque">
+    <h3>Avisos</h3>
+    <div class="fila"><label for="ajAviso1">Primer aviso</label>
+      <select id="ajAviso1"><option value="300">a 300 m</option><option value="500">a 500 m</option><option value="800">a 800 m</option><option value="1000">a 1 km</option></select></div>
+    <div class="fila"><label for="ajAviso2">Aviso por voz</label>
+      <select id="ajAviso2"><option value="150">a 150 m</option><option value="250">a 250 m</option><option value="400">a 400 m</option></select></div>
+    <div class="fila"><label for="ajTol">Alarma si superás el límite por</label>
+      <select id="ajTol"><option value="0">0 km/h</option><option value="5">5 km/h</option><option value="10">10 km/h</option></select></div>
+    <label class="check"><input type="checkbox" id="ajVoz"> Avisar por voz</label>
+    <label class="check"><input type="checkbox" id="ajSonido"> Sonido de aviso</label>
+    <label class="check"><input type="checkbox" id="ajExceso"> Alarma por exceso de velocidad</label>
+    <button class="btn-sec" id="btnProbarSonido">Probar sonido y voz</button>
+  </div>
+
+  <div class="bloque">
+    <h3>Mostrar en el mapa</h3>
+    <label class="check"><input type="checkbox" id="ajVerVel"> <span class="mk t-vel mini"></span> Radares de velocidad</label>
+    <label class="check"><input type="checkbox" id="ajVerCam"> <span class="mk t-cam mini"></span> Cámaras (semáforo y control)</label>
+    <label class="check"><input type="checkbox" id="ajVerOtros"> <span class="mk t-otro mini"></span> Otros controles</label>
+    <div class="fila"><label for="ajModo">Mapa</label>
+      <select id="ajModo"><option value="auto">Automático (de noche, oscuro)</option><option value="dia">Siempre claro</option><option value="noche">Siempre oscuro</option></select></div>
+  </div>
+
+  <div class="bloque">
+    <h3>Herramientas</h3>
+    <button class="btn-sec" id="btnSimular">Probar sin manejar (simulación)</button>
+    <button class="btn-sec" id="btnRestaurar">Restaurar radares ocultos</button>
+  </div>
+
+  <div class="bloque legal">
+    <h3>Fuentes y aviso</h3>
+    <p>Radares de CABA: <a href="https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular" target="_blank" rel="noopener">Buenos Aires Data (oficial)</a>. Resto: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (cargados por la comunidad). Mapa © OpenStreetMap y CARTO.</p>
+    <p>Los datos pueden estar incompletos o desactualizados. Respetá siempre la señalización y los límites de velocidad. No manipules el celular mientras manejás.</p>
+    <p class="nota">Versión <span id="version"></span></p>
+  </div>
+</section>
+
+<!-- Bienvenida -->
+<section class="intro" id="intro" hidden>
+  <div class="intro-caja">
+    <div class="intro-senal"><span>60</span></div>
+    <h1>Radares BA</h1>
+    <p>Te muestra los radares de CABA y Provincia y te avisa con sonido y voz cuando te acercás a uno.</p>
+    <ul>
+      <li>Poné el celular en un soporte y tocá <b>Iniciar viaje</b> antes de salir.</li>
+      <li>La app tiene que quedar <b>abierta y con la pantalla prendida</b>: si la bloqueás o cambiás de app, no puede avisar.</li>
+      <li>Para tenerla como app: en Safari tocá <b>Compartir</b> → <b>Agregar a pantalla de inicio</b>.</li>
+      <li>No la toques mientras manejás.</li>
+    </ul>
+    <button class="btn-principal ancho" id="btnIntroOk">Entendido</button>
+  </div>
+</section>
+
+<script src="lib/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
