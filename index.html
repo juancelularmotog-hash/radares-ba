@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Radares BA</title>
-<meta name="description" content="Mapa de radares de CABA y Provincia de Buenos Aires con avisos al acercarte.">
+<meta name="description" content="Mapa de radares y peajes de CABA y Provincia de Buenos Aires con avisos al acercarte.">
 <meta name="theme-color" content="#11161d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -20,13 +20,8 @@
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
-<div id="mapa" aria-label="Mapa"></div>
-
-<!-- Velocímetro -->
-<div class="hud hud-vel" id="hudVel">
-  <div class="vel-num"><span id="vel">--</span><small>km/h</small></div>
-  <div class="gps" id="gpsEstado">GPS apagado</div>
-</div>
+<div id="mapaMarco"><div id="mapa" aria-label="Mapa"></div></div>
+<div class="atrib" id="atrib"></div>
 
 <!-- Próximo radar -->
 <div class="hud hud-prox" id="hudProx" hidden>
@@ -37,28 +32,76 @@
   </div>
 </div>
 
+<!-- Ruta activa -->
+<div class="chip-ruta" id="chipRuta" hidden>
+  <button class="chip-ver" id="chipRutaVer"><span id="chipRutaTxt"></span></button>
+  <button class="chip-x" id="chipRutaX" aria-label="Borrar la ruta">×</button>
+</div>
+
 <!-- Aviso grande -->
 <div class="alerta" id="alerta" role="alert" hidden><span id="alertaTxt"></span></div>
+
+<!-- Velocímetro y límite de la calle -->
+<div class="hud hud-vel" id="hudVel">
+  <div class="vel-fila">
+    <div class="vel-num"><span id="vel">--</span><small>km/h</small></div>
+    <div class="senal-calle" id="senalCalle" hidden title="Límite de la calle"><span id="limCalle"></span></div>
+  </div>
+  <div class="calle" id="calleNombre" hidden></div>
+  <div class="gps" id="gpsEstado">GPS apagado</div>
+</div>
+
+<!-- Botones sobre el mapa -->
+<button class="btn-flotante" id="btnCentrar" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2" class="relleno"/><circle cx="12" cy="12" r="7"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+  Seguir
+</button>
+<button class="btn-brujula" id="btnBrujula" aria-label="Orientación del mapa" title="Orientación del mapa">
+  <svg viewBox="0 0 40 40" aria-hidden="true" id="brujulaAguja"><path class="norte" d="M20 5 L25 20 L15 20 Z"/><path class="sur" d="M20 35 L15 20 L25 20 Z"/></svg>
+  <span id="brujulaTxt">N</span>
+</button>
 
 <!-- Mensajes cortos -->
 <div class="toast" id="toast" role="status" hidden></div>
 
-<!-- Botón centrar (aparece al mover el mapa) -->
-<button class="btn-flotante" id="btnCentrar" aria-label="Volver a mi posición" hidden>
-  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /><circle cx="12" cy="12" r="7" fill="none"/></svg>
-  Seguir
-</button>
-
 <!-- Barra inferior -->
 <nav class="barra">
   <button class="btn-principal" id="btnViaje">Iniciar viaje</button>
-  <button class="btn-icono" id="btnAgregar" aria-label="Agregar un radar">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+  <button class="btn-icono" id="btnRuta" aria-label="Radares en tu ruta">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="6" r="2.4"/><path d="M8.4 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.6"/></svg>
+  </button>
+  <button class="btn-icono" id="btnHud" aria-label="Modo parabrisas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 8.5C6 6 18 6 21.5 8.5L19.5 17h-15z"/><path d="M9 13.2h6"/></svg>
   </button>
   <button class="btn-icono" id="btnMenu" aria-label="Ajustes y datos">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
   </button>
 </nav>
+
+<!-- Hoja: radares en tu ruta -->
+<section class="hoja hoja-alta" id="hojaRuta" hidden aria-label="Radares en tu ruta">
+  <header class="hoja-cab"><h2>Radares en tu ruta</h2><button class="cerrar" data-cerrar="hojaRuta" aria-label="Cerrar">×</button></header>
+  <form class="busqueda" id="formRuta" autocomplete="off">
+    <label class="oculto" for="rutaBuscar">Destino</label>
+    <input id="rutaBuscar" type="search" placeholder="¿A dónde vas? Ej.: Mar del Plata, Av. Cabildo 2000" enterkeyhint="search">
+    <button class="btn-principal" id="btnBuscarRuta" type="submit">Buscar</button>
+  </form>
+  <button class="btn-sec" id="btnElegirMapa" type="button">Elegir el destino tocando el mapa</button>
+  <p class="nota" id="rutaEstado">Sale desde tu ubicación actual.</p>
+  <div class="resultados" id="rutaResultados"></div>
+  <div id="rutaInfo" hidden>
+    <div class="ruta-dest" id="rutaDestino"></div>
+    <div class="resumen" id="rutaResumen"></div>
+    <div class="fila-botones">
+      <button class="btn-sec" id="btnVerRuta" type="button">Ver toda la ruta</button>
+      <button class="btn-sec" id="btnBorrarRuta" type="button">Borrar ruta</button>
+    </div>
+    <button class="btn-principal ancho" id="btnViajeRuta" type="button">Iniciar viaje</button>
+    <h3 class="sub">En el camino</h3>
+    <ol class="lista-ruta" id="rutaLista"></ol>
+    <p class="nota">Ruta calculada con OpenStreetMap. Los tiempos son aproximados.</p>
+  </div>
+</section>
 
 <!-- Hoja: agregar radar -->
 <section class="hoja" id="hojaAgregar" hidden aria-label="Agregar radar">
@@ -66,25 +109,25 @@
   <p class="nota" id="agregarAyuda">Tocá el mapa donde está el radar, o usá tu posición actual.</p>
   <button class="btn-sec" id="btnAquiEstoy">Usar mi posición actual</button>
   <div id="agForm" hidden>
-  <div class="campos">
-    <label for="agTipo">Tipo</label>
-    <select id="agTipo">
-      <option value="velocidad">Radar de velocidad</option>
-      <option value="semaforo">Cámara de semáforo</option>
-      <option value="video">Cámara de control</option>
-      <option value="otro">Otro control</option>
-    </select>
-    <label for="agVmax">Velocidad máxima</label>
-    <select id="agVmax">
-      <option value="">No sé</option>
-      <option>20</option><option>30</option><option>40</option><option>50</option><option>60</option>
-      <option>70</option><option>80</option><option>90</option><option>100</option><option>110</option>
-      <option>120</option><option>130</option>
-    </select>
-    <label for="agNombre">Referencia (opcional)</label>
-    <input id="agNombre" type="text" placeholder="Ej.: Ruta 2 km 85, mano a la costa" maxlength="80">
-  </div>
-  <button class="btn-principal ancho" id="btnGuardarRadar" disabled>Guardar radar</button>
+    <div class="campos">
+      <label for="agTipo">Tipo</label>
+      <select id="agTipo">
+        <option value="velocidad">Radar de velocidad</option>
+        <option value="semaforo">Cámara de semáforo</option>
+        <option value="video">Cámara de control</option>
+        <option value="otro">Otro control</option>
+      </select>
+      <label for="agVmax">Velocidad máxima</label>
+      <select id="agVmax">
+        <option value="">No sé</option>
+        <option>20</option><option>30</option><option>40</option><option>50</option><option>60</option>
+        <option>70</option><option>80</option><option>90</option><option>100</option><option>110</option>
+        <option>120</option><option>130</option>
+      </select>
+      <label for="agNombre">Referencia (opcional)</label>
+      <input id="agNombre" type="text" placeholder="Ej.: Ruta 2 km 85, mano a la costa" maxlength="80">
+    </div>
+    <button class="btn-principal ancho" id="btnGuardarRadar" disabled>Guardar radar</button>
   </div>
 </section>
 
@@ -99,8 +142,15 @@
     <p class="nota" id="estadoAct"></p>
   </div>
 
+  <div class="bloque" id="bloqueNovedades" hidden>
+    <h3>Novedades</h3>
+    <p id="novedadesTxt"></p>
+    <ol class="lista-ruta" id="novedadesLista"></ol>
+    <button class="btn-sec" id="btnNovedadesVistas">Marcar como vistas</button>
+  </div>
+
   <div class="bloque">
-    <h3>Avisos</h3>
+    <h3>Avisos de radares</h3>
     <div class="fila"><label for="ajAviso1">Primer aviso</label>
       <select id="ajAviso1"><option value="300">a 300 m</option><option value="500">a 500 m</option><option value="800">a 800 m</option><option value="1000">a 1 km</option></select></div>
     <div class="fila"><label for="ajAviso2">Aviso por voz</label>
@@ -109,30 +159,71 @@
       <select id="ajTol"><option value="0">0 km/h</option><option value="5">5 km/h</option><option value="10">10 km/h</option></select></div>
     <label class="check"><input type="checkbox" id="ajVoz"> Avisar por voz</label>
     <label class="check"><input type="checkbox" id="ajSonido"> Sonido de aviso</label>
-    <label class="check"><input type="checkbox" id="ajExceso"> Alarma por exceso de velocidad</label>
+    <label class="check"><input type="checkbox" id="ajExceso"> Alarma por exceso de velocidad cerca de un radar</label>
+    <label class="check"><input type="checkbox" id="ajAvisarPeajes"> Avisar peajes a 1 km</label>
     <button class="btn-sec" id="btnProbarSonido">Probar sonido y voz</button>
   </div>
 
   <div class="bloque">
-    <h3>Mostrar en el mapa</h3>
+    <h3>Límite de la calle</h3>
+    <label class="check"><input type="checkbox" id="ajMostrarLimite"> Mostrar el límite de la calle por la que vas</label>
+    <div class="fila"><label for="ajLimiteAlarma">Alarma si lo superás</label>
+      <select id="ajLimiteAlarma"><option value="reales">Solo con límites cargados</option><option value="todos">También con los estimados</option><option value="no">No avisar</option></select></div>
+    <p class="nota">Si la calle no tiene un límite cargado, se estima con la ley de tránsito (calles 40, avenidas 60, rutas 110) y se muestra con borde punteado. Usa un poco de datos móviles mientras manejás.</p>
+  </div>
+
+  <div class="bloque">
+    <h3>Mapa</h3>
     <label class="check"><input type="checkbox" id="ajVerVel"> <span class="mk t-vel mini"></span> Radares de velocidad</label>
     <label class="check"><input type="checkbox" id="ajVerCam"> <span class="mk t-sem mini"><i></i><i></i><i></i></span><span class="mk t-cam mini"></span> Cámaras (semáforo y control)</label>
     <label class="check"><input type="checkbox" id="ajVerOtros"> <span class="mk t-otro mini"></span> Otros controles</label>
-    <div class="fila"><label for="ajModo">Mapa</label>
+    <label class="check"><input type="checkbox" id="ajVerPeajes"> <span class="peaje-mk mini"></span> Peajes</label>
+    <label class="check"><input type="checkbox" id="ajRotar"> El mapa gira con el auto durante el viaje</label>
+    <div class="fila"><label for="ajModo">Colores</label>
       <select id="ajModo"><option value="auto">Automático (de noche, oscuro)</option><option value="dia">Siempre claro</option><option value="noche">Siempre oscuro</option></select></div>
   </div>
 
   <div class="bloque">
     <h3>Herramientas</h3>
+    <button class="btn-sec" id="btnAgregar">Agregar un radar</button>
     <button class="btn-sec" id="btnSimular">Probar sin manejar (simulación)</button>
     <button class="btn-sec" id="btnRestaurar">Restaurar radares ocultos</button>
   </div>
 
+  <div class="bloque" id="bloqueAndroid" hidden>
+    <h3>App para Android</h3>
+    <p class="nota">La app de Android avisa también con la pantalla bloqueada y mientras usás otras apps, como Google Maps.</p>
+    <a class="btn-principal ancho enlace-boton" id="linkApk" href="#" target="_blank" rel="noopener">Descargar la app (.apk)</a>
+  </div>
+
   <div class="bloque legal">
     <h3>Fuentes y aviso</h3>
-    <p>Radares de CABA: <a href="https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular" target="_blank" rel="noopener">Buenos Aires Data (oficial)</a>. Resto: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (cargados por la comunidad). Mapa © colaboradores de OpenStreetMap.</p>
+    <p>Radares de CABA: <a href="https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular" target="_blank" rel="noopener">Buenos Aires Data (oficial)</a>. Resto de los radares, peajes, límites de las calles y rutas: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (cargados por la comunidad). Mapa © colaboradores de OpenStreetMap.</p>
     <p>Los datos pueden estar incompletos o desactualizados. Respetá siempre la señalización y los límites de velocidad. No manipules el celular mientras manejás.</p>
     <p class="nota">Versión <span id="version"></span></p>
+  </div>
+</section>
+
+<!-- Modo parabrisas -->
+<section class="hud-modo" id="hudModo" hidden aria-label="Modo parabrisas">
+  <div class="hud-cont" id="hudCont">
+    <div class="hud-vel"><span id="hudVelNum">--</span><span class="hud-u">km/h</span></div>
+    <div class="hud-fila">
+      <div class="hud-bloque" id="hudCalleBloque" hidden>
+        <div class="hud-senal" id="hudLim">--</div>
+        <div class="hud-cap">calle</div>
+      </div>
+      <div class="hud-bloque" id="hudRadarBloque" hidden>
+        <div class="hud-senal radar" id="hudRadarVmax">?</div>
+        <div class="hud-cap" id="hudRadarDist"></div>
+      </div>
+    </div>
+    <div class="hud-aviso" id="hudAviso"></div>
+  </div>
+  <div class="hud-ctrl" id="hudCtrl" hidden>
+    <p>Apoyá el celular acostado sobre el tablero, con la pantalla hacia arriba y la parte de arriba de los números hacia vos: se van a ver derechos reflejados en el vidrio. Funciona mejor de noche. Si encandila, bajá el brillo.</p>
+    <button class="btn-sec" id="hudEspejo">Espejado: sí</button>
+    <button class="btn-principal ancho" id="hudSalir">Salir del modo parabrisas</button>
   </div>
 </section>
 
@@ -141,11 +232,11 @@
   <div class="intro-caja">
     <div class="intro-senal"><span>60</span></div>
     <h1>Radares BA</h1>
-    <p>Te muestra los radares de CABA y Provincia y te avisa con sonido y voz cuando te acercás a uno.</p>
+    <p>Te muestra los radares y peajes de CABA y Provincia y te avisa con sonido y voz cuando te acercás a uno.</p>
     <ul>
       <li>Poné el celular en un soporte y tocá <b>Iniciar viaje</b> antes de salir.</li>
-      <li>La app tiene que quedar <b>abierta y con la pantalla prendida</b>: si la bloqueás o cambiás de app, no puede avisar.</li>
-      <li>Para tenerla como app: en Safari tocá <b>Compartir</b> → <b>Agregar a pantalla de inicio</b>.</li>
+      <li id="introBloqueo">La app tiene que quedar <b>abierta y con la pantalla prendida</b>: si la bloqueás o cambiás de app, no puede avisar.</li>
+      <li id="introInstalar">Para tenerla como app: en Safari tocá <b>Compartir</b> → <b>Agregar a pantalla de inicio</b>.</li>
       <li>No la toques mientras manejás.</li>
     </ul>
     <button class="btn-principal ancho" id="btnIntroOk">Entendido</button>

@@ -1,6 +1,6 @@
 /* Service worker: permite abrir la app sin conexión y guarda los pedazos de mapa ya vistos.
    Con internet siempre usa la versión más nueva de la app; sin internet, la última guardada. */
-const VERSION = 'radares-ba-v1.0.2';
+const VERSION = 'radares-ba-v2.0.0';
 const APP = [
   './', 'index.html', 'app.css', 'app.js', 'manifest.webmanifest',
   'lib/leaflet.css', 'lib/leaflet.js',
