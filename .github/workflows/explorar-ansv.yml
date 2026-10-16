@@ -22,6 +22,11 @@ jobs:
           bajar() { curl -sSL --max-time 90 -A "Mozilla/5.0 (compatible; radares-ba/1.2)" -o "$1" "$2" -w "$1 %{http_code} %{size_download} $2\n" >> estado.txt 2>>estado.txt || echo "$1 ERROR $2" >> estado.txt; }
           bajar ansv-fijos.html "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales"
           bajar ansv-lista.html "https://www.argentina.gob.ar/seguridadvial/radares-autorizados"
+          # Planilla pública de Google que usan el mapa (pestaña "fijo") y la tabla (pestaña "radares") de la ANSV
+          PLANILLA="https://docs.google.com/spreadsheets/d/1qKy9Ok4BSOkuFpmeTvLMsre6ZkHGZRY7aYwmnUbpTwE"
+          bajar ansv-fijo.csv "$PLANILLA/gviz/tq?tqx=out:csv&sheet=fijo"
+          bajar ansv-radares.csv "$PLANILLA/gviz/tq?tqx=out:csv&sheet=radares"
+          bajar ansv-planilla.html "$PLANILLA/htmlview"
           python3 - <<'PY'
           import re, subprocess, html
           urls = set()
