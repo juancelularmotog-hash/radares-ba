@@ -1,0 +1,54 @@
+name: Vista previa de estilos de mapa (temporal)
+
+# Saca capturas de la app con distintos estilos de mapa para elegir uno. No cambia la app publicada.
+# Deja las capturas 20 minutos en la rama "exploracion" y después la borra. Este archivo se quita enseguida.
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/estilos-mapa.yml"
+      - ".github/estilos/vista_previa.py"
+
+permissions:
+  contents: write
+
+jobs:
+  capturas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Playwright
+        run: |
+          pip install playwright==1.47.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Capturas
+        run: python .github/estilos/vista_previa.py . "$RUNNER_TEMP/estilos/capturas"
+      - name: Achicar a JPG
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from PIL import Image
+          d = Path(os.environ["RUNNER_TEMP"]) / "estilos" / "capturas"
+          for f in d.glob("*.png"):
+              Image.open(f).convert("RGB").save(f.with_suffix(".jpg"), quality=82, optimize=True)
+              f.unlink()
+          PY
+      - name: Dejar en la rama "exploracion" 20 minutos
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          cd "$RUNNER_TEMP/estilos/capturas"
+          git init -q -b exploracion
+          git config user.name "explorador"
+          git config user.email "actions@users.noreply.github.com"
+          git add .
+          git commit -q -m "Capturas de estilos de mapa"
+          URL="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push -q -f "$URL" exploracion
+          sleep 1200
+          git push -q "$URL" --delete exploracion || true
