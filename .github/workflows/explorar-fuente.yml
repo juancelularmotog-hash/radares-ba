@@ -1,0 +1,46 @@
+name: Explorar fuentes (temporal)
+
+# Descarga archivos públicos que no se pueden leer desde Claude y los deja en la rama "exploracion".
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/explorar-fuente.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bajar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Descargar
+        run: |
+          mkdir -p crudo && cd crudo
+          bajar() { curl -sSL --max-time 60 -A "Mozilla/5.0 (radares-ba)" -o "$1" "$2" -w "$1 %{http_code} %{size_download}\n" >> estado.txt 2>>estado.txt || echo "$1 ERROR" >> estado.txt; }
+          bajar inti-cinemometros-2025.xlsx "https://www.inti.gob.ar/assets/uploads/files/metrologia-legal/Cinemometros-2025.xlsx"
+          bajar bahia-radares-fijos-2023.kmz "https://datos.bahia.gob.ar/dataset/8d21ef25-aa53-4b35-8310-ff91a91fd161/resource/97ccbdb3-0d09-4a19-828a-cec190df2d70/download/radares-fijos-2023.kmz"
+          bajar infraccionesba-equipos.html "https://infraccionesba.gba.gob.ar/equiposDeConstatacion"
+          # Scripts de la página de la Provincia, para ver de dónde saca el listado de radares fijos
+          python3 - <<'PY'
+          import re, urllib.parse, subprocess
+          html = open('infraccionesba-equipos.html', encoding='utf-8', errors='replace').read()
+          for i, src in enumerate(re.findall(r'<script[^>]+src="([^"]+)"', html)[:15]):
+              url = urllib.parse.urljoin('https://infraccionesba.gba.gob.ar/equiposDeConstatacion', src)
+              subprocess.run(['curl', '-sSL', '--max-time', '60', '-o', f'script_{i}.js', url])
+              open('estado.txt', 'a').write(f'script_{i}.js {url}\n')
+          PY
+          ls -la >> estado.txt
+      - name: Guardar en la rama "exploracion"
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          cd crudo
+          git init -q -b exploracion
+          git config user.name "explorador"
+          git config user.email "actions@users.noreply.github.com"
+          git add .
+          git commit -q -m "Archivos crudos para revisar"
+          git push -q -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" exploracion
