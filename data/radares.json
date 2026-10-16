@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-16T01:36:19+00:00",
+ "generado": "2026-10-16T02:38:26+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -750,7 +750,8 @@
    "dir": 81,
    "nombre": "AV. SAN JUAN - 2507",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62306,-58.44055-video",
@@ -2145,7 +2146,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Avenida Lobería",
+   "nombre": "Avenida 578",
    "fuente": "OSM"
   },
   {
@@ -2155,7 +2156,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Avenida Lobería",
+   "nombre": "Avenida 578",
    "fuente": "OSM"
   },
   {
@@ -2165,7 +2166,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Avenida Lobería",
+   "nombre": "Avenida 578",
    "fuente": "OSM"
   },
   {
@@ -3474,8 +3475,9 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales  rn205 km82 ambos sentidos",
-   "fuente": "OSM"
+   "nombre": "Ruta Nacional 205",
+   "fuente": "OSM",
+   "detalle": "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales  rn205 km"
   },
   {
    "id": "osm-n10573500499",
@@ -4052,16 +4054,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n4053542328",
-   "lat": -34.855806,
-   "lon": -58.503004,
-   "tipo": "velocidad",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM"
-  },
-  {
    "id": "osm-n621748417",
    "lat": -34.852398,
    "lon": -58.52022,
@@ -4202,17 +4194,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n5318954399",
-   "lat": -34.815236,
-   "lon": -58.277378,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n2099062441",
    "lat": -34.815053,
    "lon": -58.277399,
@@ -4241,18 +4222,6 @@
    "dir": null,
    "nombre": "Radar Rivadavia",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5197079977",
-   "lat": -34.809104,
-   "lon": -58.278208,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 267,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n3710901938",
@@ -4315,17 +4284,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n5554843472",
-   "lat": -34.805775,
-   "lon": -58.278386,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n10635283801",
    "lat": -34.805708,
    "lon": -58.503936,
@@ -4344,17 +4302,6 @@
    "dir": null,
    "nombre": "Avenida Doctor Marcos Paz",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5197079976",
-   "lat": -34.804082,
-   "lon": -58.27819,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n648281838",
@@ -4491,33 +4438,12 @@
    "id": "osm-n6019517791",
    "lat": -34.793544,
    "lon": -58.248031,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": 125.0,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r9969151",
-   "lat": -34.793544,
-   "lon": -58.248031,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
+   "dir": 125.0,
    "nombre": "Ruta Provincial 36",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5198283100",
-   "lat": -34.791885,
-   "lon": -58.27891,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
    "fuente": "OSM",
-   "vmaxFuente": "calle"
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n3314616063",
@@ -4550,17 +4476,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n5197079978",
-   "lat": -34.788821,
-   "lon": -58.277429,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n5077708880",
    "lat": -34.786962,
    "lon": -58.452979,
@@ -4584,12 +4499,12 @@
    "id": "osm-n5197079979",
    "lat": -34.780614,
    "lon": -58.279074,
-   "tipo": "velocidad",
-   "vmax": 60,
+   "tipo": "semaforo",
+   "vmax": null,
    "dir": null,
-   "nombre": "Detección de violación de luz roja",
+   "nombre": "Avenida San Martín",
    "fuente": "OSM",
-   "vmaxFuente": "calle"
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n648955172",
@@ -4605,22 +4520,12 @@
    "id": "osm-n2099062415",
    "lat": -34.780114,
    "lon": -58.279436,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8963836",
-   "lat": -34.780114,
-   "lon": -58.279436,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Radar W",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n4353071963",
@@ -4683,25 +4588,15 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n6898491307",
-   "lat": -34.774583,
-   "lon": -58.266964,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Calchaquí",
-   "fuente": "OSM"
-  },
-  {
    "id": "osm-n5554854380",
    "lat": -34.774392,
    "lon": -58.267055,
-   "tipo": "velocidad",
-   "vmax": 60,
+   "tipo": "semaforo",
+   "vmax": null,
    "dir": 129.0,
-   "nombre": "Detección de violación de luz roja",
+   "nombre": "Avenida Calchaquí",
    "fuente": "OSM",
-   "vmaxFuente": "estimado"
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n6196873214",
@@ -4741,8 +4636,9 @@
    "tipo": "velocidad",
    "vmax": 130,
    "dir": null,
-   "nombre": "a chequear",
-   "fuente": "OSM"
+   "nombre": "Autopista Teniente General Pablo Ricchieri",
+   "fuente": "OSM",
+   "detalle": "a chequear"
   },
   {
    "id": "osm-n307472025",
@@ -4911,8 +4807,9 @@
    "tipo": "velocidad",
    "vmax": 30,
    "dir": 30.0,
-   "nombre": "Cinemometro fijo multicarril",
-   "fuente": "OSM"
+   "nombre": "Roca, Cnel. Av. 5880",
+   "fuente": "OSM",
+   "detalle": "Cinemometro fijo multicarril"
   },
   {
    "id": "osm-n3269890326",
@@ -4981,22 +4878,12 @@
    "id": "osm-n5197072240",
    "lat": -34.676002,
    "lon": -58.365034,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "estimado"
-  },
-  {
-   "id": "osm-r8850352",
-   "lat": -34.676002,
-   "lon": -58.365034,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. Güemes y Eva Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n1740891276",
@@ -5032,22 +4919,12 @@
    "id": "osm-n6015211550",
    "lat": -34.675388,
    "lon": -58.364579,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "estimado"
-  },
-  {
-   "id": "osm-r8850353",
-   "lat": -34.675388,
-   "lon": -58.364579,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. Güemes y Lanares",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n4575367519",
@@ -5221,17 +5098,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n6082356691",
-   "lat": -34.652884,
-   "lon": -58.551682,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "estimado"
-  },
-  {
    "id": "osm-n305098789",
    "lat": -34.652643,
    "lon": -58.551947,
@@ -5246,22 +5112,12 @@
    "id": "osm-n5342756069",
    "lat": -34.651535,
    "lon": -58.50248,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r7906554",
-   "lat": -34.651535,
-   "lon": -58.50248,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar J.B.Alberdi Y Larrazabal",
-   "fuente": "OSM"
+   "nombre": "J.B.Alberdi Y Larrazabal",
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-r9312040",
@@ -5341,21 +5197,12 @@
    "id": "osm-n4841785276",
    "lat": -34.646811,
    "lon": -58.599686,
-   "tipo": "velocidad",
+   "tipo": "semaforo",
    "vmax": 60,
    "dir": null,
-   "nombre": "Detección de violación de luz roja e invasión de senda peatonal",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-r7227722",
-   "lat": -34.646811,
-   "lon": -58.599686,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
    "nombre": "Cámara de semáforo Av. Rivadavia y Concordia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja e invasión de senda peatonal"
   },
   {
    "id": "osm-n5343569910",
@@ -5371,23 +5218,12 @@
    "id": "osm-n11895655806",
    "lat": -34.646105,
    "lon": -58.520307,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 175.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r17581561",
-   "lat": -34.646105,
-   "lon": -58.520307,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 173,
-   "nombre": "Radar Av. Lisandro de la Torre y Tonelero",
+   "dir": 175.0,
+   "nombre": "Av. Lisandro de la Torre y Tonelero",
    "fuente": "OSM",
-   "dirInferida": true
+   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
   },
   {
    "id": "osm-n13546524722",
@@ -5441,25 +5277,13 @@
    "dirInferida": true
   },
   {
-   "id": "osm-n5343622104",
-   "lat": -34.641389,
-   "lon": -58.480045,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 42,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n232636724",
    "lat": -34.641282,
    "lon": -58.479926,
    "tipo": "semaforo",
    "vmax": null,
    "dir": 46,
-   "nombre": "Radar Av. Directorio y Lacarra",
+   "nombre": "Av. Directorio y Lacarra",
    "fuente": "OSM",
    "dirInferida": true
   },
@@ -5477,7 +5301,7 @@
    "id": "osm-n13546524721",
    "lat": -34.640201,
    "lon": -58.624134,
-   "tipo": "velocidad",
+   "tipo": "semaforo",
    "vmax": 40,
    "dir": 12.0,
    "nombre": "Camara de Semaforo",
@@ -5560,43 +5384,23 @@
    "id": "osm-n11893671475",
    "lat": -34.637482,
    "lon": -58.49987,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 80.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r17580460",
-   "lat": -34.637482,
-   "lon": -58.49987,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Rivadavia y Manzoni",
-   "fuente": "OSM"
+   "dir": 80.0,
+   "nombre": "Av. Rivadavia y Manzoni",
+   "fuente": "OSM",
+   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
   },
   {
    "id": "osm-n5344851995",
    "lat": -34.637215,
    "lon": -58.40595,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r7909413",
-   "lat": -34.637215,
-   "lon": -58.40595,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Caseros y La Rioja",
-   "fuente": "OSM"
+   "nombre": "Av. Caseros y La Rioja",
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n206148599",
@@ -5656,8 +5460,9 @@
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
-   "nombre": "Tipo de fiscalizador: Cinemómetro; Conducta fiscalizada: Exceso de velocidad",
-   "fuente": "OSM"
+   "nombre": "Au. Moreno, Perito km 0.3",
+   "fuente": "OSM",
+   "detalle": "Tipo de fiscalizador: Cinemómetro; Conducta fiscalizada: Exceso de velocidad"
   },
   {
    "id": "osm-n11555881689",
@@ -5723,57 +5528,26 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n2385992573",
-   "lat": -34.631414,
-   "lon": -58.492201,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n11893600210",
-   "lat": -34.630798,
-   "lon": -58.470022,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 75.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r17580362",
    "lat": -34.630798,
    "lon": -58.470022,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Rivadavia y Av. Nazca",
-   "fuente": "OSM"
+   "dir": 75.0,
+   "nombre": "Av. Rivadavia y Av. Nazca",
+   "fuente": "OSM",
+   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
   },
   {
    "id": "osm-n11893580969",
    "lat": -34.630176,
    "lon": -58.467238,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 75.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r17580320",
-   "lat": -34.630176,
-   "lon": -58.467238,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Rivadavia y Culpina/Condarco",
-   "fuente": "OSM"
+   "dir": 75.0,
+   "nombre": "Av. Rivadavia y Culpina/Condarco",
+   "fuente": "OSM",
+   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
   },
   {
    "id": "osm-n5353188554",
@@ -5782,8 +5556,9 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 74,
-   "nombre": "Av. Avellaneda y Bahía Blanca",
+   "nombre": "Avenida Avellaneda",
    "fuente": "OSM",
+   "detalle": "Av. Avellaneda y Bahía Blanca",
    "dirInferida": true
   },
   {
@@ -5828,18 +5603,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n5957387185",
-   "lat": -34.627744,
-   "lon": -58.379821,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 87,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "estimado"
-  },
-  {
    "id": "osm-n206107604",
    "lat": -34.627711,
    "lon": -58.379608,
@@ -5853,22 +5616,12 @@
    "id": "osm-n11893515109",
    "lat": -34.627679,
    "lon": -58.459208,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 65.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r17580316",
-   "lat": -34.627679,
-   "lon": -58.459208,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Rivadavia y Granaderos",
-   "fuente": "OSM"
+   "dir": 65.0,
+   "nombre": "Av. Rivadavia y Granaderos",
+   "fuente": "OSM",
+   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
   },
   {
    "id": "osm-n2739917849",
@@ -5902,18 +5655,6 @@
    "dirInferida": true
   },
   {
-   "id": "osm-n5957319783",
-   "lat": -34.626319,
-   "lon": -58.379987,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 253,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n9170431509",
    "lat": -34.62621,
    "lon": -60.422152,
@@ -5940,26 +5681,15 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Juan B. Justo y Joaquín Victor González",
+   "nombre": "Av. Juan B. Justo y Joaquín Victor González",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5345069499",
-   "lat": -34.623911,
-   "lon": -58.483232,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n195723156",
    "lat": -34.62354,
    "lon": -58.400436,
    "tipo": "semaforo",
-   "vmax": null,
+   "vmax": 60,
    "dir": 81,
    "nombre": "Radar Av. San Juan esquina Alberti",
    "fuente": "OSM",
@@ -5987,26 +5717,14 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n2461877757",
-   "lat": -34.622899,
-   "lon": -58.440602,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 275.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n206163539",
    "lat": -34.622873,
    "lon": -58.44086,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 276,
-   "nombre": "Radar Av. Juan B. Alberdi y Centenera",
-   "fuente": "OSM",
-   "dirInferida": true
+   "dir": 275.0,
+   "nombre": "Av. Juan B. Alberdi y Centenera",
+   "fuente": "OSM"
   },
   {
    "id": "osm-n9170788058",
@@ -6030,18 +5748,6 @@
    "dirInferida": true
   },
   {
-   "id": "osm-n5951220656",
-   "lat": -34.622633,
-   "lon": -58.390075,
-   "tipo": "velocidad",
-   "vmax": 20,
-   "dir": 86,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n195585088",
    "lat": -34.622622,
    "lon": -58.389895,
@@ -6051,18 +5757,6 @@
    "nombre": "Radar Av. San Juan y Solís",
    "fuente": "OSM",
    "dirInferida": true
-  },
-  {
-   "id": "osm-n5957296417",
-   "lat": -34.622185,
-   "lon": -58.381669,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 87,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n243462105",
@@ -6089,44 +5783,23 @@
    "id": "osm-n1914719864",
    "lat": -34.621673,
    "lon": -58.444226,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8742918",
-   "lat": -34.621673,
-   "lon": -58.444226,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Radar Deteccion de violacion de luz roja",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n2580167253",
    "lat": -34.621311,
    "lon": -58.456412,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 67,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r7923304",
-   "lat": -34.621311,
-   "lon": -58.456412,
    "tipo": "semaforo",
    "vmax": null,
    "dir": 67,
-   "nombre": "Radar Av. Avellaneda y Donato Alvarez",
+   "nombre": "Av. Avellaneda y Donato Alvarez",
    "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja",
    "dirInferida": true
   },
   {
@@ -6152,50 +5825,15 @@
    "dirInferida": true
   },
   {
-   "id": "osm-n5931278857",
-   "lat": -34.621068,
-   "lon": -58.417872,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 265,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n11892248668",
-   "lat": -34.620271,
-   "lon": -58.440905,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 245.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal.",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r17578850",
    "lat": -34.620271,
    "lon": -58.440905,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 242,
-   "nombre": "Radar Av. Rivadavia y Del Barco Centenera",
+   "dir": 245.0,
+   "nombre": "Av. Rivadavia y Del Barco Centenera",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n5954047158",
-   "lat": -34.61991,
-   "lon": -58.380149,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 357,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
+   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal."
   },
   {
    "id": "osm-n237640615",
@@ -6212,11 +5850,12 @@
    "id": "osm-n5951235610",
    "lat": -34.619248,
    "lon": -58.391686,
-   "tipo": "velocidad",
+   "tipo": "otro",
    "vmax": 60,
    "dir": 358,
-   "nombre": "Verificador de carriles",
+   "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
+   "detalle": "Verificador de carriles",
    "dirInferida": true,
    "vmaxFuente": "calle"
   },
@@ -6224,23 +5863,12 @@
    "id": "osm-n5931269090",
    "lat": -34.618314,
    "lon": -58.428805,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 80.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8742945",
-   "lat": -34.618314,
-   "lon": -58.428805,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 80,
-   "nombre": "Radar Rosario y Av. La Plata",
+   "dir": 80.0,
+   "nombre": "Rosario y Av. La Plata",
    "fuente": "OSM",
-   "dirInferida": true
+   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
   },
   {
    "id": "osm-n195978137",
@@ -6248,10 +5876,9 @@
    "lon": -58.436458,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 242,
-   "nombre": "Radar Av. Rivadavia y Acoyte",
-   "fuente": "OSM",
-   "dirInferida": true
+   "dir": 245.0,
+   "nombre": "Av. Rivadavia y Acoyte",
+   "fuente": "OSM"
   },
   {
    "id": "osm-n194139380",
@@ -6264,25 +5891,15 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n5931254985",
-   "lat": -34.618199,
-   "lon": -58.436253,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 245.0,
-   "nombre": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal.",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n5951241467",
    "lat": -34.617537,
    "lon": -58.391687,
-   "tipo": "velocidad",
+   "tipo": "otro",
    "vmax": 60,
    "dir": 0,
-   "nombre": "Verificador de carriles",
+   "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
+   "detalle": "Verificador de carriles",
    "dirInferida": true,
    "vmaxFuente": "calle"
   },
@@ -6301,23 +5918,12 @@
    "id": "osm-n5954035825",
    "lat": -34.616937,
    "lon": -58.369437,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 175,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8771373",
-   "lat": -34.616937,
-   "lon": -58.369437,
    "tipo": "semaforo",
    "vmax": null,
    "dir": 175,
    "nombre": "Radar Av. Paseo Colon y Av. Independencia",
    "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja",
    "dirInferida": true
   },
   {
@@ -6356,11 +5962,12 @@
    "id": "osm-n5951257342",
    "lat": -34.613966,
    "lon": -58.391716,
-   "tipo": "velocidad",
+   "tipo": "otro",
    "vmax": 60,
    "dir": 359,
-   "nombre": "Verificador de carriles",
+   "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
+   "detalle": "Verificador de carriles",
    "dirInferida": true,
    "vmaxFuente": "calle"
   },
@@ -6379,23 +5986,12 @@
    "id": "osm-n10558362190",
    "lat": -34.613757,
    "lon": -58.459128,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 244,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r15320662",
-   "lat": -34.613757,
-   "lon": -58.459128,
    "tipo": "semaforo",
    "vmax": null,
    "dir": 244,
    "nombre": "Radar Av. Gaona y Donato Álvarez",
    "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja",
    "dirInferida": true
   },
   {
@@ -6420,26 +6016,15 @@
    "dirInferida": true
   },
   {
-   "id": "osm-n4515682196",
-   "lat": -34.611776,
-   "lon": -58.381826,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 180,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n5951288464",
    "lat": -34.611618,
    "lon": -58.391801,
-   "tipo": "velocidad",
+   "tipo": "otro",
    "vmax": 60,
    "dir": 358,
-   "nombre": "Verificador de carriles",
+   "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
+   "detalle": "Verificador de carriles",
    "dirInferida": true,
    "vmaxFuente": "calle"
   },
@@ -6464,18 +6049,6 @@
    "nombre": "Radar Av. Rivadavia y Av. Jujuy",
    "fuente": "OSM",
    "dirInferida": true
-  },
-  {
-   "id": "osm-n5966241623",
-   "lat": -34.610097,
-   "lon": -58.405735,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 265,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n720727401",
@@ -6521,26 +6094,15 @@
    "dirInferida": true
   },
   {
-   "id": "osm-n5968648999",
-   "lat": -34.605545,
-   "lon": -58.43917,
-   "tipo": "velocidad",
-   "vmax": 30,
-   "dir": 242,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n5953989601",
    "lat": -34.604598,
    "lon": -58.392294,
-   "tipo": "velocidad",
+   "tipo": "otro",
    "vmax": 60,
    "dir": 356,
-   "nombre": "Verificador de carriles",
+   "nombre": "Avenida Callao",
    "fuente": "OSM",
+   "detalle": "Verificador de carriles",
    "dirInferida": true,
    "vmaxFuente": "calle"
   },
@@ -6565,17 +6127,6 @@
    "dir": null,
    "nombre": "Radar Av. J.B.Justo y Av. San Martín",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5968669489",
-   "lat": -34.604252,
-   "lon": -58.458299,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n81834174",
@@ -6613,20 +6164,9 @@
    "lat": -34.600498,
    "lon": -58.385355,
    "tipo": "semaforo",
-   "vmax": null,
+   "vmax": 40,
    "dir": 85,
    "nombre": "Radar Talcahuano y Viamonte",
-   "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n2461097952",
-   "lat": -34.600364,
-   "lon": -58.385363,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 176,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
    "fuente": "OSM",
    "dirInferida": true
   },
@@ -6644,33 +6184,24 @@
    "id": "osm-n5966276757",
    "lat": -34.596472,
    "lon": -58.403103,
-   "tipo": "velocidad",
+   "tipo": "otro",
    "vmax": 60,
    "dir": null,
-   "nombre": "Verificador de carriles",
+   "nombre": "Avenida Pueyrredón",
    "fuente": "OSM",
+   "detalle": "Verificador de carriles",
    "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5968611667",
    "lat": -34.595768,
    "lon": -58.388551,
-   "tipo": "velocidad",
+   "tipo": "otro",
    "vmax": 60,
    "dir": null,
-   "nombre": "Verificador de carriles",
+   "nombre": "Avenida Santa Fe",
    "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n5966428618",
-   "lat": -34.595469,
-   "lon": -58.382932,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
+   "detalle": "Verificador de carriles",
    "vmaxFuente": "calle"
   },
   {
@@ -6697,37 +6228,15 @@
    "id": "osm-n5966428619",
    "lat": -34.595307,
    "lon": -58.380929,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8788979",
-   "lat": -34.595307,
-   "lon": -58.380929,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. Santa Fe y Pellegrini",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n2295185156",
-   "lat": -34.595014,
-   "lon": -58.428909,
-   "tipo": "velocidad",
-   "vmax": 50,
-   "dir": 307,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8796258",
    "lat": -34.595014,
    "lon": -58.428909,
    "tipo": "semaforo",
@@ -6735,6 +6244,7 @@
    "dir": 307,
    "nombre": "Radar Av. Córdoba y Aráoz",
    "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja",
    "dirInferida": true
   },
   {
@@ -6773,23 +6283,12 @@
    "id": "osm-n2295185153",
    "lat": -34.594454,
    "lon": -58.429809,
-   "tipo": "velocidad",
-   "vmax": 50,
-   "dir": 307,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8796256",
-   "lat": -34.594454,
-   "lon": -58.429809,
    "tipo": "semaforo",
    "vmax": null,
    "dir": 307,
    "nombre": "Radar Av. Córdoba y Scalabrini Ortiz",
    "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja",
    "dirInferida": true
   },
   {
@@ -6815,37 +6314,15 @@
    "dirInferida": true
   },
   {
-   "id": "osm-n5971823026",
-   "lat": -34.594005,
-   "lon": -58.412202,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 207,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n5966404958",
-   "lat": -34.593697,
-   "lon": -58.373558,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8788950",
    "lat": -34.593697,
    "lon": -58.373558,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. Leando N. Alem Y San Martin",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n180474730",
@@ -6856,18 +6333,6 @@
    "dir": null,
    "nombre": "Avenida Leandro N. Alem",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2295185150",
-   "lat": -34.592882,
-   "lon": -58.432203,
-   "tipo": "velocidad",
-   "vmax": 50,
-   "dir": 309,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n81830136",
@@ -6889,17 +6354,6 @@
    "dir": null,
    "nombre": "Radar Av. Libertador",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5966404959",
-   "lat": -34.592449,
-   "lon": -58.376006,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n13414762368",
@@ -6932,17 +6386,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n5003647059",
-   "lat": -34.591335,
-   "lon": -58.439528,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n6098915751",
    "lat": -34.591179,
    "lon": -58.825755,
@@ -6961,29 +6404,6 @@
    "dir": null,
    "nombre": "Radar Av. De Los Constituyentes Y Barzana",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5968836941",
-   "lat": -34.591012,
-   "lon": -58.478488,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n3053655463",
-   "lat": -34.590777,
-   "lon": -58.38155,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 360,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n237654889",
@@ -7007,17 +6427,6 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n5966314791",
-   "lat": -34.588304,
-   "lon": -58.382694,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n193816816",
    "lat": -34.588217,
    "lon": -58.382855,
@@ -7031,23 +6440,12 @@
    "id": "osm-n5966287892",
    "lat": -34.588029,
    "lon": -58.396547,
-   "tipo": "velocidad",
+   "tipo": "otro",
    "vmax": 60,
    "dir": null,
-   "nombre": "Verificador de carriles",
+   "nombre": "Avenida General Las Heras",
    "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n5968892003",
-   "lat": -34.587668,
-   "lon": -58.440027,
-   "tipo": "velocidad",
-   "vmax": 50,
-   "dir": 309,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
+   "detalle": "Verificador de carriles",
    "vmaxFuente": "calle"
   },
   {
@@ -7078,7 +6476,7 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": 53,
-   "nombre": "Radar Av. Mosconi y Argerich",
+   "nombre": "Av. Mosconi y Argerich",
    "fuente": "OSM",
    "dirInferida": true
   },
@@ -7091,29 +6489,6 @@
    "dir": null,
    "nombre": "Avenida de los Incas",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5968852932",
-   "lat": -34.582944,
-   "lon": -58.47654,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n5968866687",
-   "lat": -34.582806,
-   "lon": -58.44873,
-   "tipo": "velocidad",
-   "vmax": 50,
-   "dir": 297,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n82664797",
@@ -7151,23 +6526,12 @@
    "id": "osm-n5971873818",
    "lat": -34.581631,
    "lon": -58.421032,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 130,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8796441",
-   "lat": -34.581631,
-   "lon": -58.421032,
    "tipo": "semaforo",
    "vmax": null,
    "dir": 130,
    "nombre": "Radar Av. Santa Fe",
    "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja",
    "dirInferida": true
   },
   {
@@ -7224,22 +6588,12 @@
    "id": "osm-n314692579",
    "lat": -34.57762,
    "lon": -58.426565,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8796446",
-   "lat": -34.57762,
-   "lon": -58.426565,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. J. B. Justo y Av. Santa Fe",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n2116814218",
@@ -7282,24 +6636,13 @@
    "fuente": "OSM"
   },
   {
-   "id": "osm-n2461888041",
-   "lat": -34.573614,
-   "lon": -58.480501,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
    "id": "osm-n82623789",
    "lat": -34.573479,
    "lon": -58.48066,
    "tipo": "semaforo",
    "vmax": null,
    "dir": 55,
-   "nombre": "Radar Av. Álvarez Thomas y Av. Olazábal",
+   "nombre": "Av. Álvarez Thomas y Av. Olazábal",
    "fuente": "OSM",
    "dirInferida": true
   },
@@ -7399,22 +6742,12 @@
    "id": "osm-n6577819425",
    "lat": -34.566498,
    "lon": -59.110975,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "estimado"
-  },
-  {
-   "id": "osm-r9892247",
-   "lat": -34.566498,
-   "lon": -59.110975,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "18 - Avenida Humberto Primo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n3733986016",
@@ -7440,22 +6773,12 @@
    "id": "osm-n2461101392",
    "lat": -34.565258,
    "lon": -58.47106,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n3713013825",
-   "lat": -34.565132,
-   "lon": -58.470861,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Hospital Pirovano",
-   "fuente": "OSM"
+   "nombre": "Hospital Pirovano",
+   "fuente": "OSM",
+   "detalle": "Controlador de invasión de senda peatonal y violación de luz roja"
   },
   {
    "id": "osm-n5996288199",
@@ -7466,17 +6789,6 @@
    "dir": null,
    "nombre": "Avenida 101 - Doctor Ricardo Balbín",
    "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5975133281",
-   "lat": -34.562969,
-   "lon": -58.438011,
-   "tipo": "velocidad",
-   "vmax": 70,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n196280458",
@@ -7575,23 +6887,12 @@
    "id": "osm-n5403590664",
    "lat": -34.553628,
    "lon": -58.434552,
-   "tipo": "velocidad",
-   "vmax": 70,
-   "dir": 308,
-   "nombre": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "fuente": "OSM",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8009832",
-   "lat": -34.553628,
-   "lon": -58.434552,
    "tipo": "semaforo",
    "vmax": null,
    "dir": 308,
-   "nombre": "Radar Av. Figueroa Alcorta y La Pampa",
+   "nombre": "Av. Figueroa Alcorta y La Pampa",
    "fuente": "OSM",
+   "detalle": "Controlador de invasión de senda peatonal y violación de luz roja",
    "dirInferida": true
   },
   {
@@ -7678,22 +6979,12 @@
    "id": "osm-n4801236628",
    "lat": -34.541478,
    "lon": -58.537805,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "estimado"
-  },
-  {
-   "id": "osm-r7166146",
-   "lat": -34.541478,
-   "lon": -58.537805,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Cámara de semáforo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n113104880",
@@ -8055,22 +7346,12 @@
    "id": "osm-n5992927671",
    "lat": -34.487373,
    "lon": -58.485644,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Detección de violación de luz roja",
-   "fuente": "OSM",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r8824696",
-   "lat": -34.487373,
-   "lon": -58.485644,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. Libertador y Gral. Pacheco",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n317601245",
@@ -8206,11 +7487,12 @@
    "id": "osm-n7060547763",
    "lat": -34.479473,
    "lon": -58.772086,
-   "tipo": "velocidad",
+   "tipo": "semaforo",
    "vmax": 40,
    "dir": 70.0,
-   "nombre": "Respetar semaforo de la escuela",
-   "fuente": "OSM"
+   "nombre": "Provincia de Buenos Aires",
+   "fuente": "OSM",
+   "detalle": "Respetar semaforo de la escuela"
   },
   {
    "id": "osm-n1855574451",
@@ -8236,11 +7518,12 @@
    "id": "osm-n7060547762",
    "lat": -34.479134,
    "lon": -58.771427,
-   "tipo": "velocidad",
+   "tipo": "semaforo",
    "vmax": 40,
    "dir": 211.0,
-   "nombre": "Respetar semaforo de la escuela\n",
-   "fuente": "OSM"
+   "nombre": "Provincia de Buenos Aires",
+   "fuente": "OSM",
+   "detalle": "Respetar semaforo de la escuela\n"
   },
   {
    "id": "osm-n1855553618",
@@ -8319,8 +7602,9 @@
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
-   "nombre": "Seguridad transito y escuela",
-   "fuente": "OSM"
+   "nombre": "Almirante Brown",
+   "fuente": "OSM",
+   "detalle": "Seguridad transito y escuela"
   },
   {
    "id": "osm-n9170739375",
