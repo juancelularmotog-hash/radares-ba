@@ -1,14 +1,14 @@
 /* Service worker: permite abrir la app sin conexión y guarda los pedazos de mapa ya vistos.
    Con internet siempre usa la versión más nueva de la app; sin internet, la última guardada. */
-const VERSION = 'radares-ba-v1.0.1';
+const VERSION = 'radares-ba-v1.0.2';
 const APP = [
   './', 'index.html', 'app.css', 'app.js', 'manifest.webmanifest',
   'lib/leaflet.css', 'lib/leaflet.js',
   'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png'
 ];
-const CACHE_MAPA = 'radares-ba-mapa';
+const CACHE_MAPA = 'radares-ba-mapa-v2';
 const MAX_MAPA = 3000;
-const HOSTS_MAPA = ['basemaps.cartocdn.com', 'tile.openstreetmap.org', 'fonts.gstatic.com', 'fonts.googleapis.com'];
+const HOSTS_MAPA = ['tile.openstreetmap.org', 'tile.openstreetmap.fr', 'fonts.gstatic.com', 'fonts.googleapis.com'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(APP)).then(() => self.skipWaiting()));

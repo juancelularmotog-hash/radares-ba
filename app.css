@@ -57,7 +57,6 @@ button { cursor: pointer; }
 .leaflet-bottom { bottom: calc(var(--barra-h) + env(safe-area-inset-bottom, 0px)); }
 .leaflet-control-attribution { font-size: 10px; background: var(--hud) !important; color: var(--fg-suave); }
 .leaflet-control-attribution a { color: var(--fg-suave); }
-:root[data-mapa="noche"] .leaflet-tile-pane { filter: brightness(0.95); }
 :root.mapa-invertido .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9); }
 
 /* ---------- HUD ---------- */
@@ -105,7 +104,7 @@ button { cursor: pointer; }
   font-variant-numeric: tabular-nums;
 }
 .senal.t-cam, .senal.t-sem { border-color: var(--camara); }
-.senal.t-sem { border-color: var(--acento); }
+.senal.t-sem { border-color: #22b26b; }
 .prox-dist { font-family: var(--f-num); font-weight: 700; font-size: 32px; line-height: 1; font-variant-numeric: tabular-nums; }
 .prox-tipo { font-size: 13px; color: var(--fg-suave); line-height: 1.2; margin-top: 2px; }
 
@@ -242,7 +241,12 @@ select, input[type="text"] {
   background: #fff; border: 3px solid var(--peligro);
   box-shadow: 0 1px 4px rgba(0,0,0,.35);
 }
-.mk.t-sem { border-color: var(--acento); background: #2b2b2b; color: #fff; }
+.mk.t-sem { width: 16px; height: 30px; border-radius: 6px; border: 2px solid #111; background: #2b2b2b; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; padding: 1px 0; }
+.mk.t-sem i { width: 7px; height: 7px; border-radius: 50%; background: #e5323f; }
+.mk.t-sem i:nth-child(2) { background: #f2b300; }
+.mk.t-sem i:nth-child(3) { background: #22b26b; }
+.mk.mini.t-sem { width: 12px; height: 20px; }
+.mk.mini.t-sem i { width: 4px; height: 4px; }
 .mk.t-cam { border-color: var(--camara); background: var(--camara); color: #fff; }
 .mk.t-cam::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff; }
 .mk.t-otro { border-color: var(--otro); }

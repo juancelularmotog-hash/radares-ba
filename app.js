@@ -2,7 +2,7 @@
    Todo corre en el navegador: los datos se guardan en el propio celular. */
 'use strict';
 (function () {
-  const VERSION = '1.0.1';
+  const VERSION = '1.0.2';
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -59,15 +59,14 @@
   const mapa = L.map('mapa', { zoomControl: false, attributionControl: true, tap: false }).setView([-34.6037, -58.3816], 13);
   // Proveedores de mapa en orden de preferencia. Si uno no responde, se pasa al siguiente solo.
   const ATRIB_OSM = '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>';
-  const ATRIB_CARTO = ATRIB_OSM + ' · © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
   const PROVEEDORES = {
     dia: [
-      { url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', sub: 'abcd', atrib: ATRIB_CARTO, max: 20 },
-      { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub: '', atrib: ATRIB_OSM, max: 19 }
+      { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub: '', atrib: ATRIB_OSM, max: 19 },
+      { url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', sub: 'abc', atrib: ATRIB_OSM + ' · HOT', max: 19 }
     ],
     noche: [
-      { url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', sub: 'abcd', atrib: ATRIB_CARTO, max: 20 },
-      { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub: '', atrib: ATRIB_OSM, max: 19, invertir: true }
+      { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub: '', atrib: ATRIB_OSM, max: 19, invertir: true },
+      { url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', sub: 'abc', atrib: ATRIB_OSM + ' · HOT', max: 19, invertir: true }
     ]
   };
   let capaBase = null, modoAplicado = null, idxProveedor = 0, avisoMapa = false;
@@ -81,7 +80,7 @@
     const p = lista[Math.min(idxProveedor, lista.length - 1)];
     if (capaBase) mapa.removeLayer(capaBase);
     document.documentElement.classList.toggle('mapa-invertido', !!p.invertir);
-    const opciones = { attribution: p.atrib, maxZoom: p.max, maxNativeZoom: p.max === 20 ? 19 : p.max };
+    const opciones = { attribution: p.atrib, maxZoom: 20, maxNativeZoom: p.max };
     if (p.sub) opciones.subdomains = p.sub;
     const capa = L.tileLayer(p.url, opciones);
     let ok = 0, err = 0;
@@ -156,7 +155,7 @@
   }
   function iconoRadar(r) {
     const t = TIPOS[r.tipo] || TIPOS.otro;
-    const txt = r.vmax && r.tipo !== 'video' ? r.vmax : '';
+    const txt = r.tipo === 'semaforo' ? '<i></i><i></i><i></i>' : (r.vmax && r.tipo !== 'video' ? r.vmax : '');
     return L.divIcon({ className: '', html: '<div class="mk ' + t.clase + (r.fuente === 'usuario' ? ' mk-propio' : '') + '">' + txt + '</div>', iconSize: [26, 26], iconAnchor: [13, 13] });
   }
   function dibujarRadares() {
