@@ -283,7 +283,7 @@ select, input[type="text"], input[type="search"] {
   width: 100%; display: flex; align-items: center; gap: 10px; text-align: left;
   padding: 8px 10px; border-radius: 10px; border: 1px solid var(--hud-borde); background: transparent;
 }
-.lista-ruta .km { flex: none; width: 58px; font: 700 18px/1 var(--f-num); font-variant-numeric: tabular-nums; }
+.lista-ruta .km { flex: none; width: 66px; font: 700 18px/1 var(--f-num); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .lista-ruta .det { min-width: 0; font-size: 14px; line-height: 1.25; }
 .lista-ruta .det small { display: block; color: var(--fg-suave); }
 #novedadesLista .km { width: 74px; font-size: 14px; letter-spacing: .4px; text-transform: uppercase; }
@@ -291,10 +291,13 @@ select, input[type="text"], input[type="search"] {
 .campos label { font-size: 14px; color: var(--fg-suave); margin-top: 6px; }
 .check { display: flex; align-items: center; gap: 10px; min-height: 40px; }
 .check input { flex: none; width: 22px; height: 22px; accent-color: var(--acento); }
-.resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 8px; margin-bottom: 4px; }
+.resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 8px; margin-bottom: 4px; }
+/* En la ruta, distancia y tiempo son textos largos: van de a dos por fila. */
+#rutaResumen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#rutaResumen b { white-space: nowrap; }
 .resumen div { border: 1px solid var(--hud-borde); border-radius: 12px; padding: 8px; min-width: 0; }
 .resumen b { display: block; font-family: var(--f-num); font-size: 26px; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.resumen span { display: block; font-size: 11.5px; line-height: 1.25; color: var(--fg-suave); overflow-wrap: break-word; hyphens: auto; }
+.resumen span { display: block; font-size: 11.5px; line-height: 1.25; color: var(--fg-suave); }
 .legal p { font-size: 14px; color: var(--fg-suave); margin: 6px 0; }
 .legal a { color: inherit; }
 
@@ -399,6 +402,12 @@ select, input[type="text"], input[type="search"] {
 @media (prefers-reduced-motion: reduce) {
   .hud-vel.exceso, .alerta.fuerte, .mk.mk-nuevo { animation: none; }
   .auto, #mapa.suave, #mapa.suave .mk, #mapa.suave .peaje-mk, #mapa.suave .destino-mk, .btn-brujula svg { transition: none; }
+}
+/* Pantallas angostas (iPhone SE, mini): la barra entra sin cortar "Terminar viaje". */
+@media (max-width: 400px) {
+  .barra { gap: 6px; }
+  .barra .btn-principal { font-size: 20px; padding-inline: 6px; }
+  .barra .btn-icono { width: 50px; }
 }
 @media (min-width: 700px) {
   .hoja { left: auto; right: 16px; bottom: calc(var(--inf) + 12px); width: 420px; border-radius: 20px; border: 1px solid var(--hud-borde); padding-bottom: 18px; }

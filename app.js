@@ -3,7 +3,7 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.1';
+  const VERSION = '2.0.2';
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -337,16 +337,33 @@
       for (const r of lista) { const k = Math.round(r.lat * 1000) + ':' + Math.round(r.lon * 1000); if (!m.has(k)) m.set(k, []); m.get(k).push(r); }
       return m;
     };
-    const cerca = (m, r) => {
+    const mismoTipo = (x, r) => x.tipo === r.tipo || x.tipo === 'otro' || r.tipo === 'otro';
+    // El más cercano a menos de 40 m (si "tipo" es true, solo de un tipo compatible).
+    const vecino = (m, r, tipo) => {
       const a = Math.round(r.lat * 1000), b = Math.round(r.lon * 1000);
+      let mejor = null, dMejor = 40;
       for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) {
-        const c = m.get((a + i) + ':' + (b + j));
-        if (c && c.some((x) => dist(x.lat, x.lon, r.lat, r.lon) < 40)) return true;
+        for (const x of m.get((a + i) + ':' + (b + j)) || []) {
+          if (tipo && !mismoTipo(x, r)) continue;
+          const d = dist(x.lat, x.lon, r.lat, r.lon);
+          if (d < dMejor) { dMejor = d; mejor = x; }
+        }
       }
-      return false;
+      return mejor;
     };
     const iA = indice(antes), iD = indice(despues);
-    return { nuevos: despues.filter((r) => !cerca(iA, r)), quitados: antes.filter((r) => !cerca(iD, r)) };
+    // Un radar nuevo en una esquina que ya tenía una cámara de otro tipo cuenta como nuevo;
+    // si en el mismo lugar ahora hay otro tipo de control (por ejemplo, era una cámara de semáforo
+    // mal cargada como radar), cuenta como "cambió de tipo" y no como quitado más uno nuevo.
+    const sinIgual = antes.filter((r) => !vecino(iD, r, true));
+    const cambiados = [], quitados = [];
+    for (const r of sinIgual) {
+      const ahora = vecino(iD, r, false);
+      if (ahora) cambiados.push(Object.assign({}, r, { tipoNuevo: ahora.tipo })); else quitados.push(r);
+    }
+    const iC = indice(cambiados);
+    const nuevos = despues.filter((r) => !vecino(iA, r, true) && !vecino(iC, r, false));
+    return { nuevos, quitados, cambiados };
   }
 
   let avisarNovedades = false;
@@ -358,10 +375,13 @@
     const anterior = repo;
     repo = j; LS.set('datosRepo', repo);
     if (anterior && anterior.generado && j.generado && anterior.generado !== j.generado && Array.isArray(anterior.radares) && anterior.radares.length > 20) {
-      const { nuevos, quitados } = calcularNovedades(anterior.radares, j.radares);
-      if (nuevos.length || quitados.length) {
-        const corto = (x) => ({ id: x.id, lat: x.lat, lon: x.lon, tipo: x.tipo, vmax: x.vmax || null, nombre: x.nombre || '' });
-        novedades = { fecha: j.generado, nuevos: nuevos.slice(0, 300).map(corto), quitados: quitados.slice(0, 300).map(corto), totalNuevos: nuevos.length, totalQuitados: quitados.length, visto: false };
+      const { nuevos, quitados, cambiados } = calcularNovedades(anterior.radares, j.radares);
+      if (nuevos.length || quitados.length || cambiados.length) {
+        const corto = (x) => ({ id: x.id, lat: x.lat, lon: x.lon, tipo: x.tipo, tipoNuevo: x.tipoNuevo, vmax: x.vmax || null, nombre: x.nombre || '' });
+        novedades = {
+          fecha: j.generado, nuevos: nuevos.slice(0, 300).map(corto), quitados: quitados.slice(0, 300).map(corto), cambiados: cambiados.slice(0, 300).map(corto),
+          totalNuevos: nuevos.length, totalQuitados: quitados.length, totalCambiados: cambiados.length, visto: false
+        };
         LS.set('novedades', novedades);
         avisarNovedades = true;
       }
@@ -471,12 +491,20 @@
     if (avisarNovedades) {
       avisarNovedades = false;
       if (!$('panel').hidden) return; // con el menú abierto, las novedades ya se ven ahí
-      const n = novedades.totalNuevos || 0, q = novedades.totalQuitados || 0;
-      const partes = [];
-      if (n) partes.push(n + (n === 1 ? ' radar nuevo' : ' radares nuevos'));
-      if (q) partes.push(q + (q === 1 ? ' que ya no está' : ' que ya no están'));
-      toast('Novedades en los radares: ' + partes.join(' y ') + '. Los nuevos se marcan en el mapa; el detalle está en el menú.', 8000);
+      const n = novedades.totalNuevos || 0;
+      toast('Novedades en los radares: ' + textoNovedades(novedades) + '.' + (n ? ' Los nuevos se marcan en el mapa.' : '') + ' El detalle está en el menú.', 9000);
     }
+  }
+  // "3 radares nuevos, 2 que ya no están y 5 que cambiaron de tipo"
+  function textoNovedades(nv) {
+    const n = nv.totalNuevos || 0, q = nv.totalQuitados || 0, c = nv.totalCambiados || 0;
+    const partes = [];
+    // La primera parte lleva el sustantivo ("2 radares que ya no están"); las siguientes no hace falta.
+    const sust = (k) => (partes.length ? '' : (k === 1 ? ' radar' : ' radares'));
+    if (n) partes.push(n + (n === 1 ? ' radar nuevo' : ' radares nuevos'));
+    if (q) partes.push(q + sust(q) + (q === 1 ? ' que ya no está' : ' que ya no están'));
+    if (c) partes.push(c + sust(c) + (c === 1 ? ' que cambió de tipo' : ' que cambiaron de tipo'));
+    return partes.length > 1 ? partes.slice(0, -1).join(', ') + ' y ' + partes[partes.length - 1] : (partes[0] || 'sin cambios');
   }
 
   let actualizando = false;
@@ -526,26 +554,27 @@
 
   function mostrarNovedades() {
     const bloque = $('bloqueNovedades');
-    if (!novedades || (!novedades.totalNuevos && !novedades.totalQuitados)) { bloque.hidden = true; return; }
+    if (!novedades || (!novedades.totalNuevos && !novedades.totalQuitados && !novedades.totalCambiados)) { bloque.hidden = true; return; }
     bloque.hidden = false;
     const f = new Date(novedades.fecha);
-    const n = novedades.totalNuevos || 0, q = novedades.totalQuitados || 0;
-    $('novedadesTxt').textContent = 'Actualización del ' + (isNaN(f) ? '' : f.toLocaleDateString('es-AR')) + ': ' + n + (n === 1 ? ' radar nuevo' : ' radares nuevos') + ' y ' + q + (q === 1 ? ' que ya no figura.' : ' que ya no figuran.');
+    $('novedadesTxt').textContent = 'Actualización del ' + (isNaN(f) ? '' : f.toLocaleDateString('es-AR')) + ': ' + textoNovedades(novedades) + '.';
     const lista = $('novedadesLista');
     lista.textContent = '';
-    const agregar = (x, nuevo) => {
+    const nombreTipo = (t) => (TIPOS[t] || TIPOS.otro).nombre;
+    const agregar = (x, clase) => {
       const li = document.createElement('li');
       const b = document.createElement('button'); b.type = 'button';
-      const k = document.createElement('span'); k.className = 'km'; k.textContent = nuevo ? 'Nuevo' : 'Quitado';
+      const k = document.createElement('span'); k.className = 'km'; k.textContent = { nuevo: 'Nuevo', quitado: 'Quitado', cambio: 'Cambió' }[clase];
       const d = document.createElement('span'); d.className = 'det';
-      d.textContent = (TIPOS[x.tipo] || TIPOS.otro).nombre + (x.vmax ? ' · máx. ' + x.vmax : '');
+      d.textContent = clase === 'cambio' ? nombreTipo(x.tipo) + ' → ' + nombreTipo(x.tipoNuevo) : nombreTipo(x.tipo) + (x.vmax ? ' · máx. ' + x.vmax : '');
       const sm = document.createElement('small'); sm.textContent = x.nombre || 'Sin descripción'; d.appendChild(sm);
       b.append(k, d);
-      b.onclick = () => { cerrarHojas(); irA(x.lat, x.lon, 17); if (!nuevo) marcaQuitado(x); };
+      b.onclick = () => { cerrarHojas(); irA(x.lat, x.lon, 17); if (clase === 'quitado') marcaQuitado(x); };
       li.appendChild(b); lista.appendChild(li);
     };
-    (novedades.nuevos || []).slice(0, 40).forEach((x) => agregar(x, true));
-    (novedades.quitados || []).slice(0, 20).forEach((x) => agregar(x, false));
+    (novedades.nuevos || []).slice(0, 40).forEach((x) => agregar(x, 'nuevo'));
+    (novedades.quitados || []).slice(0, 20).forEach((x) => agregar(x, 'quitado'));
+    (novedades.cambiados || []).slice(0, 20).forEach((x) => agregar(x, 'cambio'));
     $('btnNovedadesVistas').hidden = !!novedades.visto;
   }
   let capaQuitado = null;
@@ -946,6 +975,7 @@
     $('hudVel').classList.remove('exceso', 'exceso-calle', 'exceso-est');
     limiteActual = null; calleActual = null; mostrarCalle();
     const g = $('gpsEstado'); g.className = 'gps'; g.textContent = 'GPS apagado';
+    actualizarChipRuta();
     nat('pantalla', false);
     if (desdeNativo !== true) nat('detener');
   }
