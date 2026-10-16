@@ -11,7 +11,8 @@ App web (instalable en iPhone y Android) que muestra los radares y peajes de CAB
 - Límite de la calle por la que vas, con alarma si lo superás. Si la calle no tiene el dato cargado, se estima por la ley de tránsito (calles 40, avenidas 60, rutas 110) y se muestra punteado.
 - Radares en tu ruta: buscás un destino y lista los radares y peajes del camino.
 - Peajes en el mapa y aviso a 1 km.
-- Mapa que gira con el auto (botón de la brújula).
+- Mapa que gira con el auto (botón de la brújula) y botón para volver a tu ubicación cuando estás mirando otra parte del mapa.
+- Colores según de dónde sale cada radar: oficiales como siempre, publicados en diarios en verde y de la comunidad (OpenStreetMap) en violeta. Los que figuran "en instalación" se ven transparentes y no avisan.
 - Novedades: radares nuevos, quitados o que cambiaron de tipo después de cada actualización.
 - Modo parabrisas (botón de la barra): pantalla negra con la velocidad y el próximo radar, espejados para reflejarse en el vidrio.
 
@@ -22,10 +23,11 @@ App web (instalable en iPhone y Android) que muestra los radares y peajes de CAB
 - CABA (oficial): [Cámaras fijas de control vehicular – Buenos Aires Data](https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular)
 - Provincia (oficial): [Radares fijos – Infracciones BA](https://infraccionesba.gba.gob.ar/equiposDeConstatacion). El listado viene dentro de la página, con coordenadas, velocidad máxima y sentido de cada aparato; se juntan los aparatos de un mismo lugar y se descartan los que tienen coordenadas evidentemente mal cargadas.
 - Rutas nacionales (oficial): [radares autorizados por la ANSV](https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales). Se leen de la planilla pública de su mapa (solo los fijos de Buenos Aires) y se descartan los que tienen coordenadas fuera del municipio que indica la planilla. En rutas nacionales, si Provincia tiene el mismo radar (ruta y kilómetro) cargado en otro lugar, queda la ubicación de la ANSV con la velocidad de Provincia.
-- Resto de los radares, peajes y límites de las calles: [OpenStreetMap](https://www.openstreetmap.org/copyright) (cargados por la comunidad)
+- Diarios: `data/prensa.json`, fotomultas y radares publicados en diarios (La Plata, Mar del Plata y rutas a la costa), ubicados con precisión con cruces de calles y mojones de OpenStreetMap o midiendo sobre la ruta entre radares oficiales. Los que figuran "en instalación" se muestran pero no avisan. En la app se ven en verde.
+- Resto de los radares, peajes y límites de las calles: [OpenStreetMap](https://www.openstreetmap.org/copyright) (cargados por la comunidad, en violeta). No se usan los que nadie revisó desde 2018 o antes ni los que los mapeadores marcaron como dudosos.
 - Correcciones a mano: `data/manual.json`
 
-Las fuentes oficiales tienen prioridad: si OpenStreetMap marca el mismo radar (a menos de 30 m, o de 100 m de uno de Provincia o de la ANSV), queda el oficial.
+Las fuentes oficiales tienen prioridad: si un diario u OpenStreetMap marcan el mismo radar (a menos de 100 m de uno oficial), queda el oficial; entre un diario y OpenStreetMap queda el del diario.
 
 La búsqueda de destinos usa Nominatim y las rutas, OSRM (los dos con datos de OpenStreetMap).
 

@@ -52,9 +52,8 @@
 </div>
 
 <!-- Botones sobre el mapa -->
-<button class="btn-flotante" id="btnCentrar" hidden>
+<button class="btn-ubicacion" id="btnCentrar" aria-label="Ir a mi ubicación" title="Ir a mi ubicación">
   <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2" class="relleno"/><circle cx="12" cy="12" r="7"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-  Seguir
 </button>
 <button class="btn-brujula" id="btnBrujula" aria-label="Orientación del mapa" title="Orientación del mapa">
   <svg viewBox="0 0 40 40" aria-hidden="true" id="brujulaAguja"><path class="norte" d="M20 5 L25 20 L15 20 Z"/><path class="sur" d="M20 35 L15 20 L25 20 Z"/></svg>
@@ -138,6 +137,12 @@
   <div class="bloque">
     <h3>Datos</h3>
     <div class="resumen" id="resumen"></div>
+    <div class="leyenda" aria-label="Colores de los radares">
+      <span><i class="mk mini t-vel"></i>Oficial</span>
+      <span><i class="mk mini t-vel f-prensa"></i>Diarios</span>
+      <span><i class="mk mini t-vel f-osm"></i>Comunidad (OSM)</span>
+      <span><i class="mk mini t-vel f-prensa mk-inst"></i>En instalación (no avisa)</span>
+    </div>
     <button class="btn-principal ancho" id="btnActualizar">Actualizar radares</button>
     <p class="nota" id="estadoAct"></p>
   </div>
@@ -202,7 +207,7 @@
 
   <div class="bloque legal">
     <h3>Fuentes y aviso</h3>
-    <p>Radares de CABA: <a href="https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular" target="_blank" rel="noopener">Buenos Aires Data (oficial)</a>. Radares fijos de Provincia: <a href="https://infraccionesba.gba.gob.ar/equiposDeConstatacion" target="_blank" rel="noopener">Infracciones BA (oficial)</a>. Radares autorizados en rutas nacionales: <a href="https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales" target="_blank" rel="noopener">ANSV (oficial)</a>. Resto de los radares, peajes, límites de las calles y rutas: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (cargados por la comunidad). Cuando un radar está en una fuente oficial y en OpenStreetMap, se usa el oficial. Mapa © colaboradores de OpenStreetMap.</p>
+    <p>Radares de CABA: <a href="https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular" target="_blank" rel="noopener">Buenos Aires Data (oficial)</a>. Radares fijos de Provincia: <a href="https://infraccionesba.gba.gob.ar/equiposDeConstatacion" target="_blank" rel="noopener">Infracciones BA (oficial)</a>. Radares autorizados en rutas nacionales: <a href="https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales" target="_blank" rel="noopener">ANSV (oficial)</a>. Fotomultas y radares publicados en diarios (en verde), ubicados con las calles y los mojones de OpenStreetMap. Resto de los radares, peajes, límites de las calles y rutas: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (cargados por la comunidad, en violeta; no se usan los que nadie revisa desde 2018). Cuando un radar está en una fuente oficial y en otra, se usa el oficial. Mapa © colaboradores de OpenStreetMap.</p>
     <p>Los datos pueden estar incompletos o desactualizados. Respetá siempre la señalización y los límites de velocidad. No manipules el celular mientras manejás.</p>
     <p class="nota">Versión <span id="version"></span></p>
   </div>

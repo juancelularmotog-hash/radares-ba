@@ -9,6 +9,7 @@ on:
     paths:
       - "scripts/**"
       - "data/manual.json"
+      - "data/prensa.json"
       - ".github/workflows/actualizar-radares.yml"
 
 permissions:

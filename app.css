@@ -13,6 +13,8 @@
   --peligro-fg: #ffffff;
   --camara: #2f63d6;
   --otro: #6b7480;
+  --prensa: #16a34a;        /* verde: publicado en diarios */
+  --comunidad: #7c3aed;     /* violeta: OpenStreetMap */
   --ok: #138a5c;
   --ruta: #1f6feb;
   --sombra: 0 6px 22px rgba(10, 16, 24, 0.18);
@@ -34,6 +36,8 @@
   --peligro: #ef3343;
   --camara: #5b8cff;
   --otro: #8a949f;
+  --prensa: #2fc76a;
+  --comunidad: #a78bfa;
   --ok: #2fbf84;
   --ruta: #4d94ff;
   --sombra: 0 6px 22px rgba(0, 0, 0, 0.5);
@@ -219,6 +223,20 @@ button { cursor: pointer; }
   font-weight: 600;
 }
 .btn-flotante svg .relleno { fill: currentColor; stroke: none; }
+.btn-ubicacion {
+  position: fixed; z-index: 840;
+  right: max(12px, env(safe-area-inset-right, 0px));
+  bottom: calc(var(--inf) + 84px);
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid var(--hud-borde); background: var(--hud); box-shadow: var(--sombra);
+  display: grid; place-items: center; padding: 0; color: var(--fg);
+}
+.btn-ubicacion svg { width: 26px; height: 26px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; }
+.btn-ubicacion svg .relleno { fill: none; stroke: currentColor; }
+.btn-ubicacion.siguiendo { color: var(--ruta); border-color: var(--ruta); }
+.btn-ubicacion.siguiendo svg .relleno { fill: currentColor; stroke: none; }
+.btn-ubicacion.buscando svg { animation: buscando 1s ease-in-out infinite; }
+@keyframes buscando { 50% { opacity: .3; } }
 .btn-brujula {
   position: fixed; z-index: 840;
   right: max(12px, env(safe-area-inset-right, 0px));
@@ -337,6 +355,15 @@ select, input[type="text"], input[type="search"] {
 .mk.t-cam { border-color: var(--camara); background: var(--camara); color: #fff; }
 .mk.t-cam::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff; }
 .mk.t-otro { border-color: var(--otro); }
+/* Fuente: verde = diarios, violeta = comunidad (OSM). Las oficiales quedan como están. */
+.mk.f-prensa { border-color: var(--prensa); }
+.mk.f-osm { border-color: var(--comunidad); }
+.mk.t-cam.f-prensa { background: var(--prensa); }
+.mk.t-cam.f-osm { background: var(--comunidad); }
+.mk.t-sem.f-prensa, .mk.t-sem.f-osm { border-width: 3px; }
+.mk.t-sem.f-prensa { border-color: var(--prensa); }
+.mk.t-sem.f-osm { border-color: var(--comunidad); }
+.mk.mk-inst { opacity: .5; border-style: dashed; }
 .mk.mk-propio { border-style: dashed; }
 .mk.mk-nuevo { box-shadow: 0 0 0 4px var(--acento), 0 1px 4px rgba(0,0,0,.35); animation: nuevo 1.6s ease-in-out infinite; }
 @keyframes nuevo { 50% { box-shadow: 0 0 0 8px rgba(242, 179, 0, .35), 0 1px 4px rgba(0,0,0,.35); } }
@@ -363,6 +390,11 @@ select, input[type="text"], input[type="search"] {
 .pop { min-width: 180px; font-size: 14px; }
 .pop strong { display: block; font-family: var(--f-num); font-size: 18px; }
 .pop .pop-f { color: #5b6672; font-size: 12px; margin-top: 4px; }
+.pop .pop-aviso { margin-top: 4px; font-weight: 600; color: #8a5a00; }
+.pop .pop-link { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 600; color: #1f5fd6; }
+.leyenda { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 10px 0 2px; font-size: 12.5px; color: var(--fg-suave); }
+.leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+.leyenda .mk { transform: none; }
 .pop .btn-sec { color: #111; border-color: #ccd2d8; }
 .marca-temporal { width: 26px; height: 26px; border-radius: 50%; border: 3px dashed var(--peligro); background: rgba(255,255,255,.7); }
 
@@ -400,7 +432,7 @@ select, input[type="text"], input[type="search"] {
 .hud-ctrl .btn-principal { margin-top: 10px; background: #ffc21a; color: #1b1400; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hud-vel.exceso, .alerta.fuerte, .mk.mk-nuevo { animation: none; }
+  .hud-vel.exceso, .alerta.fuerte, .mk.mk-nuevo, .btn-ubicacion.buscando svg { animation: none; }
   .auto, #mapa.suave, #mapa.suave .mk, #mapa.suave .peaje-mk, #mapa.suave .destino-mk, .btn-brujula svg { transition: none; }
 }
 /* Pantallas angostas (iPhone SE, mini): la barra entra sin cortar "Terminar viaje". */

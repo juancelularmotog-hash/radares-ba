@@ -3,7 +3,7 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.4';
+  const VERSION = '2.0.5';
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -34,8 +34,12 @@
     video: { nombre: 'Cámara de control', clase: 't-cam' },
     otro: { nombre: 'Control vial', clase: 't-otro' }
   };
-  const FUENTES = { CABA: 'Gobierno de la Ciudad (oficial)', OSM: 'OpenStreetMap (comunidad)', ANSV: 'ANSV, rutas nacionales (oficial)', PBA: 'Provincia de Bs. As. (oficial)', manual: 'Revisión manual', usuario: 'Agregado por vos' };
-  const PRIORIDAD = { CABA: 3, ANSV: 3, PBA: 3, manual: 2, OSM: 1, usuario: 0 };
+  const FUENTES = { CABA: 'Gobierno de la Ciudad (oficial)', OSM: 'OpenStreetMap (comunidad)', ANSV: 'ANSV, rutas nacionales (oficial)', PBA: 'Provincia de Bs. As. (oficial)', prensa: 'Publicado en diarios (no oficial)', manual: 'Revisión manual', usuario: 'Agregado por vos' };
+  const PRIORIDAD = { CABA: 3, ANSV: 3, PBA: 3, manual: 2, prensa: 2, OSM: 1, usuario: 0 };
+  // Radares de OSM que nadie revisa desde este año o antes, o que los mapeadores marcaron como dudosos: no se usan.
+  const OSM_VIEJO_HASTA = 2018;
+  const OSM_DUDOSO = /exist|no hay|parece no|parecer[ií]a no|no se ve|no est[aá]|duda/i;
+  const activo = (r) => r.estado !== 'en instalación';   // los que todavía no multan se muestran pero no avisan
   const OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
 
   // ---------- App de Android (si existe el puente nativo) ----------
@@ -185,10 +189,17 @@
   // (igual que en el script).
   const RADIO_OFICIAL_PBA = 100;
   const conUbicacionOficial = (r) => r.fuente === 'PBA' || r.fuente === 'ANSV';
+  const oficial = (r) => r.fuente === 'CABA' || conUbicacionOficial(r);
+  function tiposCompatibles(a, b, flexible) {
+    if (a === b || a === 'otro' || b === 'otro') return true;
+    // Las cámaras de esquina figuran como "video" en CABA y como "semáforo" en OSM o en los diarios.
+    return flexible && ((a === 'semaforo' && b === 'video') || (a === 'video' && b === 'semaforo'));
+  }
   function mismoRadar(x, r) {
-    if (!(x.tipo === r.tipo || x.tipo === 'otro' || r.tipo === 'otro')) return false;
+    if (!tiposCompatibles(x.tipo, r.tipo, oficial(x) || x.fuente === 'prensa')) return false;
     const d = dist(x.lat, x.lon, r.lat, r.lon);
-    return d < 30 || (d < RADIO_OFICIAL_PBA && conUbicacionOficial(x) && r.fuente === 'OSM') ||
+    return d < 30 || (d < RADIO_OFICIAL_PBA && oficial(x) && (r.fuente === 'OSM' || r.fuente === 'prensa')) ||
+      (d < 80 && x.fuente === 'prensa' && r.fuente === 'OSM') ||
       (d < 60 && x.fuente === 'ANSV' && r.fuente === 'PBA');
   }
   function deduplicar(lista) {
@@ -206,8 +217,9 @@
       }
       if (dup) {
         if (!dup.vmax && r.vmax) { dup.vmax = r.vmax; dup.vmaxFuente = r.vmaxFuente; }
-        // Provincia y la ANSV informan qué sentido controlan: no se les copia el de otra fuente.
-        if (dup.dir == null && r.dir != null && !conUbicacionOficial(dup)) { dup.dir = r.dir; dup.dirInferida = r.dirInferida; }
+        // El sentido solo se copia si es el mismo punto; Provincia y la ANSV informan el suyo y en los diarios no se sabe.
+        if (dup.dir == null && r.dir != null && !conUbicacionOficial(dup) && dup.fuente !== 'prensa' &&
+            dist(dup.lat, dup.lon, r.lat, r.lon) < 30) { dup.dir = r.dir; dup.dirInferida = r.dirInferida; }
         if (!dup.nombre && r.nombre) dup.nombre = r.nombre;
         continue;
       }
@@ -220,7 +232,9 @@
     return res;
   }
   function baseCombinada() {
-    return deduplicar([].concat((repo && repo.radares) || [], (cabaVivo && cabaVivo.radares) || [], (osmVivo && osmVivo.radares) || []));
+    // Lo bajado de OSM con versiones anteriores de la app no trae la fecha de revisión: no se usa hasta volver a bajarlo.
+    const osm = (osmVivo && (osmVivo.radares || []).some((r) => r.osmFecha)) ? osmVivo.radares : [];
+    return deduplicar([].concat((repo && repo.radares) || [], (cabaVivo && cabaVivo.radares) || [], osm));
   }
   function peajesCombinados() {
     const res = [];
@@ -247,10 +261,12 @@
     return ajustes.verOtros;
   }
   const tieneLimite = (r) => !!r.vmax && (r.tipo === 'velocidad' || r.tipo === 'otro');
+  // Color según la fuente: oficiales como siempre, diarios en verde y comunidad (OSM) en violeta.
+  const claseFuente = (r) => (r.fuente === 'prensa' ? ' f-prensa' : r.fuente === 'OSM' ? ' f-osm' : '') + (activo(r) ? '' : ' mk-inst');
   function iconoRadar(r, nuevo) {
     const t = TIPOS[r.tipo] || TIPOS.otro;
     const txt = r.tipo === 'semaforo' ? '<i></i><i></i><i></i>' : (tieneLimite(r) ? r.vmax : '');
-    const clases = 'mk ' + t.clase + (r.fuente === 'usuario' ? ' mk-propio' : '') + (r.vmaxFuente === 'estimado' && tieneLimite(r) ? ' estimado' : '') + (nuevo ? ' mk-nuevo' : '');
+    const clases = 'mk ' + t.clase + claseFuente(r) + (r.fuente === 'usuario' ? ' mk-propio' : '') + (r.vmaxFuente === 'estimado' && tieneLimite(r) ? ' estimado' : '') + (nuevo ? ' mk-nuevo' : '');
     return L.divIcon({ className: '', html: '<div class="' + clases + '">' + txt + '</div>', iconSize: [26, 26], iconAnchor: [13, 13] });
   }
   function dibujarRadares() {
@@ -298,9 +314,16 @@
       o.textContent = 'Controla a quienes van hacia el ' + cardinal(r.dir) + (r.dirInferida ? ' (deducido por la mano de la calle)' : '');
       div.appendChild(o);
     }
+    if (!activo(r)) { const ins = document.createElement('div'); ins.className = 'pop-aviso'; ins.textContent = 'Todavía no multa: no te da aviso.'; div.appendChild(ins); }
     const f = document.createElement('div'); f.className = 'pop-f';
     f.textContent = 'Fuente: ' + (FUENTES[r.fuente] || r.fuente);
+    if (r.fuente === 'OSM' && r.osmFecha) f.textContent += ' · revisado en ' + r.osmFecha.slice(0, 4);
     div.appendChild(f);
+    if (r.fuente === 'prensa' && /^https:\/\//.test(r.url || '')) {
+      const a = document.createElement('a'); a.className = 'pop-link'; a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = 'Ver la nota' + (r.fecha ? ' (' + r.fecha.split('-').reverse().join('/') + ')' : '');
+      div.appendChild(a);
+    }
     const b = document.createElement('button'); b.className = 'btn-sec';
     if (r.fuente === 'usuario') {
       b.textContent = 'Borrar este radar';
@@ -328,7 +351,7 @@
     'node["enforcement"~"maxspeed|traffic_signals|average_speed"](area.a);' +
     'relation["type"="enforcement"]["enforcement"~"maxspeed|traffic_signals|average_speed"](area.a);' +
     'node["barrier"="toll_booth"](area.a););' +
-    'out body;>;out skel qt;';
+    'out meta;>;out skel qt;';   // "meta" trae la fecha de la última edición de cada radar
 
   async function consultarOverpass(q, ms) {
     let ultimo = null;
@@ -348,9 +371,10 @@
       for (const r of lista) { const k = Math.round(r.lat * 1000) + ':' + Math.round(r.lon * 1000); if (!m.has(k)) m.set(k, []); m.get(k).push(r); }
       return m;
     };
-    const mismoTipo = (x, r) => x.tipo === r.tipo || x.tipo === 'otro' || r.tipo === 'otro';
-    // Un radar de OSM que pasó a ser el oficial de Provincia o de la ANSV, un poco corrido, es el mismo radar.
-    const oficialYOsm = (x, r) => (conUbicacionOficial(x) && r.fuente === 'OSM') || (x.fuente === 'OSM' && conUbicacionOficial(r));
+    const mismoTipo = (x, r) => tiposCompatibles(x.tipo, r.tipo, true);
+    // Un radar de OSM que pasó a ser uno oficial o de un diario, un poco corrido, es el mismo radar.
+    const oficialODiario = (r) => oficial(r) || r.fuente === 'prensa';
+    const oficialYOsm = (x, r) => (oficialODiario(x) && r.fuente === 'OSM') || (x.fuente === 'OSM' && oficialODiario(r));
     // El más cercano a menos de 40 m (si "tipo" es true, solo de un tipo compatible).
     const vecino = (m, r, tipo) => {
       const a = Math.round(r.lat * 1000), b = Math.round(r.lon * 1000);
@@ -412,7 +436,11 @@
     const k = String(v).toUpperCase().trim();
     return k in p ? p[k] : null;
   }
-  function radarOSM(t, lat, lon, id) {
+  function osmDescartado(t, fecha) {
+    const anio = parseInt(String(fecha || '').slice(0, 4), 10);
+    return (anio && anio <= OSM_VIEJO_HASTA) || OSM_DUDOSO.test(String(t.fixme || t.FIXME || ''));
+  }
+  function radarOSM(t, lat, lon, id, fecha) {
     const enf = String(t.enforcement || '').toLowerCase();
     let tipo = 'velocidad';
     if (enf.includes('traffic_signals')) tipo = 'semaforo';
@@ -425,6 +453,7 @@
     }
     const r = { id: 'osm-' + id, lat, lon, tipo, vmax: parseVmax(t.maxspeed), dir: parseDir(t.direction), nombre: t.name || t.ref || t.description || '', fuente: 'OSM' };
     if (t.description) r.detalle = String(t.description).slice(0, 120);
+    if (fecha) r.osmFecha = String(fecha).slice(0, 10);
     return r;
   }
   function agruparPeajes(puntos) {
@@ -446,7 +475,7 @@
     for (const e of j.elements || []) {
       if (e.type !== 'node' || !e.tags) continue;
       if (e.tags.barrier === 'toll_booth') puntosPeaje.push({ id: 'n' + e.id, lat: e.lat, lon: e.lon, nombre: e.tags.name || e.tags.operator || '' });
-      else if (e.tags.highway === 'speed_camera' || e.tags.enforcement) out.push(radarOSM(e.tags, e.lat, e.lon, 'n' + e.id));
+      else if ((e.tags.highway === 'speed_camera' || e.tags.enforcement) && !osmDescartado(e.tags, e.timestamp)) out.push(radarOSM(e.tags, e.lat, e.lon, 'n' + e.id, e.timestamp));
     }
     for (const e of j.elements || []) {
       if (e.type !== 'relation' || !e.tags) continue;
@@ -455,7 +484,9 @@
       const desde = m.find((x) => x.role === 'from' && x.type === 'node');
       const n = (dev && nodos.get(dev.ref)) || (desde && nodos.get(desde.ref));
       if (!n || n.lat == null) continue;
-      out.push(radarOSM(Object.assign({}, n.tags || {}, e.tags), n.lat, n.lon, 'r' + e.id));
+      const fecha = [e.timestamp, n.timestamp].filter(Boolean).sort().pop();
+      const t = Object.assign({}, n.tags || {}, e.tags);
+      if (!osmDescartado(t, fecha)) out.push(radarOSM(t, n.lat, n.lon, 'r' + e.id, fecha));
     }
     return { radares: out, peajes: agruparPeajes(puntosPeaje) };
   }
@@ -544,14 +575,14 @@
   }
 
   function actualizarResumen() {
-    const cuenta = { CABA: 0, PBA: 0, ANSV: 0, OSM: 0, otros: 0 };
+    const cuenta = { CABA: 0, PBA: 0, ANSV: 0, prensa: 0, OSM: 0, otros: 0 };
     for (const r of base) {
-      if (r.fuente === 'CABA' || r.fuente === 'PBA' || r.fuente === 'ANSV' || r.fuente === 'OSM') cuenta[r.fuente]++; else cuenta.otros++;
+      if (r.fuente in cuenta && r.fuente !== 'otros') cuenta[r.fuente]++; else cuenta.otros++;
     }
     const caja = $('resumen');
     caja.textContent = '';
     const items = [[base.length + propios.length, 'radares'], [cuenta.CABA, 'CABA oficial'], [cuenta.PBA, 'Provincia oficial'],
-      [cuenta.ANSV, 'ANSV oficial'], [cuenta.OSM, 'comunidad'], [peajes.length, 'peajes']];
+      [cuenta.ANSV, 'ANSV oficial'], [cuenta.prensa, 'diarios'], [cuenta.OSM, 'comunidad'], [peajes.length, 'peajes']];
     if (propios.length) items.push([propios.length, 'tuyos']);
     for (const [n, t] of items) {
       const d = document.createElement('div');
@@ -874,6 +905,7 @@
   function evaluarRadares(p) {
     let mejor = null;
     for (const r of radares) {
+      if (!activo(r)) continue;
       const d = dist(p.lat, p.lon, r.lat, r.lon);
       let e = estadoRadar.get(r.id);
       if (d > 3000) { if (e) estadoRadar.delete(r.id); continue; }
@@ -953,11 +985,33 @@
     const b = $('btnViaje');
     b.textContent = activo ? 'Terminar viaje' : 'Iniciar viaje';
     b.classList.toggle('activo', activo);
+    marcarSeguimiento();
     prepararRotacion();
     actualizarChipRuta();
   }
+  // El botón de ubicación se ve "encendido" mientras el mapa sigue al auto durante un viaje.
+  function marcarSeguimiento() { $('btnCentrar').classList.toggle('siguiendo', viajeActivo && siguiendo); }
+  function mostrarMiPosicion(lat, lon) {
+    marcadorAuto.setLatLng([lat, lon]);
+    if (!autoVisible) { marcadorAuto.addTo(mapa); autoVisible = true; }
+    mapa.setView([lat, lon], Math.max(mapa.getZoom(), 16));
+  }
+  function irAMiUbicacion() {
+    if (posAnt && !simulacion && Date.now() - ultimaFix < 60000) { mostrarMiPosicion(posAnt.lat, posAnt.lon); return; }
+    if (!('geolocation' in navigator)) { toast('Este dispositivo no tiene GPS disponible.'); return; }
+    const b = $('btnCentrar');
+    b.classList.add('buscando');
+    navigator.geolocation.getCurrentPosition(
+      (p) => { b.classList.remove('buscando'); mostrarMiPosicion(p.coords.latitude, p.coords.longitude); },
+      (err) => {
+        b.classList.remove('buscando');
+        toast(err && err.code === 1 ? 'Para ver dónde estás, permití el acceso a la ubicación.' : 'No se pudo obtener tu ubicación. Probá de nuevo.');
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+    );
+  }
   function reiniciarSeguimiento() {
-    siguiendo = true; primeraFix = true; posAnt = null; rumboActual = null; $('btnCentrar').hidden = true;
+    siguiendo = true; primeraFix = true; posAnt = null; rumboActual = null; marcarSeguimiento();
     estadoRadar.clear(); estadoPeaje.clear();
     calleActual = null; calleCandidata = null; limiteActual = null; sinCalle = 0;
   }
@@ -1112,6 +1166,7 @@
     };
     const items = [];
     for (const r of radares) {
+      if (!activo(r)) continue;
       const c = cercano(r.lat, r.lon, 40);
       if (!c) continue;
       if (r.dir != null && difAng(r.dir, c.rumbo) > 60) continue;
@@ -1165,7 +1220,7 @@
       const sm = document.createElement('small');
       if (it.r) {
         const t = TIPOS[it.r.tipo] || TIPOS.otro;
-        ic.className = 'mk mini ' + t.clase;
+        ic.className = 'mk mini ' + t.clase + claseFuente(it.r);
         if (it.r.tipo === 'semaforo') ic.innerHTML = '<i></i><i></i><i></i>';
         d.textContent = t.nombre + (tieneLimite(it.r) ? ' · máx. ' + (it.r.vmaxFuente === 'estimado' ? '≈' : '') + it.r.vmax : '');
         sm.textContent = it.r.nombre || 'Sin descripción';
@@ -1264,7 +1319,7 @@
     mapa.setView([lat, lon], zoom || 17);
   }
   function dejarDeSeguir() {
-    if (viajeActivo) { siguiendo = false; $('btnCentrar').hidden = false; }
+    if (viajeActivo) { siguiendo = false; marcarSeguimiento(); }
     if (modoRot) girarA(0, false);
   }
 
@@ -1331,8 +1386,8 @@
       descripcion = 'por tu ruta a ' + nombreCorto(ruta.destino.nombre);
     } else {
       const centro = mapa.getCenter();
-      const candidatos = radares.filter((r) => r.tipo === 'velocidad');
-      const lista = candidatos.length ? candidatos : radares;
+      const candidatos = radares.filter((r) => r.tipo === 'velocidad' && activo(r));
+      const lista = candidatos.length ? candidatos : radares.filter(activo);
       if (!lista.length) { toast('No hay radares cargados. Tocá "Actualizar radares" primero.'); return; }
       let obj = null, mejor = Infinity;
       for (const r of lista) { const d = dist(centro.lat, centro.lng, r.lat, r.lon); if (d < mejor) { mejor = d; obj = r; } }
@@ -1489,7 +1544,8 @@
   };
   $('btnViaje').onclick = () => { if (viajeActivo) terminarViaje(); else iniciarViaje(); };
   $('btnCentrar').onclick = () => {
-    siguiendo = true; $('btnCentrar').hidden = true;
+    if (!viajeActivo) { irAMiUbicacion(); return; }
+    siguiendo = true; marcarSeguimiento();
     if (modoRot && rumboActual != null) girarA(-rumboActual, true);
     if (posAnt) centrar(Object.assign({}, posAnt));
   };
@@ -1511,7 +1567,7 @@
     clearTimeout(tSync);
     tSync = setTimeout(() => {
       const datos = {
-        radares: radares.map((r) => [+r.lat.toFixed(6), +r.lon.toFixed(6), r.tipo, tieneLimite(r) ? r.vmax : 0, r.dir == null ? -1 : Math.round(r.dir), (r.nombre || '').slice(0, 60), r.vmaxFuente === 'estimado' ? 1 : 0]),
+        radares: radares.filter(activo).map((r) => [+r.lat.toFixed(6), +r.lon.toFixed(6), r.tipo, tieneLimite(r) ? r.vmax : 0, r.dir == null ? -1 : Math.round(r.dir), (r.nombre || '').slice(0, 60), r.vmaxFuente === 'estimado' ? 1 : 0]),
         peajes: (ajustes.verPeajes ? peajes : []).map((q) => [+q.lat.toFixed(6), +q.lon.toFixed(6), (q.nombre || '').slice(0, 60)]),
         ajustes: { aviso1: ajustes.aviso1, aviso2: ajustes.aviso2, tolerancia: ajustes.tolerancia, voz: ajustes.voz, sonido: ajustes.sonido, alarmaExceso: ajustes.alarmaExceso, avisarPeajes: ajustes.avisarPeajes && ajustes.verPeajes }
       };

@@ -7,7 +7,12 @@ Fuentes:
   - ANSV (oficial): radares fijos autorizados en rutas nacionales (planilla pública del mapa de la ANSV).
     En rutas nacionales, si Provincia tiene el mismo radar (ruta y km) en otro lugar, queda el de la ANSV.
   - OpenStreetMap: radares y peajes cargados por la comunidad en CABA y Provincia (consultas Overpass).
+  - data/prensa.json: radares y cámaras publicados en diarios, ubicados con precisión con calles y mojones de
+    OpenStreetMap. Si coinciden con uno oficial, queda el oficial.
   - data/manual.json: correcciones y agregados revisados a mano (opcional).
+
+De OpenStreetMap se descartan los radares que nadie revisó desde 2018 o antes y los que los propios
+mapeadores marcaron como dudosos.
 
 Las fuentes oficiales tienen prioridad: si OpenStreetMap marca el mismo radar, queda el oficial.
 
@@ -50,7 +55,7 @@ CONSULTA_RADARES = (
     '(node["highway"="speed_camera"](area.a);'
     'node["enforcement"~"maxspeed|traffic_signals|average_speed"](area.a);'
     'relation["type"="enforcement"]["enforcement"~"maxspeed|traffic_signals|average_speed"](area.a););'
-    'out body;>;out skel qt;'
+    'out meta;>;out skel qt;'  # "meta" trae la fecha de la última edición de cada radar
 )
 CONSULTA_PEAJES = (
     '[out:json][timeout:180];' + AREA +
@@ -58,11 +63,17 @@ CONSULTA_PEAJES = (
     'out center tags;'
 )
 CLASES_AUTO = r"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|road)(_link)?$"
-PRIORIDAD = {"CABA": 3, "ANSV": 3, "PBA": 3, "manual": 2, "OSM": 1}
-# Un radar de OpenStreetMap a menos de esta distancia de uno oficial de Provincia o de la ANSV, y del mismo
-# tipo, es el mismo aparato marcado un poco corrido (revisado contra los datos: siempre la misma calle).
+PRIORIDAD = {"CABA": 3, "ANSV": 3, "PBA": 3, "manual": 2, "prensa": 2, "OSM": 1}
+# Un radar de OpenStreetMap o de un diario a menos de esta distancia de uno oficial, y del mismo tipo, es el
+# mismo aparato marcado un poco corrido (revisado contra los datos: siempre la misma calle).
 RADIO_OFICIAL_PBA = 100
-OFICIALES_CON_UBICACION = ("PBA", "ANSV")
+OFICIALES = ("CABA", "PBA", "ANSV")
+OFICIALES_CON_UBICACION = ("PBA", "ANSV")  # informan el sentido: no se les copia el de otra fuente
+PRENSA = DATOS / "prensa.json"  # radares y cámaras publicados en diarios, ubicados a mano con precisión
+# Radares de OpenStreetMap que no se tocan desde este año o antes: muy viejos para confiar en ellos.
+OSM_VIEJO_HASTA = 2018
+# Notas de los propios mapeadores que dudan de que el radar exista.
+OSM_DUDOSO = re.compile(r"exist|no hay|parece no|parecer[ií]a no|no se ve|no est[aá]|duda", re.I)
 UA = "radares-ba/1.1 (actualizacion semanal; proyecto personal)"
 UA_WEB = "Mozilla/5.0 (compatible; radares-ba/1.2; actualizacion semanal)"
 ESTADISTICAS = {}  # datos extra de cada fuente para el resumen de data/radares.json
@@ -462,11 +473,20 @@ def fuente_pba():
     por_punto = {}
     for e in validos:
         por_punto.setdefault((round(e["lat"], 5), round(e["lon"], 5)), []).append(e)
-    quedan = []
+    quedan, copiadas = [], set()
     for grupo in por_punto.values():
         ok, malos = depurar_mismo_punto(grupo)
         quedan += ok
         descartados += malos
+        if not ok and len(grupo) >= 3:  # coordenadas pegadas en varios aparatos de lugares distintos
+            copiadas |= {("lat", grupo[0]["lat_txt"]), ("lon", grupo[0]["lon_txt"])}
+    # Un aparato solo, con la latitud o la longitud exacta de esas coordenadas copiadas, tiene la otra mitad
+    # cambiada a mano (pasó con uno de Mar del Plata que quedaba en Ensenada): tampoco es confiable. Si en
+    # su punto hay varios aparatos que coinciden, es al revés: ese es el original del que se copiaron.
+    sueltos = [e for e in quedan if len(por_punto[(round(e["lat"], 5), round(e["lon"], 5))]) == 1
+               and (("lat", e["lat_txt"]) in copiadas or ("lon", e["lon_txt"]) in copiadas)]
+    quedan = [e for e in quedan if e not in sueltos]
+    descartados += sueltos
     out = []
     for semaforo in (False, True):
         out += [radar_oficial(g, "PBA") for g in agrupar([e for e in quedan if e["semaforo"] == semaforo], 30)]
@@ -650,7 +670,7 @@ SOLO_CARRIL = re.compile(r"carril", re.I)
 MIDE_VELOCIDAD = re.compile(r"velocidad|cinem[oó]metro|radar", re.I)
 
 
-def radar_osm(t, lat, lon, ident):
+def radar_osm(t, lat, lon, ident, fecha=None):
     enf = str(t.get("enforcement", "")).lower()
     tipo = "velocidad"
     if "traffic_signals" in enf:
@@ -670,17 +690,35 @@ def radar_osm(t, lat, lon, ident):
     }
     if t.get("description"):
         r["detalle"] = str(t["description"])[:120]
+    if fecha:
+        r["osmFecha"] = str(fecha)[:10]
     return r
+
+
+def motivo_descarte_osm(t, fecha):
+    if fecha and str(fecha)[:4].isdigit() and int(str(fecha)[:4]) <= OSM_VIEJO_HASTA:
+        return "viejos"
+    if OSM_DUDOSO.search(str(t.get("fixme") or t.get("FIXME") or "")):
+        return "dudosos"
+    return None
 
 
 def fuente_osm():
     j = overpass(CONSULTA_RADARES)
     nodos = {e["id"]: e for e in j.get("elements", []) if e.get("type") == "node"}
-    out = []
+    out, descartados = [], Counter()
+
+    def sumar(t, lat, lon, ident, fecha):
+        motivo = motivo_descarte_osm(t, fecha)
+        if motivo:
+            descartados[motivo] += 1
+        else:
+            out.append(radar_osm(t, lat, lon, ident, fecha))
+
     for e in j.get("elements", []):
         t = e.get("tags") or {}
         if e.get("type") == "node" and (t.get("highway") == "speed_camera" or t.get("enforcement")):
-            out.append(radar_osm(t, e["lat"], e["lon"], f"n{e['id']}"))
+            sumar(t, e["lat"], e["lon"], f"n{e['id']}", e.get("timestamp"))
     for e in j.get("elements", []):
         if e.get("type") != "relation" or not e.get("tags"):
             continue
@@ -690,9 +728,13 @@ def fuente_osm():
         n = nodos.get(ref)
         if not n or "lat" not in n:
             continue
-        out.append(radar_osm({**(n.get("tags") or {}), **e["tags"]}, n["lat"], n["lon"], f"r{e['id']}"))
+        fechas = [x for x in (e.get("timestamp"), n.get("timestamp")) if x]
+        sumar({**(n.get("tags") or {}), **e["tags"]}, n["lat"], n["lon"], f"r{e['id']}", max(fechas) if fechas else None)
     if not out:
         raise ValueError("Overpass no devolvió radares")
+    ESTADISTICAS["OSM"] = {"descartadosViejos": descartados["viejos"], "descartadosDudosos": descartados["dudosos"]}
+    print(f"OSM: se descartan {descartados['viejos']} radares sin cambios desde {OSM_VIEJO_HASTA} o antes "
+          f"y {descartados['dudosos']} marcados como dudosos por los mapeadores")
     return out
 
 
@@ -785,8 +827,9 @@ def enriquecer(radares, urbanos_fijos, conocidos=frozenset()):
         return r.get("tipo") in ("velocidad", "otro") and not r.get("vmax")
 
     def falta_sentido(r):
-        # Los radares de Provincia que controlan los dos sentidos no tienen un único sentido que deducir.
-        return r.get("dir") is None and r.get("sentido") != "ambos"
+        # Los radares de Provincia que controlan los dos sentidos no tienen un único sentido que deducir, y en
+        # las cámaras de los diarios (casi todas en esquinas) no se sabe sobre cuál de las dos calles miran.
+        return r.get("dir") is None and r.get("sentido") != "ambos" and r.get("fuente") != "prensa"
 
     pendientes = [r for r in radares if falta_limite(r) or falta_sentido(r) or not r.get("nombre")]
     pendientes.sort(key=lambda r: r["id"] in conocidos)
@@ -861,17 +904,27 @@ def enriquecer(radares, urbanos_fijos, conocidos=frozenset()):
 
 
 # ---------------- Combinar ----------------
+def tipos_compatibles(a, b, flexible):
+    if a == b or "otro" in (a, b):
+        return True
+    # Las cámaras de esquina figuran como "video" en CABA y como "semáforo" en OSM o en los diarios.
+    return flexible and {a, b} == {"semaforo", "video"}
+
+
 def mismo_radar(x, r):
     """x ya quedó en la lista (fuente de igual o mayor prioridad); r es el que se está por sumar."""
-    if not (x["tipo"] == r["tipo"] or "otro" in (x["tipo"], r["tipo"])):
+    fx, fr = x.get("fuente"), r.get("fuente")
+    if not tipos_compatibles(x["tipo"], r["tipo"], fx in OFICIALES or fx == "prensa"):
         return False
     d = dist(x["lat"], x["lon"], r["lat"], r["lon"])
     if d < 30:
         return True
-    if d < RADIO_OFICIAL_PBA and x.get("fuente") in OFICIALES_CON_UBICACION and r.get("fuente") == "OSM":
+    if d < RADIO_OFICIAL_PBA and fx in OFICIALES and fr in ("OSM", "prensa"):
+        return True
+    if d < 80 and fx == "prensa" and fr == "OSM":
         return True
     # Provincia y la ANSV a pocos metros, con el kilómetro anotado un poco distinto: es el mismo radar.
-    return d < 60 and x.get("fuente") == "ANSV" and r.get("fuente") == "PBA"
+    return d < 60 and fx == "ANSV" and fr == "PBA"
 
 
 def deduplicar(lista):
@@ -884,8 +937,10 @@ def deduplicar(lista):
                     for x in grilla.get((ca + i, co + j), []) if mismo_radar(x, r)), None)
         if dup:
             dup["vmax"] = dup.get("vmax") or r.get("vmax")
-            # Provincia y la ANSV informan el sentido: no se les copia el de otra fuente.
-            if dup.get("dir") is None and dup.get("fuente") not in OFICIALES_CON_UBICACION:
+            # El sentido solo se copia si es el mismo punto (a más distancia puede ser la otra mano o la otra
+            # calle de la esquina). Provincia y la ANSV informan el suyo, y en los diarios no se sabe.
+            if (dup.get("dir") is None and dup.get("fuente") not in OFICIALES_CON_UBICACION + ("prensa",)
+                    and dist(dup["lat"], dup["lon"], r["lat"], r["lon"]) < 30):
                 dup["dir"] = r.get("dir")
             dup["nombre"] = dup.get("nombre") or r.get("nombre")
             continue
@@ -940,8 +995,17 @@ def main():
         if f["id"] == "PBA":
             f["reubicadosPorANSV"] = reubicados
     print(f"Provincia: {reubicados} radares de rutas nacionales quedan en la ubicación de la ANSV")
+
+    # Radares y cámaras publicados en diarios (ubicados a mano). Si coinciden con uno oficial, queda el oficial.
+    prensa = []
+    if PRENSA.exists():
+        for r in json.loads(PRENSA.read_text(encoding="utf-8")):
+            if isinstance(r.get("lat"), (int, float)) and isinstance(r.get("lon"), (int, float)) and r.get("id"):
+                prensa.append(dict(r, fuente="prensa", vmax=r.get("vmax"), dir=None))
+        fuentes.append({"id": "prensa", "url": "data/prensa.json", "cantidad": len(prensa), "estado": "ok"})
+
     # El orden importa entre fuentes de igual prioridad: si dos coinciden, queda la primera.
-    todos = caba + ansv + pba + osm
+    todos = caba + ansv + pba + prensa + osm
 
     if MANUAL.exists():
         manual = json.loads(MANUAL.read_text(encoding="utf-8"))
