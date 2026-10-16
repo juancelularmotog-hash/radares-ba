@@ -3,7 +3,7 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.3';
+  const VERSION = '2.0.4';
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -34,7 +34,7 @@
     video: { nombre: 'Cámara de control', clase: 't-cam' },
     otro: { nombre: 'Control vial', clase: 't-otro' }
   };
-  const FUENTES = { CABA: 'Gobierno de la Ciudad (oficial)', OSM: 'OpenStreetMap (comunidad)', ANSV: 'ANSV (oficial)', PBA: 'Provincia de Bs. As. (oficial)', manual: 'Revisión manual', usuario: 'Agregado por vos' };
+  const FUENTES = { CABA: 'Gobierno de la Ciudad (oficial)', OSM: 'OpenStreetMap (comunidad)', ANSV: 'ANSV, rutas nacionales (oficial)', PBA: 'Provincia de Bs. As. (oficial)', manual: 'Revisión manual', usuario: 'Agregado por vos' };
   const PRIORIDAD = { CABA: 3, ANSV: 3, PBA: 3, manual: 2, OSM: 1, usuario: 0 };
   const OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
 
@@ -181,12 +181,15 @@
   const estadoRadar = new Map();
   const estadoPeaje = new Map();
 
-  // Un radar de OSM a menos de esto de uno oficial de Provincia, y del mismo tipo, es el mismo (igual que en el script).
+  // Un radar de OSM a menos de esto de uno oficial de Provincia o de la ANSV, y del mismo tipo, es el mismo
+  // (igual que en el script).
   const RADIO_OFICIAL_PBA = 100;
+  const conUbicacionOficial = (r) => r.fuente === 'PBA' || r.fuente === 'ANSV';
   function mismoRadar(x, r) {
     if (!(x.tipo === r.tipo || x.tipo === 'otro' || r.tipo === 'otro')) return false;
     const d = dist(x.lat, x.lon, r.lat, r.lon);
-    return d < 30 || (d < RADIO_OFICIAL_PBA && x.fuente === 'PBA' && r.fuente === 'OSM');
+    return d < 30 || (d < RADIO_OFICIAL_PBA && conUbicacionOficial(x) && r.fuente === 'OSM') ||
+      (d < 60 && x.fuente === 'ANSV' && r.fuente === 'PBA');
   }
   function deduplicar(lista) {
     const ordenada = lista.slice().sort((a, b) => (PRIORIDAD[b.fuente] || 0) - (PRIORIDAD[a.fuente] || 0));
@@ -203,8 +206,8 @@
       }
       if (dup) {
         if (!dup.vmax && r.vmax) { dup.vmax = r.vmax; dup.vmaxFuente = r.vmaxFuente; }
-        // Provincia informa qué sentido controla: no se le copia el de otra fuente.
-        if (dup.dir == null && r.dir != null && dup.fuente !== 'PBA') { dup.dir = r.dir; dup.dirInferida = r.dirInferida; }
+        // Provincia y la ANSV informan qué sentido controlan: no se les copia el de otra fuente.
+        if (dup.dir == null && r.dir != null && !conUbicacionOficial(dup)) { dup.dir = r.dir; dup.dirInferida = r.dirInferida; }
         if (!dup.nombre && r.nombre) dup.nombre = r.nombre;
         continue;
       }
@@ -346,8 +349,8 @@
       return m;
     };
     const mismoTipo = (x, r) => x.tipo === r.tipo || x.tipo === 'otro' || r.tipo === 'otro';
-    // Un radar de OSM que pasó a ser el oficial de Provincia, un poco corrido, es el mismo radar.
-    const oficialYOsm = (x, r) => (x.fuente === 'PBA' && r.fuente === 'OSM') || (x.fuente === 'OSM' && r.fuente === 'PBA');
+    // Un radar de OSM que pasó a ser el oficial de Provincia o de la ANSV, un poco corrido, es el mismo radar.
+    const oficialYOsm = (x, r) => (conUbicacionOficial(x) && r.fuente === 'OSM') || (x.fuente === 'OSM' && conUbicacionOficial(r));
     // El más cercano a menos de 40 m (si "tipo" es true, solo de un tipo compatible).
     const vecino = (m, r, tipo) => {
       const a = Math.round(r.lat * 1000), b = Math.round(r.lon * 1000);
@@ -541,13 +544,14 @@
   }
 
   function actualizarResumen() {
-    const cuenta = { CABA: 0, PBA: 0, OSM: 0, otros: 0 };
+    const cuenta = { CABA: 0, PBA: 0, ANSV: 0, OSM: 0, otros: 0 };
     for (const r of base) {
-      if (r.fuente === 'CABA' || r.fuente === 'PBA' || r.fuente === 'OSM') cuenta[r.fuente]++; else cuenta.otros++;
+      if (r.fuente === 'CABA' || r.fuente === 'PBA' || r.fuente === 'ANSV' || r.fuente === 'OSM') cuenta[r.fuente]++; else cuenta.otros++;
     }
     const caja = $('resumen');
     caja.textContent = '';
-    const items = [[base.length + propios.length, 'radares'], [cuenta.CABA, 'CABA oficial'], [cuenta.PBA, 'Provincia oficial'], [cuenta.OSM, 'comunidad'], [peajes.length, 'peajes']];
+    const items = [[base.length + propios.length, 'radares'], [cuenta.CABA, 'CABA oficial'], [cuenta.PBA, 'Provincia oficial'],
+      [cuenta.ANSV, 'ANSV oficial'], [cuenta.OSM, 'comunidad'], [peajes.length, 'peajes']];
     if (propios.length) items.push([propios.length, 'tuyos']);
     for (const [n, t] of items) {
       const d = document.createElement('div');

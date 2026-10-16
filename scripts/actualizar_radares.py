@@ -4,6 +4,8 @@
 Fuentes:
   - CABA (oficial): dataset "Cámaras fijas de control vehicular" de Buenos Aires Data.
   - Provincia (oficial): listado de radares fijos de Infracciones BA (equiposDeConstatacion).
+  - ANSV (oficial): radares fijos autorizados en rutas nacionales (planilla pública del mapa de la ANSV).
+    En rutas nacionales, si Provincia tiene el mismo radar (ruta y km) en otro lugar, queda el de la ANSV.
   - OpenStreetMap: radares y peajes cargados por la comunidad en CABA y Provincia (consultas Overpass).
   - data/manual.json: correcciones y agregados revisados a mano (opcional).
 
@@ -19,6 +21,7 @@ Si una fuente no responde, se conservan los datos que ya teníamos de esa fuente
 Solo usa la biblioteca estándar de Python.
 """
 import csv
+import difflib
 import io
 import json
 import math
@@ -56,9 +59,10 @@ CONSULTA_PEAJES = (
 )
 CLASES_AUTO = r"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|road)(_link)?$"
 PRIORIDAD = {"CABA": 3, "ANSV": 3, "PBA": 3, "manual": 2, "OSM": 1}
-# Un radar de OpenStreetMap a menos de esta distancia de uno oficial de Provincia, y del mismo tipo,
-# es el mismo aparato marcado un poco corrido (revisado contra los datos: siempre la misma calle).
+# Un radar de OpenStreetMap a menos de esta distancia de uno oficial de Provincia o de la ANSV, y del mismo
+# tipo, es el mismo aparato marcado un poco corrido (revisado contra los datos: siempre la misma calle).
 RADIO_OFICIAL_PBA = 100
+OFICIALES_CON_UBICACION = ("PBA", "ANSV")
 UA = "radares-ba/1.1 (actualizacion semanal; proyecto personal)"
 UA_WEB = "Mozilla/5.0 (compatible; radares-ba/1.2; actualizacion semanal)"
 ESTADISTICAS = {}  # datos extra de cada fuente para el resumen de data/radares.json
@@ -199,7 +203,7 @@ TILDES = {
     "alfons?n": "alfonsín", "mart?nez": "martínez", "l?pez": "lópez", "rodr?guez": "rodríguez",
     "fern?ndez": "fernández", "gonz?lez": "gonzález", "s?enz": "sáenz", "pe?a?": "peña",
 }
-PARECE_RUTA = re.compile(r"\b(ruta|autopista|autov[ií]a|acceso|corredor|camino)\b", re.I)
+PARECE_RUTA = re.compile(r"\b(ruta|autopista|autov[ií]a|acceso|corredor|camino|panamericana)\b", re.I)
 
 
 def sin_tildes(s):
@@ -253,6 +257,7 @@ def nombre_calle(calle):
     s = corregir_tildes(s)
     s = re.sub(r"\bR\.?\s?P(?![^\W\d_])\.?\s*(?:N[º°o]?\.?\s*(?=\d))?", "Ruta Provincial ", s, flags=re.I)
     s = re.sub(r"\bR\.?\s?N(?![^\W\d_])\.?\s*(?:N[º°o]?\.?\s*(?=\d))?", "Ruta Nacional ", s, flags=re.I)
+    s = re.sub(r"\bRuta\s+(Provincial|Nacional)\b", lambda m: "Ruta " + m.group(1).capitalize(), s, flags=re.I)
     s = re.sub(r"\b(Ruta (?:Provincial|Nacional))\s+N[º°o]?\.?\s*(?=\d)", r"\1 ", s, flags=re.I)
     s = re.sub(r"\b(?:Avda|Av)\b\.?\s*", "Av. ", s, flags=re.I)
     return " ".join(s.split()).strip(" .,-")
@@ -348,7 +353,7 @@ def leer_equipos_pba(html):
             "vmax": velocidad(c.get("velocidadPermitida")),
             "sentido": sin_tildes(c.get("sentido", "")).lower(),
             "semaforo": bool(re.search(r"(^|_)RED(_|CAM)", serie.upper())),
-            "claves": claves_calle(calle), "num": n, "es_km": es_kilometro(calle, n),
+            "claves": claves_calle(calle), "num": n, "es_km": es_kilometro(calle, n), "ruta": ruta_de(calle),
         })
     return equipos
 
@@ -405,7 +410,13 @@ def agrupar(equipos, radio):
     return grupos
 
 
-def radar_pba(grupo):
+def sentidos_de(e):
+    """'Ascendente', 'Descendente - Carril 2', 'Ascendente/Descendente' -> {'ascendente', 'descendente'}."""
+    s = e["sentido"]
+    return {x for x in ("ascendente", "descendente") if x in s}
+
+
+def radar_oficial(grupo, fuente):
     """Un radar por lugar: junta los aparatos de cada sentido y carril."""
     grupo = sorted(grupo, key=lambda e: e["serie"])
     lat = sum(e["lat"] for e in grupo) / len(grupo)
@@ -413,17 +424,21 @@ def radar_pba(grupo):
     tipo = "semaforo" if grupo[0]["semaforo"] else "velocidad"
     nombres = [n for n in map(nombre_equipo, grupo) if n]
     nombre = Counter(nombres).most_common(1)[0][0] if nombres else ""
+    if nombre and grupo[0].get("municipio"):
+        nombre += f" ({grupo[0]['municipio']})"
     velocidades = [e["vmax"] for e in grupo if e["vmax"]]
-    sentidos = sorted({e["sentido"] for e in grupo if e["sentido"] in ("ascendente", "descendente")})
+    sentidos = sorted(set().union(*map(sentidos_de, grupo)))
     r = {
-        "id": f"pba-{lat:.5f},{lon:.5f}-{tipo}", "lat": round(lat, 6), "lon": round(lon, 6), "tipo": tipo,
-        "vmax": min(velocidades) if velocidades and tipo == "velocidad" else None, "dir": None,
-        "nombre": nombre, "fuente": "PBA",
+        "id": f"{fuente.lower()}-{lat:.5f},{lon:.5f}-{tipo}", "lat": round(lat, 6), "lon": round(lon, 6),
+        "tipo": tipo, "vmax": min(velocidades) if velocidades and tipo == "velocidad" else None, "dir": None,
+        "nombre": nombre, "fuente": fuente,
+        # Ruta y kilómetro de cada aparato, para cruzar Provincia con la ANSV (no se publica).
+        "_tramos": sorted({(e["ruta"], e["num"]) for e in grupo if e.get("ruta") and e["num"] is not None}),
     }
     en_km = any(e["es_km"] for e in grupo)
     if len(sentidos) == 2:
         r["sentido"] = "ambos"
-        por_sentido = {s: sorted({e["vmax"] for e in grupo if e["sentido"] == s and e["vmax"]}) for s in sentidos}
+        por_sentido = {s: sorted({e["vmax"] for e in grupo if s in sentidos_de(e) and e["vmax"]}) for s in sentidos}
         if tipo == "velocidad" and all(len(v) == 1 for v in por_sentido.values()) and \
                 por_sentido["ascendente"] != por_sentido["descendente"]:
             r["detalle"] = (f"Controla los dos sentidos: máx. {por_sentido['ascendente'][0]} km/h ascendente "
@@ -454,7 +469,7 @@ def fuente_pba():
         descartados += malos
     out = []
     for semaforo in (False, True):
-        out += [radar_pba(g) for g in agrupar([e for e in quedan if e["semaforo"] == semaforo], 30)]
+        out += [radar_oficial(g, "PBA") for g in agrupar([e for e in quedan if e["semaforo"] == semaforo], 30)]
     for e in descartados:
         print(f"  PBA descartado (ubicación dudosa): {e['serie']} · {e['calle']} {e['km']} · "
               f"{e['lat_txt']}, {e['lon_txt']}", file=sys.stderr)
@@ -462,6 +477,157 @@ def fuente_pba():
     if not out:
         raise ValueError("sin radares válidos")
     return out
+
+
+# ---------------- ANSV: radares autorizados en rutas nacionales ----------------
+# El mapa y la tabla de la ANSV salen de una planilla pública de Google (pestañas "fijo" y "radares").
+# Cada fila es un aparato: provincia, municipio, serie, tipo, sentido, ruta, km, latitud, longitud.
+PLANILLA_ANSV = "https://docs.google.com/spreadsheets/d/1qKy9Ok4BSOkuFpmeTvLMsre6ZkHGZRY7aYwmnUbpTwE"
+WEB_ANSV = "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales"
+MISMO_PARTIDO = {"9 de julio": "nueve de julio", "25 de mayo": "veinticinco de mayo", "3 de febrero": "tres de febrero"}
+
+
+def leer_planilla_ansv(texto):
+    filas = list(csv.reader(io.StringIO(texto)))
+    if len(filas) < 2:
+        return []
+    # Encabezados como "provincia Provincia" o "filtro-provincia Provincia": vale la primera palabra.
+    cab = [c.strip().split(" ")[0].lower().replace("filtro-", "") for c in filas[0]]
+    equipos = []
+    for f in filas[1:]:
+        c = {k: v.strip() for k, v in zip(cab, f)}
+        if "fijo" not in sin_tildes(c.get("tipo", "")).lower():
+            continue
+        if "buenos aires" not in sin_tildes(c.get("provincia", "")).lower():
+            continue
+        ruta_txt = c.get("ruta", "")
+        calle = re.sub(r"^RN\s*(\d+)$", r"Ruta Nacional \1", ruta_txt, flags=re.I)
+        n = numero_lugar(c.get("km", ""))
+        municipio = c.get("municipio", "")
+        equipos.append({
+            "serie": c.get("serie", ""), "calle": calle, "km": c.get("km", ""),
+            "lat_txt": c.get("latitud", ""), "lon_txt": c.get("longitud", ""),
+            "lat": numero(c.get("latitud", "")), "lon": numero(c.get("longitud", "")),
+            "vmax": None, "sentido": sin_tildes(c.get("sentido", "")).lower(), "semaforo": False,
+            "claves": claves_calle(calle), "num": n, "es_km": n is not None,
+            "ruta": ruta_de(calle) or (sin_tildes(calle).upper() or None),
+            "municipio": titulo(municipio) if municipio.islower() else municipio,
+        })
+    return equipos
+
+
+def norm_partido(s):
+    s = sin_tildes(str(s)).lower().strip()
+    s = re.sub(r"^partido (de |del )?", "", s)
+    s = " ".join(re.sub(r"[^a-z0-9 ]", " ", s).split())
+    return MISMO_PARTIDO.get(s, s)
+
+
+def mismo_partido(a, b):
+    a, b = norm_partido(a), norm_partido(b)
+    if not a or not b:
+        return False
+    return a == b or a in b or b in a or difflib.SequenceMatcher(None, a, b).ratio() >= 0.85
+
+
+def partidos_cerca(puntos):
+    """Para cada (lat, lon), los partidos que contienen el punto o un punto a 1 km para cualquier lado
+    (así no falla con los radares que están justo en el límite entre dos partidos)."""
+    corrimientos = ((0, 0), (0.009, 0), (-0.009, 0), (0, 0.011), (0, -0.011))
+    res = []
+    for i in range(0, len(puntos), 20):
+        lote = puntos[i:i + 20]
+        consulta = "[out:json][timeout:120];"
+        for lat, lon in lote:
+            for dlat, dlon in corrimientos:
+                consulta += (f'is_in({lat + dlat:.6f},{lon + dlon:.6f})->.a;'
+                             f'area.a["boundary"="administrative"]["admin_level"="5"];out tags;out count;')
+        j = overpass(consulta)
+        grupos, actual = [], []
+        for e in j.get("elements", []):
+            if e.get("type") == "count":
+                grupos.append(actual)
+                actual = []
+            elif e.get("type") == "area":
+                actual.append((e.get("tags") or {}).get("name", ""))
+        if len(grupos) != len(lote) * len(corrimientos):
+            raise ValueError("Overpass devolvió una respuesta incompleta para los partidos")
+        for k in range(len(lote)):
+            res.append({n for g in grupos[k * len(corrimientos):(k + 1) * len(corrimientos)] for n in g})
+        time.sleep(2)
+    return res
+
+
+def fuente_ansv():
+    ultimo, equipos = None, []
+    for hoja in ("fijo", "radares"):  # si la pestaña del mapa falla, la de la tabla trae lo mismo
+        try:
+            crudo = bajar(f"{PLANILLA_ANSV}/gviz/tq?tqx=out:csv&sheet={hoja}", tiempo=60, ua=UA_WEB)
+            equipos = leer_planilla_ansv(crudo.decode("utf-8", errors="replace"))
+            if len(equipos) >= 20:
+                break
+        except Exception as e:
+            ultimo = e
+    if len(equipos) < 20:
+        raise ValueError(f"la planilla trajo {len(equipos)} radares de Buenos Aires ({ultimo or 'formato distinto'})")
+    validos = [e for e in equipos if coordenada_valida(e)]
+    descartados = [e for e in equipos if not coordenada_valida(e)]
+    # Las coordenadas tienen que caer en el municipio que dice la planilla (hay algunas cargadas en otro partido).
+    puntos = sorted({(round(e["lat"], 5), round(e["lon"], 5)) for e in validos})
+    partidos = dict(zip(puntos, partidos_cerca(puntos)))
+    quedan = []
+    for e in validos:
+        cerca = partidos[(round(e["lat"], 5), round(e["lon"], 5))]
+        if not e["municipio"] or any(mismo_partido(e["municipio"], p) for p in cerca):
+            quedan.append(e)
+        else:
+            descartados.append(e)
+            print(f"  ANSV descartado (fuera de {e['municipio']}: {', '.join(sorted(cerca)) or 'sin partido'}): "
+                  f"{e['calle']} km {e['km']} · {e['lat_txt']}, {e['lon_txt']}", file=sys.stderr)
+    por_punto = {}
+    for e in quedan:
+        por_punto.setdefault((round(e["lat"], 5), round(e["lon"], 5)), []).append(e)
+    finales = []
+    for grupo in por_punto.values():
+        ok, malos = depurar_mismo_punto(grupo)
+        finales += ok
+        descartados += malos
+    out = [radar_oficial(g, "ANSV") for g in agrupar(finales, 30)]
+    ESTADISTICAS["ANSV"] = {"equipos": len(equipos), "descartados": len(descartados)}
+    if not out:
+        raise ValueError("sin radares válidos")
+    return out
+
+
+def reubicar_con_ansv(pba, ansv, osm):
+    """En rutas nacionales la ANSV autoriza cada radar en un lugar. Si Provincia tiene el mismo radar
+    (misma ruta y kilómetro) cargado en otra parte, queda el de la ANSV, con la velocidad de Provincia.
+    Solo se mantiene el de Provincia si OpenStreetMap confirma su ubicación y no la de la ANSV."""
+    indice = {}
+    for a in ansv:
+        for ruta, km in a.get("_tramos", []):
+            if str(ruta).startswith("RN"):
+                indice.setdefault(ruta, []).append((km, a))
+
+    def confirmado(r):
+        return any(o["tipo"] == r["tipo"] and abs(o["lat"] - r["lat"]) < 0.002
+                   and dist(o["lat"], o["lon"], r["lat"], r["lon"]) < 150 for o in osm)
+
+    quedan, reubicados = [], 0
+    for p in pba:
+        tramos = p.get("_tramos", [])
+        pares = [[a for km2, a in indice.get(ruta, []) if abs(km2 - km) <= 0.6] for ruta, km in tramos]
+        if not tramos or not all(pares):
+            quedan.append(p)
+            continue
+        a = min((a for lista in pares for a in lista), key=lambda a: dist(a["lat"], a["lon"], p["lat"], p["lon"]))
+        if confirmado(p) and not confirmado(a):
+            quedan.append(p)
+            continue
+        if p.get("vmax") and (not a.get("vmax") or p["vmax"] < a["vmax"]):
+            a["vmax"] = p["vmax"]
+        reubicados += 1
+    return quedan, reubicados
 
 
 # ---------------- OpenStreetMap: radares ----------------
@@ -700,7 +866,12 @@ def mismo_radar(x, r):
     if not (x["tipo"] == r["tipo"] or "otro" in (x["tipo"], r["tipo"])):
         return False
     d = dist(x["lat"], x["lon"], r["lat"], r["lon"])
-    return d < 30 or (d < RADIO_OFICIAL_PBA and x.get("fuente") == "PBA" and r.get("fuente") == "OSM")
+    if d < 30:
+        return True
+    if d < RADIO_OFICIAL_PBA and x.get("fuente") in OFICIALES_CON_UBICACION and r.get("fuente") == "OSM":
+        return True
+    # Provincia y la ANSV a pocos metros, con el kilómetro anotado un poco distinto: es el mismo radar.
+    return d < 60 and x.get("fuente") == "ANSV" and r.get("fuente") == "PBA"
 
 
 def deduplicar(lista):
@@ -713,8 +884,8 @@ def deduplicar(lista):
                     for x in grilla.get((ca + i, co + j), []) if mismo_radar(x, r)), None)
         if dup:
             dup["vmax"] = dup.get("vmax") or r.get("vmax")
-            # Provincia informa el sentido: no se le copia el de otra fuente.
-            if dup.get("dir") is None and dup.get("fuente") != "PBA":
+            # Provincia y la ANSV informan el sentido: no se les copia el de otra fuente.
+            if dup.get("dir") is None and dup.get("fuente") not in OFICIALES_CON_UBICACION:
                 dup["dir"] = r.get("dir")
             dup["nombre"] = dup.get("nombre") or r.get("nombre")
             continue
@@ -751,14 +922,26 @@ def main():
             anterior = {}
     previos = anterior.get("radares", [])
 
-    fuentes, todos = [], []
-    todos += cargar_fuente("CABA", "https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular",
-                           fuente_caba, [r for r in previos if r.get("fuente") == "CABA"], fuentes)
-    todos += cargar_fuente("PBA", URL_PBA, fuente_pba, [r for r in previos if r.get("fuente") == "PBA"], fuentes)
-    todos += cargar_fuente("OSM", "https://www.openstreetmap.org", fuente_osm,
-                           [r for r in previos if r.get("fuente") == "OSM"], fuentes)
+    def de(fuente):
+        return [r for r in previos if r.get("fuente") == fuente]
+
+    fuentes = []
+    caba = cargar_fuente("CABA", "https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular",
+                         fuente_caba, de("CABA"), fuentes)
+    ansv = cargar_fuente("ANSV", WEB_ANSV, fuente_ansv, de("ANSV"), fuentes)
+    pba = cargar_fuente("PBA", URL_PBA, fuente_pba, de("PBA"), fuentes)
+    osm = cargar_fuente("OSM", "https://www.openstreetmap.org", fuente_osm, de("OSM"), fuentes)
     peajes = cargar_fuente("Peajes", "https://www.openstreetmap.org", fuente_peajes,
                            anterior.get("peajes", []), fuentes)
+
+    # En rutas nacionales manda la ubicación autorizada por la ANSV.
+    pba, reubicados = reubicar_con_ansv(pba, ansv, osm)
+    for f in fuentes:
+        if f["id"] == "PBA":
+            f["reubicadosPorANSV"] = reubicados
+    print(f"Provincia: {reubicados} radares de rutas nacionales quedan en la ubicación de la ANSV")
+    # El orden importa entre fuentes de igual prioridad: si dos coinciden, queda la primera.
+    todos = caba + ansv + pba + osm
 
     if MANUAL.exists():
         manual = json.loads(MANUAL.read_text(encoding="utf-8"))
@@ -792,6 +975,9 @@ def main():
             r["nombre"] = r.pop("detalle")
     print("Completados:", completados)
     print("Con límite:", sum(1 for r in radares if r.get("vmax")), "de", len(radares))
+    for r in radares:  # datos internos (como _tramos) que no se publican
+        for k in [k for k in r if k.startswith("_")]:
+            del r[k]
 
     nuevo = {
         "generado": datetime.now(timezone.utc).isoformat(timespec="seconds"),
