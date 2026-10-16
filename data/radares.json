@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-16T13:11:21+00:00",
+ "generado": "2026-10-16T14:45:07+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -11,29 +11,35 @@
    "id": "ANSV",
    "url": "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales",
    "cantidad": 74,
-   "estado": "ok",
-   "equipos": 145,
-   "descartados": 4
+   "estado": "error: HTTP Error 500: Internal Server Error"
   },
   {
    "id": "PBA",
    "url": "https://infraccionesba.gba.gob.ar/equiposDeConstatacion",
-   "cantidad": 413,
+   "cantidad": 411,
    "estado": "ok",
    "equipos": 649,
-   "descartados": 29,
-   "reubicadosPorANSV": 35
+   "descartados": 31,
+   "reubicadosPorANSV": 34
   },
   {
    "id": "OSM",
    "url": "https://www.openstreetmap.org",
-   "cantidad": 1040,
-   "estado": "ok"
+   "cantidad": 697,
+   "estado": "ok",
+   "descartadosViejos": 334,
+   "descartadosDudosos": 6
   },
   {
    "id": "Peajes",
    "url": "https://www.openstreetmap.org",
    "cantidad": 81,
+   "estado": "ok"
+  },
+  {
+   "id": "prensa",
+   "url": "data/prensa.json",
+   "cantidad": 61,
    "estado": "ok"
   },
   {
@@ -408,12 +414,13 @@
    "lat": -35.058004,
    "lon": -58.796271,
    "tipo": "velocidad",
-   "vmax": 60,
+   "vmax": 110,
    "dir": null,
    "nombre": "Ruta Nacional 205, km 69,5 (Cañuelas)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--35.05547,-60.26826-velocidad",
@@ -744,156 +751,169 @@
    "lat": -34.179636,
    "lon": -58.965064,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 120,
    "dir": null,
    "nombre": "Ruta Nacional 9, km 75,4 (Campana)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--34.08290,-60.64028-velocidad",
    "lat": -34.082896,
    "lon": -60.640284,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 110,
    "dir": null,
    "nombre": "Ruta Nacional 188, km 94,7 (Pergamino)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--34.07681,-58.99488-velocidad",
    "lat": -34.076808,
    "lon": -58.994877,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 120,
    "dir": null,
    "nombre": "Ruta Nacional 12, km 89,7 (Campana)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.95842,-58.95771-velocidad",
    "lat": -33.958415,
    "lon": -58.957714,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 120,
    "dir": null,
    "nombre": "Ruta Nacional 12, km 103 (Campana)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.93671,-60.66382-velocidad",
    "lat": -33.936705,
    "lon": -60.663822,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 120,
    "dir": null,
    "nombre": "Ruta Nacional 8, km 234 (Pergamino)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.93229,-59.42036-velocidad",
    "lat": -33.932288,
    "lon": -59.420356,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 120,
    "dir": null,
    "nombre": "Ruta Nacional 9, km 127,3 (Baradero)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.92779,-60.37736-velocidad",
    "lat": -33.92779,
    "lon": -60.37736,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 8, km 206 (Pergamino)",
    "fuente": "ANSV",
    "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "ansv--33.92505,-60.38738-velocidad",
    "lat": -33.92505,
    "lon": -60.38738,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 8, km 207 (Pergamino)",
    "fuente": "ANSV",
    "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "ansv--33.85947,-60.51198-velocidad",
    "lat": -33.85947,
    "lon": -60.511984,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "Ruta Nacional 188, km 66 (Pergamino)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.60561,-60.36190-velocidad",
    "lat": -33.605606,
    "lon": -60.361896,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "Ruta Nacional 188, km 34,1 (San Nicolas de los Arroyos)",
    "fuente": "ANSV",
    "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.58894,-60.35276-velocidad",
    "lat": -33.588944,
    "lon": -60.352762,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "Ruta Nacional 188, km 32,1 (San Nicolas de los Arroyos)",
    "fuente": "ANSV",
    "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.52817,-60.31918-velocidad",
    "lat": -33.528174,
    "lon": -60.319178,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "Ruta Nacional 188, km 24,8 (San Nicolas de los Arroyos)",
    "fuente": "ANSV",
    "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.52066,-60.31509-velocidad",
    "lat": -33.520656,
    "lon": -60.315087,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 80,
    "dir": null,
    "nombre": "Ruta Nacional 188, km 23,9 (San Nicolas de los Arroyos)",
    "fuente": "ANSV",
    "sentido": "ascendente",
-   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.40978,-60.24192-velocidad",
@@ -924,36 +944,39 @@
    "lat": -33.379431,
    "lon": -60.21052,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 188, km 5,2 (San Nicolas de los Arroyos)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.36510,-60.25366-velocidad",
    "lat": -33.3651,
    "lon": -60.253659,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 120,
    "dir": null,
    "nombre": "Ruta Nacional 9, km 231,1 (San Nicolas de los Arroyos)",
    "fuente": "ANSV",
    "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "detalle": "Controla los dos sentidos",
+   "vmaxFuente": "calle"
   },
   {
    "id": "ansv--33.34916,-60.27483-velocidad",
    "lat": -33.349156,
    "lon": -60.274831,
    "tipo": "velocidad",
-   "vmax": null,
+   "vmax": 120,
    "dir": null,
    "nombre": "Ruta Nacional 9, km 233,7 (San Nicolas de los Arroyos)",
    "fuente": "ANSV",
    "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.69884,-58.45633-velocidad",
@@ -963,7 +986,8 @@
    "vmax": 70,
    "dir": null,
    "nombre": "AV. 27 DE FEBRERO - 10500",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.69408,-58.47551-velocidad",
@@ -1035,8 +1059,8 @@
    "dir": 201,
    "nombre": "AU. DELLEPIANE - KM 2.3",
    "fuente": "CABA",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.66477,-58.51467-velocidad",
@@ -1108,8 +1132,8 @@
    "dir": 219,
    "nombre": "AU. AU1 - AU6 RAMAL DE TRANSICIÓN - KM 0.1",
    "fuente": "CABA",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.64717,-58.37474-velocidad",
@@ -1119,7 +1143,8 @@
    "vmax": 100,
    "dir": null,
    "nombre": "AU. ARTURO FRONDIZI - KM 0.5",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.64674,-58.48792-velocidad",
@@ -1158,7 +1183,7 @@
    "lon": -58.520585,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 175.0,
    "nombre": "DE LA TORRE LISANDRO AV. 663 Y TONELERO",
    "fuente": "CABA"
   },
@@ -1182,7 +1207,8 @@
    "dir": 44,
    "nombre": "AV. DIRECTORIO - 4155",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.64178,-58.49130-video",
@@ -1251,7 +1277,7 @@
    "lon": -58.499717,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 80.0,
    "nombre": "RIVADAVIA AV. 9618 Y MANZONI",
    "fuente": "CABA"
   },
@@ -1263,7 +1289,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. JOSE MARÍA MORENO - 1657",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.63720,-58.40592-video",
@@ -1314,7 +1341,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. CHICLANA - 3474",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.63593,-58.46722-velocidad",
@@ -1344,8 +1372,7 @@
    "vmax": 100,
    "dir": null,
    "nombre": "AU. PERITO MORENO - KM 2.9",
-   "fuente": "CABA",
-   "vmaxFuente": "calle"
+   "fuente": "CABA"
   },
   {
    "id": "caba--34.63490,-58.52745-velocidad",
@@ -1417,7 +1444,7 @@
    "lon": -58.47002,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 75.0,
    "nombre": "RIVADAVIA 7420 AV. Y NAZCA AV.",
    "fuente": "CABA"
   },
@@ -1427,7 +1454,7 @@
    "lon": -58.467136,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 75.0,
    "nombre": "RIVADAVIA AV. 7218 Y CULPINA/CONDARCO",
    "fuente": "CABA"
   },
@@ -1439,7 +1466,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. BRASIL - 2085",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62960,-58.39076-video",
@@ -1459,8 +1487,7 @@
    "vmax": 80,
    "dir": null,
    "nombre": "AU. GENERAL PAZ - KM 13.1",
-   "fuente": "CABA",
-   "vmaxFuente": "calle"
+   "fuente": "CABA"
   },
   {
    "id": "caba--34.62875,-58.42634-velocidad",
@@ -1479,7 +1506,7 @@
    "lon": -58.459097,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 65.0,
    "nombre": "RIVADAVIA AV. 6626 Y GRANADEROS",
    "fuente": "CABA"
   },
@@ -1503,7 +1530,8 @@
    "dir": 258,
    "nombre": "AV. JUAN DE GARAY - 2046",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62725,-58.39029-video",
@@ -1615,7 +1643,8 @@
    "dir": 313,
    "nombre": "CALLE IRIGOYEN - 1761",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62433,-58.44580-velocidad",
@@ -1667,7 +1696,8 @@
    "vmax": 80,
    "dir": null,
    "nombre": "AU. 25 DE MAYO - KM 7.2",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62351,-58.40050-velocidad",
@@ -1687,7 +1717,7 @@
    "lon": -58.440546,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 275.0,
    "nombre": "AV. JUAN B. ALBERDI 890 Y CENTENERA",
    "fuente": "CABA"
   },
@@ -1711,7 +1741,8 @@
    "dir": 87,
    "nombre": "AV. SAN JUAN - 730",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.62196,-58.38190-video",
@@ -1801,10 +1832,9 @@
    "lon": -58.429025,
    "tipo": "video",
    "vmax": null,
-   "dir": 80,
+   "dir": 80.0,
    "nombre": "ROSARIO 21 Y AV. LA PLATA",
-   "fuente": "CABA",
-   "dirInferida": true
+   "fuente": "CABA"
   },
   {
    "id": "caba--34.61812,-58.38983-velocidad",
@@ -1824,7 +1854,7 @@
    "lon": -58.43616,
    "tipo": "video",
    "vmax": null,
-   "dir": null,
+   "dir": 245.0,
    "nombre": "AV. RIVADAVIA 4987 Y ACOYTE",
    "fuente": "CABA"
   },
@@ -1858,7 +1888,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. BELGRANO - 3349",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.61451,-58.36622-velocidad",
@@ -1932,7 +1963,8 @@
    "dir": 242,
    "nombre": "AV. GAONA - 1852",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.61167,-58.38197-video",
@@ -1986,7 +2018,8 @@
    "dir": 60,
    "nombre": "AV. DÍAZ VÉLEZ - 3420",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.60751,-58.40442-video",
@@ -2249,7 +2282,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. JORGE NEWBERY - 4733",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.59414,-58.40401-video",
@@ -2321,7 +2355,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. DE LOS CONSTITUYENTES - 3264",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.58894,-58.46478-velocidad",
@@ -2331,8 +2366,7 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. ELCANO - 4510",
-   "fuente": "CABA",
-   "vmaxFuente": "calle"
+   "fuente": "CABA"
   },
   {
    "id": "caba--34.58794,-58.46390-velocidad",
@@ -2342,7 +2376,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. ELCANO - 4430",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.58762,-58.43392-video",
@@ -2374,7 +2409,8 @@
    "dir": 54,
    "nombre": "AV. GRAL. MOSCONI - 3043",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.58710,-58.50332-video",
@@ -2533,7 +2569,8 @@
    "dir": 235,
    "nombre": "AV. DORREGO - 3370",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.57116,-58.44535-video",
@@ -2587,8 +2624,7 @@
    "dir": 309,
    "nombre": "AU. ARTURO HUMBERTO ILLIA - KM 3.9",
    "fuente": "CABA",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
+   "dirInferida": true
   },
   {
    "id": "caba--34.56721,-58.50441-velocidad",
@@ -2610,8 +2646,7 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. DORREGO - 3700",
-   "fuente": "CABA",
-   "vmaxFuente": "calle"
+   "fuente": "CABA"
   },
   {
    "id": "caba--34.56553,-58.45382-video",
@@ -2632,7 +2667,8 @@
    "dir": 327,
    "nombre": "CALLE HOLMBERG - 3015",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56347,-58.41515-velocidad",
@@ -2689,7 +2725,8 @@
    "dir": 331,
    "nombre": "CALLE GALVÁN - 3640",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.56068,-58.45603-video",
@@ -2710,17 +2747,19 @@
    "dir": 188,
    "nombre": "AV. TRIUNVIRATO - 6300",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.55979,-58.44517-velocidad",
    "lat": -34.559786,
    "lon": -58.445175,
    "tipo": "velocidad",
-   "vmax": 60,
+   "vmax": 40,
    "dir": null,
    "nombre": "AV. DEL LIBERTADOR - 5666",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.55939,-58.44574-video",
@@ -2751,7 +2790,8 @@
    "dir": 314,
    "nombre": "AV. FIGUEROA ALCORTA - 6184",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.55796,-58.48657-velocidad",
@@ -2761,8 +2801,7 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. DONADO - 3660",
-   "fuente": "CABA",
-   "vmaxFuente": "calle"
+   "fuente": "CABA"
   },
   {
    "id": "caba--34.55403,-58.49738-velocidad",
@@ -2773,8 +2812,7 @@
    "dir": 145,
    "nombre": "AV. RICARDO BALBIN - 4640",
    "fuente": "CABA",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
+   "dirInferida": true
   },
   {
    "id": "caba--34.55385,-58.50196-velocidad",
@@ -2784,18 +2822,18 @@
    "vmax": 80,
    "dir": null,
    "nombre": "AU. GENERAL PAZ - KM 4.3",
-   "fuente": "CABA",
-   "vmaxFuente": "calle"
+   "fuente": "CABA"
   },
   {
    "id": "caba--34.55206,-58.42661-velocidad",
    "lat": -34.552064,
    "lon": -58.426615,
    "tipo": "velocidad",
-   "vmax": 70,
+   "vmax": 60,
    "dir": null,
    "nombre": "AV. RAFAEL OBLIGADO - 4845",
-   "fuente": "CABA"
+   "fuente": "CABA",
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.54831,-58.43883-velocidad",
@@ -2817,7 +2855,8 @@
    "dir": 305,
    "nombre": "AU. INTENDENTE CANTILO - KM 7.55",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.54420,-58.48606-video",
@@ -2860,7 +2899,8 @@
    "dir": 304,
    "nombre": "AU. INTENDENTE CANTILO - KM 8.7",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "caba--34.54138,-58.47415-video",
@@ -2888,7 +2928,7 @@
    "lat": -34.537584,
    "lon": -58.459687,
    "tipo": "velocidad",
-   "vmax": 100,
+   "vmax": 80,
    "dir": 133,
    "nombre": "AU. LEOPOLDO LUGONES - KM 9.8",
    "fuente": "CABA",
@@ -2903,7 +2943,8 @@
    "dir": 317,
    "nombre": "AU. INTENDENTE CANTILO - KM 9.86",
    "fuente": "CABA",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n12258204624",
@@ -2913,7 +2954,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida de la Constitución Nacional",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-17"
   },
   {
    "id": "osm-n7161858444",
@@ -2923,7 +2965,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Boulevard Juan de la Piedra",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-17"
   },
   {
    "id": "osm-n12258204623",
@@ -2933,7 +2976,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida de la Constitución Nacional",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-17"
   },
   {
    "id": "osm-n12650644080",
@@ -2943,7 +2987,8 @@
    "vmax": 60,
    "dir": 220.0,
    "nombre": "Ruta Nacional 3 Don Juan Manuel de Rosas",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-03-10"
   },
   {
    "id": "osm-n12650644081",
@@ -2953,7 +2998,8 @@
    "vmax": 60,
    "dir": 30.0,
    "nombre": "Ruta Nacional 3 Don Juan Manuel de Rosas",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-03-10"
   },
   {
    "id": "osm-n297140546",
@@ -2964,6 +3010,7 @@
    "dir": 134,
    "nombre": "Luis María Drago",
    "fuente": "OSM",
+   "osmFecha": "2021-07-02",
    "dirInferida": true
   },
   {
@@ -2974,7 +3021,8 @@
    "vmax": 40,
    "dir": 130.0,
    "nombre": "Avenida Eduardo Sívori",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-05-26"
   },
   {
    "id": "osm-n297484602",
@@ -2985,6 +3033,7 @@
    "dir": 135,
    "nombre": "Luis María Drago",
    "fuente": "OSM",
+   "osmFecha": "2021-07-02",
    "dirInferida": true
   },
   {
@@ -2995,7 +3044,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Láinez",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-06-11"
   },
   {
    "id": "osm-n1559476783",
@@ -3005,27 +3055,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Colón",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2461101399",
-   "lat": -38.712109,
-   "lon": -62.226579,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "14 de Julio",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2461101398",
-   "lat": -38.695045,
-   "lon": -62.206768,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "14 de Julio",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-07-02"
   },
   {
    "id": "osm-n3271347581",
@@ -3035,7 +3066,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Autovía de Circunvalación Raúl Alfonsín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-05-27"
   },
   {
    "id": "osm-n4305420670",
@@ -3045,7 +3077,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-06-27"
   },
   {
    "id": "osm-n1271646191",
@@ -3055,7 +3088,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida 75",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n7189066369",
@@ -3064,8 +3098,9 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Avenida 578",
-   "fuente": "OSM"
+   "nombre": "Avenida Lobería",
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n1272608077",
@@ -3074,8 +3109,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Avenida 578",
-   "fuente": "OSM"
+   "nombre": "Avenida Lobería",
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n1272607875",
@@ -3084,8 +3120,9 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Avenida 578",
-   "fuente": "OSM"
+   "nombre": "Avenida Lobería",
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n9265390780",
@@ -3096,6 +3133,7 @@
    "dir": null,
    "nombre": "Ruta Provincial 11",
    "fuente": "OSM",
+   "osmFecha": "2024-06-19",
    "vmaxFuente": "estimado"
   },
   {
@@ -3106,7 +3144,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Paseo Costanero Presidente Arturo Umberto Illia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-03-08"
   },
   {
    "id": "osm-n1185490474",
@@ -3117,6 +3156,7 @@
    "dir": 189,
    "nombre": "Avenida de los Trabajadores",
    "fuente": "OSM",
+   "osmFecha": "2022-07-30",
    "dirInferida": true
   },
   {
@@ -3128,6 +3168,7 @@
    "dir": 195,
    "nombre": "Avenida de los Trabajadores",
    "fuente": "OSM",
+   "osmFecha": "2022-08-12",
    "dirInferida": true
   },
   {
@@ -3138,27 +3179,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Patricio Peralta Ramos",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n12006760366",
-   "lat": -38.035103,
-   "lon": -57.54193,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Leandro N. Alem",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n3099431578",
-   "lat": -38.018935,
-   "lon": -57.571235,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Juan B. Justo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-02-13"
   },
   {
    "id": "osm-n2437831879",
@@ -3168,7 +3190,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Juan B. Justo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-08"
   },
   {
    "id": "osm-n3825723088",
@@ -3178,17 +3201,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Pedro Luro",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n13422114021",
-   "lat": -37.996643,
-   "lon": -57.595614,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida Champagnat",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-12-11"
   },
   {
    "id": "osm-n247625240",
@@ -3198,7 +3212,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Independencia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-08"
   },
   {
    "id": "osm-n287900347",
@@ -3208,17 +3223,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Independencia",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n1405102201",
-   "lat": -37.977383,
-   "lon": -57.597129,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Arturo Alió",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-12-11"
   },
   {
    "id": "osm-n12434597760",
@@ -3229,6 +3235,7 @@
    "dir": 295.0,
    "nombre": "Avenida Constitución",
    "fuente": "OSM",
+   "osmFecha": "2024-12-19",
    "vmaxFuente": "calle"
   },
   {
@@ -3239,7 +3246,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Constitución",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-01-31"
   },
   {
    "id": "osm-n9172651733",
@@ -3249,7 +3257,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Constitución",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-07-29"
   },
   {
    "id": "osm-n9172651734",
@@ -3259,27 +3268,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Constitución",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4400523257",
-   "lat": -37.913229,
-   "lon": -57.593477,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Autovía Juan Manuel Fangio",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4400523258",
-   "lat": -37.912483,
-   "lon": -57.593461,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Autovía Juan Manuel Fangio",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-07-29"
   },
   {
    "id": "osm-n660628831",
@@ -3289,7 +3279,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 11",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-04-29"
   },
   {
    "id": "osm-n1355497593",
@@ -3299,17 +3290,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Lunghi",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n1355497569",
-   "lat": -37.304842,
-   "lon": -59.164681,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Lunghi",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-09-14"
   },
   {
    "id": "osm-n253765291",
@@ -3319,7 +3301,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 11",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-01-22"
   },
   {
    "id": "osm-n2461101397",
@@ -3329,7 +3312,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Avenida Buenos Aires",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-09-13"
   },
   {
    "id": "osm-n318737822",
@@ -3339,7 +3323,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-07-18"
   },
   {
    "id": "osm-n3378692727",
@@ -3349,7 +3334,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-07-11"
   },
   {
    "id": "osm-n8912334563",
@@ -3359,7 +3345,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-07-11"
   },
   {
    "id": "osm-n8912334565",
@@ -3369,7 +3356,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 50 Gobernador Bartolomé Mitre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-07-11"
   },
   {
    "id": "osm-n8912334566",
@@ -3379,7 +3367,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 50 Gobernador Bartolomé Mitre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-07-11"
   },
   {
    "id": "osm-n8912334564",
@@ -3389,7 +3378,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-07-11"
   },
   {
    "id": "osm-n318104705",
@@ -3400,6 +3390,7 @@
    "dir": null,
    "nombre": "Ruta Provincial 51 Eduardo Laporte",
    "fuente": "OSM",
+   "osmFecha": "2023-11-22",
    "vmaxFuente": "calle"
   },
   {
@@ -3410,7 +3401,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Autovía Azul - Olavarría",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-07-13"
   },
   {
    "id": "osm-n1020006314",
@@ -3420,7 +3412,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Del Valle",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n1373852748",
@@ -3430,7 +3423,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Pringles",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-06-07"
   },
   {
    "id": "osm-n1020005308",
@@ -3440,7 +3434,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Colón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n1020007237",
@@ -3450,7 +3445,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Colón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-06-09"
   },
   {
    "id": "osm-n13143515918",
@@ -3460,7 +3456,8 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Autovía Juan Manuel Fangio",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-09-15"
   },
   {
    "id": "osm-n10573596694",
@@ -3470,7 +3467,8 @@
    "vmax": 110,
    "dir": null,
    "nombre": "Autovía Azul - Olavarría",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-01-21"
   },
   {
    "id": "osm-n9169985218",
@@ -3480,7 +3478,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 51",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-07-13"
   },
   {
    "id": "osm-n6234301301",
@@ -3490,7 +3489,8 @@
    "vmax": 40,
    "dir": 45.0,
    "nombre": "Ruta Provincial 50 Gobernador Bartolomé Mitre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-03-05"
   },
   {
    "id": "osm-n6234286653",
@@ -3500,17 +3500,8 @@
    "vmax": 40,
    "dir": 225.0,
    "nombre": "Ruta Provincial 30",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2461101396",
-   "lat": -36.725367,
-   "lon": -56.703205,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Provincial 11",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-04-01"
   },
   {
    "id": "osm-n2601613783",
@@ -3521,6 +3512,7 @@
    "dir": 358,
    "nombre": "Ruta Provincial 11",
    "fuente": "OSM",
+   "osmFecha": "2020-11-24",
    "dirInferida": true
   },
   {
@@ -3531,7 +3523,8 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Ruta Provincial 11",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n1105130432",
@@ -3541,7 +3534,8 @@
    "vmax": 110,
    "dir": 0.0,
    "nombre": "Ruta Provincial 11",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-06-20"
   },
   {
    "id": "osm-n6201499283",
@@ -3551,7 +3545,8 @@
    "vmax": 110,
    "dir": 180.0,
    "nombre": "Ruta Provincial 11",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-06-20"
   },
   {
    "id": "osm-n13709861620",
@@ -3562,6 +3557,7 @@
    "dir": 274,
    "nombre": "Ruta Provincial 11",
    "fuente": "OSM",
+   "osmFecha": "2026-04-05",
    "dirInferida": true
   },
   {
@@ -3572,7 +3568,8 @@
    "vmax": 60,
    "dir": 90.0,
    "nombre": "Ruta Provincial 11",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-08-10"
   },
   {
    "id": "osm-n13709861617",
@@ -3583,6 +3580,7 @@
    "dir": 70,
    "nombre": "Ruta Provincial 11",
    "fuente": "OSM",
+   "osmFecha": "2026-04-05",
    "dirInferida": true,
    "vmaxFuente": "calle"
   },
@@ -3594,7 +3592,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 65 Ministro Carlos Rodríguez Jáuregui",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-08-27"
   },
   {
    "id": "osm-n6195488317",
@@ -3605,6 +3604,7 @@
    "dir": 152,
    "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM",
+   "osmFecha": "2026-06-15",
    "dirInferida": true
   },
   {
@@ -3616,6 +3616,7 @@
    "dir": 335,
    "nombre": "Autovía Juan Manuel Fangio",
    "fuente": "OSM",
+   "osmFecha": "2019-01-09",
    "dirInferida": true
   },
   {
@@ -3626,7 +3627,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-05-01"
   },
   {
    "id": "osm-n9041615055",
@@ -3636,7 +3638,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Nacional 226",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-08-27"
   },
   {
    "id": "osm-n6773213165",
@@ -3646,7 +3649,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Gobernador Manuel Dorrego",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-11"
   },
   {
    "id": "osm-n3441945570",
@@ -3656,17 +3660,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Gobernador Manuel Dorrego",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n1866716037",
-   "lat": -35.746946,
-   "lon": -58.489048,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Gobernador Domingo A. Mercante",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-11"
   },
   {
    "id": "osm-n6426828137",
@@ -3676,7 +3671,8 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-04-24"
   },
   {
    "id": "osm-n9041605949",
@@ -3686,7 +3682,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 5",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-04-11"
   },
   {
    "id": "osm-n8362961413",
@@ -3696,7 +3693,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Del Encuentro",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-01-26"
   },
   {
    "id": "osm-n1218205660",
@@ -3706,7 +3704,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Costanera General Martín Miguel de Güemes",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-01-26"
   },
   {
    "id": "osm-n3288922986",
@@ -3716,7 +3715,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Costanera Pedro Urruty",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-01-26"
   },
   {
    "id": "osm-n6005787012",
@@ -3726,7 +3726,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 29 Gobernador Domingo Alfredo Mercante",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-05-20"
   },
   {
    "id": "osm-n8385672125",
@@ -3736,7 +3737,8 @@
    "vmax": 60,
    "dir": 340.0,
    "nombre": "Ruta Provincial 65 Ministro Carlos Rodríguez Jáuregui",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-02-02"
   },
   {
    "id": "osm-n8385672126",
@@ -3746,7 +3748,8 @@
    "vmax": 60,
    "dir": 150.0,
    "nombre": "Ruta Provincial 65 Ministro Carlos Rodríguez Jáuregui",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-02-02"
   },
   {
    "id": "osm-n6250085259",
@@ -3756,7 +3759,8 @@
    "vmax": 100,
    "dir": null,
    "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-02-01"
   },
   {
    "id": "osm-n2555137219",
@@ -3766,7 +3770,8 @@
    "vmax": 60,
    "dir": 270.0,
    "nombre": "Ruta Provincial 215",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-08-04"
   },
   {
    "id": "osm-n5275895957",
@@ -3776,7 +3781,8 @@
    "vmax": 80,
    "dir": 345.0,
    "nombre": "radar",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-03-09"
   },
   {
    "id": "osm-n13954721228",
@@ -3786,7 +3792,8 @@
    "vmax": 60,
    "dir": 150.0,
    "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-06-20"
   },
   {
    "id": "osm-n10573675200",
@@ -3796,7 +3803,8 @@
    "vmax": 60,
    "dir": 230.0,
    "nombre": "Ruta Nacional 205",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-01-21"
   },
   {
    "id": "osm-n10573678287",
@@ -3806,7 +3814,8 @@
    "vmax": 60,
    "dir": 60.0,
    "nombre": "Ruta Nacional 205",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-09"
   },
   {
    "id": "osm-n13954721227",
@@ -3816,7 +3825,8 @@
    "vmax": 60,
    "dir": 330.0,
    "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-06-20"
   },
   {
    "id": "osm-n13954721229",
@@ -3826,7 +3836,8 @@
    "vmax": 80,
    "dir": 132.0,
    "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-06-20"
   },
   {
    "id": "osm-n13954721230",
@@ -3836,27 +3847,19 @@
    "vmax": 80,
    "dir": 314.0,
    "nombre": "Ruta Provincial 36 Ministro Numa Tapia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-06-20"
   },
   {
    "id": "osm-n5275866946",
-   "lat": -35.303347,
-   "lon": -58.59258,
+   "lat": -35.303386,
+   "lon": -58.592528,
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 215",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n13143351274",
-   "lat": -35.249313,
-   "lon": -59.173664,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Nacional 205",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-25"
   },
   {
    "id": "osm-n2325636060",
@@ -3866,7 +3869,8 @@
    "vmax": 120,
    "dir": null,
    "nombre": "Autovía Juan Manuel Fangio",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-03-02"
   },
   {
    "id": "osm-n1222651898",
@@ -3876,7 +3880,8 @@
    "vmax": 60,
    "dir": 310.0,
    "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-06-07"
   },
   {
    "id": "osm-n11043270418",
@@ -3886,7 +3891,8 @@
    "vmax": 60,
    "dir": 320.0,
    "nombre": "Avenida Raúl Alfonsín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n11043270417",
@@ -3896,7 +3902,8 @@
    "vmax": 60,
    "dir": 45.0,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n11043270419",
@@ -3906,7 +3913,8 @@
    "vmax": 60,
    "dir": 230.0,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n11043270416",
@@ -3916,7 +3924,8 @@
    "vmax": 60,
    "dir": 160.0,
    "nombre": "Mariano Moreno",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n11043270414",
@@ -3926,7 +3935,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n11043270415",
@@ -3936,7 +3946,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 210",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n11043270420",
@@ -3946,7 +3957,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n5517369587",
@@ -3956,7 +3968,8 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Ruta Provincial 46 Gobernador Mariano Saavedra",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-03-05"
   },
   {
    "id": "osm-n10573658557",
@@ -3967,7 +3980,8 @@
    "dir": null,
    "nombre": "Ruta Nacional 205",
    "fuente": "OSM",
-   "detalle": "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales  rn205 km"
+   "detalle": "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales  rn205 km",
+   "osmFecha": "2023-01-21"
   },
   {
    "id": "osm-n10573500499",
@@ -3977,7 +3991,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 205",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-01-21"
   },
   {
    "id": "osm-n2573213876",
@@ -3987,7 +4002,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 48",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-16"
   },
   {
    "id": "osm-n11260178560",
@@ -3997,29 +4013,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 205",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2857010508",
-   "lat": -35.055012,
-   "lon": -58.759736,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 135,
-   "nombre": "Libertad",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n2857010504",
-   "lat": -35.054369,
-   "lon": -58.760532,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 135,
-   "nombre": "Libertad",
-   "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2023-10-13"
   },
   {
    "id": "osm-n11260178559",
@@ -4029,7 +4024,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 205",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-10-13"
   },
   {
    "id": "osm-n997511953",
@@ -4039,7 +4035,8 @@
    "vmax": 80,
    "dir": 45.0,
    "nombre": "Ruta Provincial 6",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-25"
   },
   {
    "id": "osm-n11066137490",
@@ -4049,17 +4046,19 @@
    "vmax": 80,
    "dir": 225.0,
    "nombre": "Ruta Provincial 6",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-25"
   },
   {
-   "id": "osm-n5275113400",
-   "lat": -35.032132,
-   "lon": -58.088872,
+   "id": "osm-n5275429030",
+   "lat": -35.032202,
+   "lon": -58.088775,
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "radar",
-   "fuente": "OSM"
+   "nombre": "Avenida 44",
+   "fuente": "OSM",
+   "osmFecha": "2019-03-10"
   },
   {
    "id": "osm-n11066137491",
@@ -4069,7 +4068,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 58",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-10-17"
   },
   {
    "id": "osm-n11260178558",
@@ -4079,7 +4079,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Nacional 205",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-10-13"
   },
   {
    "id": "osm-n672603835",
@@ -4089,7 +4090,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-04-10"
   },
   {
    "id": "osm-n996896238",
@@ -4099,7 +4101,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Avenida Rivadavia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-01-21"
   },
   {
    "id": "osm-n9805086087",
@@ -4109,7 +4112,8 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Ruta Provincial 6",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-01-13"
   },
   {
    "id": "osm-n11066137493",
@@ -4119,7 +4123,8 @@
    "vmax": 60,
    "dir": 220.0,
    "nombre": "Avenida 520",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-25"
   },
   {
    "id": "osm-n11043278069",
@@ -4129,7 +4134,8 @@
    "vmax": 60,
    "dir": 220.0,
    "nombre": "Avenida 66",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n8394944062",
@@ -4139,7 +4145,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n9874854286",
@@ -4149,7 +4156,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-02-03"
   },
   {
    "id": "osm-n9874854287",
@@ -4159,7 +4167,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-02-03"
   },
   {
    "id": "osm-n480217226",
@@ -4169,7 +4178,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Ruta Provincial 205",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-12-01"
   },
   {
    "id": "osm-n11066116037",
@@ -4179,17 +4189,8 @@
    "vmax": 60,
    "dir": 210.0,
    "nombre": "Avenida 66",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n641412920",
-   "lat": -34.956948,
-   "lon": -57.89413,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida 7",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-01-25"
   },
   {
    "id": "osm-n11066116038",
@@ -4199,18 +4200,8 @@
    "vmax": 60,
    "dir": 210.0,
    "nombre": "Avenida 60",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5328280443",
-   "lat": -34.946067,
-   "lon": -57.963708,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 131,
-   "nombre": "Avenida 31",
    "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2023-07-25"
   },
   {
    "id": "osm-n11066137492",
@@ -4220,18 +4211,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida 52",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5328280442",
-   "lat": -34.945516,
-   "lon": -57.963317,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 312,
-   "nombre": "Avenida 31",
    "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2023-07-25"
   },
   {
    "id": "osm-n11066116039",
@@ -4241,7 +4222,8 @@
    "vmax": 60,
    "dir": 210.0,
    "nombre": "Avenida 44",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-25"
   },
   {
    "id": "osm-n2461077368",
@@ -4251,7 +4233,8 @@
    "vmax": 80,
    "dir": 3.0,
    "nombre": "Autovía Juan Manuel Fangio",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-01-29"
   },
   {
    "id": "osm-n321827261",
@@ -4261,7 +4244,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida 38",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-10-03"
   },
   {
    "id": "osm-n5240146764",
@@ -4271,7 +4255,8 @@
    "vmax": 120,
    "dir": null,
    "nombre": "Ruta Provincial 6",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-06-26"
   },
   {
    "id": "osm-n1636589836",
@@ -4281,7 +4266,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-16"
   },
   {
    "id": "osm-n11043278079",
@@ -4291,7 +4277,8 @@
    "vmax": 60,
    "dir": 180.0,
    "nombre": "Boulevard 82",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n11043278080",
@@ -4301,7 +4288,8 @@
    "vmax": 60,
    "dir": 0.0,
    "nombre": "Boulevard 82",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n9837353181",
@@ -4311,7 +4299,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-06-21"
   },
   {
    "id": "osm-n10000616419",
@@ -4321,7 +4310,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-09-04"
   },
   {
    "id": "osm-n11066137489",
@@ -4331,7 +4321,8 @@
    "vmax": 40,
    "dir": 300.0,
    "nombre": "Calle 6",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-25"
   },
   {
    "id": "osm-n638389095",
@@ -4341,7 +4332,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-02-09"
   },
   {
    "id": "osm-n11043278078",
@@ -4351,7 +4343,8 @@
    "vmax": 60,
    "dir": 220.0,
    "nombre": "Avenida 520",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-07-13"
   },
   {
    "id": "osm-n634166234",
@@ -4361,27 +4354,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida San Martín",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n248186117",
-   "lat": -34.909163,
-   "lon": -58.171467,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Autovía Juan Manuel Fangio",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n638389100",
-   "lat": -34.909162,
-   "lon": -58.5929,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-02-09"
   },
   {
    "id": "osm-n7235455949",
@@ -4391,7 +4365,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-06-16"
   },
   {
    "id": "osm-n620966106",
@@ -4401,7 +4376,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-03-01"
   },
   {
    "id": "osm-n1876930108",
@@ -4411,7 +4387,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta 40 y Los Abedules",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-08-13"
   },
   {
    "id": "osm-n3058554611",
@@ -4421,27 +4398,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida San Martín",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n630732753",
-   "lat": -34.881785,
-   "lon": -58.557812,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida San Martín",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2116829237",
-   "lat": -34.87304,
-   "lon": -59.9909,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Provincial 30",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-03-01"
   },
   {
    "id": "osm-n12610344802",
@@ -4451,7 +4409,8 @@
    "vmax": 120,
    "dir": null,
    "nombre": "Ruta Provincial 6",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-02-22"
   },
   {
    "id": "osm-n631758415",
@@ -4461,7 +4420,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-07-27"
   },
   {
    "id": "osm-n3657114495",
@@ -4471,7 +4431,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-09-04"
   },
   {
    "id": "osm-n1952593322",
@@ -4481,7 +4442,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Radar Avenida Mariano Castex",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-08-17"
   },
   {
    "id": "osm-n621748417",
@@ -4491,17 +4453,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida San Martín",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n615785366",
-   "lat": -34.846353,
-   "lon": -58.509618,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-02-07"
   },
   {
    "id": "osm-n2705168012",
@@ -4511,27 +4464,8 @@
    "vmax": 60,
    "dir": 100.0,
    "nombre": "Camino Parque Centenario",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4376565771",
-   "lat": -34.843188,
-   "lon": -58.402067,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5003554681",
-   "lat": -34.838948,
-   "lon": -58.070128,
-   "tipo": "velocidad",
-   "vmax": 130,
-   "dir": null,
-   "nombre": "Autopista Doctor Ricardo Balbín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-07-11"
   },
   {
    "id": "osm-n1866693018",
@@ -4541,7 +4475,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-04"
   },
   {
    "id": "osm-n3231523734",
@@ -4551,57 +4486,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Monteverde",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n310541275",
-   "lat": -34.827115,
-   "lon": -58.419268,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida Monteverde",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n3867237091",
-   "lat": -34.825601,
-   "lon": -58.281118,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Padre Obispo Jorge Novak",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n648852593",
-   "lat": -34.825189,
-   "lon": -58.281587,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Padre Obispo Jorge Novak",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4103936615",
-   "lat": -34.818642,
-   "lon": -58.286742,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Padre Obispo Jorge Novak",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2099062441",
-   "lat": -34.815053,
-   "lon": -58.277399,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Eva Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-02-06"
   },
   {
    "id": "osm-n648259794",
@@ -4611,57 +4497,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Radar Rivadavia",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n3710901938",
-   "lat": -34.809098,
-   "lon": -58.294358,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Padre Obispo Jorge Novak",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5137332744",
-   "lat": -34.808838,
-   "lon": -58.34352,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Lacaze",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n3710901937",
-   "lat": -34.808713,
-   "lon": -58.294661,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Padre Obispo Jorge Novak",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2006806926",
-   "lat": -34.808278,
-   "lon": -58.342498,
-   "tipo": "velocidad",
-   "vmax": 30,
-   "dir": null,
-   "nombre": "Avenida Lacaze",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n656284011",
-   "lat": -34.80779,
-   "lon": -58.341605,
-   "tipo": "velocidad",
-   "vmax": 30,
-   "dir": null,
-   "nombre": "Avenida Lacaze",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-07-30"
   },
   {
    "id": "osm-n648259804",
@@ -4671,7 +4508,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. San Martín S",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-01-29"
   },
   {
    "id": "osm-n10635283801",
@@ -4681,7 +4519,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "La Horqueta",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-10"
   },
   {
    "id": "osm-n648281838",
@@ -4691,7 +4530,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-01-29"
   },
   {
    "id": "osm-n10011864614",
@@ -4701,7 +4541,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "La Horqueta",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-10"
   },
   {
    "id": "osm-n4412295212",
@@ -4711,7 +4552,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "General Frías",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-09-07"
   },
   {
    "id": "osm-n312924604",
@@ -4721,17 +4563,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Antártida Argentina",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n308485229",
-   "lat": -34.797383,
-   "lon": -58.44465,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Camino de Cintura",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-04"
   },
   {
    "id": "osm-n11555925374",
@@ -4742,17 +4575,8 @@
    "dir": null,
    "nombre": "Autopista Doctor Ricardo Balbín",
    "fuente": "OSM",
+   "osmFecha": "2024-01-27",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n14207351887",
-   "lat": -34.79642,
-   "lon": -58.437681,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Libres del Sur",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n308035282",
@@ -4762,7 +4586,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-27"
   },
   {
    "id": "osm-n656402791",
@@ -4772,17 +4597,19 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Lacaze",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-10-19"
   },
   {
-   "id": "osm-n4412345947",
-   "lat": -34.795175,
-   "lon": -58.409098,
+   "id": "osm-n4412345948",
+   "lat": -34.795168,
+   "lon": -58.408992,
    "tipo": "velocidad",
    "vmax": 40,
    "dir": null,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-27"
   },
   {
    "id": "osm-n310680141",
@@ -4792,7 +4619,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-27"
   },
   {
    "id": "osm-n315100528",
@@ -4802,7 +4630,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Ruta Provincial 36",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-04-08"
   },
   {
    "id": "osm-n6019517791",
@@ -4813,7 +4642,8 @@
    "dir": 125.0,
    "nombre": "Ruta Provincial 36",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2019-08-26"
   },
   {
    "id": "osm-n3314616063",
@@ -4823,7 +4653,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Radar S",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-06-05"
   },
   {
    "id": "osm-n5077708879",
@@ -4833,27 +4664,8 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Ruta de la Tradición",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n665597577",
-   "lat": -34.788873,
-   "lon": -58.277527,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Radar",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5077708880",
-   "lat": -34.786962,
-   "lon": -58.452979,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Ruta de la Tradición",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-24"
   },
   {
    "id": "osm-n307478461",
@@ -4863,7 +4675,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida José Garibaldi",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-07"
   },
   {
    "id": "osm-n5197079979",
@@ -4874,7 +4687,8 @@
    "dir": null,
    "nombre": "Avenida San Martín",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2024-06-03"
   },
   {
    "id": "osm-n648955172",
@@ -4884,7 +4698,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-07-30"
   },
   {
    "id": "osm-n2099062415",
@@ -4895,7 +4710,8 @@
    "dir": null,
    "nombre": "Radar W",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2022-07-30"
   },
   {
    "id": "osm-n4353071963",
@@ -4905,7 +4721,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Paso bajo nivel Manuel Belgrano",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-22"
   },
   {
    "id": "osm-n1673451935",
@@ -4915,27 +4732,19 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Juan XXIII",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-01-10"
   },
   {
-   "id": "osm-n5198283097",
-   "lat": -34.777321,
-   "lon": -58.280481,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": null,
-   "nombre": "Avenida San Martín",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4353117285",
-   "lat": -34.774758,
-   "lon": -58.393191,
+   "id": "osm-n4408948172",
+   "lat": -34.774799,
+   "lon": -58.393264,
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
    "nombre": "Almirante Brown",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-27"
   },
   {
    "id": "osm-n2889528108",
@@ -4945,7 +4754,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Calchaquí",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-01-30"
   },
   {
    "id": "osm-n1944410611",
@@ -4955,18 +4765,19 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Juan XXIII",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-07-21"
   },
   {
-   "id": "osm-n5554854380",
-   "lat": -34.774392,
-   "lon": -58.267055,
+   "id": "osm-n6898491307",
+   "lat": -34.774583,
+   "lon": -58.266964,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 129.0,
+   "dir": null,
    "nombre": "Avenida Calchaquí",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "osmFecha": "2026-01-30"
   },
   {
    "id": "osm-n6196873214",
@@ -4976,7 +4787,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Juan XXIII",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-01-10"
   },
   {
    "id": "osm-n307475045",
@@ -4986,18 +4798,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Vicente Oliden",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5080344846",
-   "lat": -34.767031,
-   "lon": -58.436321,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 238,
-   "nombre": "Avenida Juan XXIII",
    "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2025-05-07"
   },
   {
    "id": "osm-n10573580949",
@@ -5008,7 +4810,8 @@
    "dir": null,
    "nombre": "Autopista Teniente General Pablo Ricchieri",
    "fuente": "OSM",
-   "detalle": "a chequear"
+   "detalle": "a chequear",
+   "osmFecha": "2023-01-21"
   },
   {
    "id": "osm-n307472025",
@@ -5018,7 +4821,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "José Eusebio Colombres",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n309143677",
@@ -5028,17 +4832,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Francisco Narciso de Laprida",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n6063318274",
-   "lat": -34.753846,
-   "lon": -58.434635,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Autopista Camino Negro",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-07"
   },
   {
    "id": "osm-n307697896",
@@ -5048,7 +4843,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-01"
   },
   {
    "id": "osm-n7059990507",
@@ -5058,17 +4854,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "radar fijo",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4353120939",
-   "lat": -34.749469,
-   "lon": -58.400314,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-12-31"
   },
   {
    "id": "osm-n2988301429",
@@ -5078,7 +4865,8 @@
    "vmax": 130,
    "dir": null,
    "nombre": "Autopista Doctor Ricardo Balbín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-09-23"
   },
   {
    "id": "osm-n165689969",
@@ -5088,17 +4876,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Alberto Larroque",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n6063312866",
-   "lat": -34.739368,
-   "lon": -58.432924,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Autopista Camino Negro",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-02"
   },
   {
    "id": "osm-n7369875835",
@@ -5108,27 +4887,19 @@
    "vmax": 60,
    "dir": null,
    "nombre": "El Hornero",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-04-05"
   },
   {
-   "id": "osm-n6090432201",
-   "lat": -34.714994,
-   "lon": -58.451224,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Autopista Camino Negro",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5003554685",
-   "lat": -34.701879,
-   "lon": -58.274039,
+   "id": "osm-n5003554686",
+   "lat": -34.701714,
+   "lon": -58.274012,
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "Radar RN1 > La Plata",
-   "fuente": "OSM"
+   "nombre": "Autopista Doctor Ricardo Balbín",
+   "fuente": "OSM",
+   "osmFecha": "2025-04-18"
   },
   {
    "id": "osm-n482788200",
@@ -5138,7 +4909,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Belgrano",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-28"
   },
   {
    "id": "osm-r18632177",
@@ -5148,7 +4920,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Intendente Esteban Crovara",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-01-31"
   },
   {
    "id": "osm-n5339795643",
@@ -5159,49 +4932,8 @@
    "dir": 30.0,
    "nombre": "Roca, Cnel. Av. 5880",
    "fuente": "OSM",
-   "detalle": "Cinemometro fijo multicarril"
-  },
-  {
-   "id": "osm-n3269890326",
-   "lat": -34.689493,
-   "lon": -58.460482,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 42,
-   "nombre": "Avenida Coronel Roca",
-   "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n312115374",
-   "lat": -34.689298,
-   "lon": -58.460743,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 222,
-   "nombre": "Avenida Coronel Roca",
-   "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n691884687",
-   "lat": -34.686267,
-   "lon": -58.622608,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida Don Bosco",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5339834121",
-   "lat": -34.677976,
-   "lon": -58.479076,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": 25.0,
-   "nombre": "Au. Dellepiane (Descendente)",
-   "fuente": "OSM"
+   "detalle": "Cinemometro fijo multicarril",
+   "osmFecha": "2022-10-08"
   },
   {
    "id": "osm-n11377761799",
@@ -5212,18 +4944,8 @@
    "dir": 55.0,
    "nombre": "Venezuela",
    "fuente": "OSM",
+   "osmFecha": "2026-05-09",
    "vmaxFuente": "estimado"
-  },
-  {
-   "id": "osm-n5197072240",
-   "lat": -34.676002,
-   "lon": -58.365034,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Güemes y Eva Perón",
-   "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
   },
   {
    "id": "osm-n1740891276",
@@ -5233,7 +4955,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "General Güemes",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-17"
   },
   {
    "id": "osm-n692757983",
@@ -5243,7 +4966,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Don Bosco",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n6015211550",
@@ -5252,9 +4976,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Güemes y Lanares",
+   "nombre": "General Güemes",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2022-03-29"
   },
   {
    "id": "osm-n4575367519",
@@ -5264,7 +4989,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Mujeres Argentinas",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-03"
   },
   {
    "id": "osm-n242031695",
@@ -5274,7 +5000,8 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Avenida General Paz",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-11-23"
   },
   {
    "id": "osm-n12751577191",
@@ -5284,7 +5011,8 @@
    "vmax": 60,
    "dir": 35.0,
    "nombre": "Avenida Coronel Roca",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-13"
   },
   {
    "id": "osm-n5515285100",
@@ -5294,7 +5022,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Diego Armando Maradona",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-08-31"
   },
   {
    "id": "osm-n9473017478",
@@ -5304,7 +5033,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Presidente Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-19"
   },
   {
    "id": "osm-n9916007259",
@@ -5314,7 +5044,8 @@
    "vmax": 70,
    "dir": null,
    "nombre": "Avenida 27 de Febrero",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-07-28"
   },
   {
    "id": "osm-n509899030",
@@ -5325,6 +5056,7 @@
    "dir": 313,
    "nombre": "Avenida Bartolomé Mitre",
    "fuente": "OSM",
+   "osmFecha": "2025-05-04",
    "dirInferida": true
   },
   {
@@ -5335,7 +5067,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Emilio Castro",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-02-22"
   },
   {
    "id": "osm-n12391603969",
@@ -5345,7 +5078,8 @@
    "vmax": 60,
    "dir": 250.0,
    "nombre": "Avenida Intendente Francisco Rabanal",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-12-02"
   },
   {
    "id": "osm-n232826558",
@@ -5355,7 +5089,8 @@
    "vmax": 100,
    "dir": null,
    "nombre": "Au. Dellepiane y Zinny (Ascendente)",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-04-20"
   },
   {
    "id": "osm-n305087063",
@@ -5364,8 +5099,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. San Martín",
-   "fuente": "OSM"
+   "nombre": "Avenida General San Martín",
+   "fuente": "OSM",
+   "osmFecha": "2025-07-26"
   },
   {
    "id": "osm-n8495461806",
@@ -5375,7 +5111,8 @@
    "vmax": 40,
    "dir": 0.0,
    "nombre": "Doctor José María Casullo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-23"
   },
   {
    "id": "osm-n305098789",
@@ -5386,6 +5123,7 @@
    "dir": 317,
    "nombre": "Avenida General San Martín",
    "fuente": "OSM",
+   "osmFecha": "2019-05-22",
    "dirInferida": true
   },
   {
@@ -5397,7 +5135,8 @@
    "dir": null,
    "nombre": "J.B.Alberdi Y Larrazabal",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2024-10-17"
   },
   {
    "id": "osm-r9312040",
@@ -5407,7 +5146,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Bartolomé Mitre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-10-21"
   },
   {
    "id": "osm-r20632751",
@@ -5418,6 +5158,7 @@
    "dir": 181,
    "nombre": "General Juan José Valle",
    "fuente": "OSM",
+   "osmFecha": "2026-05-06",
    "dirInferida": true
   },
   {
@@ -5428,7 +5169,8 @@
    "vmax": 60,
    "dir": 275.0,
    "nombre": "Autopista Teniente General Luis Dellepiane",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-10-18"
   },
   {
    "id": "osm-n4868339705",
@@ -5439,18 +5181,8 @@
    "dir": 275.0,
    "nombre": "Presidente Sarmiento",
    "fuente": "OSM",
+   "osmFecha": "2025-10-04",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n5941662581",
-   "lat": -34.647443,
-   "lon": -58.464271,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 217,
-   "nombre": "Au. 25 de Mayo y Pergamino",
-   "fuente": "OSM",
-   "dirInferida": true
   },
   {
    "id": "osm-n232581794",
@@ -5461,6 +5193,7 @@
    "dir": 45,
    "nombre": "Avenida Directorio",
    "fuente": "OSM",
+   "osmFecha": "2026-01-16",
    "dirInferida": true
   },
   {
@@ -5471,7 +5204,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Rivadavia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-11-19"
   },
   {
    "id": "osm-n4841785276",
@@ -5480,9 +5214,10 @@
    "tipo": "semaforo",
    "vmax": 60,
    "dir": null,
-   "nombre": "Cámara de semáforo Av. Rivadavia y Concordia",
+   "nombre": "Avenida Rivadavia",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja e invasión de senda peatonal"
+   "detalle": "Detección de violación de luz roja e invasión de senda peatonal",
+   "osmFecha": "2019-10-24"
   },
   {
    "id": "osm-n5343569910",
@@ -5492,18 +5227,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Au. Perito Moreno (Ascendente)",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n11895655806",
-   "lat": -34.646105,
-   "lon": -58.520307,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 175.0,
-   "nombre": "Av. Lisandro de la Torre y Tonelero",
    "fuente": "OSM",
-   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
+   "osmFecha": "2024-12-12"
   },
   {
    "id": "osm-n13546524722",
@@ -5513,27 +5238,19 @@
    "vmax": 40,
    "dir": 15.0,
    "nombre": "Camara de velocidad",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-02-12"
   },
   {
-   "id": "osm-n2320045812",
-   "lat": -34.644395,
-   "lon": -58.487799,
+   "id": "osm-n2320045813",
+   "lat": -34.644519,
+   "lon": -58.487921,
    "tipo": "velocidad",
    "vmax": 100,
    "dir": null,
-   "nombre": "Au. Perito Moreno (Descendente) altura Rodó",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2320045810",
-   "lat": -34.643553,
-   "lon": -58.375632,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Autopista Presidente Arturo Frondizi",
-   "fuente": "OSM"
+   "nombre": "Au. Perito Moreno (Ascendente) altura Rodó",
+   "fuente": "OSM",
+   "osmFecha": "2024-05-04"
   },
   {
    "id": "osm-n5133678375",
@@ -5544,28 +5261,20 @@
    "dir": 314,
    "nombre": "Mariano Acosta",
    "fuente": "OSM",
+   "osmFecha": "2022-07-24",
    "dirInferida": true
   },
   {
    "id": "osm-n232636724",
-   "lat": -34.641282,
-   "lon": -58.479926,
+   "lat": -34.641304,
+   "lon": -58.479906,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 46,
+   "dir": 42,
    "nombre": "Av. Directorio y Lacarra",
    "fuente": "OSM",
+   "osmFecha": "2025-04-26",
    "dirInferida": true
-  },
-  {
-   "id": "osm-n5966208751",
-   "lat": -34.64086,
-   "lon": -58.376469,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Radar Au. Arturo Frondizi alt. Olavarría",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n13546524721",
@@ -5575,17 +5284,8 @@
    "vmax": 40,
    "dir": 12.0,
    "nombre": "Camara de Semaforo",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5344002521",
-   "lat": -34.640059,
-   "lon": -58.458029,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Au. 25 de Mayo y Av. Varela (Centro)",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2026-02-12"
   },
   {
    "id": "osm-r11264644",
@@ -5596,6 +5296,7 @@
    "dir": 85,
    "nombre": "Doctor Gabriel Ardoino",
    "fuente": "OSM",
+   "osmFecha": "2020-07-02",
    "dirInferida": true
   },
   {
@@ -5607,17 +5308,8 @@
    "dir": 95.0,
    "nombre": "Av. Rivadavia y Miralla",
    "fuente": "OSM",
+   "osmFecha": "2024-05-10",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-r17581357",
-   "lat": -34.639328,
-   "lon": -58.511715,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Rivadavia y Miralla",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n232584986",
@@ -5627,7 +5319,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Rivadavia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-06-11"
   },
   {
    "id": "osm-n11963024182",
@@ -5638,40 +5331,8 @@
    "dir": null,
    "nombre": "Avenida Gaona",
    "fuente": "OSM",
+   "osmFecha": "2024-06-07",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n11893671475",
-   "lat": -34.637482,
-   "lon": -58.49987,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 80.0,
-   "nombre": "Av. Rivadavia y Manzoni",
-   "fuente": "OSM",
-   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
-  },
-  {
-   "id": "osm-n5344851995",
-   "lat": -34.637215,
-   "lon": -58.40595,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Av. Caseros y La Rioja",
-   "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
-  },
-  {
-   "id": "osm-n206148599",
-   "lat": -34.637099,
-   "lon": -58.405616,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 49,
-   "nombre": "Avenida Caseros",
-   "fuente": "OSM",
-   "dirInferida": true
   },
   {
    "id": "osm-n5344008330",
@@ -5681,37 +5342,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Av. Asamblea",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5341536854",
-   "lat": -34.636346,
-   "lon": -58.524502,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Au. Perito Moreno (Sentido Capital)",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n11895430474",
-   "lat": -34.6358,
-   "lon": -58.500163,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": 80.0,
-   "nombre": "Au. Perito Moreno km 2.9",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4482138649",
-   "lat": -34.635752,
-   "lon": -58.377538,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Radar Au. Arturo Frondizi (Descendente)",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-11"
   },
   {
    "id": "osm-n3876281305",
@@ -5722,7 +5354,8 @@
    "dir": null,
    "nombre": "Au. Moreno, Perito km 0.3",
    "fuente": "OSM",
-   "detalle": "Tipo de fiscalizador: Cinemómetro; Conducta fiscalizada: Exceso de velocidad"
+   "detalle": "Tipo de fiscalizador: Cinemómetro; Conducta fiscalizada: Exceso de velocidad",
+   "osmFecha": "2024-05-10"
   },
   {
    "id": "osm-n11555881689",
@@ -5733,6 +5366,7 @@
    "dir": 167,
    "nombre": "",
    "fuente": "OSM",
+   "osmFecha": "2024-01-27",
    "dirInferida": true,
    "vmaxFuente": "calle"
   },
@@ -5744,17 +5378,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5942785503",
-   "lat": -34.634299,
-   "lon": -58.39034,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida Vélez Sársfield",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-12-09"
   },
   {
    "id": "osm-n194323821",
@@ -5763,8 +5388,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Vélez Sarfield Y Av. Caseros",
-   "fuente": "OSM"
+   "nombre": "Avenida Caseros",
+   "fuente": "OSM",
+   "osmFecha": "2020-01-04"
   },
   {
    "id": "osm-n13568117388",
@@ -5775,39 +5401,19 @@
    "dir": null,
    "nombre": "Ruta Provincial 65 Ministro Carlos Rodríguez Jáuregui",
    "fuente": "OSM",
+   "osmFecha": "2026-02-15",
    "vmaxFuente": "calle"
   },
   {
    "id": "osm-n199822934",
-   "lat": -34.631483,
-   "lon": -58.492367,
+   "lat": -34.631488,
+   "lon": -58.492369,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Carrasco",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n11893600210",
-   "lat": -34.630798,
-   "lon": -58.470022,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 75.0,
-   "nombre": "Av. Rivadavia y Av. Nazca",
    "fuente": "OSM",
-   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
-  },
-  {
-   "id": "osm-n11893580969",
-   "lat": -34.630176,
-   "lon": -58.467238,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 75.0,
-   "nombre": "Av. Rivadavia y Culpina/Condarco",
-   "fuente": "OSM",
-   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
+   "osmFecha": "2022-02-16"
   },
   {
    "id": "osm-n5353188554",
@@ -5819,6 +5425,7 @@
    "nombre": "Avenida Avellaneda",
    "fuente": "OSM",
    "detalle": "Av. Avellaneda y Bahía Blanca",
+   "osmFecha": "2021-03-11",
    "dirInferida": true
   },
   {
@@ -5828,19 +5435,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": 74,
-   "nombre": "Radar Av. Avellaneda y Bahía Blanca",
+   "nombre": "Avenida Avellaneda",
    "fuente": "OSM",
+   "osmFecha": "2021-03-11",
    "dirInferida": true
-  },
-  {
-   "id": "osm-n2306447498",
-   "lat": -34.62891,
-   "lon": -58.425987,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Radar Au. 25 de Mayo (Ascendente) Centro",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n89149292",
@@ -5850,38 +5448,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Juan Bautista Justo",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n6112027522",
-   "lat": -34.628568,
-   "lon": -58.530084,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Avenida General Paz",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n206107604",
-   "lat": -34.627711,
-   "lon": -58.379608,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Brasil y Lima",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n11893515109",
-   "lat": -34.627679,
-   "lon": -58.459208,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 65.0,
-   "nombre": "Av. Rivadavia y Granaderos",
    "fuente": "OSM",
-   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
+   "osmFecha": "2024-10-25"
   },
   {
    "id": "osm-n2739917849",
@@ -5891,28 +5459,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 30",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5957314684",
-   "lat": -34.627034,
-   "lon": -58.379211,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Radar Au. Arturo Frondizi (Ascendente)",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n235382054",
-   "lat": -34.626362,
-   "lon": -58.380174,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 186,
-   "nombre": "Radar Av. Garay y Lima",
    "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n9170431509",
@@ -5922,7 +5470,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 30",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n1629199682",
@@ -5931,8 +5480,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Av. Juan B. Justo y Joaquín Victor González",
-   "fuente": "OSM"
+   "nombre": "Avenida Juan Bautista Justo",
+   "fuente": "OSM",
+   "osmFecha": "2024-10-25"
   },
   {
    "id": "osm-n195723156",
@@ -5941,8 +5491,9 @@
    "tipo": "semaforo",
    "vmax": 60,
    "dir": 81,
-   "nombre": "Radar Av. San Juan esquina Alberti",
+   "nombre": "Avenida San Juan",
    "fuente": "OSM",
+   "osmFecha": "2021-08-11",
    "dirInferida": true
   },
   {
@@ -5954,27 +5505,8 @@
    "dir": null,
    "nombre": "José Hernández",
    "fuente": "OSM",
+   "osmFecha": "2022-10-18",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n226823106",
-   "lat": -34.62292,
-   "lon": -58.380736,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Autopista Presidente Arturo Frondizi",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n206163539",
-   "lat": -34.622873,
-   "lon": -58.44086,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 275.0,
-   "nombre": "Av. Juan B. Alberdi y Centenera",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n195723138",
@@ -5985,6 +5517,7 @@
    "dir": 87,
    "nombre": "Avenida San Juan",
    "fuente": "OSM",
+   "osmFecha": "2021-12-24",
    "dirInferida": true
   },
   {
@@ -5996,17 +5529,7 @@
    "dir": 87,
    "nombre": "Radar Av. San Juan y Solís",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n243462105",
-   "lat": -34.622175,
-   "lon": -58.381433,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 87,
-   "nombre": "Radar Av. San Juan y Lima",
-   "fuente": "OSM",
+   "osmFecha": "2024-04-13",
    "dirInferida": true
   },
   {
@@ -6016,32 +5539,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Deteccion de violacion de luz roja",
-   "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
-  },
-  {
-   "id": "osm-n2580167253",
-   "lat": -34.621311,
-   "lon": -58.456412,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 67,
-   "nombre": "Av. Avellaneda y Donato Alvarez",
+   "nombre": "Avenida Rivadavia",
    "fuente": "OSM",
    "detalle": "Detección de violación de luz roja",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n193842685",
-   "lat": -34.621194,
-   "lon": -58.456076,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 68,
-   "nombre": "Avenida Avellaneda",
-   "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2025-02-13"
   },
   {
    "id": "osm-n195723424",
@@ -6050,121 +5551,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": 265,
-   "nombre": "Radar Deteccion de violacion de luz roja",
+   "nombre": "Avenida Independencia",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n11892248668",
-   "lat": -34.620271,
-   "lon": -58.440905,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 245.0,
-   "nombre": "Av. Rivadavia y Del Barco Centenera",
-   "fuente": "OSM",
-   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal."
-  },
-  {
-   "id": "osm-n237640615",
-   "lat": -34.619763,
-   "lon": -58.380158,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 357,
-   "nombre": "Radar Bernardo De Irigoyen y Carlos Calvo",
-   "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n5951235610",
-   "lat": -34.619248,
-   "lon": -58.391686,
-   "tipo": "otro",
-   "vmax": 60,
-   "dir": 358,
-   "nombre": "Avenida Entre Ríos",
-   "fuente": "OSM",
-   "detalle": "Verificador de carriles",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n5931269090",
-   "lat": -34.618314,
-   "lon": -58.428805,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 80.0,
-   "nombre": "Rosario y Av. La Plata",
-   "fuente": "OSM",
-   "detalle": "Tipo de fiscalizador: Analítica de video; Conducta fiscalizada: Semáforo rojo y senda peatonal"
-  },
-  {
-   "id": "osm-n195978137",
-   "lat": -34.618293,
-   "lon": -58.436458,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 245.0,
-   "nombre": "Av. Rivadavia y Acoyte",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n194139380",
-   "lat": -34.618272,
-   "lon": -58.42847,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida La Plata",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5951241467",
-   "lat": -34.617537,
-   "lon": -58.391687,
-   "tipo": "otro",
-   "vmax": 60,
-   "dir": 0,
-   "nombre": "Avenida Entre Ríos",
-   "fuente": "OSM",
-   "detalle": "Verificador de carriles",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n180484525",
-   "lat": -34.617042,
-   "lon": -58.368736,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 355,
-   "nombre": "Avenida Paseo Colón",
-   "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n5954035825",
-   "lat": -34.616937,
-   "lon": -58.369437,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 175,
-   "nombre": "Radar Av. Paseo Colon y Av. Independencia",
-   "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n5353555942",
-   "lat": -34.616602,
-   "lon": -58.463762,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 330,
-   "nombre": "Av. Boyaca (Ascendente)",
-   "fuente": "OSM",
+   "osmFecha": "2023-03-15",
    "dirInferida": true
   },
   {
@@ -6176,6 +5565,7 @@
    "dir": null,
    "nombre": "Ruta Nacional 7 Libertador General San Martín",
    "fuente": "OSM",
+   "osmFecha": "2026-02-15",
    "vmaxFuente": "calle"
   },
   {
@@ -6188,31 +5578,9 @@
    "nombre": "Avenida Entre Ríos",
    "fuente": "OSM",
    "detalle": "Verificador de carriles",
+   "osmFecha": "2024-07-17",
    "dirInferida": true,
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n2847934417",
-   "lat": -34.613887,
-   "lon": -58.45945,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 245,
-   "nombre": "Avenida Gaona",
-   "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n10558362190",
-   "lat": -34.613757,
-   "lon": -58.459128,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 244,
-   "nombre": "Radar Av. Gaona y Donato Álvarez",
-   "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja",
-   "dirInferida": true
   },
   {
    "id": "osm-n12749878528",
@@ -6222,31 +5590,8 @@
    "vmax": 60,
    "dir": 220.0,
    "nombre": "Concepción Arenal",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n237634356",
-   "lat": -34.61191,
-   "lon": -58.381833,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 182,
-   "nombre": "Radar Lima y Moreno",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n5951288464",
-   "lat": -34.611618,
-   "lon": -58.391801,
-   "tipo": "otro",
-   "vmax": 60,
-   "dir": 358,
-   "nombre": "Avenida Entre Ríos",
-   "fuente": "OSM",
-   "detalle": "Verificador de carriles",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
+   "osmFecha": "2025-04-12"
   },
   {
    "id": "osm-n12749880103",
@@ -6257,18 +5602,8 @@
    "dir": 220.0,
    "nombre": "Concepción Arenal",
    "fuente": "OSM",
+   "osmFecha": "2025-04-12",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n437564727",
-   "lat": -34.610109,
-   "lon": -58.405946,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 266,
-   "nombre": "Radar Av. Rivadavia y Av. Jujuy",
-   "fuente": "OSM",
-   "dirInferida": true
   },
   {
    "id": "osm-n720727401",
@@ -6279,6 +5614,7 @@
    "dir": 224,
    "nombre": "Concepción Arenal",
    "fuente": "OSM",
+   "osmFecha": "2025-05-23",
    "dirInferida": true,
    "vmaxFuente": "calle"
   },
@@ -6290,7 +5626,8 @@
    "vmax": 60,
    "dir": 220.0,
    "nombre": "Felipe Pastre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-03-27"
   },
   {
    "id": "osm-n12704876605",
@@ -6300,7 +5637,8 @@
    "vmax": 60,
    "dir": 3.0,
    "nombre": "Vicente Camargo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-23"
   },
   {
    "id": "osm-n199457386",
@@ -6309,22 +5647,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": 144,
-   "nombre": "Radar Av. Angel Gallardo y Marechal",
+   "nombre": "Avenida Leopoldo Marechal",
    "fuente": "OSM",
+   "osmFecha": "2024-03-20",
    "dirInferida": true
-  },
-  {
-   "id": "osm-n5953989601",
-   "lat": -34.604598,
-   "lon": -58.392294,
-   "tipo": "otro",
-   "vmax": 60,
-   "dir": 356,
-   "nombre": "Avenida Callao",
-   "fuente": "OSM",
-   "detalle": "Verificador de carriles",
-   "dirInferida": true,
-   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n13565820248",
@@ -6335,29 +5661,9 @@
    "dir": 97,
    "nombre": "Avenida Corrientes",
    "fuente": "OSM",
+   "osmFecha": "2026-02-15",
    "dirInferida": true,
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n4599156131",
-   "lat": -34.604308,
-   "lon": -58.458382,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. J.B.Justo y Av. San Martín",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n81834174",
-   "lat": -34.604246,
-   "lon": -58.407822,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 101,
-   "nombre": "Avenida Corrientes",
-   "fuente": "OSM",
-   "dirInferida": true
   },
   {
    "id": "osm-n81600863",
@@ -6368,6 +5674,7 @@
    "dir": 85,
    "nombre": "Radar Talcahuano y Viamonte",
    "fuente": "OSM",
+   "osmFecha": "2024-11-26",
    "dirInferida": true
   },
   {
@@ -6378,7 +5685,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Av. Juan B. Justo y Terrada",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-03-21"
   },
   {
    "id": "osm-n5966276757",
@@ -6390,18 +5698,7 @@
    "nombre": "Avenida Pueyrredón",
    "fuente": "OSM",
    "detalle": "Verificador de carriles",
-   "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n5968611667",
-   "lat": -34.595768,
-   "lon": -58.388551,
-   "tipo": "otro",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida Santa Fe",
-   "fuente": "OSM",
-   "detalle": "Verificador de carriles",
+   "osmFecha": "2023-02-21",
    "vmaxFuente": "calle"
   },
   {
@@ -6411,8 +5708,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Santa Fe y Cerrito",
-   "fuente": "OSM"
+   "nombre": "Avenida Santa Fe",
+   "fuente": "OSM",
+   "osmFecha": "2022-08-26"
   },
   {
    "id": "osm-n237683235",
@@ -6422,7 +5720,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Santa Fe",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-07-05"
   },
   {
    "id": "osm-n5966428619",
@@ -6431,42 +5730,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Santa Fe y Pellegrini",
-   "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
-  },
-  {
-   "id": "osm-n2295185156",
-   "lat": -34.595014,
-   "lon": -58.428909,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 307,
-   "nombre": "Radar Av. Córdoba y Aráoz",
+   "nombre": "Avenida Santa Fe",
    "fuente": "OSM",
    "detalle": "Detección de violación de luz roja",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n81830139",
-   "lat": -34.594846,
-   "lon": -58.42918,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 307,
-   "nombre": "Avenida Córdoba",
-   "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-r11505353",
-   "lat": -34.594838,
-   "lon": -58.494117,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Francisco Beiró",
-   "fuente": "OSM"
+   "osmFecha": "2023-12-10"
   },
   {
    "id": "osm-n243072881",
@@ -6477,29 +5744,7 @@
    "dir": 181,
    "nombre": "Sánchez de Bustamante",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n2295185153",
-   "lat": -34.594454,
-   "lon": -58.429809,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 307,
-   "nombre": "Radar Av. Córdoba y Scalabrini Ortiz",
-   "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n81830138",
-   "lat": -34.594294,
-   "lon": -58.430077,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 306,
-   "nombre": "Avenida Córdoba",
-   "fuente": "OSM",
+   "osmFecha": "2019-12-12",
    "dirInferida": true
   },
   {
@@ -6509,8 +5754,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": 209,
-   "nombre": "Radar Sánchez de Bustamante y Paraguay",
+   "nombre": "Sánchez de Bustamante",
    "fuente": "OSM",
+   "osmFecha": "2022-04-09",
    "dirInferida": true
   },
   {
@@ -6520,9 +5766,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Leando N. Alem Y San Martin",
+   "nombre": "Avenida Leandro N. Alem",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2022-06-10"
   },
   {
    "id": "osm-n180474730",
@@ -6532,28 +5779,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Leandro N. Alem",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n81830136",
-   "lat": -34.592768,
-   "lon": -58.432373,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 308,
-   "nombre": "Radar Av. Córdoba y Amenia",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n4582237855",
-   "lat": -34.592584,
-   "lon": -58.375815,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Libertador",
-   "fuente": "OSM"
+   "osmFecha": "2022-08-02"
   },
   {
    "id": "osm-n13414762368",
@@ -6563,7 +5790,8 @@
    "vmax": 60,
    "dir": 120.0,
    "nombre": "Avenida Julio Argentino Roca",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-12-29"
   },
   {
    "id": "osm-n84554845",
@@ -6572,28 +5800,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. J. B. Justo y Loyola",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n6098915752",
-   "lat": -34.5914,
-   "lon": -58.825546,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 140.0,
-   "nombre": "Darwin Passaponti",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n6098915751",
-   "lat": -34.591179,
-   "lon": -58.825755,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 320.0,
-   "nombre": "Darwin Passaponti",
-   "fuente": "OSM"
+   "nombre": "Avenida Juan Bautista Justo",
+   "fuente": "OSM",
+   "osmFecha": "2025-06-14"
   },
   {
    "id": "osm-n81919621",
@@ -6602,29 +5811,21 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. De Los Constituyentes Y Barzana",
-   "fuente": "OSM"
+   "nombre": "Avenida de los Constituyentes",
+   "fuente": "OSM",
+   "osmFecha": "2022-07-07"
   },
   {
-   "id": "osm-n237654889",
-   "lat": -34.590527,
-   "lon": -58.381478,
+   "id": "osm-r8788864",
+   "lat": -34.590777,
+   "lon": -58.38155,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 19,
+   "dir": 360,
    "nombre": "Radar Av. Carlos Pellegrini 1515",
    "fuente": "OSM",
+   "osmFecha": "2019-08-19",
    "dirInferida": true
-  },
-  {
-   "id": "osm-n5968791481",
-   "lat": -34.589204,
-   "lon": -58.465085,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Radar Av. El Cano y Girardot",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n193816816",
@@ -6633,30 +5834,20 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Del Libertador y Libertad",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5966287892",
-   "lat": -34.588029,
-   "lon": -58.396547,
-   "tipo": "otro",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida General Las Heras",
+   "nombre": "Avenida Del Libertador",
    "fuente": "OSM",
-   "detalle": "Verificador de carriles",
-   "vmaxFuente": "calle"
+   "osmFecha": "2024-03-17"
   },
   {
    "id": "osm-n7012931618",
-   "lat": -34.587641,
-   "lon": -59.135348,
+   "lat": -34.587667,
+   "lon": -59.135377,
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
    "nombre": "1016 - Avenida Presidente Raúl Alfonsín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-11-27"
   },
   {
    "id": "osm-n191896591",
@@ -6665,19 +5856,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": 308,
-   "nombre": "Radar Av. Córdoba y Fitz Roy",
+   "nombre": "Avenida Córdoba",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n218032765",
-   "lat": -34.58706,
-   "lon": -58.50347,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 53,
-   "nombre": "Av. Mosconi y Argerich",
-   "fuente": "OSM",
+   "osmFecha": "2023-07-17",
    "dirInferida": true
   },
   {
@@ -6688,18 +5869,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida de los Incas",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n82664797",
-   "lat": -34.582749,
-   "lon": -58.448866,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 297,
-   "nombre": "Radar Av. Córdoba y Jorge Newbery",
    "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2022-03-31"
   },
   {
    "id": "osm-n1258956125",
@@ -6710,17 +5881,19 @@
    "dir": 110,
    "nombre": "Avenida Del Libertador",
    "fuente": "OSM",
+   "osmFecha": "2023-08-17",
    "dirInferida": true
   },
   {
-   "id": "osm-n673258826",
-   "lat": -34.582024,
-   "lon": -58.382875,
+   "id": "osm-n673258830",
+   "lat": -34.581863,
+   "lon": -58.382755,
    "tipo": "velocidad",
    "vmax": 80,
    "dir": null,
    "nombre": "Autopista Arturo Illia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-04-02"
   },
   {
    "id": "osm-n5971873818",
@@ -6732,6 +5905,7 @@
    "nombre": "Radar Av. Santa Fe",
    "fuente": "OSM",
    "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2024-05-20",
    "dirInferida": true
   },
   {
@@ -6742,7 +5916,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Papa Francisco",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-12-09"
   },
   {
    "id": "osm-n12427923882",
@@ -6752,7 +5927,8 @@
    "vmax": 60,
    "dir": 285.0,
    "nombre": "79 - 25 de Mayo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-07-25"
   },
   {
    "id": "osm-n13314825838",
@@ -6762,17 +5938,8 @@
    "vmax": 60,
    "dir": 100.0,
    "nombre": "79 - 25 de Mayo",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n191869558",
-   "lat": -34.577937,
-   "lon": -58.426643,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Intendente Bullrich",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-11-18"
   },
   {
    "id": "osm-n11406426259",
@@ -6782,7 +5949,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "69 - Acceso Presidente Néstor Kirchner",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-12-14"
   },
   {
    "id": "osm-n314692579",
@@ -6791,9 +5959,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. J. B. Justo y Av. Santa Fe",
+   "nombre": "Avenida Intendente Bullrich",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2024-11-08"
   },
   {
    "id": "osm-n2116814218",
@@ -6803,7 +5972,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 28 Gobernador Martín Rodríguez",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n4465489393",
@@ -6812,8 +5982,9 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Radar Av. Dorrego (Ascendente)",
-   "fuente": "OSM"
+   "nombre": "Avenida Dorrego",
+   "fuente": "OSM",
+   "osmFecha": "2024-10-24"
   },
   {
    "id": "osm-n82623789",
@@ -6824,6 +5995,7 @@
    "dir": 55,
    "nombre": "Av. Álvarez Thomas y Av. Olazábal",
    "fuente": "OSM",
+   "osmFecha": "2024-11-11",
    "dirInferida": true
   },
   {
@@ -6834,7 +6006,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Avenida Las Tipas",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-07-27"
   },
   {
    "id": "osm-n10695167313",
@@ -6844,7 +6017,8 @@
    "vmax": 100,
    "dir": 75.0,
    "nombre": "Camino Parque del Buen Ayre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-26"
   },
   {
    "id": "osm-n10695167312",
@@ -6854,7 +6028,8 @@
    "vmax": 100,
    "dir": 260.0,
    "nombre": "Camino Parque del Buen Ayre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-26"
   },
   {
    "id": "osm-n2065711705",
@@ -6864,18 +6039,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Papa Francisco",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n177190817",
-   "lat": -34.568301,
-   "lon": -58.416459,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 310,
-   "nombre": "Radar Av. F. Alcorta (Izquierda)",
    "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2025-10-31"
   },
   {
    "id": "osm-n5974791100",
@@ -6884,29 +6049,9 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Radar Av. Dorrego (Ascendente)",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5448971504",
-   "lat": -34.567862,
-   "lon": -58.406428,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": 309,
-   "nombre": "Radar",
+   "nombre": "Avenida Dorrego",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n5974791101",
-   "lat": -34.567312,
-   "lon": -58.421099,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Radar Av. Dorrego (Descendente)",
-   "fuente": "OSM"
+   "osmFecha": "2025-04-08"
   },
   {
    "id": "osm-n6577819425",
@@ -6917,7 +6062,8 @@
    "dir": null,
    "nombre": "18 - Avenida Humberto Primo",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2019-08-06"
   },
   {
    "id": "osm-n3733986016",
@@ -6927,28 +6073,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Monroe",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-r11371374",
-   "lat": -34.565429,
-   "lon": -58.453742,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Cabildo",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2461101392",
-   "lat": -34.565258,
-   "lon": -58.47106,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Hospital Pirovano",
    "fuente": "OSM",
-   "detalle": "Controlador de invasión de senda peatonal y violación de luz roja"
+   "osmFecha": "2023-03-01"
   },
   {
    "id": "osm-n196280458",
@@ -6957,8 +6083,9 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Del Libertador y Federico Lacroce",
-   "fuente": "OSM"
+   "nombre": "Avenida Del Libertador",
+   "fuente": "OSM",
+   "osmFecha": "2022-11-13"
   },
   {
    "id": "osm-n5448974873",
@@ -6969,17 +6096,8 @@
    "dir": 132,
    "nombre": "Av. Leopoldo Lugones (Descendente)",
    "fuente": "OSM",
+   "osmFecha": "2024-04-20",
    "dirInferida": true
-  },
-  {
-   "id": "osm-n2148093677",
-   "lat": -34.562427,
-   "lon": -58.440837,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Radar Av. Del Libertador (Ascendente)",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n7012744675",
@@ -6989,71 +6107,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "1000 - Avenida Carlos Pellegrini",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5490011611",
-   "lat": -34.558864,
-   "lon": -58.505022,
-   "tipo": "velocidad",
-   "vmax": 40,
-   "dir": 201,
-   "nombre": "Juan Bautista de La Salle",
    "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n5357474611",
-   "lat": -34.557737,
-   "lon": -58.486808,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 150.0,
-   "nombre": "Donado",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5448931496",
-   "lat": -34.556411,
-   "lon": -58.424061,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": 309,
-   "nombre": "Radar",
-   "fuente": "OSM",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n5357147781",
-   "lat": -34.553774,
-   "lon": -58.497665,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": 147.0,
-   "nombre": "Av. Dr. Ricardo Balbin",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5403590664",
-   "lat": -34.553628,
-   "lon": -58.434552,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": 308,
-   "nombre": "Av. Figueroa Alcorta y La Pampa",
-   "fuente": "OSM",
-   "detalle": "Controlador de invasión de senda peatonal y violación de luz roja",
-   "dirInferida": true
-  },
-  {
-   "id": "osm-n7034959589",
-   "lat": -34.553091,
-   "lon": -58.501563,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": 22.0,
-   "nombre": "Avenida General Paz",
-   "fuente": "OSM"
+   "osmFecha": "2025-04-04"
   },
   {
    "id": "osm-n2066519845",
@@ -7063,7 +6118,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Papa Francisco",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-12-09"
   },
   {
    "id": "osm-n2461660878",
@@ -7073,17 +6129,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Av. Goyeneche y Ramallo",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-r7928319",
-   "lat": -34.55127,
-   "lon": -58.490943,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Radar Av. Goyeneche y Ramallo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-04-07"
   },
   {
    "id": "osm-n241918009",
@@ -7093,7 +6140,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Radar Av. Goyeneche y Arias",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-01-11"
   },
   {
    "id": "osm-n2461660877",
@@ -7103,7 +6151,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Av. Goyeneche y Arias",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-01-11"
   },
   {
    "id": "osm-r11636314",
@@ -7113,7 +6162,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Cabildo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-09-17"
   },
   {
    "id": "osm-n4801236628",
@@ -7122,9 +6172,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Cámara de semáforo",
+   "nombre": "Avenida Bernardo Ader",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2024-11-01"
   },
   {
    "id": "osm-n113104880",
@@ -7134,7 +6185,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Bernardo Ader",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-03-11"
   },
   {
    "id": "osm-r11638929",
@@ -7145,6 +6197,7 @@
    "dir": 159,
    "nombre": "Avenida del Libertador",
    "fuente": "OSM",
+   "osmFecha": "2020-09-18",
    "dirInferida": true
   },
   {
@@ -7155,7 +6208,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 28 Gobernador Martín Rodríguez",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-09-04"
   },
   {
    "id": "osm-n13568147264",
@@ -7166,6 +6220,7 @@
    "dir": null,
    "nombre": "Ruta Nacional 7",
    "fuente": "OSM",
+   "osmFecha": "2026-02-15",
    "vmaxFuente": "calle"
   },
   {
@@ -7176,7 +6231,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n3624082293",
@@ -7186,7 +6242,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Maipú",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-03-24"
   },
   {
    "id": "osm-n7918860159",
@@ -7197,17 +6254,8 @@
    "dir": null,
    "nombre": "Avenida del Libertador",
    "fuente": "OSM",
+   "osmFecha": "2020-09-18",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n5715806274",
-   "lat": -34.522281,
-   "lon": -59.037523,
-   "tipo": "velocidad",
-   "vmax": 80,
-   "dir": null,
-   "nombre": "Ruta Provincial 6",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n4888342236",
@@ -7217,7 +6265,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Venancio Castro",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n4937453949",
@@ -7227,7 +6276,8 @@
    "vmax": 130,
    "dir": null,
    "nombre": "Acceso Norte",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-02-07"
   },
   {
    "id": "osm-n13568121964",
@@ -7238,17 +6288,8 @@
    "dir": null,
    "nombre": "Ruta Nacional 7 Libertador General San Martín",
    "fuente": "OSM",
+   "osmFecha": "2026-02-15",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "osm-n935007154",
-   "lat": -34.504667,
-   "lon": -58.651188,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida General Juan Gregorio Lemos",
-   "fuente": "OSM"
   },
   {
    "id": "osm-n10695067883",
@@ -7258,17 +6299,8 @@
    "vmax": 80,
    "dir": 10.0,
    "nombre": "Camino Parque del Buen Ayre",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4937453950",
-   "lat": -34.503238,
-   "lon": -58.540716,
-   "tipo": "velocidad",
-   "vmax": 130,
-   "dir": null,
-   "nombre": "Acceso Norte",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-26"
   },
   {
    "id": "osm-n327043155",
@@ -7278,7 +6310,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 34",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n9982022419",
@@ -7288,27 +6321,8 @@
    "vmax": 60,
    "dir": 240.0,
    "nombre": "Avenida de la Unidad Nacional",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n595709610",
-   "lat": -34.494035,
-   "lon": -58.484521,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5992917962",
-   "lat": -34.493573,
-   "lon": -58.484496,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-27"
   },
   {
    "id": "osm-n292896135",
@@ -7318,7 +6332,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida del Sesquicentenario",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-04-16"
   },
   {
    "id": "osm-n3456721647",
@@ -7328,7 +6343,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-11-05"
   },
   {
    "id": "osm-n3456721645",
@@ -7338,7 +6354,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-11-05"
   },
   {
    "id": "osm-n2071076900",
@@ -7349,6 +6366,7 @@
    "dir": 6,
    "nombre": "",
    "fuente": "OSM",
+   "osmFecha": "2024-11-04",
    "dirInferida": true
   },
   {
@@ -7360,6 +6378,7 @@
    "dir": 117,
    "nombre": "",
    "fuente": "OSM",
+   "osmFecha": "2025-01-28",
    "dirInferida": true
   },
   {
@@ -7369,9 +6388,10 @@
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
-   "nombre": "Radar Av. Libertador y Gral. Pacheco",
+   "nombre": "Avenida del Libertador",
    "fuente": "OSM",
-   "detalle": "Detección de violación de luz roja"
+   "detalle": "Detección de violación de luz roja",
+   "osmFecha": "2024-11-05"
   },
   {
    "id": "osm-n29603473",
@@ -7381,17 +6401,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n29651094",
-   "lat": -34.486266,
-   "lon": -58.526034,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Sir Alexander Fleming",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-11-05"
   },
   {
    "id": "osm-n9987112817",
@@ -7401,7 +6412,8 @@
    "vmax": 60,
    "dir": 55.0,
    "nombre": "Avenida de la Unidad Nacional",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-29"
   },
   {
    "id": "osm-n9986531717",
@@ -7411,37 +6423,8 @@
    "vmax": 60,
    "dir": 240.0,
    "nombre": "Avenida Bernabé Márquez",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5995275837",
-   "lat": -34.484384,
-   "lon": -58.515039,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida de la Unidad Nacional",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5521629576",
-   "lat": -34.484366,
-   "lon": -58.620941,
-   "tipo": "velocidad",
-   "vmax": 130,
-   "dir": null,
-   "nombre": "Acceso Norte",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5910620785",
-   "lat": -34.484219,
-   "lon": -58.596665,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Camino Boulogne - Bancalari",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-11-05"
   },
   {
    "id": "osm-n5998670105",
@@ -7451,7 +6434,8 @@
    "vmax": 60,
    "dir": 240.0,
    "nombre": "Avenida Uruguay",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-27"
   },
   {
    "id": "osm-n9975980318",
@@ -7461,7 +6445,8 @@
    "vmax": 60,
    "dir": 80.0,
    "nombre": "Avenida Ángel Torcuato de Alvear",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-24"
   },
   {
    "id": "osm-n7060547763",
@@ -7472,17 +6457,8 @@
    "dir": 70.0,
    "nombre": "Provincia de Buenos Aires",
    "fuente": "OSM",
-   "detalle": "Respetar semaforo de la escuela"
-  },
-  {
-   "id": "osm-n1855574451",
-   "lat": -34.479434,
-   "lon": -58.52253,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Bernabé Márquez",
-   "fuente": "OSM"
+   "detalle": "Respetar semaforo de la escuela",
+   "osmFecha": "2019-12-16"
   },
   {
    "id": "osm-n7258994700",
@@ -7492,7 +6468,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Provincia de Buenos Aires",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-03-02"
   },
   {
    "id": "osm-n7060547762",
@@ -7503,7 +6480,8 @@
    "dir": 211.0,
    "nombre": "Provincia de Buenos Aires",
    "fuente": "OSM",
-   "detalle": "Respetar semaforo de la escuela\n"
+   "detalle": "Respetar semaforo de la escuela\n",
+   "osmFecha": "2019-12-16"
   },
   {
    "id": "osm-n1855553618",
@@ -7513,7 +6491,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Bernabé Márquez",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-11-05"
   },
   {
    "id": "osm-n5992934751",
@@ -7523,17 +6502,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5998882352",
-   "lat": -34.472973,
-   "lon": -58.607398,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Camino Bancalari - Benavídez",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-11-05"
   },
   {
    "id": "osm-n7060557591",
@@ -7544,57 +6514,8 @@
    "dir": null,
    "nombre": "Almirante Brown",
    "fuente": "OSM",
-   "detalle": "Seguridad transito y escuela"
-  },
-  {
-   "id": "osm-n2461647840",
-   "lat": -34.465064,
-   "lon": -59.064441,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Provincial 6",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5998964914",
-   "lat": -34.464688,
-   "lon": -58.642559,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Viaducto Ciudad de El Talar",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2635609729",
-   "lat": -34.464535,
-   "lon": -58.612635,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Camino Bancalari - Benavídez",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2986113885",
-   "lat": -34.463061,
-   "lon": -58.51707,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2986113886",
-   "lat": -34.462833,
-   "lon": -58.517286,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida del Libertador",
-   "fuente": "OSM"
+   "detalle": "Seguridad transito y escuela",
+   "osmFecha": "2019-12-16"
   },
   {
    "id": "osm-n12845248791",
@@ -7604,7 +6525,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Presidente Arturo Umberto Illia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-05-18"
   },
   {
    "id": "osm-n5998291370",
@@ -7614,17 +6536,8 @@
    "vmax": 60,
    "dir": 60.0,
    "nombre": "Avenida Hipólito Yrigoyen",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n300752721",
-   "lat": -34.458331,
-   "lon": -58.531244,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Centenario",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-27"
   },
   {
    "id": "osm-n10695076080",
@@ -7634,7 +6547,8 @@
    "vmax": 60,
    "dir": 305.0,
    "nombre": "Avenida Centenario",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-26"
   },
   {
    "id": "osm-n641335649",
@@ -7644,7 +6558,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Nicolás Avellaneda",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-05"
   },
   {
    "id": "osm-n2174241177",
@@ -7654,17 +6569,8 @@
    "vmax": 60,
    "dir": 70.0,
    "nombre": "Avenida Juan Domingo Perón",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n300758990",
-   "lat": -34.453018,
-   "lon": -58.556964,
-   "tipo": "semaforo",
-   "vmax": null,
-   "dir": null,
-   "nombre": "Avenida Nicolás Avellaneda",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-24"
   },
   {
    "id": "osm-n5998904635",
@@ -7674,7 +6580,8 @@
    "vmax": 60,
    "dir": 240.0,
    "nombre": "Avenida Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-24"
   },
   {
    "id": "osm-n9942780780",
@@ -7684,17 +6591,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Juan Domingo Perón",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n632432150",
-   "lat": -34.447372,
-   "lon": -58.577574,
-   "tipo": "velocidad",
-   "vmax": 100,
-   "dir": null,
-   "nombre": "Acceso Norte Ramal Tigre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-09"
   },
   {
    "id": "osm-n9942765043",
@@ -7704,7 +6602,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Crisólogo Larralde",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-09"
   },
   {
    "id": "osm-n12254168040",
@@ -7714,7 +6613,8 @@
    "vmax": 100,
    "dir": 135.0,
    "nombre": "Acceso Norte Ramal Tigre",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-16"
   },
   {
    "id": "osm-n12254168041",
@@ -7724,17 +6624,8 @@
    "vmax": 80,
    "dir": 335.0,
    "nombre": "Acceso Norte Ramal Tigre",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4937453951",
-   "lat": -34.438257,
-   "lon": -58.798347,
-   "tipo": "velocidad",
-   "vmax": 130,
-   "dir": null,
-   "nombre": "Radar de Velocidad",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2024-10-16"
   },
   {
    "id": "osm-n10695192211",
@@ -7744,7 +6635,8 @@
    "vmax": 130,
    "dir": 285.0,
    "nombre": "Acceso Norte Ramal Pilar",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-26"
   },
   {
    "id": "osm-n9170751527",
@@ -7754,7 +6646,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Avenida Patricias Argentinas",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n9942676687",
@@ -7764,7 +6657,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Santiago de Liniers",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-09"
   },
   {
    "id": "osm-n1708698195",
@@ -7774,7 +6668,8 @@
    "vmax": 60,
    "dir": 140.0,
    "nombre": "Camino de los Remeros",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-27"
   },
   {
    "id": "osm-n12195370295",
@@ -7785,6 +6680,7 @@
    "dir": 205.0,
    "nombre": "Camino de los Remeros",
    "fuente": "OSM",
+   "osmFecha": "2024-09-23",
    "vmaxFuente": "calle"
   },
   {
@@ -7795,7 +6691,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 51",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n2682734568",
@@ -7805,7 +6702,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida General Juan Domingo Perón",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-02-16"
   },
   {
    "id": "osm-n5790257135",
@@ -7816,6 +6714,7 @@
    "dir": null,
    "nombre": "Avenida General Juan Domingo Perón",
    "fuente": "OSM",
+   "osmFecha": "2021-06-21",
    "vmaxFuente": "calle"
   },
   {
@@ -7826,18 +6725,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Constitución",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n3817579725",
-   "lat": -34.405431,
-   "lon": -58.668492,
-   "tipo": "velocidad",
-   "vmax": 20,
-   "dir": 24,
-   "nombre": "",
    "fuente": "OSM",
-   "dirInferida": true
+   "osmFecha": "2023-03-12"
   },
   {
    "id": "osm-n2601878544",
@@ -7847,27 +6736,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Doctor René Favaloro",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5515285099",
-   "lat": -34.40042,
-   "lon": -58.67712,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida Agustín M. García",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5715911932",
-   "lat": -34.398534,
-   "lon": -58.673746,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida Agustín M. García",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-06-27"
   },
   {
    "id": "osm-n9987112618",
@@ -7877,17 +6747,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Avenida Agustín M. García",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n5521629574",
-   "lat": -34.385996,
-   "lon": -58.747037,
-   "tipo": "velocidad",
-   "vmax": 130,
-   "dir": null,
-   "nombre": "Autopista Pedro Eugenio Aramburu",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-08-29"
   },
   {
    "id": "osm-n5523515740",
@@ -7897,7 +6758,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 47",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n2203161961",
@@ -7907,7 +6769,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Ruta Provincial 47",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-14"
   },
   {
    "id": "osm-n988126328",
@@ -7917,17 +6780,8 @@
    "vmax": 40,
    "dir": null,
    "nombre": "Ruta Provincial 39",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4938450024",
-   "lat": -34.377019,
-   "lon": -58.754061,
-   "tipo": "velocidad",
-   "vmax": 130,
-   "dir": null,
-   "nombre": "Radar de Velocidad",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n2635996117",
@@ -7937,7 +6791,8 @@
    "vmax": 20,
    "dir": null,
    "nombre": "Speed Camera",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-04-06"
   },
   {
    "id": "osm-n6991231216",
@@ -7947,7 +6802,8 @@
    "vmax": 20,
    "dir": 140.0,
    "nombre": "Camera Eucaliptus 2",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-04-06"
   },
   {
    "id": "osm-n3228574917",
@@ -7957,7 +6813,8 @@
    "vmax": 20,
    "dir": 140.0,
    "nombre": "Camera Eucaliptus 3",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2020-04-06"
   },
   {
    "id": "osm-n6171438000",
@@ -7967,7 +6824,8 @@
    "vmax": 60,
    "dir": 70.0,
    "nombre": "Ruta 4 - Avenida Libertador San Martín",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-12-01"
   },
   {
    "id": "osm-n5517877587",
@@ -7977,7 +6835,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Provincial 32 Ministro Rodolfo Moreno",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-13"
   },
   {
    "id": "osm-n6276318730",
@@ -7987,7 +6846,8 @@
    "vmax": 40,
    "dir": 40.0,
    "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-12-18"
   },
   {
    "id": "osm-n6276318729",
@@ -7997,47 +6857,8 @@
    "vmax": 40,
    "dir": 220.0,
    "nombre": "Ruta Provincial 41 Gobernador Manuel Dorrego",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4937453948",
-   "lat": -34.247167,
-   "lon": -58.908025,
-   "tipo": "velocidad",
-   "vmax": 130,
-   "dir": null,
-   "nombre": "Autopista Pedro Eugenio Aramburu",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n3487284296",
-   "lat": -34.188106,
-   "lon": -60.713378,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Provincial 31 Gobernador José Luis Cantilo",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n2092549950",
-   "lat": -34.18064,
-   "lon": -58.942636,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Avenida 6 de Julio",
-   "fuente": "OSM"
-  },
-  {
-   "id": "osm-n4979488180",
-   "lat": -34.130449,
-   "lon": -59.012622,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Provincial 6",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-05-15"
   },
   {
    "id": "osm-n10646730227",
@@ -8048,6 +6869,7 @@
    "dir": null,
    "nombre": "Ruta Nacional 12",
    "fuente": "OSM",
+   "osmFecha": "2023-02-10",
    "vmaxFuente": "calle"
   },
   {
@@ -8058,7 +6880,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Antártida Argentina",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-09-29"
   },
   {
    "id": "osm-n6174670632",
@@ -8068,7 +6891,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Antártida Argentina",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-09-29"
   },
   {
    "id": "osm-n9174531856",
@@ -8078,7 +6902,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Avenida Antártida Argentina",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n2194354557",
@@ -8088,7 +6913,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Antártida Argentina",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n10695262737",
@@ -8098,7 +6924,8 @@
    "vmax": 120,
    "dir": 215.0,
    "nombre": "Complejo Ferrovial Zárate - Brazo Largo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2025-12-13"
   },
   {
    "id": "osm-n614003076",
@@ -8108,7 +6935,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Malvinas Argentinas",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-07-29"
   },
   {
    "id": "osm-n614003151",
@@ -8118,7 +6946,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Juan B. Justo",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n613985949",
@@ -8128,7 +6957,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Dr Aquileo Buccar",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n613293080",
@@ -8138,7 +6968,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Boulevard Rocha",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n374732592",
@@ -8148,7 +6979,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Presidente Doctor Arturo Umberto Illia",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-01-08"
   },
   {
    "id": "osm-n614445151",
@@ -8159,6 +6991,7 @@
    "dir": 204,
    "nombre": "Estrada",
    "fuente": "OSM",
+   "osmFecha": "2024-06-10",
    "dirInferida": true
   },
   {
@@ -8170,6 +7003,7 @@
    "dir": 21,
    "nombre": "Merced",
    "fuente": "OSM",
+   "osmFecha": "2021-10-15",
    "dirInferida": true
   },
   {
@@ -8180,7 +7014,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Boulevard Marcelino Ugarte",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n614445213",
@@ -8190,7 +7025,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Doctor Rodríguez Jáuregui",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n614445569",
@@ -8200,7 +7036,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Boulevard Paraguay",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2021-10-15"
   },
   {
    "id": "osm-n614445583",
@@ -8210,7 +7047,8 @@
    "vmax": null,
    "dir": null,
    "nombre": "Boulevard Paraguay",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2023-02-24"
   },
   {
    "id": "osm-n1166101936",
@@ -8220,7 +7058,8 @@
    "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 188",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2022-05-13"
   },
   {
    "id": "osm-n6174741345",
@@ -8230,7 +7069,8 @@
    "vmax": 60,
    "dir": 40.0,
    "nombre": "Ruta Nacional 188",
-   "fuente": "OSM"
+   "fuente": "OSM",
+   "osmFecha": "2019-01-04"
   },
   {
    "id": "pba--40.78440,-62.95828-velocidad",
@@ -10056,18 +8896,6 @@
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)",
    "vmaxFuente": "calle"
-  },
-  {
-   "id": "pba--34.84025,-57.89586-velocidad",
-   "lat": -34.840253,
-   "lon": -57.895861,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Av. M. Champagnat 3604",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
   },
   {
    "id": "pba--34.83537,-58.39878-velocidad",
@@ -12786,6 +11614,929 @@
    "fuente": "PBA",
    "sentido": "ambos",
    "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "prensa-mdp-av-edison-y-av-mario-bravo",
+   "lat": -38.060566,
+   "lon": -57.571246,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Edison y Av. Mario Bravo (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-fortunato-de-la-plaza-y-av-edison",
+   "lat": -38.052454,
+   "lon": -57.561408,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Fortunato de la Plaza y Av. Edison (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-fortunato-de-la-plaza-y-juramento",
+   "lat": -38.047257,
+   "lon": -57.568306,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Fortunato de la Plaza y Juramento (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-edison-y-av-vertiz",
+   "lat": -38.046959,
+   "lon": -57.554802,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Edison y Av. Vértiz (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-de-los-trabajadores-y-12-de-octubre",
+   "lat": -38.044724,
+   "lon": -57.54399,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. de los Trabajadores y 12 de Octubre (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-fortunato-de-la-plaza-y-gianelli",
+   "lat": -38.043399,
+   "lon": -57.573438,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Fortunato de la Plaza y Gianelli (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-edison-y-magallanes",
+   "lat": -38.042241,
+   "lon": -57.549063,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Edison y Magallanes (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-alem-y-o-higgins",
+   "lat": -38.035542,
+   "lon": -57.542285,
+   "tipo": "velocidad",
+   "vmax": 40,
+   "nombre": "Alem y O'Higgins (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control de velocidad. Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-juan-b-justo-y-paunero",
+   "lat": -38.034189,
+   "lon": -57.551028,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "nombre": "Av. Juan B. Justo y Paunero (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control de velocidad. Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null,
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "prensa-mdp-av-jacinto-peralta-ramos-y-tripulantes-del-fournier",
+   "lat": -38.029866,
+   "lon": -57.584343,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Jacinto Peralta Ramos y Tripulantes del Fournier (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-juan-b-justo-y-talcahuano",
+   "lat": -38.023006,
+   "lon": -57.565942,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Juan B. Justo y Talcahuano (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-peralta-ramos-y-castelli",
+   "lat": -38.022631,
+   "lon": -57.527847,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Peralta Ramos y Castelli (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-juan-b-justo-y-av-independencia",
+   "lat": -38.018935,
+   "lon": -57.571235,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Juan B. Justo y Av. Independencia (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-juan-b-justo-y-20-de-septiembre",
+   "lat": -38.016246,
+   "lon": -57.574803,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "nombre": "Av. Juan B. Justo y 20 de Septiembre (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control de velocidad. Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null,
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "prensa-mdp-av-polonia-y-av-vertiz",
+   "lat": -38.015129,
+   "lon": -57.597042,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Polonia y Av. Vértiz (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-juan-b-justo-y-diagonal-canosa",
+   "lat": -38.014789,
+   "lon": -57.576735,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Juan B. Justo y Diagonal Canosa (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-independencia-y-formosa",
+   "lat": -38.013923,
+   "lon": -57.567164,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Independencia y Formosa (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-independencia-y-rodriguez-pena",
+   "lat": -38.009961,
+   "lon": -57.563961,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Independencia y Rodríguez Peña (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-colon-y-lamadrid",
+   "lat": -38.007534,
+   "lon": -57.54215,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Colón y Lamadrid (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-colon-y-corrientes",
+   "lat": -38.005,
+   "lon": -57.547178,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Colón y Corrientes (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-peralta-ramos-y-rivadavia",
+   "lat": -38.003096,
+   "lon": -57.542163,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Peralta Ramos y Rivadavia (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-buenos-aires-y-rivadavia",
+   "lat": -38.002849,
+   "lon": -57.542507,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Buenos Aires y Rivadavia (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-presidente-peron-y-12-de-octubre",
+   "lat": -38.002094,
+   "lon": -57.60055,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Presidente Perón y 12 de Octubre (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-colon-e-hipolito-yrigoyen",
+   "lat": -38.001981,
+   "lon": -57.553152,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Colón e Hipólito Yrigoyen (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-colon-y-av-independencia",
+   "lat": -38.000408,
+   "lon": -57.556234,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Colón y Av. Independencia (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-independencia-y-san-martin",
+   "lat": -37.996405,
+   "lon": -57.552988,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Independencia y San Martín (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-champagnat-y-saavedra",
+   "lat": -37.996283,
+   "lon": -57.595373,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "nombre": "Av. Champagnat y Saavedra (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control de velocidad. Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-colon-y-av-jara",
+   "lat": -37.991254,
+   "lon": -57.574346,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Colón y Av. Jara (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-alio-y-av-juan-b-justo",
+   "lat": -37.991059,
+   "lon": -57.608165,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Alió y Av. Juan B. Justo (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-luro-y-san-juan",
+   "lat": -37.990429,
+   "lon": -57.562368,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Luro y San Juan (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-champagnat-y-gascon",
+   "lat": -37.987596,
+   "lon": -57.588404,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Champagnat y Gascón (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-luro-y-av-jara",
+   "lat": -37.986358,
+   "lon": -57.570434,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Luro y Av. Jara (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-champagnat-y-rivadavia",
+   "lat": -37.981887,
+   "lon": -57.583877,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Champagnat y Rivadavia (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-felix-u-camet-y-falkner",
+   "lat": -37.980355,
+   "lon": -57.544256,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "nombre": "Av. Félix U. Camet y Falkner (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control de velocidad, en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null,
+   "vmaxFuente": "estimado"
+  },
+  {
+   "id": "prensa-mdp-av-luro-y-tres-arroyos",
+   "lat": -37.978263,
+   "lon": -57.586429,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Luro y Tres Arroyos (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-felix-u-camet-y-florisbelo-acosta",
+   "lat": -37.975404,
+   "lon": -57.543095,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Félix U. Camet y Florisbelo Acosta (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-alio-y-av-luro",
+   "lat": -37.974191,
+   "lon": -57.594477,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Alió y Av. Luro (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-champagnat-y-ayacucho",
+   "lat": -37.972885,
+   "lon": -57.576735,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Champagnat y Ayacucho (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-luro-y-leguizamon",
+   "lat": -37.966063,
+   "lon": -57.610507,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Luro y Leguizamón (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal). Listado de la Municipalidad publicado por 0223 (26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-av-felix-u-camet-y-jose-m-estrada",
+   "lat": -37.958975,
+   "lon": -57.540088,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Av. Félix U. Camet y José M. Estrada (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-mdp-ruta-11-y-scaglia",
+   "lat": -37.93233,
+   "lon": -57.531548,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Ruta 11 y Scaglia (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control semafórico (cruce en rojo y senda peatonal), en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-ruta-provincial-11-km-506-mar-del-plata",
+   "lat": -37.915346,
+   "lon": -57.526474,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "nombre": "Ruta Provincial 11, km 506 (Mar del Plata)",
+   "detalle": "Fotomulta municipal de control de velocidad, en instalación: todavía no multa (Municipalidad, vía 0223, 26/9/2026).",
+   "fecha": "2026-09-26",
+   "url": "https://www.0223.com.ar/nota/2026-9-26-8-1-0-fotomultas-donde-estan-los-radares-semaforicos-y-de-control-de-velocidad-en-mar-del-plata",
+   "estado": "en instalación",
+   "ubicacion": "mojón del km 506 en OSM",
+   "fuente": "prensa",
+   "dir": null,
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "prensa-ruta-provincial-11-km-391-pinamar",
+   "lat": -37.088805,
+   "lon": -56.875524,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "nombre": "Ruta Provincial 11, km 391 (Pinamar)",
+   "detalle": "Publicado por Parabrisas (9/1/2020). No figura en la lista oficial actual de Provincia.",
+   "fecha": "2020-01-09",
+   "url": "https://parabrisas.perfil.com/noticias/manejo-preventivo/conoce-las-rutas-y-los-radares-por-kilometro-para-las-vacaciones-2020-fotomultas-multas-precio-velocidad-control-unidad-fija-turismo-verano.phtml",
+   "estado": "activo",
+   "ubicacion": "medido sobre la ruta entre los radares oficiales de los km 341,1 y 393,3",
+   "fuente": "prensa",
+   "dir": null,
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "prensa-ruta-provincial-11-km-346-mar-de-ajo",
+   "lat": -36.72665,
+   "lon": -56.703096,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "nombre": "Ruta Provincial 11, km 346 (Mar de Ajó)",
+   "detalle": "Publicado por Parabrisas (9/1/2020). No figura en la lista oficial actual de Provincia.",
+   "fecha": "2020-01-09",
+   "url": "https://parabrisas.perfil.com/noticias/manejo-preventivo/conoce-las-rutas-y-los-radares-por-kilometro-para-las-vacaciones-2020-fotomultas-multas-precio-velocidad-control-unidad-fija-turismo-verano.phtml",
+   "estado": "activo",
+   "ubicacion": "medido sobre la ruta entre los radares oficiales de los km 341,1 y 393,3",
+   "fuente": "prensa",
+   "dir": null,
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "prensa-ruta-provincial-11-km-329-mar-del-tuyu",
+   "lat": -36.574439,
+   "lon": -56.715152,
+   "tipo": "velocidad",
+   "vmax": 120,
+   "nombre": "Ruta Provincial 11, km 329 (Mar del Tuyú)",
+   "detalle": "Publicado por Parabrisas (9/1/2020). No figura en la lista oficial actual de Provincia.",
+   "fecha": "2020-01-09",
+   "url": "https://parabrisas.perfil.com/noticias/manejo-preventivo/conoce-las-rutas-y-los-radares-por-kilometro-para-las-vacaciones-2020-fotomultas-multas-precio-velocidad-control-unidad-fija-turismo-verano.phtml",
+   "estado": "activo",
+   "ubicacion": "medido sobre la ruta entre los mojones de los km 328 y 330 (OSM)",
+   "fuente": "prensa",
+   "dir": null,
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "prensa-la-plata-60-y-137",
+   "lat": -34.949398,
+   "lon": -57.972848,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "60 y 137 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-31-y-65",
+   "lat": -34.947797,
+   "lon": -57.960811,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "31 y 65 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-ruta-provincial-2-km-45-la-plata",
+   "lat": -34.936952,
+   "lon": -58.169742,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "nombre": "Ruta Provincial 2, km 45 (La Plata)",
+   "detalle": "Publicado por Parabrisas (9/1/2020). No figura en la lista oficial actual de Provincia.",
+   "fecha": "2020-01-09",
+   "url": "https://parabrisas.perfil.com/noticias/manejo-preventivo/conoce-las-rutas-y-los-radares-por-kilometro-para-las-vacaciones-2020-fotomultas-multas-precio-velocidad-control-unidad-fija-turismo-verano.phtml",
+   "estado": "activo",
+   "ubicacion": "mojón del km 45 en OSM (punto medio entre las dos manos)",
+   "fuente": "prensa",
+   "dir": null,
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "prensa-la-plata-31-y-38",
+   "lat": -34.928314,
+   "lon": -57.986973,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "31 y 38 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-diagonal-73-y-26",
+   "lat": -34.922589,
+   "lon": -57.982833,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Diagonal 73 y 26 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-plaza-azcuenaga-y-19",
+   "lat": -34.921955,
+   "lon": -57.967599,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Plaza Azcuénaga y 19 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "centro de la plaza sobre la calle (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-44-y-15",
+   "lat": -34.918196,
+   "lon": -57.963512,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "44 y 15 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-32-y-25",
+   "lat": -34.917235,
+   "lon": -57.987644,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "32 y 25 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-7-y-54",
+   "lat": -34.916763,
+   "lon": -57.947146,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "7 y 54 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-12-y-45",
+   "lat": -34.916227,
+   "lon": -57.959227,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "12 y 45 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-diagonal-79-y-57",
+   "lat": -34.91549,
+   "lon": -57.941411,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Diagonal 79 y 57 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-diagonal-79-y-59",
+   "lat": -34.915382,
+   "lon": -57.937644,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Diagonal 79 y 59 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-10-y-44",
+   "lat": -34.913507,
+   "lon": -57.958346,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "10 y 44 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-diagonal-74-y-45",
+   "lat": -34.912536,
+   "lon": -57.955163,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Diagonal 74 y 45 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-plaza-italia-y-diagonal-77",
+   "lat": -34.910806,
+   "lon": -57.955286,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Plaza Italia y Diagonal 77 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "centro de la plaza sobre la calle (OSM)",
+   "fuente": "prensa",
+   "dir": null
+  },
+  {
+   "id": "prensa-la-plata-camino-centenario-y-511",
+   "lat": -34.88853,
+   "lon": -57.998877,
+   "tipo": "semaforo",
+   "vmax": null,
+   "nombre": "Camino Centenario y 511 (La Plata)",
+   "detalle": "Fotomulta municipal (cruce en rojo y senda peatonal; algunas miden velocidad). Publicado por El Día (19/3/2021) e Infocielo (1/12/2021).",
+   "fecha": "2021-12-01",
+   "url": "https://infocielo.com/la-plata/comienzan-funcionar-las-fotomultas-la-plata-n726399",
+   "estado": "activo",
+   "ubicacion": "cruce de calles (OSM)",
+   "fuente": "prensa",
+   "dir": null
   }
  ],
  "peajes": [
