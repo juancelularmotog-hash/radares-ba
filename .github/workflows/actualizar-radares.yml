@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Descargar fuentes y armar radares.json
         run: python3 scripts/actualizar_radares.py
@@ -38,4 +38,9 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add data/
           git commit -m "Actualizar radares ($(date -u +%Y-%m-%d))"
-          git push
+          # Si mientras tanto se subieron otros cambios, se suman encima antes de guardar.
+          for intento in 1 2 3; do
+            if git pull --rebase -q origin main && git push; then exit 0; fi
+            sleep 10
+          done
+          exit 1
