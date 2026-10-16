@@ -3,8 +3,11 @@
 
 Fuentes:
   - CABA (oficial): dataset "Cámaras fijas de control vehicular" de Buenos Aires Data.
+  - Provincia (oficial): listado de radares fijos de Infracciones BA (equiposDeConstatacion).
   - OpenStreetMap: radares y peajes cargados por la comunidad en CABA y Provincia (consultas Overpass).
   - data/manual.json: correcciones y agregados revisados a mano (opcional).
+
+Las fuentes oficiales tienen prioridad: si OpenStreetMap marca el mismo radar, queda el oficial.
 
 Además:
   - Completa la velocidad máxima de los radares que no la traen, con el límite cargado en la
@@ -22,6 +25,7 @@ import math
 import re
 import sys
 import time
+import unicodedata
 import urllib.parse
 import urllib.request
 from collections import Counter
@@ -35,6 +39,7 @@ MANUAL = DATOS / "manual.json"
 
 URL_CABA = ("https://cdn.buenosaires.gob.ar/datosabiertos/datasets/transporte-y-obras-publicas/"
             "camaras-fijas-control-vehicular/camaras-fijas-de-control-vehicular.csv")
+URL_PBA = "https://infraccionesba.gba.gob.ar/equiposDeConstatacion"
 OVERPASS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]
 AREA = '(area["ISO3166-2"="AR-B"];area["ISO3166-2"="AR-C"];)->.a;'
 CONSULTA_RADARES = (
@@ -51,12 +56,17 @@ CONSULTA_PEAJES = (
 )
 CLASES_AUTO = r"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|road)(_link)?$"
 PRIORIDAD = {"CABA": 3, "ANSV": 3, "PBA": 3, "manual": 2, "OSM": 1}
+# Un radar de OpenStreetMap a menos de esta distancia de uno oficial de Provincia, y del mismo tipo,
+# es el mismo aparato marcado un poco corrido (revisado contra los datos: siempre la misma calle).
+RADIO_OFICIAL_PBA = 100
 UA = "radares-ba/1.1 (actualizacion semanal; proyecto personal)"
+UA_WEB = "Mozilla/5.0 (compatible; radares-ba/1.2; actualizacion semanal)"
+ESTADISTICAS = {}  # datos extra de cada fuente para el resumen de data/radares.json
 
 
 # ---------------- Utilidades ----------------
-def bajar(url, datos=None, tiempo=200):
-    req = urllib.request.Request(url, data=datos, headers={"User-Agent": UA})
+def bajar(url, datos=None, tiempo=200, ua=UA):
+    req = urllib.request.Request(url, data=datos, headers={"User-Agent": ua})
     with urllib.request.urlopen(req, timeout=tiempo) as r:
         return r.read()
 
@@ -166,6 +176,291 @@ def fuente_caba():
         })
     if not out:
         raise ValueError("sin filas válidas")
+    return out
+
+
+# ---------------- Provincia de Buenos Aires ----------------
+# La página de Infracciones BA trae dentro del HTML el listado completo de radares fijos, uno por
+# aparato: receivedArr.push({nroSerie, calleRuta, velocidadPermitida, sentido, latitud, longitud,
+# // nroKilometro, // tipo}). Aunque el mapa de Google de la página no cargue, el listado está.
+CAJA_PBA = (-41.3, -33.1, -63.5, -56.5)  # sur, norte, oeste, este (CABA queda adentro)
+PALABRAS_VACIAS = {
+    "AV", "AVENIDA", "AVDA", "CALLE", "DE", "DEL", "LA", "LAS", "LOS", "EL", "Y", "E", "DR", "DOCTOR",
+    "PTE", "PRES", "PRESIDENTE", "GRAL", "GENERAL", "CRUCE", "RUTA", "PROVINCIAL", "NACIONAL", "KM",
+    "BV", "BOULEVARD", "BULEVAR", "CAMINO", "AUTOPISTA", "AU", "SAN", "SANTA", "NRO", "RP", "RN",
+}
+MINUSCULAS = {"de", "del", "la", "las", "los", "el", "y", "e", "a", "al", "en"}
+VARIANTES = {"IRIGOYEN": "YRIGOYEN", "LASALLE": "SALLE"}  # misma calle escrita de otra forma
+# En el listado algunas letras con tilde llegan cambiadas por "¿" o "?".
+TILDES = {
+    "jos?": "josé", "rep?blica": "república", "mart?n": "martín", "per?n": "perón", "ram?n": "ramón",
+    "garc?a": "garcía", "g?mez": "gómez", "pe?a": "peña", "mu?iz": "muñiz", "espa?a": "españa",
+    "ca?uelas": "cañuelas", "mor?n": "morón", "bel?n": "belén", "jes?s": "jesús", "ra?l": "raúl",
+    "alfons?n": "alfonsín", "mart?nez": "martínez", "l?pez": "lópez", "rodr?guez": "rodríguez",
+    "fern?ndez": "fernández", "gonz?lez": "gonzález", "s?enz": "sáenz", "pe?a?": "peña",
+}
+PARECE_RUTA = re.compile(r"\b(ruta|autopista|autov[ií]a|acceso|corredor|camino)\b", re.I)
+
+
+def sin_tildes(s):
+    return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
+
+
+def ruta_de(texto):
+    """'RP 73', 'Ruta Provincial N 2', 'RN7'... -> 'RP73', 'RP2', 'RN7' (o None)."""
+    s = sin_tildes(texto).upper()
+    m = re.search(r"\b(?:RUTA\s+(PROVINCIAL|NACIONAL)|R\.?\s?([PN]))(?![A-Z])\.?\s*(?:N[O°º]?\.?\s*)?(\d{1,3})(?!\d)", s)
+    if not m:
+        return None
+    return ("RP" if (m.group(1) == "PROVINCIAL" or m.group(2) == "P") else "RN") + m.group(3)
+
+
+def es_mayusculas(s):
+    letras = [c for c in s if c.isalpha()]
+    return len(letras) >= 3 and sum(c.isupper() for c in letras) / len(letras) > 0.8
+
+
+def titulo(s):
+    """'AV. JUAN B. JUSTO Y CHACABUCO' -> 'Av. Juan B. Justo y Chacabuco'."""
+    palabras = s.lower().split()
+    out = []
+    for i, p in enumerate(palabras):
+        siguiente = palabras[i + 1] if i + 1 < len(palabras) else ""
+        # "a" va en minúscula solo como preposición ("Camino a las Flores"), no como inicial ("Diego A. Maradona").
+        minuscula = p in MINUSCULAS and (p != "a" or siguiente in ("la", "las", "los", "el"))
+        if i == 0 or not minuscula:
+            p = re.sub(r"(^|[.\-/(])(\w)", lambda m: m.group(1) + m.group(2).upper(), p)
+        out.append(p)
+    return " ".join(out)
+
+
+def corregir_tildes(texto):
+    texto = re.sub(r"([cs])i[¿?]n\b", lambda m: m.group(1) + "ión", texto, flags=re.I)
+
+    def palabra(m):
+        w = m.group(0)
+        bien = TILDES.get(w.lower().replace("¿", "?"))
+        if not bien:
+            return w.replace("¿", "").replace("?", "")
+        return bien[0].upper() + bien[1:] if w[:1].isupper() else bien
+    return re.sub(r"[^\W\d_]*[¿?][^\W\d_]*", palabra, texto)
+
+
+def nombre_calle(calle):
+    s = " ".join(calle.replace(" ", " ").split()).strip(" .,-")
+    if es_mayusculas(s):
+        s = titulo(s)
+    s = corregir_tildes(s)
+    s = re.sub(r"\bR\.?\s?P(?![^\W\d_])\.?\s*(?:N[º°o]?\.?\s*(?=\d))?", "Ruta Provincial ", s, flags=re.I)
+    s = re.sub(r"\bR\.?\s?N(?![^\W\d_])\.?\s*(?:N[º°o]?\.?\s*(?=\d))?", "Ruta Nacional ", s, flags=re.I)
+    s = re.sub(r"\b(Ruta (?:Provincial|Nacional))\s+N[º°o]?\.?\s*(?=\d)", r"\1 ", s, flags=re.I)
+    s = re.sub(r"\b(?:Avda|Av)\b\.?\s*", "Av. ", s, flags=re.I)
+    return " ".join(s.split()).strip(" .,-")
+
+
+def numero_lugar(txt):
+    """Kilómetro o altura: '21', '21.1', '21,1', 'km o,3' -> número (o None si es un texto)."""
+    t = " ".join(str(txt).split()).lower().replace(",", ".")
+    m = re.fullmatch(r"(?:km\.?\s*)?([\do]+(?:\.\d+)?)", t)
+    if not m or not re.search(r"\d", m.group(1)):
+        return None
+    try:
+        return float(m.group(1).replace("o", "0"))
+    except ValueError:
+        return None
+
+
+def formato_km(n):
+    return f"{n:.2f}".rstrip("0").rstrip(".").replace(".", ",")
+
+
+def es_kilometro(calle, n):
+    return n is not None and n < 1500 and (ruta_de(calle) is not None or bool(PARECE_RUTA.search(calle))
+                                           or n != int(n))
+
+
+def lugar_texto(calle, km_txt):
+    """Lo que va después del nombre de la calle: ', km 21,1', ' 2199' o ' y Marcos Ezcurra'."""
+    t = " ".join(str(km_txt).split())
+    if not t:
+        return ""
+    n = numero_lugar(t)
+    if n is not None:
+        if es_kilometro(calle, n):
+            return ", km " + formato_km(n)
+        return " " + (str(int(n)) if n == int(n) else formato_km(n))
+    m = re.match(r"cruce\s+(.+)", t, re.I)
+    if m:
+        cruce = corregir_tildes(titulo(m.group(1)) if es_mayusculas(m.group(1)) else m.group(1))
+        return " y " + cruce
+    if re.fullmatch(r"calle\s+\S+", t, re.I):
+        return " y " + t.lower()
+    return ""  # textos como "Carril 1 y Carril 2" no suman
+
+
+def nombre_equipo(e):
+    calle = nombre_calle(e["calle"])
+    return calle + lugar_texto(e["calle"], e["km"]) if calle else ""
+
+
+def claves_calle(calle):
+    s = sin_tildes(calle).upper().replace("¿", "").replace("?", "")
+    claves = {VARIANTES.get(w, w) for w in re.findall(r"[A-Z0-9]+", s)
+              if w not in PALABRAS_VACIAS and (len(w) > 1 or w.isdigit())}
+    r = ruta_de(calle)
+    if r:
+        claves.add(r)
+    return claves
+
+
+def html_pba():
+    ultimo = None
+    for intento in range(3):
+        try:
+            crudo = bajar(URL_PBA, tiempo=90, ua=UA_WEB)
+            break
+        except Exception as e:
+            ultimo = e
+            time.sleep(20 * (intento + 1))
+    else:
+        raise ultimo
+    try:
+        return crudo.decode("utf-8")
+    except UnicodeDecodeError:
+        return crudo.decode("cp1252", errors="replace")
+
+
+def leer_equipos_pba(html):
+    equipos = []
+    for bloque in re.findall(r"receivedArr\.push\(\{(.*?)\}\)", html, re.S):
+        # Algunos campos vienen comentados (// nroKilometro, // tipo), pero se leen igual.
+        c = {k: v.strip() for k, v in re.findall(r'(\w+)\s*:\s*"([^"]*)"', bloque)}
+        tipo = sin_tildes(c.get("tipo", "")).lower()
+        if "movil" in tipo:
+            continue  # solo radares fijos
+        serie = c.get("nroSerie", "")
+        calle = c.get("calleRuta", "")
+        n = numero_lugar(c.get("nroKilometro", ""))
+        equipos.append({
+            "serie": serie, "calle": calle, "km": c.get("nroKilometro", ""),
+            "lat_txt": c.get("latitud", ""), "lon_txt": c.get("longitud", ""),
+            "lat": numero(c.get("latitud", "")), "lon": numero(c.get("longitud", "")),
+            "vmax": velocidad(c.get("velocidadPermitida")),
+            "sentido": sin_tildes(c.get("sentido", "")).lower(),
+            "semaforo": bool(re.search(r"(^|_)RED(_|CAM)", serie.upper())),
+            "claves": claves_calle(calle), "num": n, "es_km": es_kilometro(calle, n),
+        })
+    return equipos
+
+
+def coordenada_valida(e):
+    lat, lon = e["lat"], e["lon"]
+    if lat is None or lon is None:
+        return False
+    if not (CAJA_PBA[0] < lat < CAJA_PBA[1] and CAJA_PBA[2] < lon < CAJA_PBA[3]):
+        return False
+    dec_lat = (e["lat_txt"].split(".") + [""])[1]
+    dec_lon = (e["lon_txt"].split(".") + [""])[1]
+    if len(dec_lat) < 3 or len(dec_lon) < 3:
+        return False  # sin precisión suficiente
+    if dec_lat[:6] == dec_lon[:6] or "12345" in dec_lat or "12345" in dec_lon:
+        return False  # decimales copiados de la latitud a la longitud, o coordenadas de relleno
+    return True
+
+
+def compatibles(a, b):
+    """Si dos aparatos pueden estar en el mismo lugar según la calle y el kilómetro o la altura."""
+    if a["claves"] and b["claves"] and not (a["claves"] & b["claves"]):
+        # Otro nombre para la misma calle ("Ruta 202" y "Av. Hipólito Yrigoyen") con la misma altura exacta.
+        return a["num"] is not None and a["num"] == b["num"]
+    if a["num"] is None or b["num"] is None:
+        return True
+    tope = 1.5 if (a["es_km"] and b["es_km"]) else 400
+    return abs(a["num"] - b["num"]) <= tope
+
+
+def depurar_mismo_punto(grupo):
+    """Aparatos cargados con exactamente las mismas coordenadas. Si dicen estar en lugares distintos
+    (otra calle, otro kilómetro), las coordenadas se copiaron mal: queda la mayoría que coincide
+    (dos tercios o más) y, si no la hay, se descarta el punto."""
+    if len(grupo) == 1:
+        return grupo, []
+    ancla = max(grupo, key=lambda e: sum(compatibles(e, o) for o in grupo))
+    ok = [o for o in grupo if compatibles(ancla, o)]
+    if len(ok) == len(grupo):
+        return grupo, []
+    if 3 * len(ok) >= 2 * len(grupo):
+        return ok, [o for o in grupo if o not in ok]
+    return [], grupo
+
+
+def agrupar(equipos, radio):
+    grupos = []
+    for e in sorted(equipos, key=lambda x: (x["lat"], x["lon"])):
+        g = next((g for g in grupos if any(dist(o["lat"], o["lon"], e["lat"], e["lon"]) < radio for o in g)), None)
+        if g is None:
+            grupos.append([e])
+        else:
+            g.append(e)
+    return grupos
+
+
+def radar_pba(grupo):
+    """Un radar por lugar: junta los aparatos de cada sentido y carril."""
+    grupo = sorted(grupo, key=lambda e: e["serie"])
+    lat = sum(e["lat"] for e in grupo) / len(grupo)
+    lon = sum(e["lon"] for e in grupo) / len(grupo)
+    tipo = "semaforo" if grupo[0]["semaforo"] else "velocidad"
+    nombres = [n for n in map(nombre_equipo, grupo) if n]
+    nombre = Counter(nombres).most_common(1)[0][0] if nombres else ""
+    velocidades = [e["vmax"] for e in grupo if e["vmax"]]
+    sentidos = sorted({e["sentido"] for e in grupo if e["sentido"] in ("ascendente", "descendente")})
+    r = {
+        "id": f"pba-{lat:.5f},{lon:.5f}-{tipo}", "lat": round(lat, 6), "lon": round(lon, 6), "tipo": tipo,
+        "vmax": min(velocidades) if velocidades and tipo == "velocidad" else None, "dir": None,
+        "nombre": nombre, "fuente": "PBA",
+    }
+    en_km = any(e["es_km"] for e in grupo)
+    if len(sentidos) == 2:
+        r["sentido"] = "ambos"
+        por_sentido = {s: sorted({e["vmax"] for e in grupo if e["sentido"] == s and e["vmax"]}) for s in sentidos}
+        if tipo == "velocidad" and all(len(v) == 1 for v in por_sentido.values()) and \
+                por_sentido["ascendente"] != por_sentido["descendente"]:
+            r["detalle"] = (f"Controla los dos sentidos: máx. {por_sentido['ascendente'][0]} km/h ascendente "
+                            f"y {por_sentido['descendente'][0]} km/h descendente")
+        else:
+            r["detalle"] = "Controla los dos sentidos"
+    elif sentidos:
+        r["sentido"] = sentidos[0]
+        hacia = ("los km más altos" if sentidos[0] == "ascendente" else "los km más bajos") if en_km else \
+            ("la numeración más alta" if sentidos[0] == "ascendente" else "la numeración más baja")
+        r["detalle"] = f"Controla el sentido {sentidos[0]} (hacia {hacia})"
+    return r
+
+
+def fuente_pba():
+    equipos = leer_equipos_pba(html_pba())
+    if len(equipos) < 100:
+        raise ValueError(f"la página trajo solo {len(equipos)} radares; puede haber cambiado")
+    validos = [e for e in equipos if coordenada_valida(e)]
+    descartados = [e for e in equipos if not coordenada_valida(e)]
+    por_punto = {}
+    for e in validos:
+        por_punto.setdefault((round(e["lat"], 5), round(e["lon"], 5)), []).append(e)
+    quedan = []
+    for grupo in por_punto.values():
+        ok, malos = depurar_mismo_punto(grupo)
+        quedan += ok
+        descartados += malos
+    out = []
+    for semaforo in (False, True):
+        out += [radar_pba(g) for g in agrupar([e for e in quedan if e["semaforo"] == semaforo], 30)]
+    for e in descartados:
+        print(f"  PBA descartado (ubicación dudosa): {e['serie']} · {e['calle']} {e['km']} · "
+              f"{e['lat_txt']}, {e['lon_txt']}", file=sys.stderr)
+    ESTADISTICAS["PBA"] = {"equipos": len(equipos), "descartados": len(descartados)}
+    if not out:
+        raise ValueError("sin radares válidos")
     return out
 
 
@@ -318,7 +613,11 @@ def enriquecer(radares, urbanos_fijos):
     def falta_limite(r):
         return r.get("tipo") in ("velocidad", "otro") and not r.get("vmax")
 
-    pendientes = [r for r in radares if falta_limite(r) or r.get("dir") is None or not r.get("nombre")]
+    def falta_sentido(r):
+        # Los radares de Provincia que controlan los dos sentidos no tienen un único sentido que deducir.
+        return r.get("dir") is None and r.get("sentido") != "ambos"
+
+    pendientes = [r for r in radares if falta_limite(r) or falta_sentido(r) or not r.get("nombre")]
     completados = {"vmax_calle": 0, "vmax_estimado": 0, "sentido": 0, "nombre": 0}
     for i in range(0, len(pendientes), 40):
         lote = pendientes[i:i + 40]
@@ -354,7 +653,7 @@ def enriquecer(radares, urbanos_fijos):
             t = c.get("tags") or {}
             urbano = r["id"] in urbanos_fijos or residenciales >= 8
             # Sentido: solo si está sobre una calle de mano única y no hay otra de sentido contrario al lado.
-            if r.get("dir") is None and es_mano_unica(t) and d <= 15 and rb is not None:
+            if falta_sentido(r) and es_mano_unica(t) and d <= 15 and rb is not None:
                 sentido = (rb + 180) % 360 if t.get("oneway") == "-1" else rb
                 opuesta = any(
                     es_mano_unica(x[3].get("tags") or {}) and x[3] is not c and x[1] <= 30
@@ -385,26 +684,27 @@ def enriquecer(radares, urbanos_fijos):
 
 
 # ---------------- Combinar ----------------
+def mismo_radar(x, r):
+    """x ya quedó en la lista (fuente de igual o mayor prioridad); r es el que se está por sumar."""
+    if not (x["tipo"] == r["tipo"] or "otro" in (x["tipo"], r["tipo"])):
+        return False
+    d = dist(x["lat"], x["lon"], r["lat"], r["lon"])
+    return d < 30 or (d < RADIO_OFICIAL_PBA and x.get("fuente") == "PBA" and r.get("fuente") == "OSM")
+
+
 def deduplicar(lista):
     lista = sorted(lista, key=lambda r: -PRIORIDAD.get(r.get("fuente"), 0))
     res, grilla = [], {}
     for r in lista:
         ca, co = round(r["lat"] * 2000), round(r["lon"] * 2000)
-        dup = None
-        for i in (-1, 0, 1):
-            for j in (-1, 0, 1):
-                for x in grilla.get((ca + i, co + j), []):
-                    if dist(x["lat"], x["lon"], r["lat"], r["lon"]) < 30 and (
-                            x["tipo"] == r["tipo"] or "otro" in (x["tipo"], r["tipo"])):
-                        dup = x
-                        break
-                if dup:
-                    break
-            if dup:
-                break
+        # Celdas de unos 50 m: con 3 para cada lado se cubren los 100 m de RADIO_OFICIAL_PBA.
+        dup = next((x for i in range(-3, 4) for j in range(-3, 4)
+                    for x in grilla.get((ca + i, co + j), []) if mismo_radar(x, r)), None)
         if dup:
             dup["vmax"] = dup.get("vmax") or r.get("vmax")
-            dup["dir"] = dup.get("dir") if dup.get("dir") is not None else r.get("dir")
+            # Provincia informa el sentido: no se le copia el de otra fuente.
+            if dup.get("dir") is None and dup.get("fuente") != "PBA":
+                dup["dir"] = r.get("dir")
             dup["nombre"] = dup.get("nombre") or r.get("nombre")
             continue
         copia = dict(r)
@@ -419,7 +719,7 @@ def cargar_fuente(nombre, url, funcion, previos, fuentes):
     try:
         lista = funcion()
         crudo.write_text(json.dumps(lista, ensure_ascii=False), encoding="utf-8")
-        fuentes.append({"id": nombre, "url": url, "cantidad": len(lista), "estado": "ok"})
+        fuentes.append({"id": nombre, "url": url, "cantidad": len(lista), "estado": "ok", **ESTADISTICAS.get(nombre, {})})
         print(f"{nombre}: {len(lista)}")
     except Exception as e:
         if crudo.exists():
@@ -443,6 +743,7 @@ def main():
     fuentes, todos = [], []
     todos += cargar_fuente("CABA", "https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular",
                            fuente_caba, [r for r in previos if r.get("fuente") == "CABA"], fuentes)
+    todos += cargar_fuente("PBA", URL_PBA, fuente_pba, [r for r in previos if r.get("fuente") == "PBA"], fuentes)
     todos += cargar_fuente("OSM", "https://www.openstreetmap.org", fuente_osm,
                            [r for r in previos if r.get("fuente") == "OSM"], fuentes)
     peajes = cargar_fuente("Peajes", "https://www.openstreetmap.org", fuente_peajes,
@@ -476,7 +777,7 @@ def main():
             r["nombre"] = p["nombre"]
     # Si no se encontró la calle, queda al menos la descripción del aparato.
     for r in radares:
-        if not r.get("nombre") and r.get("detalle"):
+        if not r.get("nombre") and r.get("detalle") and r.get("fuente") == "OSM":
             r["nombre"] = r.pop("detalle")
     print("Completados:", completados)
     print("Con límite:", sum(1 for r in radares if r.get("vmax")), "de", len(radares))

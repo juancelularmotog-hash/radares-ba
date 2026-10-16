@@ -20,8 +20,11 @@ App web (instalable en iPhone y Android) que muestra los radares y peajes de CAB
 `data/radares.json`, armado por `scripts/actualizar_radares.py`:
 
 - CABA (oficial): [Cámaras fijas de control vehicular – Buenos Aires Data](https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular)
-- Provincia, peajes y límites de las calles: [OpenStreetMap](https://www.openstreetmap.org/copyright) (cargados por la comunidad)
+- Provincia (oficial): [Radares fijos – Infracciones BA](https://infraccionesba.gba.gob.ar/equiposDeConstatacion). El listado viene dentro de la página, con coordenadas, velocidad máxima y sentido de cada aparato; se juntan los aparatos de un mismo lugar y se descartan los que tienen coordenadas evidentemente mal cargadas.
+- Resto de los radares, peajes y límites de las calles: [OpenStreetMap](https://www.openstreetmap.org/copyright) (cargados por la comunidad)
 - Correcciones a mano: `data/manual.json`
+
+Las fuentes oficiales tienen prioridad: si OpenStreetMap marca el mismo radar (a menos de 30 m, o de 100 m de uno de Provincia), queda el oficial.
 
 La búsqueda de destinos usa Nominatim y las rutas, OSRM (los dos con datos de OpenStreetMap).
 

@@ -3,7 +3,7 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.2';
+  const VERSION = '2.0.3';
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -181,6 +181,13 @@
   const estadoRadar = new Map();
   const estadoPeaje = new Map();
 
+  // Un radar de OSM a menos de esto de uno oficial de Provincia, y del mismo tipo, es el mismo (igual que en el script).
+  const RADIO_OFICIAL_PBA = 100;
+  function mismoRadar(x, r) {
+    if (!(x.tipo === r.tipo || x.tipo === 'otro' || r.tipo === 'otro')) return false;
+    const d = dist(x.lat, x.lon, r.lat, r.lon);
+    return d < 30 || (d < RADIO_OFICIAL_PBA && x.fuente === 'PBA' && r.fuente === 'OSM');
+  }
   function deduplicar(lista) {
     const ordenada = lista.slice().sort((a, b) => (PRIORIDAD[b.fuente] || 0) - (PRIORIDAD[a.fuente] || 0));
     const res = [];
@@ -189,14 +196,15 @@
       if (typeof r.lat !== 'number' || typeof r.lon !== 'number' || isNaN(r.lat) || isNaN(r.lon)) continue;
       const cla = Math.round(r.lat * 2000), clo = Math.round(r.lon * 2000);
       let dup = null;
-      for (let i = -1; i <= 1 && !dup; i++) for (let j = -1; j <= 1 && !dup; j++) {
+      for (let i = -3; i <= 3 && !dup; i++) for (let j = -3; j <= 3 && !dup; j++) {
         const celda = grilla.get((cla + i) + ':' + (clo + j));
         if (!celda) continue;
-        dup = celda.find((x) => dist(x.lat, x.lon, r.lat, r.lon) < 30 && (x.tipo === r.tipo || x.tipo === 'otro' || r.tipo === 'otro'));
+        dup = celda.find((x) => mismoRadar(x, r));
       }
       if (dup) {
         if (!dup.vmax && r.vmax) { dup.vmax = r.vmax; dup.vmaxFuente = r.vmaxFuente; }
-        if (dup.dir == null && r.dir != null) { dup.dir = r.dir; dup.dirInferida = r.dirInferida; }
+        // Provincia informa qué sentido controla: no se le copia el de otra fuente.
+        if (dup.dir == null && r.dir != null && dup.fuente !== 'PBA') { dup.dir = r.dir; dup.dirInferida = r.dirInferida; }
         if (!dup.nombre && r.nombre) dup.nombre = r.nombre;
         continue;
       }
@@ -338,15 +346,18 @@
       return m;
     };
     const mismoTipo = (x, r) => x.tipo === r.tipo || x.tipo === 'otro' || r.tipo === 'otro';
+    // Un radar de OSM que pasó a ser el oficial de Provincia, un poco corrido, es el mismo radar.
+    const oficialYOsm = (x, r) => (x.fuente === 'PBA' && r.fuente === 'OSM') || (x.fuente === 'OSM' && r.fuente === 'PBA');
     // El más cercano a menos de 40 m (si "tipo" es true, solo de un tipo compatible).
     const vecino = (m, r, tipo) => {
       const a = Math.round(r.lat * 1000), b = Math.round(r.lon * 1000);
-      let mejor = null, dMejor = 40;
-      for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) {
+      let mejor = null, dMejor = Infinity;
+      for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) {
         for (const x of m.get((a + i) + ':' + (b + j)) || []) {
           if (tipo && !mismoTipo(x, r)) continue;
           const d = dist(x.lat, x.lon, r.lat, r.lon);
-          if (d < dMejor) { dMejor = d; mejor = x; }
+          const tope = tipo && oficialYOsm(x, r) ? RADIO_OFICIAL_PBA : 40;
+          if (d < tope && d < dMejor) { dMejor = d; mejor = x; }
         }
       }
       return mejor;
@@ -530,13 +541,13 @@
   }
 
   function actualizarResumen() {
-    const cuenta = { CABA: 0, OSM: 0, otros: 0 };
+    const cuenta = { CABA: 0, PBA: 0, OSM: 0, otros: 0 };
     for (const r of base) {
-      if (r.fuente === 'CABA') cuenta.CABA++; else if (r.fuente === 'OSM') cuenta.OSM++; else cuenta.otros++;
+      if (r.fuente === 'CABA' || r.fuente === 'PBA' || r.fuente === 'OSM') cuenta[r.fuente]++; else cuenta.otros++;
     }
     const caja = $('resumen');
     caja.textContent = '';
-    const items = [[base.length + propios.length, 'radares'], [cuenta.CABA, 'CABA oficial'], [cuenta.OSM, 'comunidad'], [peajes.length, 'peajes']];
+    const items = [[base.length + propios.length, 'radares'], [cuenta.CABA, 'CABA oficial'], [cuenta.PBA, 'Provincia oficial'], [cuenta.OSM, 'comunidad'], [peajes.length, 'peajes']];
     if (propios.length) items.push([propios.length, 'tuyos']);
     for (const [n, t] of items) {
       const d = document.createElement('div');
