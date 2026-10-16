@@ -59,11 +59,18 @@ CONSULTA_RADARES = (
     'relation["type"="enforcement"]["enforcement"~"maxspeed|traffic_signals|average_speed"](area.a););'
     'out meta;>;out skel qt;'  # "meta" trae la fecha de la última edición de cada radar
 )
+# Cabinas de peaje con la calle en la que está cada una (para saber en qué mano cobra) y, alrededor de las
+# que están en un ramal (subidas y bajadas), las calles por las que se llega a ellas.
 CONSULTA_PEAJES = (
-    '[out:json][timeout:180];' + AREA +
-    '(node["barrier"="toll_booth"](area.a);way["barrier"="toll_booth"](area.a););'
-    'out center tags;'
+    '[out:json][timeout:240];' + AREA +
+    'node["barrier"="toll_booth"](area.a)->.b;.b out body;'
+    'way(bn.b)["highway"];out body geom;'
+    'way(bn.b)["highway"~"_link$"]->.l;node(w.l)->.n;node.n.b->.bl;'
+    'way(around.bl:700)["highway"~"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service)(_link)?$"];'
+    'out body geom;'
+    'way["barrier"="toll_booth"](area.a);out center tags;'
 )
+APROXIMACION_RAMAL = 600  # metros de ramal, hacia atrás desde la cabina, por los que se llega sin desvíos
 CLASES_AUTO = r"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|road)(_link)?$"
 PRIORIDAD = {"CABA": 3, "ANSV": 3, "PBA": 3, "manual": 2, "prensa": 2, "OSM": 1}
 # Un radar de OpenStreetMap o de un diario a menos de esta distancia de uno oficial, y del mismo tipo, es el
@@ -773,36 +780,184 @@ def fuente_osm():
 
 
 # ---------------- OpenStreetMap: peajes ----------------
+def mano_de(t):
+    """1 si la calle es de mano única hacia adelante, -1 hacia atrás, 0 si es doble mano."""
+    ow = (t.get("oneway") or "").lower()
+    if ow in ("yes", "true", "1"):
+        return 1
+    if ow in ("-1", "reverse"):
+        return -1
+    if ow == "no":
+        return 0
+    return 1 if t.get("highway") in ("motorway", "motorway_link") or t.get("junction") in ("roundabout", "circular") else 0
+
+
+def es_ramal(t):
+    return (t.get("highway") or "").endswith("_link")
+
+
+def simplificar(puntos, tol=4):
+    """Douglas-Peucker en metros: saca puntos intermedios que no cambian la forma más de 'tol' m."""
+    if len(puntos) < 3:
+        return puntos
+    a, b = puntos[0], puntos[-1]
+    da, db = {"lat": a[0], "lon": a[1]}, {"lat": b[0], "lon": b[1]}
+    peor, i_peor = -1, 0
+    for i, p in enumerate(puntos[1:-1], 1):
+        d = distancia_a_segmento(p[0], p[1], da, db)
+        if d > peor:
+            peor, i_peor = d, i
+    if peor <= tol:
+        return [a, b]
+    return simplificar(puntos[:i_peor + 1], tol)[:-1] + simplificar(puntos[i_peor:], tol)
+
+
 def fuente_peajes():
+    """Cada peaje con la mano en la que cobra ("dir", rumbo de circulación) y, si la cabina está en un ramal,
+    los tramos por los que se llega a ella sin desvíos ("tramo"): la app avisa solo a quien va a pasar por ahí."""
     j = overpass(CONSULTA_PEAJES)
-    puntos = []
+    cabinas, coord, ways = {}, {}, {}
+    sueltas = []  # peajes cargados como línea o área: sin mano conocida
     for e in j.get("elements", []):
-        lat = e.get("lat", (e.get("center") or {}).get("lat"))
-        lon = e.get("lon", (e.get("center") or {}).get("lon"))
-        if lat is None or lon is None:
-            continue
         t = e.get("tags") or {}
-        puntos.append({"id": f"{e['type'][0]}{e['id']}", "lat": lat, "lon": lon,
-                       "nombre": t.get("name") or t.get("operator") or ""})
-    # Una estación de peaje tiene varias cabinas: se agrupan las que están a menos de 300 m.
+        if e["type"] == "node" and t.get("barrier") == "toll_booth":
+            cabinas[e["id"]] = e
+            coord[e["id"]] = (e["lat"], e["lon"])
+        elif e["type"] == "way" and t.get("barrier") == "toll_booth" and e.get("center"):
+            sueltas.append({"id": e["id"], "lat": e["center"]["lat"], "lon": e["center"]["lon"],
+                            "nombre": t.get("name") or t.get("operator") or "", "dir": None, "ramal": False,
+                            "destino": "", "tramos": [], "otros": []})
+        elif e["type"] == "way" and t.get("highway") and e.get("geometry") and e.get("nodes"):
+            ways[e["id"]] = e
+            for n, g in zip(e["nodes"], e["geometry"]):
+                if g:
+                    coord[n] = (g["lat"], g["lon"])
+    # Calles como grafo dirigido (respetando las manos únicas).
+    salen, entran, way_de = {}, {}, {}
+    for w in ways.values():
+        mano = mano_de(w["tags"])
+        for a, b in zip(w["nodes"], w["nodes"][1:]):
+            for u, v, ok in ((a, b, mano >= 0), (b, a, mano <= 0)):
+                if ok:
+                    salen.setdefault(u, set()).add(v)
+                    entran.setdefault(v, set()).add(u)
+                    way_de[(u, v)] = w
+    padres = {}
+    for w in ways.values():
+        for n in set(w["nodes"]) & set(cabinas):
+            padres.setdefault(n, []).append(w)
+
+    def rumbo_en(w, n):
+        ns = w["nodes"]
+        i = ns.index(n)
+        a, b = coord.get(ns[max(0, i - 1)]), coord.get(ns[min(len(ns) - 1, i + 1)])
+        if not a or not b or a == b:
+            return None
+        mano = mano_de(w["tags"])
+        r = rumbo(a[0], a[1], b[0], b[1])
+        return r if mano == 1 else (r + 180) % 360 if mano == -1 else None
+
+    def adelante(u, v, metros=150):
+        """Camino desde la arista u->v hacia adelante, siguiendo el más derecho, hasta 'metros'."""
+        camino, prev, actual = [coord[u], coord[v]], u, v
+        largo = dist(coord[u][0], coord[u][1], coord[v][0], coord[v][1])
+        while largo < metros:
+            siguientes = [x for x in salen.get(actual, ()) if x != prev and x in coord]
+            if not siguientes:
+                break
+            r0 = rumbo(coord[prev][0], coord[prev][1], coord[actual][0], coord[actual][1])
+            x = min(siguientes, key=lambda x: dif_ang(rumbo(coord[actual][0], coord[actual][1], coord[x][0], coord[x][1]), r0))
+            largo += dist(coord[actual][0], coord[actual][1], coord[x][0], coord[x][1])
+            camino.append(coord[x])
+            prev, actual = actual, x
+        return camino
+
+    def aproximacion(cabina):
+        """Tramos de ramal que llevan a la cabina sin desvíos posibles (se corta donde el camino se abre,
+        por ejemplo donde la bajada se separa de la autopista), hasta APROXIMACION_RAMAL metros. Además, los
+        primeros metros de los otros caminos que salen de donde se abre ("otros"): recién cuando estás más
+        cerca del ramal que de esos otros caminos es seguro que vas para la cabina."""
+        tramos, otros, vistas = [], [], set()
+        pila = [(cabina, [coord[cabina]], [cabina], 0.0)]
+
+        def abre_en(s, siguiente):
+            if len(salen.get(s, ())) > 1:
+                otros.extend(adelante(s, x) for x in salen[s] if x != siguiente and x in coord)
+
+        while pila:
+            u, camino, nodos, largo = pila.pop()
+            siguio = False
+            for v in entran.get(u, ()):
+                w = way_de.get((v, u))
+                if w is None or not es_ramal(w["tags"]) or (v, u) in vistas or v not in coord:
+                    continue
+                vistas.add((v, u))
+                d = dist(coord[v][0], coord[v][1], coord[u][0], coord[u][1])
+                if len(salen.get(v, ())) == 1 and largo + d < APROXIMACION_RAMAL:
+                    pila.append((v, [coord[v]] + camino, [v] + nodos, largo + d))
+                else:
+                    tramos.append([coord[v]] + camino)
+                    abre_en(v, u)
+                siguio = True
+            if not siguio and len(camino) > 1:
+                tramos.append(camino)
+                abre_en(u, nodos[1])
+        return tramos, otros
+
+    datos = []
+    for n, e in cabinas.items():
+        ps = padres.get(n, [])
+        t = e.get("tags") or {}
+        rumbos = [r for r in (rumbo_en(w, n) for w in ps) if r is not None]
+        ramal = any(es_ramal(w["tags"]) for w in ps)
+        tramos, otros = aproximacion(n) if ramal else ([], [])
+        datos.append({"id": n, "lat": e["lat"], "lon": e["lon"], "nombre": t.get("name") or t.get("operator") or "",
+                      "dir": rumbos[0] if rumbos else None, "ramal": ramal,
+                      "destino": next((w["tags"]["destination"] for w in ps if w["tags"].get("destination")), ""),
+                      "tramos": tramos, "otros": otros})
+    datos += sueltas
+    # Una estación tiene varias cabinas: se juntan las cercanas que cobran en la misma mano (las de un ramal,
+    # solo si están casi juntas, para no mezclar la subida con la bajada).
     grupos = []
-    for p in sorted(puntos, key=lambda x: (x["lat"], x["lon"])):
-        g = next((g for g in grupos if any(dist(q["lat"], q["lon"], p["lat"], p["lon"]) < 300 for q in g)), None)
+    for c in sorted(datos, key=lambda x: (x["lat"], x["lon"])):
+        radio = 80 if c["ramal"] else 300
+        g = next((g for g in grupos if g[0]["ramal"] == c["ramal"] and (g[0]["dir"] is None) == (c["dir"] is None)
+                  and (c["dir"] is None or dif_ang(g[0]["dir"], c["dir"]) <= 60)
+                  and any(dist(o["lat"], o["lon"], c["lat"], c["lon"]) < radio for o in g)), None)
         if g is None:
-            grupos.append([p])
+            grupos.append([c])
         else:
-            g.append(p)
+            g.append(c)
     out = []
     for g in grupos:
-        nombres = Counter(p["nombre"] for p in g if p["nombre"])
-        out.append({
-            "id": "peaje-" + min(p["id"] for p in g),
-            "lat": round(sum(p["lat"] for p in g) / len(g), 6),
-            "lon": round(sum(p["lon"] for p in g) / len(g), 6),
-            "nombre": nombres.most_common(1)[0][0] if nombres else "",
-        })
+        nombres = Counter(c["nombre"] for c in g if c["nombre"])
+        rumbos = [c["dir"] for c in g if c["dir"] is not None]
+        sentido = None
+        if rumbos:
+            x = sum(math.sin(math.radians(r)) for r in rumbos)
+            y = sum(math.cos(math.radians(r)) for r in rumbos)
+            sentido = round((math.degrees(math.atan2(x, y)) + 360) % 360)
+        p = {"id": "peaje-n" + str(min(c["id"] for c in g)),
+             "lat": round(sum(c["lat"] for c in g) / len(g), 6), "lon": round(sum(c["lon"] for c in g) / len(g), 6),
+             "nombre": nombres.most_common(1)[0][0] if nombres else "", "dir": sentido}
+        if g[0]["ramal"]:
+            def lineas(clave):
+                res = []
+                for c in g:
+                    for tr in c[clave]:
+                        tr = [[round(a, 5), round(b, 5)] for a, b in simplificar(tr)]
+                        if tr not in res:
+                            res.append(tr)
+                return res
+            p.update(ramal=True, tramo=lineas("tramos"), otros=lineas("otros"))
+        destino = next((c["destino"] for c in g if c["destino"]), "")
+        if destino:
+            p["destino"] = destino.replace(";", ", ")
+        out.append(p)
     if not out:
         raise ValueError("Overpass no devolvió peajes")
+    ESTADISTICAS["Peajes"] = {"cabinas": len(datos), "enRamales": sum(1 for p in out if p.get("ramal")),
+                              "sinSentido": sum(1 for p in out if p["dir"] is None)}
     return out
 
 

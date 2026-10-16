@@ -402,6 +402,7 @@ details.nov-ant[open] summary { margin-bottom: 4px; }
   transform: rotate(var(--contra, 0deg));
 }
 .peaje-mk.mini { width: 22px; height: 11px; box-shadow: none; transform: none; flex: none; }
+.peaje-mk.ramal { width: 20px; height: 10px; border-width: 1.5px; background: repeating-linear-gradient(-45deg, #e5323f 0 4px, #fff 4px 8px); opacity: .85; }
 .anillo-ruta { width: 40px; height: 40px; border-radius: 50%; border: 3px solid var(--ruta); background: rgba(31, 111, 235, .12); }
 .destino-mk { width: 22px; height: 22px; border-radius: 50% 50% 50% 0; background: var(--ruta); border: 3px solid #fff; transform: rotate(calc(-45deg + var(--contra, 0deg))); box-shadow: 0 1px 4px rgba(0,0,0,.4); }
 

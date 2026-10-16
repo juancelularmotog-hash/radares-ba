@@ -296,8 +296,7 @@ public class ServicioRadares extends Service implements LocationListener {
             boolean acercando = dist <= e[1] + 3;
             e[1] = dist;
             if (dist > 1600) e[0] = 0;
-            boolean delante = rumbo >= 0 && Datos.difAng(Datos.rumbo(la, lo, d.plat[i], d.plon[i]), rumbo) <= 35;
-            if (delante && acercando && vel >= 15 && e[0] < 1 && dist <= 1000) {
+            if (acercando && vel >= (d.pramal[i] ? 8 : 15) && e[0] < 1 && d.vasAPasarPorPeaje(i, la, lo, rumbo, dist)) {
                 e[0] = 1;
                 String texto = "Peaje a " + (dist >= 900 ? "1 kilómetro" : Datos.redondear(dist) + " metros")
                         + (d.pnombre[i].isEmpty() ? "" : ": " + d.pnombre[i]);

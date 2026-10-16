@@ -248,6 +248,12 @@ public class MainActivity extends Activity {
             return MainActivity.this.version();
         }
 
+        /** Le avisa a la web que este servicio entiende la mano y los ramales de los peajes. */
+        @JavascriptInterface
+        public boolean peajesConSentido() {
+            return true;
+        }
+
         @JavascriptInterface
         public boolean activo() {
             return ServicioRadares.activo;

@@ -3,9 +3,11 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.7';
+  const VERSION = '2.0.8';
   // Lo que cambió en la app (se muestra en Novedades). La primera es la versión actual.
   const CAMBIOS_APP = [
+    ['2.0.8', ['Peajes: te avisa solo los que vas a pagar. Los que cobran en tu mano y, si la cabina está en una subida o bajada, solo cuando entrás por ahí.',
+      'En la ficha de cada peaje dice en qué mano cobra; si uno no cobra, lo podés ocultar.']],
     ['2.0.7', ['Las novedades tienen su propia pantalla: Menú › Novedades. Ahí también quedan las actualizaciones anteriores y los cambios de la app.']],
     ['2.0.6', ['Fotomultas de Berisso y tótems de AUBASA que multan en la Autopista Buenos Aires-La Plata.',
       'Radares de Provincia mal cargados, puestos en su lugar (la ficha lo aclara).',
@@ -255,14 +257,35 @@
     return deduplicar([].concat((repo && repo.radares) || [], (cabaVivo && cabaVivo.radares) || [], osm));
   }
   function peajesCombinados() {
-    const res = [];
-    for (const p of [].concat((repo && repo.peajes) || [], (osmVivo && osmVivo.peajes) || [])) {
-      if (typeof p.lat !== 'number' || typeof p.lon !== 'number') continue;
+    // Los de la lista del proyecto traen la mano en la que cobra cada uno (puede haber dos juntos, uno por mano).
+    // Los bajados en vivo de OSM solo suman los que la lista todavía no tiene.
+    const valido = (p) => typeof p.lat === 'number' && typeof p.lon === 'number' && !ocultos.has(p.id);
+    const res = ((repo && repo.peajes) || []).filter(valido).map((p) => Object.assign({}, p));
+    for (const p of (osmVivo && osmVivo.peajes) || []) {
+      if (!valido(p)) continue;
       const igual = res.find((x) => dist(x.lat, x.lon, p.lat, p.lon) < 400);
       if (igual) { if (!igual.nombre && p.nombre) igual.nombre = p.nombre; continue; }
       res.push(Object.assign({}, p));
     }
     return res;
+  }
+  function popupPeaje(q) {
+    const d = document.createElement('div'); d.className = 'pop';
+    const s = document.createElement('strong'); s.textContent = q.ramal ? 'Peaje en un acceso' : 'Peaje';
+    const n = document.createElement('div'); n.textContent = q.nombre || 'Estación de peaje';
+    d.append(s, n);
+    const linea = (txt, clase) => { const x = document.createElement('div'); if (clase) x.className = clase; x.textContent = txt; d.appendChild(x); };
+    if (q.ramal) linea('Está en una subida o bajada: te avisa solo si entrás por ahí' + (q.destino ? ' (hacia ' + q.destino + ')' : '') + '.');
+    if (q.dir != null) linea('Cobra a quienes van hacia el ' + cardinal(q.dir) + '.');
+    else if (repo && Array.isArray(repo.peajes) && repo.peajes.some((x) => x.id === q.id)) linea('No se sabe en qué mano cobra: avisa en las dos.');
+    linea('Fuente: OpenStreetMap (comunidad)', 'pop-f');
+    const b = document.createElement('button'); b.className = 'btn-sec'; b.textContent = 'No cobra acá: ocultarlo';
+    b.onclick = () => {
+      ocultos.add(q.id); LS.set('radaresOcultos', [...ocultos]);
+      mapa.closePopup(); dibujarRadares(); toast('Peaje ocultado. Lo podés restaurar desde el menú.');
+    };
+    d.appendChild(b);
+    return d;
   }
   let base = baseCombinada();
 
@@ -297,15 +320,11 @@
     capaPeajes.clearLayers();
     peajes = peajesCombinados();
     if (ajustes.verPeajes) {
+      // Los de las subidas y bajadas, más chicos: solo importan si entrás por ahí.
       const icono = L.divIcon({ className: '', html: '<div class="peaje-mk"></div>', iconSize: [30, 14], iconAnchor: [15, 7] });
+      const iconoRamal = L.divIcon({ className: '', html: '<div class="peaje-mk ramal"></div>', iconSize: [20, 10], iconAnchor: [10, 5] });
       for (const q of peajes) {
-        L.marker([q.lat, q.lon], { icon: icono, keyboard: false }).bindPopup(() => {
-          const d = document.createElement('div'); d.className = 'pop';
-          const s = document.createElement('strong'); s.textContent = 'Peaje';
-          const n = document.createElement('div'); n.textContent = q.nombre || 'Estación de peaje';
-          const f = document.createElement('div'); f.className = 'pop-f'; f.textContent = 'Fuente: OpenStreetMap (comunidad)';
-          d.append(s, n, f); return d;
-        }).addTo(capaPeajes);
+        L.marker([q.lat, q.lon], { icon: q.ramal ? iconoRamal : icono, keyboard: false }).bindPopup(() => popupPeaje(q)).addTo(capaPeajes);
       }
     }
     actualizarResumen();
@@ -712,6 +731,9 @@
       for (const it of items) { const li = document.createElement('li'); li.textContent = it; ul.appendChild(li); }
       div.append(t, ul); caja.appendChild(div);
     };
+    // En la app de Android vieja, los avisos con la pantalla bloqueada no saben de manos ni de ramales.
+    $('bloqueActualizarApk').hidden = !(NATIVO && !peajesConSentido());
+    if (NATIVO) $('linkApkNueva').href = urlApk();
     CAMBIOS_APP.slice(0, 3).forEach((c) => version(c, cam));
     if (CAMBIOS_APP.length > 3) {
       const det = document.createElement('details'); det.className = 'nov-ant';
@@ -1045,6 +1067,34 @@
     if (ajustes.voz && (nivel === 2 || !ajustes.sonido)) hablar(txt + (excede ? '. Bajá la velocidad.' : ''));
     if (navigator.vibrate) { try { navigator.vibrate(nivel === 2 ? [200, 100, 200] : 150); } catch (e) { /* nada */ } }
   }
+  // Distancia a la línea más cercana que va en tu mismo sentido.
+  function distLineas(p, lineas, rb) {
+    let mejor = Infinity;
+    for (const t of lineas || []) {
+      for (let i = 0; i + 1 < t.length; i++) {
+        if (difAng(rumbo(t[i][0], t[i][1], t[i + 1][0], t[i + 1][1]), rb) > 50) continue;
+        const d = distSeg(p.lat, p.lon, t[i], t[i + 1]).d;
+        if (d < mejor) mejor = d;
+      }
+    }
+    return mejor;
+  }
+  // Si vas por el ramal que lleva a la cabina: cerca de uno de sus tramos, en su mismo sentido, y más cerca de
+  // él que de los otros caminos que salen de donde se abre (si no, todavía podés irte por el otro lado).
+  function enTramoPeaje(p, q, rb) {
+    if (rb == null || !Array.isArray(q.tramo)) return false;
+    const d = distLineas(p, q.tramo, rb);
+    return d <= 25 && d + 3 < distLineas(p, q.otros, rb);
+  }
+  // Solo avisa los peajes por los que vas a pasar: los que cobran en tu mano y, si la cabina está en una
+  // subida o bajada (ramal), solo cuando ya estás en ese ramal.
+  function vasAPasarPorPeaje(p, q, d) {
+    if (rumboActual == null) return false;
+    // En los ramales el camino puede dar la vuelta (rulos): cuenta el sentido de cada tramo, no el de la cabina.
+    if (q.ramal) return enTramoPeaje(p, q, rumboActual) && d <= 700;
+    if (q.dir != null && difAng(q.dir, rumboActual) > 50) return false;
+    return difAng(rumbo(p.lat, p.lon, q.lat, q.lon), rumboActual) <= 35 && d <= 1000;
+  }
   function evaluarPeajes(p) {
     if (!ajustes.avisarPeajes || !ajustes.verPeajes) return;
     for (const q of peajes) {
@@ -1055,8 +1105,7 @@
       const acercando = d <= e.dPrev + 3;
       e.dPrev = d;
       if (d > 1600) e.nivel = 0;
-      const delante = rumboActual != null && difAng(rumbo(p.lat, p.lon, q.lat, q.lon), rumboActual) <= 35;
-      if (delante && acercando && velActual >= 15 && e.nivel < 1 && d <= 1000) {
+      if (acercando && velActual >= (q.ramal ? 8 : 15) && e.nivel < 1 && vasAPasarPorPeaje(p, q, d)) {
         e.nivel = 1;
         const txt = 'Peaje a ' + (d >= 900 ? '1 kilómetro' : redondear(d) + ' metros') + (q.nombre ? ': ' + q.nombre : '');
         mostrarAlerta(txt, 'peaje', 'PEAJE A ' + (d >= 900 ? '1 KM' : redondear(d) + ' M'));
@@ -1281,8 +1330,10 @@
       items.push({ r, m: c.along });
     }
     if (ajustes.verPeajes) for (const q of peajes) {
-      const c = cercano(q.lat, q.lon, 150);
-      if (c) items.push({ q, m: c.along });
+      // Solo los que cobran en el sentido de la ruta; los de un ramal, solo si la ruta pasa por la cabina.
+      const c = cercano(q.lat, q.lon, q.ramal ? 25 : 150);
+      if (!c || (q.dir != null && difAng(q.dir, c.rumbo) > 60)) continue;
+      items.push({ q, m: c.along });
     }
     return items.sort((a, b) => a.m - b.m);
   }
@@ -1640,7 +1691,7 @@
   $('btnSimular').onclick = simular;
   $('btnRestaurar').onclick = () => {
     const n = ocultos.size; ocultos.clear(); LS.set('radaresOcultos', []); dibujarRadares();
-    toast(n ? 'Se restauraron ' + n + ' radares.' : 'No había radares ocultos.');
+    toast(n ? (n === 1 ? 'Se volvió a mostrar el que estaba oculto.' : 'Se volvieron a mostrar los ' + n + ' que estaban ocultos.') : 'No había radares ni peajes ocultos.');
   };
   $('btnNovedades').onclick = abrirNovedades;
   $('btnNovedadesVolver').onclick = () => { $('btnMenu').click(); };
@@ -1680,12 +1731,18 @@
     tSync = setTimeout(() => {
       const datos = {
         radares: radares.filter(activo).map((r) => [+r.lat.toFixed(6), +r.lon.toFixed(6), r.tipo, tieneLimite(r) ? r.vmax : 0, r.dir == null ? -1 : Math.round(r.dir), (r.nombre || '').slice(0, 60), r.vmaxFuente === 'estimado' ? 1 : 0]),
-        peajes: (ajustes.verPeajes ? peajes : []).map((q) => [+q.lat.toFixed(6), +q.lon.toFixed(6), (q.nombre || '').slice(0, 60)]),
+        // La app de Android nueva entiende la mano y los ramales; a una vieja no se le pasan los peajes de
+        // subidas y bajadas, que avisaría aunque no entres por ahí.
+        peajes: (ajustes.verPeajes ? peajes : []).filter((q) => peajesConSentido() || !q.ramal).map((q) => peajesConSentido()
+          ? [+q.lat.toFixed(6), +q.lon.toFixed(6), (q.nombre || '').slice(0, 60), q.dir == null ? -1 : Math.round(q.dir), q.ramal ? 1 : 0,
+            q.ramal && Array.isArray(q.tramo) ? q.tramo : [], q.ramal && Array.isArray(q.otros) ? q.otros : []]
+          : [+q.lat.toFixed(6), +q.lon.toFixed(6), (q.nombre || '').slice(0, 60)]),
         ajustes: { aviso1: ajustes.aviso1, aviso2: ajustes.aviso2, tolerancia: ajustes.tolerancia, voz: ajustes.voz, sonido: ajustes.sonido, alarmaExceso: ajustes.alarmaExceso, avisarPeajes: ajustes.avisarPeajes && ajustes.verPeajes }
       };
       nat('datos', JSON.stringify(datos));
     }, 400);
   }
+  const peajesConSentido = () => nat('peajesConSentido') === true;
   function revisarBateria() {
     if (NATIVO) $('bloqueBateria').hidden = nat('bateriaLibre') !== false;
   }
