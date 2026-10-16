@@ -1,5 +1,6 @@
-/* Service worker: permite abrir la app sin conexión y guarda los pedazos de mapa ya vistos. */
-const VERSION = 'radares-ba-v1.0.0';
+/* Service worker: permite abrir la app sin conexión y guarda los pedazos de mapa ya vistos.
+   Con internet siempre usa la versión más nueva de la app; sin internet, la última guardada. */
+const VERSION = 'radares-ba-v1.0.1';
 const APP = [
   './', 'index.html', 'app.css', 'app.js', 'manifest.webmanifest',
   'lib/leaflet.css', 'lib/leaflet.js',
@@ -7,6 +8,7 @@ const APP = [
 ];
 const CACHE_MAPA = 'radares-ba-mapa';
 const MAX_MAPA = 3000;
+const HOSTS_MAPA = ['basemaps.cartocdn.com', 'tile.openstreetmap.org', 'fonts.gstatic.com', 'fonts.googleapis.com'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(APP)).then(() => self.skipWaiting()));
@@ -30,36 +32,32 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // Lista de radares: siempre intenta la versión nueva; si no hay red, usa la guardada.
-  if (url.origin === location.origin && url.pathname.endsWith('/data/radares.json')) {
-    e.respondWith(
-      fetch(req).then((r) => {
-        const copia = r.clone();
-        caches.open(VERSION).then((c) => c.put('data/radares.json', copia));
-        return r;
-      }).catch(() => caches.match('data/radares.json'))
-    );
+  // Mapa y tipografías: lo guardado primero; si no está, se descarga y se guarda.
+  if (HOSTS_MAPA.some((h) => url.hostname.endsWith(h))) {
+    e.respondWith((async () => {
+      const c = await caches.open(CACHE_MAPA);
+      const hit = await c.match(req);
+      if (hit) return hit;
+      const r = await fetch(req);
+      if (r.ok || r.type === 'opaque') { c.put(req, r.clone()); recortar(c); }
+      return r;
+    })());
     return;
   }
 
-  // Pedazos de mapa y tipografías: primero lo guardado.
-  if (url.hostname.endsWith('basemaps.cartocdn.com') || url.hostname.endsWith('fonts.gstatic.com') || url.hostname.endsWith('fonts.googleapis.com')) {
-    e.respondWith(
-      caches.open(CACHE_MAPA).then((c) => c.match(req).then((hit) => hit || fetch(req).then((r) => {
-        if (r.ok || r.type === 'opaque') { c.put(req, r.clone()); recortar(c); }
-        return r;
-      })))
-    );
-    return;
-  }
-
-  // Archivos de la app: responde con lo guardado y actualiza en segundo plano.
+  // Archivos de la app y lista de radares: primero internet, y si no hay, lo guardado.
   if (url.origin === location.origin) {
-    e.respondWith(
-      caches.open(VERSION).then((c) => c.match(req).then((hit) => {
-        const red = fetch(req).then((r) => { if (r.ok) c.put(req, r.clone()); return r; }).catch(() => hit);
-        return hit || red;
-      }))
-    );
+    e.respondWith((async () => {
+      const c = await caches.open(VERSION);
+      try {
+        const r = await fetch(req, { cache: 'no-store' });
+        if (r.ok) c.put(req, r.clone());
+        return r;
+      } catch (err) {
+        const hit = await c.match(req, { ignoreSearch: true });
+        if (hit) return hit;
+        throw err;
+      }
+    })());
   }
 });

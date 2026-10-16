@@ -2,7 +2,7 @@
    Todo corre en el navegador: los datos se guardan en el propio celular. */
 'use strict';
 (function () {
-  const VERSION = '1.0.0';
+  const VERSION = '1.0.1';
   const $ = (id) => document.getElementById(id);
 
   // ---------- Almacenamiento local seguro ----------
@@ -57,16 +57,43 @@
 
   // ---------- Mapa ----------
   const mapa = L.map('mapa', { zoomControl: false, attributionControl: true, tap: false }).setView([-34.6037, -58.3816], 13);
-  const TILES = {
-    dia: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    noche: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+  // Proveedores de mapa en orden de preferencia. Si uno no responde, se pasa al siguiente solo.
+  const ATRIB_OSM = '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>';
+  const ATRIB_CARTO = ATRIB_OSM + ' · © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
+  const PROVEEDORES = {
+    dia: [
+      { url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', sub: 'abcd', atrib: ATRIB_CARTO, max: 20 },
+      { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub: '', atrib: ATRIB_OSM, max: 19 }
+    ],
+    noche: [
+      { url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', sub: 'abcd', atrib: ATRIB_CARTO, max: 20 },
+      { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub: '', atrib: ATRIB_OSM, max: 19, invertir: true }
+    ]
   };
-  const ATRIB = '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
-  let capaBase = null, modoAplicado = null;
+  let capaBase = null, modoAplicado = null, idxProveedor = 0, avisoMapa = false;
   function modoActual() {
     if (ajustes.modoMapa !== 'auto') return ajustes.modoMapa;
     const h = new Date().getHours();
     return (h >= 20 || h < 7) ? 'noche' : 'dia';
+  }
+  function ponerCapa() {
+    const lista = PROVEEDORES[modoAplicado];
+    const p = lista[Math.min(idxProveedor, lista.length - 1)];
+    if (capaBase) mapa.removeLayer(capaBase);
+    document.documentElement.classList.toggle('mapa-invertido', !!p.invertir);
+    const opciones = { attribution: p.atrib, maxZoom: p.max, maxNativeZoom: p.max === 20 ? 19 : p.max };
+    if (p.sub) opciones.subdomains = p.sub;
+    const capa = L.tileLayer(p.url, opciones);
+    let ok = 0, err = 0;
+    capa.on('tileload', () => { ok++; });
+    capa.on('tileerror', () => {
+      err++;
+      if (ok === 0 && err >= 4 && capa === capaBase) {
+        if (idxProveedor < lista.length - 1) { idxProveedor++; ponerCapa(); }
+        else if (!avisoMapa) { avisoMapa = true; toast('No se pudo cargar el mapa de calles. Revisá la conexión a internet; los radares y los avisos funcionan igual.', 7000); }
+      }
+    });
+    capaBase = capa.addTo(mapa);
   }
   function aplicarModoMapa() {
     const m = modoActual();
@@ -75,8 +102,7 @@
     document.documentElement.dataset.mapa = m;
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', m === 'noche' ? '#11161d' : '#f5f7f9');
-    if (capaBase) mapa.removeLayer(capaBase);
-    capaBase = L.tileLayer(TILES[m], { attribution: ATRIB, subdomains: 'abcd', maxZoom: 20, crossOrigin: true }).addTo(mapa);
+    ponerCapa();
   }
 
   // ---------- Radares ----------
