@@ -12,7 +12,7 @@ App web (instalable en iPhone y Android) que muestra los radares y peajes de CAB
 - Radares en tu ruta: buscás un destino y lista los radares y peajes del camino.
 - Peajes en el mapa y aviso a 1 km.
 - Mapa que gira con el auto (botón de la brújula).
-- Novedades: radares nuevos y quitados después de cada actualización.
+- Novedades: radares nuevos, quitados o que cambiaron de tipo después de cada actualización.
 - Modo parabrisas (botón de la barra): pantalla negra con la velocidad y el próximo radar, espejados para reflejarse en el vidrio.
 
 ## Datos
