@@ -1,0 +1,5 @@
+compilacion=success
+publicacion=success
+version=1.0.5
+commit=096bbafa984c7aa861811851bdc6f0b1e5cd1e86
+fecha=2026-10-17T20:16:28Z
