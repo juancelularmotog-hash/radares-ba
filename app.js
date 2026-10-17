@@ -3,9 +3,10 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.10';
+  const VERSION = '2.0.11';
   // Lo que cambió en la app (se muestra en Novedades). La primera es la versión actual.
   const CAMBIOS_APP = [
+    ['2.0.11', ['App de Android nueva: los avisos según tu velocidad, los pips al acercarte y el sonido al pasar también suenan con la pantalla bloqueada. Si estás escuchando música, la baja un poco mientras avisa y después vuelve.']],
     ['2.0.10', ['En el iPhone, los pips suenan por encima de la música de otras apps, como Spotify, en vez de cortarla, y más fuertes para que se escuchen.']],
     ['2.0.9', ['Los avisos de radares son según tu velocidad: el pip y la voz llegan unos 15 segundos antes (a 60 km/h, a unos 250 m; a 20 km/h, a unos 80 m). Se cambia en Ajustes.',
       'En los radares de velocidad, pips cada vez más seguidos al acercarte y un sonido al pasarlo (grave si ibas por encima de la máxima).',
@@ -1964,9 +1965,9 @@
     }, 400);
   }
   const peajesConSentido = () => nat('peajesConSentido') === true;
-  // Si la app de Android ya avisa según la velocidad, con pips al acercarte y sonido al pasar (todavía ninguna).
+  // La app de Android que avisa según la velocidad, con pips al acercarte y sonido al pasar (desde la 2.0.11 de la web).
   const avisosPorTiempo = () => nat('avisosPorTiempo') === true;
-  const apkVieja = () => !!NATIVO && !peajesConSentido();
+  const apkVieja = () => !!NATIVO && (!peajesConSentido() || !avisosPorTiempo());
   function revisarBateria() {
     if (NATIVO) $('bloqueBateria').hidden = nat('bateriaLibre') !== false;
   }
