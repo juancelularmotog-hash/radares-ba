@@ -273,12 +273,14 @@ final class Voz implements TextToSpeech.OnInitListener {
     // ---------- Foco de audio ----------
     // Se pide al empezar a sonar y se suelta un rato después de terminar: así los pips seguidos no hacen subir
     // y bajar la música entre uno y otro.
-    private final Runnable soltarFoco = () -> {
+    private final Runnable soltarFoco = this::soltarFocoSiTermino;
+
+    private void soltarFocoSiTermino() {
         if (sonando == 0 && conFoco) {
             conFoco = false;
             if (audio != null) audio.abandonAudioFocusRequest(foco);
         }
-    };
+    }
     // Por las dudas: si algo quedó colgado, a los 15 s se devuelve el audio a las otras apps.
     private final Runnable liberar = this::liberarFoco;
 
