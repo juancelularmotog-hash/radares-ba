@@ -37,7 +37,7 @@ La búsqueda de destinos usa Nominatim y las rutas, OSRM (los dos con datos de O
 
 ## Límites
 
-- En el iPhone, como app web, avisa solo con la app abierta y la pantalla prendida.
+- En el iPhone, como app web, avisa solo con la app abierta y la pantalla prendida. Los pips se mezclan con la música de otras apps (no la cortan ni le bajan el volumen) y no suenan con el teléfono en modo silencio.
 - La clave para firmar el APK (`android/radares-ba.keystore`) está en el repositorio para que cada versión nueva se pueda instalar encima de la anterior. Instalá el APK solo desde este repositorio.
 
 Los datos pueden estar incompletos. Respetá siempre la señalización. No manipules el celular mientras manejás.

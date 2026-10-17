@@ -3,9 +3,10 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.9';
+  const VERSION = '2.0.10';
   // Lo que cambió en la app (se muestra en Novedades). La primera es la versión actual.
   const CAMBIOS_APP = [
+    ['2.0.10', ['En el iPhone, los pips suenan por encima de la música de otras apps, como Spotify, en vez de cortarla, y más fuertes para que se escuchen.']],
     ['2.0.9', ['Los avisos de radares son según tu velocidad: el pip y la voz llegan unos 15 segundos antes (a 60 km/h, a unos 250 m; a 20 km/h, a unos 80 m). Se cambia en Ajustes.',
       'En los radares de velocidad, pips cada vez más seguidos al acercarte y un sonido al pasarlo (grave si ibas por encima de la máxima).',
       'Las cámaras de semáforo solo te avisan con la voz, sin pips.',
@@ -767,10 +768,32 @@
   }
 
   // ---------- Sonido y voz ----------
-  let ctxAudio = null;
+  // En el iPhone (Safari), que los sonidos se mezclen con la música de otras apps (Spotify) en vez de pausarla.
+  function mezclarConMusica() {
+    try { if (navigator.audioSession && navigator.audioSession.type !== 'ambient') navigator.audioSession.type = 'ambient'; } catch (e) { /* no se puede elegir */ }
+  }
+  mezclarConMusica();
+  const ES_IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const FUERTE = 2;   // más volumen que antes, para que se escuchen por encima de la música
+  let ctxAudio = null, salidaAudio = null;
   function audio() {
-    if (!ctxAudio) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) ctxAudio = new AC(); }
-    if (ctxAudio && ctxAudio.state === 'suspended') ctxAudio.resume();
+    if (!ctxAudio) {
+      mezclarConMusica();
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (AC) {
+        ctxAudio = new AC();
+        salidaAudio = ctxAudio.destination;
+        // Limitador: más fuerte sin que se sature cuando se juntan notas.
+        try {
+          const lim = ctxAudio.createDynamicsCompressor();
+          lim.threshold.value = -8; lim.knee.value = 6; lim.ratio.value = 12; lim.attack.value = 0.002; lim.release.value = 0.12;
+          lim.connect(ctxAudio.destination);
+          salidaAudio = lim;
+        } catch (e) { /* sin limitador */ }
+      }
+    }
+    // En el iPhone queda "interrumpido" después de una llamada o de otra app que tomó el audio.
+    if (ctxAudio && (ctxAudio.state === 'suspended' || ctxAudio.state === 'interrupted')) ctxAudio.resume();
     return ctxAudio;
   }
   function tono(f, ini, dur, vol) {
@@ -778,9 +801,9 @@
     const o = c.createOscillator(), g = c.createGain(), t0 = c.currentTime + ini;
     o.type = 'sine'; o.frequency.value = f;
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(vol || 0.3, t0 + 0.02);
+    g.gain.exponentialRampToValueAtTime(Math.min(0.95, (vol || 0.3) * FUERTE), t0 + 0.02);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    o.connect(g); g.connect(c.destination);
+    o.connect(g); g.connect(salidaAudio || c.destination);
     o.start(t0); o.stop(t0 + dur + 0.05);
   }
   // 1: peaje · 3: alarma por exceso · 4: límite de la calle.
@@ -793,12 +816,13 @@
   function nota(f, ini, dur, vol, forma, caida) {
     const c = audio(); if (!c) return;
     const o = c.createOscillator(), g = c.createGain(), t0 = c.currentTime + ini + 0.01;
+    const v = Math.min(0.95, vol * FUERTE);
     o.type = forma || 'sine'; o.frequency.setValueAtTime(f, t0);
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(vol, t0 + 0.01);
-    if (!caida) g.gain.setValueAtTime(vol, t0 + Math.max(0.011, dur - 0.035));
+    g.gain.exponentialRampToValueAtTime(v, t0 + 0.01);
+    if (!caida) g.gain.setValueAtTime(v, t0 + Math.max(0.011, dur - 0.035));
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    o.connect(g); g.connect(c.destination);
+    o.connect(g); g.connect(salidaAudio || c.destination);
     o.start(t0); o.stop(t0 + dur + 0.05);
   }
   const SONIDOS = {
@@ -1826,6 +1850,7 @@
     $('avisosTiempo').hidden = nativosViejos;
     $('filaPips').hidden = nativosViejos;
     $('avisosDistancia').hidden = !nativosViejos;
+    $('notaIphone').hidden = !ES_IOS;
   }
   function guardarAjustes() {
     const antes = [ajustes.verVelocidad, ajustes.verCamaras, ajustes.verOtros, ajustes.verPeajes].join();
