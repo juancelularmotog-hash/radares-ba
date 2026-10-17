@@ -20,8 +20,11 @@ final class Datos {
     final double[][][] ptramo;   // en los ramales: tramos por los que se llega a la cabina ([lat, lon, lat, lon, ...])
     final double[][][] potros;   // y los otros caminos que salen de donde se abre el ramal
 
-    int aviso1 = 500, aviso2 = 250, tolerancia = 5;
-    boolean voz = true, sonido = true, alarmaExceso = true, avisarPeajes = true;
+    /** Segundos antes de llegar al radar en que empiezan los pips; distancias mínima y máxima del aviso (m). */
+    static final double T_CUENTA = 5, AVISO_MIN = 50, AVISO_MAX = 700;
+
+    int anticipacion = 15, tolerancia = 5;   // anticipacion: segundos antes de llegar en que suenan el pip y la voz
+    boolean voz = true, sonido = true, pipsCuenta = true, alarmaExceso = true, avisarPeajes = true;
 
     private Datos(int n, int np) {
         this.n = n;
@@ -61,7 +64,8 @@ final class Datos {
 
     /**
      * Formato: {"radares":[[lat,lon,tipo,vmax(0=sin dato),dir(-1=ambos sentidos),nombre,estimado(0/1)],...],
-     * "peajes":[[lat,lon,nombre,dir(-1=las dos manos),ramal(0/1),tramos,otros],...], "ajustes":{...}}
+     * "peajes":[[lat,lon,nombre,dir(-1=las dos manos),ramal(0/1),tramos,otros],...],
+     * "ajustes":{anticipacion, pipsCuenta, tolerancia, voz, sonido, alarmaExceso, avisarPeajes}}
      * (tramos y otros: listas de líneas [[lat,lon],...]; ver vasAPasarPorPeaje)
      * (una web vieja manda los peajes solo con [lat,lon,nombre]: se toman como de las dos manos y sin ramal).
      */
@@ -92,11 +96,11 @@ final class Datos {
         }
         JSONObject a = j.optJSONObject("ajustes");
         if (a != null) {
-            d.aviso1 = a.optInt("aviso1", 500);
-            d.aviso2 = Math.min(a.optInt("aviso2", 250), d.aviso1);
+            d.anticipacion = Math.max(5, Math.min(30, a.optInt("anticipacion", 15)));
             d.tolerancia = a.optInt("tolerancia", 5);
             d.voz = a.optBoolean("voz", true);
             d.sonido = a.optBoolean("sonido", true);
+            d.pipsCuenta = a.optBoolean("pipsCuenta", true);
             d.alarmaExceso = a.optBoolean("alarmaExceso", true);
             d.avisarPeajes = a.optBoolean("avisarPeajes", true);
         }
@@ -170,8 +174,25 @@ final class Datos {
         return dist <= 1000 && difAng(rumbo(lat, lon, plat[i], plon[i]), rumbo) <= 35;
     }
 
+    // ---------- Avisos de radares ----------
+    /** A qué distancia suenan el pip y la voz: unos segundos antes de llegar, según la velocidad (km/h). */
+    double distAviso(double vel) {
+        return Math.min(AVISO_MAX, Math.max(AVISO_MIN, vel / 3.6 * anticipacion));
+    }
+
+    /** Radares de velocidad: pips al acercarte y sonido al pasarlos. Las cámaras de semáforo y de control, no. */
+    boolean mideVelocidad(int i) {
+        return "velocidad".equals(tipo[i]) || vmax[i] > 0;
+    }
+
+    /** Segundos hasta el próximo pip: de 0,7 a 0,12 al llegar (más seguidos si vas pasado). */
+    static double intervaloPip(double restante, boolean rapido) {
+        double s = 0.12 + 0.58 * Math.pow(Math.max(0, Math.min(1, restante / T_CUENTA)), 1.2);
+        return rapido ? s * 0.75 : s;
+    }
+
     static long redondear(double d) {
-        return d >= 100 ? Math.round(d / 50) * 50 : Math.max(10, Math.round(d / 10) * 10);
+        return d >= 200 ? Math.round(d / 50) * 50 : Math.max(10, Math.round(d / 10) * 10);
     }
 
     static String nombreTipo(String t) {

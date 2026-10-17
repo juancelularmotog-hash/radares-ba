@@ -238,9 +238,13 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void probarSonido() {
-            Voz v = Voz.get(getApplicationContext());
-            v.pitido(2);
-            v.hablarLuego("Radar de velocidad a 250 metros. Máxima 60.", 600);
+            Voz.get(getApplicationContext()).probarSecuencia();
+        }
+
+        /** Le avisa a la web que este servicio avisa según la velocidad, con pips al acercarte y sonido al pasar. */
+        @JavascriptInterface
+        public boolean avisosPorTiempo() {
+            return true;
         }
 
         @JavascriptInterface

@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.PowerManager;
@@ -32,7 +33,7 @@ import java.util.HashMap;
  * aunque la pantalla esté bloqueada o estés usando otra app (por ejemplo, Google Maps).
  * Mientras está activo se ve una notificación fija con el botón "Terminar viaje".
  */
-public class ServicioRadares extends Service implements LocationListener {
+public class ServicioRadares extends Service implements LocationListener, Avisos.Oyente {
     static final String INICIAR = "ar.radaresba.app.INICIAR";
     static final String DETENER = "ar.radaresba.app.DETENER";
     private static final String CANAL = "viaje";
@@ -49,8 +50,11 @@ public class ServicioRadares extends Service implements LocationListener {
     private double rumbo = -1;
     private double vel = 0;
     private Datos datosEnUso;
-    private final HashMap<Integer, double[]> estadoRadar = new HashMap<>();
+    private final Avisos avisos = new Avisos();
     private final HashMap<Integer, double[]> estadoPeaje = new HashMap<>();
+    private final Handler hilo = new Handler(Looper.getMainLooper());
+    private boolean pipsSonando = false;
+    private final Runnable pip = this::pip;
     private long ultimaAlarma = 0;
     private String textoNotif = "";
     private long ultimaNotif = 0;
@@ -149,7 +153,7 @@ public class ServicioRadares extends Service implements LocationListener {
         }
         anterior = null;
         rumbo = -1;
-        estadoRadar.clear();
+        avisos.reiniciar();
         estadoPeaje.clear();
         Datos d = datos;
         if (d == null || d.voz) voz.hablar("Viaje iniciado. Te aviso cuando haya un radar adelante.");
@@ -158,6 +162,8 @@ public class ServicioRadares extends Service implements LocationListener {
     private void terminar() {
         if (!activo) return;
         activo = false;
+        pararPips();
+        avisos.reiniciar();
         if (gps != null) gps.removeUpdates(this);
         if (despierto != null && despierto.isHeld()) despierto.release();
         stopForeground(STOP_FOREGROUND_REMOVE);
@@ -191,7 +197,8 @@ public class ServicioRadares extends Service implements LocationListener {
         if (d == null) return;
         if (d != datosEnUso) {
             datosEnUso = d;
-            estadoRadar.clear();
+            pararPips();
+            avisos.reiniciar();
             estadoPeaje.clear();
         }
         evaluarRadares(d, l.getLatitude(), l.getLongitude());
@@ -212,50 +219,22 @@ public class ServicioRadares extends Service implements LocationListener {
         actualizarNotif("La ubicación del teléfono está apagada.", true);
     }
 
-    // ---------- Avisos (la misma lógica que la app web) ----------
+    // ---------- Avisos (la misma lógica que la app web: ver Avisos) ----------
     private void evaluarRadares(Datos d, double la, double lo) {
-        int mejor = -1;
-        double dMejor = Double.MAX_VALUE;
-        for (int i = 0; i < d.n; i++) {
-            if (Math.abs(d.lat[i] - la) > 0.03 || Math.abs(d.lon[i] - lo) > 0.04) {
-                estadoRadar.remove(i);
-                continue;
+        long ahora = SystemClock.elapsedRealtime();
+        avisos.evaluar(d, la, lo, rumbo, vel, ahora, this);
+        int mejor = avisos.mejor;
+        double dMejor = avisos.dMejor;
+        // Alarma si vas más rápido que el límite del radar que tenés adelante, desde el aviso hasta pasarlo.
+        // Mientras suenan los pips no hace falta: ya son más agudos.
+        if (mejor >= 0) {
+            int f = avisos.fase(mejor);
+            boolean exceso = (f == Avisos.AVISADO || f == Avisos.CUENTA) && d.vmax[mejor] > 0 && vel > d.vmax[mejor] + d.tolerancia;
+            boolean conPips = pipsSonando && avisos.cuenta == mejor;
+            if (exceso && d.alarmaExceso && !conPips && !voz.hablando() && ahora - ultimaAlarma > 2500) {
+                ultimaAlarma = ahora;
+                voz.pitido(Voz.EXCESO);
             }
-            double dist = Datos.dist(la, lo, d.lat[i], d.lon[i]);
-            double[] e = estadoRadar.get(i);
-            if (dist > 3000) {
-                if (e != null) estadoRadar.remove(i);
-                continue;
-            }
-            if (e == null) {
-                e = new double[]{0, dist};
-                estadoRadar.put(i, e);
-            }
-            boolean acercando = dist <= e[1] + 3;
-            e[1] = dist;
-            if (dist > d.aviso1 + 300) e[0] = 0;
-            boolean delante = rumbo < 0 ? dist < 120 : Datos.difAng(Datos.rumbo(la, lo, d.lat[i], d.lon[i]), rumbo) <= 40;
-            boolean sentido = d.dir[i] < 0 || rumbo < 0 || Datos.difAng(d.dir[i], rumbo) <= 60;
-            if (!delante || !sentido) continue;
-            if (dist < dMejor) {
-                dMejor = dist;
-                mejor = i;
-            }
-            if (vel < 8) continue;
-            if (e[0] < 1 && dist <= d.aviso1 && acercando) {
-                e[0] = 1;
-                aviso(d, i, dist, 1);
-            }
-            if (e[0] < 2 && dist <= d.aviso2 && acercando) {
-                e[0] = 2;
-                aviso(d, i, dist, 2);
-            }
-        }
-        // Alarma si vas más rápido que el límite del radar que tenés adelante.
-        if (mejor >= 0 && d.vmax[mejor] > 0 && dMejor <= d.aviso1 && vel > d.vmax[mejor] + d.tolerancia
-                && d.alarmaExceso && SystemClock.elapsedRealtime() - ultimaAlarma > 2500) {
-            ultimaAlarma = SystemClock.elapsedRealtime();
-            voz.pitido(3);
         }
         if (mejor >= 0 && dMejor <= 2000) {
             String lim = d.vmax[mejor] > 0 ? " · máx. " + d.vmax[mejor] : "";
@@ -265,16 +244,77 @@ public class ServicioRadares extends Service implements LocationListener {
         }
     }
 
-    private void aviso(Datos d, int i, double dist, int nivel) {
+    @Override
+    public void aviso(int i, double dist) {
+        Datos d = datosEnUso;
+        if (d == null) return;
         String lim = d.vmax[i] > 0 ? (d.estimado[i] ? ". Máxima probable " : ". Máxima ") + d.vmax[i] : "";
         String texto = Datos.nombreTipo(d.tipo[i]) + " a " + Datos.redondear(dist) + " metros" + lim;
         boolean excede = d.vmax[i] > 0 && vel > d.vmax[i] + d.tolerancia;
-        if (d.sonido) voz.pitido(nivel);
-        if (d.voz && (nivel == 2 || !d.sonido)) {
+        // Las cámaras de semáforo y de control solo hablan (con la voz apagada, un pip para que no pasen de largo).
+        boolean conPip = d.sonido && (d.mideVelocidad(i) || !d.voz);
+        if (conPip) voz.sonido(Voz.AVISO);
+        if (d.voz) {
             String dicho = texto + (excede ? ". Bajá la velocidad." : "");
-            if (d.sonido) voz.hablarLuego(dicho, 450);
+            if (conPip) voz.hablarLuego(dicho, 350);
             else voz.hablar(dicho);
         }
+    }
+
+    @Override
+    public void empiezaCuenta(int i) {
+        Datos d = datosEnUso;
+        pararPips();
+        if (d == null || !d.sonido || !d.pipsCuenta) return;
+        pipsSonando = true;
+        hilo.post(pip);
+    }
+
+    @Override
+    public void pasado(int i, boolean rapido) {
+        pararPips();
+        Datos d = datosEnUso;
+        if (d == null || !d.sonido || !d.pipsCuenta || !d.mideVelocidad(i)) return;
+        voz.sonido(rapido ? Voz.GRAVE : Voz.APROBADO);
+    }
+
+    @Override
+    public void terminaCuenta() {
+        pararPips();
+    }
+
+    private void pararPips() {
+        pipsSonando = false;
+        hilo.removeCallbacks(pip);
+    }
+
+    // Pips cada vez más seguidos hasta que lo pasás (sin pip largo al final). Parado, en silencio.
+    private void pip() {
+        int i = avisos.cuenta;
+        Datos d = datosEnUso;
+        if (!pipsSonando || i < 0 || d == null) {
+            pipsSonando = false;
+            return;
+        }
+        long ahora = SystemClock.elapsedRealtime();
+        if (avisos.cuentaVieja(ahora)) {
+            pararPips();
+            return;
+        }
+        double resto = avisos.restante(ahora);
+        long espera;
+        if (Double.isInfinite(resto)) {
+            espera = 500;
+        } else if (resto <= 0.15) {
+            espera = 250;           // ya llegaste: espera a que quede atrás
+        } else if (voz.hablando()) {
+            espera = 150;
+        } else {
+            boolean rapido = d.vmax[i] > 0 && vel > d.vmax[i] + d.tolerancia;
+            voz.sonido(rapido ? Voz.PIP_RAPIDO : Voz.PIP);
+            espera = (long) (Datos.intervaloPip(resto, rapido) * 1000);
+        }
+        hilo.postDelayed(pip, espera);
     }
 
     private void evaluarPeajes(Datos d, double la, double lo) {
@@ -300,7 +340,7 @@ public class ServicioRadares extends Service implements LocationListener {
                 e[0] = 1;
                 String texto = "Peaje a " + (dist >= 900 ? "1 kilómetro" : Datos.redondear(dist) + " metros")
                         + (d.pnombre[i].isEmpty() ? "" : ": " + d.pnombre[i]);
-                if (d.sonido) voz.pitido(1);
+                if (d.sonido) voz.pitido(Voz.PEAJE);
                 if (d.voz) {
                     if (d.sonido) voz.hablarLuego(texto, 450);
                     else voz.hablar(texto);
