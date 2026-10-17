@@ -1,0 +1,3 @@
+Radares BA para Android, versión 1.0.5
+Compilado el 2026-10-17 desde 096bbafa984c7aa861811851bdc6f0b1e5cd1e86
+b5019fdecc9768ea79e7d81f128ad286b53bb0510f6a55b56a388c60a637c412  radares-ba.apk
