@@ -158,14 +158,23 @@
 
   <div class="bloque">
     <h3>Avisos de radares</h3>
-    <div class="fila"><label for="ajAviso1">Primer aviso</label>
-      <select id="ajAviso1"><option value="300">a 300 m</option><option value="500">a 500 m</option><option value="800">a 800 m</option><option value="1000">a 1 km</option></select></div>
-    <div class="fila"><label for="ajAviso2">Aviso por voz</label>
-      <select id="ajAviso2"><option value="150">a 150 m</option><option value="250">a 250 m</option><option value="400">a 400 m</option></select></div>
+    <div id="avisosTiempo">
+      <div class="fila"><label for="ajAnticipacion">Avisar antes de llegar</label>
+        <select id="ajAnticipacion"><option value="10">10 segundos</option><option value="15">15 segundos</option><option value="20">20 segundos</option></select></div>
+      <p class="nota">El aviso depende de tu velocidad: con 15 segundos, a 60 km/h avisa a unos 250 m y a 20 km/h, a unos 80 m.</p>
+    </div>
+    <!-- La app de Android actual todavía avisa por distancia -->
+    <div id="avisosDistancia" hidden>
+      <div class="fila"><label for="ajAviso1">Primer aviso</label>
+        <select id="ajAviso1"><option value="300">a 300 m</option><option value="500">a 500 m</option><option value="800">a 800 m</option><option value="1000">a 1 km</option></select></div>
+      <div class="fila"><label for="ajAviso2">Aviso por voz</label>
+        <select id="ajAviso2"><option value="150">a 150 m</option><option value="250">a 250 m</option><option value="400">a 400 m</option></select></div>
+    </div>
     <div class="fila"><label for="ajTol">Alarma si superás el límite por</label>
       <select id="ajTol"><option value="0">0 km/h</option><option value="5">5 km/h</option><option value="10">10 km/h</option></select></div>
     <label class="check"><input type="checkbox" id="ajVoz"> Avisar por voz</label>
     <label class="check"><input type="checkbox" id="ajSonido"> Sonido de aviso</label>
+    <label class="check" id="filaPips"><input type="checkbox" id="ajPips"> Pips al acercarte a un radar de velocidad y sonido al pasarlo</label>
     <label class="check"><input type="checkbox" id="ajExceso"> Alarma por exceso de velocidad cerca de un radar</label>
     <label class="check"><input type="checkbox" id="ajAvisarPeajes"> Avisar peajes a 1 km</label>
     <button class="btn-sec" id="btnProbarSonido">Probar sonido y voz</button>
@@ -180,7 +189,7 @@
     <label class="check"><input type="checkbox" id="ajMostrarLimite"> Mostrar el límite de la calle por la que vas</label>
     <div class="fila"><label for="ajLimiteAlarma">Alarma si lo superás</label>
       <select id="ajLimiteAlarma"><option value="reales">Solo con límites cargados</option><option value="todos">También con los estimados</option><option value="no">No avisar</option></select></div>
-    <p class="nota">Si la calle no tiene un límite cargado, se estima con la ley de tránsito (calles 40, avenidas 60, rutas 110) y se muestra con borde punteado. Usa un poco de datos móviles mientras manejás.</p>
+    <p class="nota">Si la calle no tiene un límite cargado, se estima con la ley de tránsito (calles 40, avenidas 60, rutas 110) y se muestra con borde punteado. Las calles se bajan mientras manejás (usa pocos datos) y quedan guardadas en el celular para la próxima vez.</p>
   </div>
 
   <div class="bloque">

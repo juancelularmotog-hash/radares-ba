@@ -3,9 +3,14 @@
    Dentro de la app de Android, los avisos con sonido los da el servicio nativo (funciona con la pantalla bloqueada). */
 'use strict';
 (function () {
-  const VERSION = '2.0.8';
+  const VERSION = '2.0.9';
   // Lo que cambió en la app (se muestra en Novedades). La primera es la versión actual.
   const CAMBIOS_APP = [
+    ['2.0.9', ['Los avisos de radares son según tu velocidad: el pip y la voz llegan unos 15 segundos antes (a 60 km/h, a unos 250 m; a 20 km/h, a unos 80 m). Se cambia en Ajustes.',
+      'En los radares de velocidad, pips cada vez más seguidos al acercarte y un sonido al pasarlo (grave si ibas por encima de la máxima).',
+      'Las cámaras de semáforo solo te avisan con la voz, sin pips.',
+      'El límite de la calle se ve siempre durante el viaje y más grande. Las calles quedan guardadas en el celular para la próxima vez.',
+      'En la app de Android, los avisos nuevos llegan con su próxima versión: hasta entonces suenan como antes.']],
     ['2.0.8', ['Peajes: te avisa solo los que vas a pagar. Los que cobran en tu mano y, si la cabina está en una subida o bajada, solo cuando entrás por ahí.',
       'En la ficha de cada peaje dice en qué mano cobra; si uno no cobra, lo podés ocultar.']],
     ['2.0.7', ['Las novedades tienen su propia pantalla: Menú › Novedades. Ahí también quedan las actualizaciones anteriores y los cambios de la app.']],
@@ -27,7 +32,8 @@
   };
 
   const AJUSTES_DEF = {
-    aviso1: 500, aviso2: 250, tolerancia: 5,
+    aviso1: 500, aviso2: 250, tolerancia: 5,   // aviso1 y aviso2 solo los usa la app de Android vieja
+    anticipacion: 15, pipsCuenta: true,        // segundos antes de llegar al radar; pips al acercarte y sonido al pasarlo
     voz: true, sonido: true, alarmaExceso: true, avisarPeajes: true,
     mostrarLimite: true, limiteAlarma: 'reales',
     verVelocidad: true, verCamaras: true, verOtros: true, verPeajes: true,
@@ -98,7 +104,7 @@
   }
   const CARDINALES = ['norte', 'noreste', 'este', 'sureste', 'sur', 'suroeste', 'oeste', 'noroeste'];
   function cardinal(g) { return CARDINALES[Math.round(((g % 360) + 360) % 360 / 45) % 8]; }
-  function redondear(d) { return d >= 100 ? Math.round(d / 50) * 50 : Math.max(10, Math.round(d / 10) * 10); }
+  function redondear(d) { return d >= 200 ? Math.round(d / 50) * 50 : Math.max(10, Math.round(d / 10) * 10); }
   function formatoDist(d) { return d >= 1000 ? (d / 1000).toFixed(1).replace('.', ',') + ' km' : redondear(d) + ' m'; }
   function formatoKm(m) { const km = m / 1000; return km >= 100 ? Math.round(km) + ' km' : km.toFixed(1).replace('.', ',') + ' km'; }
   function formatoDuracion(s) { const min = Math.max(1, Math.round(s / 60)); if (min < 60) return min + ' min'; const h = Math.floor(min / 60), r = min % 60; return h + ' h' + (r ? ' ' + r + ' min' : ''); }
@@ -577,7 +583,7 @@
 
   function recalcularBase() {
     base = baseCombinada();
-    estadoRadar.clear();
+    if (!viajeActivo) estadoRadar.clear();   // en viaje se mantiene, para no repetir avisos ya dados
     dibujarRadares();
     mostrarNovedades();
     if (avisarNovedades) {
@@ -731,8 +737,8 @@
       for (const it of items) { const li = document.createElement('li'); li.textContent = it; ul.appendChild(li); }
       div.append(t, ul); caja.appendChild(div);
     };
-    // En la app de Android vieja, los avisos con la pantalla bloqueada no saben de manos ni de ramales.
-    $('bloqueActualizarApk').hidden = !(NATIVO && !peajesConSentido());
+    // Con la app de Android vieja, los avisos con la pantalla bloqueada siguen siendo los de antes.
+    $('bloqueActualizarApk').hidden = !apkVieja();
     if (NATIVO) $('linkApkNueva').href = urlApk();
     CAMBIOS_APP.slice(0, 3).forEach((c) => version(c, cam));
     if (CAMBIOS_APP.length > 3) {
@@ -777,19 +783,42 @@
     o.connect(g); g.connect(c.destination);
     o.start(t0); o.stop(t0 + dur + 0.05);
   }
+  // 1: peaje · 3: alarma por exceso · 4: límite de la calle.
   function pitido(n) {
     if (n === 1) tono(880, 0, 0.2);
-    else if (n === 2) { tono(880, 0, 0.16); tono(1175, 0.2, 0.24); }
     else if (n === 3) { for (let i = 0; i < 3; i++) tono(1480, i * 0.17, 0.12, 0.4); }
     else { tono(520, 0, 0.18, 0.35); tono(520, 0.26, 0.18, 0.35); }
   }
+  // Sonidos de los radares. "caida": se apaga de a poco, como una campanita; si no, corta seco (pip).
+  function nota(f, ini, dur, vol, forma, caida) {
+    const c = audio(); if (!c) return;
+    const o = c.createOscillator(), g = c.createGain(), t0 = c.currentTime + ini + 0.01;
+    o.type = forma || 'sine'; o.frequency.setValueAtTime(f, t0);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(vol, t0 + 0.01);
+    if (!caida) g.gain.setValueAtTime(vol, t0 + Math.max(0.011, dur - 0.035));
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(t0); o.stop(t0 + dur + 0.05);
+  }
+  const SONIDOS = {
+    aviso() { nota(1046.5, 0, 0.13, 0.35); nota(2093, 0, 0.09, 0.05); },
+    pip(rapido) { if (rapido) nota(1760, 0, 0.055, 0.24, 'triangle'); else nota(1318.5, 0, 0.065, 0.3); },
+    aprobado() {
+      nota(1046.5, 0, 0.35, 0.3, 'sine', true); nota(2093, 0, 0.2, 0.05, 'sine', true);
+      nota(1568, 0.13, 0.6, 0.32, 'sine', true); nota(3136, 0.13, 0.3, 0.05, 'sine', true);
+    },
+    grave() { nota(523.25, 0, 0.2, 0.28, 'triangle'); nota(392, 0.24, 0.5, 0.3, 'triangle', true); }
+  };
   function vozEs() {
     if (!('speechSynthesis' in window)) return null;
     const vs = speechSynthesis.getVoices();
     return vs.find((v) => /es[-_]AR/i.test(v.lang)) || vs.find((v) => /es[-_](US|MX|419)/i.test(v.lang)) || vs.find((v) => /^es/i.test(v.lang)) || null;
   }
+  // La voz de la app de Android no se puede consultar: se estima cuánto tarda en decirlo.
+  let vozProgramada = 0, vozNativaHasta = 0;
   function hablar(txt) {
-    if (NATIVO) { nat('hablar', txt); return; }
+    if (NATIVO) { vozNativaHasta = Date.now() + 500 + txt.length * 65; nat('hablar', txt); return; }
     if (!('speechSynthesis' in window)) return;
     try {
       speechSynthesis.cancel();
@@ -798,6 +827,12 @@
       const v = vozEs(); if (v) u.voice = v;
       speechSynthesis.speak(u);
     } catch (e) { /* sin voz */ }
+  }
+  function hablarLuego(txt, ms) { vozProgramada++; setTimeout(() => { vozProgramada--; hablar(txt); }, ms); }
+  // Para que los pips no se pisen con la voz.
+  function hablando() {
+    if (vozProgramada > 0 || Date.now() < vozNativaHasta) return true;
+    try { return 'speechSynthesis' in window && (speechSynthesis.speaking || speechSynthesis.pending); } catch (e) { return false; }
   }
   if ('speechSynthesis' in window) { try { speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices(); } catch (e) { /* nada */ } }
 
@@ -827,11 +862,53 @@
   }
 
   // ---------- Límite de la calle ----------
-  // Se descargan de OpenStreetMap las calles de cuadrados de ~1 km a medida que avanzás.
+  // Se descargan de OpenStreetMap las calles de cuadrados de ~1 km a medida que avanzás, y quedan guardadas en el
+  // celular 60 días: por donde ya pasaste, el límite aparece al instante aunque Overpass no responda.
   const CLASES_RE = '^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|road)(_link)?$';
   const TAM_CELDA = 0.01;
+  const CELDA_DIAS = 60;
   const celdas = new Map();
+  const revisadas = new Set(), leyendo = new Set();   // celdas ya buscadas entre las guardadas
   let pidiendoCelda = false, pausaCeldasHasta = 0;
+  const guardadas = (() => {
+    let bd = null;
+    function abrir() {
+      if (!bd) {
+        bd = new Promise((ok, mal) => {
+          try {
+            const r = indexedDB.open('radares-ba', 1);
+            r.onupgradeneeded = () => r.result.createObjectStore('celdas');
+            r.onsuccess = () => ok(r.result);
+            r.onerror = () => mal(r.error);
+          } catch (e) { mal(e); }
+        });
+      }
+      return bd;
+    }
+    return {
+      leer(k) {
+        return abrir().then((db) => new Promise((ok) => {
+          const q = db.transaction('celdas').objectStore('celdas').get(k);
+          q.onsuccess = () => ok(q.result || null);
+          q.onerror = () => ok(null);
+        })).catch(() => null);
+      },
+      guardar(k, v) {
+        return abrir().then((db) => { db.transaction('celdas', 'readwrite').objectStore('celdas').put(v, k); }).catch(() => { /* sin lugar o bloqueado */ });
+      },
+      limpiar() {
+        const viejo = Date.now() - CELDA_DIAS * 864e5;
+        return abrir().then((db) => {
+          const c = db.transaction('celdas', 'readwrite').objectStore('celdas').openCursor();
+          c.onsuccess = () => { const cur = c.result; if (!cur) return; if (!cur.value || !(cur.value.t > viejo)) cur.delete(); cur.continue(); };
+        }).catch(() => { /* nada */ });
+      }
+    };
+  })();
+  function ponerCelda(k, cel) {
+    celdas.set(k, cel);
+    if (celdas.size > 48) { const vieja = celdas.keys().next().value; celdas.delete(vieja); revisadas.delete(vieja); }
+  }
   let calleActual = null, calleCandidata = null, cuentaCandidata = 0, sinCalle = 0, limiteActual = null;
   let excesoCalleDesde = 0, ultimaAlarmaCalle = 0;
 
@@ -849,6 +926,13 @@
   }
   async function pedirCelda(cy, cx) {
     const k = cy + ':' + cx;
+    if (celdas.has(k) || leyendo.has(k)) return;
+    if (!revisadas.has(k)) {
+      leyendo.add(k);
+      const g = await guardadas.leer(k);
+      leyendo.delete(k); revisadas.add(k);
+      if (g && Array.isArray(g.calles) && Date.now() - g.t < CELDA_DIAS * 864e5) { ponerCelda(k, g); return; }
+    }
     if (celdas.has(k) || pidiendoCelda || Date.now() < pausaCeldasHasta) return;
     pidiendoCelda = true;
     const s = (cy * TAM_CELDA).toFixed(4), w = (cx * TAM_CELDA).toFixed(4), n = ((cy + 1) * TAM_CELDA).toFixed(4), e = ((cx + 1) * TAM_CELDA).toFixed(4);
@@ -869,8 +953,9 @@
           t: { highway: t.highway, name: t.name, ref: t.ref, maxspeed: t.maxspeed, fw: t['maxspeed:forward'], bw: t['maxspeed:backward'], oneway: t.oneway, junction: t.junction }
         });
       }
-      celdas.set(k, { calles, urbano: resid >= 15 });
-      if (celdas.size > 48) celdas.delete(celdas.keys().next().value);
+      const cel = { calles, urbano: resid >= 15, t: Date.now() };
+      ponerCelda(k, cel);
+      guardadas.guardar(k, cel);
     } catch (e) {
       pausaCeldasHasta = Date.now() + (e && e.status === 429 ? 60000 : 15000);
     } finally {
@@ -880,9 +965,17 @@
   function buscarCalle(p) {
     const cy = Math.floor(p.lat / TAM_CELDA), cx = Math.floor(p.lon / TAM_CELDA);
     pedirCelda(cy, cx);
-    if (rumboActual != null && celdas.has(cy + ':' + cx)) {
-      const adelante = destino(p.lat, p.lon, rumboActual, 700);
-      pedirCelda(Math.floor(adelante[0] / TAM_CELDA), Math.floor(adelante[1] / TAM_CELDA));
+    if (celdas.has(cy + ':' + cx)) {
+      if (rumboActual != null) {
+        const adelante = destino(p.lat, p.lon, rumboActual, 700);
+        pedirCelda(Math.floor(adelante[0] / TAM_CELDA), Math.floor(adelante[1] / TAM_CELDA));
+      }
+      // Cerca del borde, también la celda de al lado (la calle por la que vas puede estar solo en ella).
+      const fy = p.lat / TAM_CELDA - cy, fx = p.lon / TAM_CELDA - cx;
+      const dy = fy < 0.15 ? -1 : fy > 0.85 ? 1 : 0, dx = fx < 0.18 ? -1 : fx > 0.82 ? 1 : 0;
+      if (dy) pedirCelda(cy + dy, cx);
+      if (dx) pedirCelda(cy, cx + dx);
+      if (dy && dx) pedirCelda(cy + dy, cx + dx);
     }
     const umbral = Math.min(40, Math.max(18, (p.precision || 15) + 8));
     const margen = umbral / 111000 * 1.5;
@@ -933,21 +1026,30 @@
       } else {
         calleActual = m; calleCandidata = null;
       }
-    } else if (++sinCalle >= 3) {
+    } else if (++sinCalle >= 12) {   // unos segundos sin calle (GPS que salta, una playa de estacionamiento)
       calleActual = null;
     }
     limiteActual = calleActual ? limiteDe(calleActual) : null;
     mostrarCalle();
     chequearLimiteCalle();
   }
+  // Durante el viaje el cartel está siempre; mientras no sabe el límite muestra un guion.
+  let limiteMostrado = null;
   function mostrarCalle() {
     const s = $('senalCalle');
-    if (viajeActivo && ajustes.mostrarLimite && limiteActual) {
+    const lim = limiteActual;
+    if (viajeActivo && ajustes.mostrarLimite) {
       s.hidden = false;
-      $('limCalle').textContent = limiteActual.v;
-      s.classList.toggle('estimado', limiteActual.estimado);
-      s.title = limiteActual.estimado ? 'Límite estimado por tipo de calle' : 'Límite de la calle';
-    } else s.hidden = true;
+      const v = lim ? lim.v : null;
+      $('limCalle').textContent = v != null ? v : '–';
+      s.classList.toggle('estimado', !!(lim && lim.estimado));
+      s.classList.toggle('sin-dato', !lim);
+      s.classList.toggle('tres', v != null && v >= 100);
+      s.title = !lim ? 'Buscando el límite de la calle' : lim.estimado ? 'Límite estimado por el tipo de calle' : 'Límite de la calle';
+      s.setAttribute('aria-label', !lim ? 'Límite de la calle: buscando' : 'Límite de la calle: ' + v + (lim.estimado ? ', estimado' : ''));
+      if (v != null && limiteMostrado != null && v !== limiteMostrado) { s.classList.remove('cambio'); void s.offsetWidth; s.classList.add('cambio'); }
+      limiteMostrado = v;
+    } else { s.hidden = true; limiteMostrado = null; }
     const n = $('calleNombre');
     const nombre = calleActual && (calleActual.calle.t.name || calleActual.calle.t.ref);
     if (viajeActivo && nombre) { n.hidden = false; n.textContent = nombre; } else n.hidden = true;
@@ -1032,40 +1134,98 @@
     else mapa.panTo([lat, lon], { animate: true, duration: 0.8 });
   }
 
+  // ---------- Avisos de radares ----------
+  // Dependen de tu velocidad: el pip y la voz llegan unos segundos antes de llegar (Ajustes: 10, 15 o 20; a 60 km/h,
+  // 15 s son 250 m). En los radares de velocidad, además, los últimos 5 s suenan pips cada vez más seguidos y al
+  // pasarlo un sonido de aprobado (o uno grave si lo pasaste por encima de la máxima). Las cámaras de semáforo y de
+  // control solo dicen que hay una.
+  const T_CUENTA = 5, AVISO_MIN = 50, AVISO_MAX = 700;
+  const mideVelocidad = (r) => r.tipo === 'velocidad' || tieneLimite(r);
+  const excedeRadar = (r, v) => tieneLimite(r) && v > r.vmax + ajustes.tolerancia;
+  function distAviso(v) { return Math.min(AVISO_MAX, Math.max(AVISO_MIN, v / 3.6 * (ajustes.anticipacion || 15))); }
+  // De un pip cada 0,7 s a uno cada 0,12 s al llegar (más seguidos y agudos si vas pasado).
+  function intervaloPip(rest, rapido) {
+    const s = 0.12 + 0.58 * Math.pow(Math.max(0, Math.min(1, rest / T_CUENTA)), 1.2);
+    return rapido ? s * 0.75 : s;
+  }
   function evaluarRadares(p) {
     let mejor = null;
     for (const r of radares) {
       if (!activo(r)) continue;
       const d = dist(p.lat, p.lon, r.lat, r.lon);
       let e = estadoRadar.get(r.id);
-      if (d > 3000) { if (e) estadoRadar.delete(r.id); continue; }
-      if (!e) { e = { nivel: 0, dPrev: d }; estadoRadar.set(r.id, e); }
+      if (d > 3000) { if (e) { if (cuenta && cuenta.id === r.id) pararCuenta(); estadoRadar.delete(r.id); } continue; }
+      if (!e) { e = { fase: 0, dPrev: d, dMin: Infinity, velMin: 0 }; estadoRadar.set(r.id, e); }
       const acercando = d <= e.dPrev + 3;
       e.dPrev = d;
-      if (d > ajustes.aviso1 + 300) e.nivel = 0;
-      const delante = rumboActual == null ? d < 120 : difAng(rumbo(p.lat, p.lon, r.lat, r.lon), rumboActual) <= 40;
+      const ang = rumboActual == null ? null : difAng(rumbo(p.lat, p.lon, r.lat, r.lon), rumboActual);
+      if (cuenta && cuenta.id === r.id) Object.assign(cuenta, { d, t: Date.now(), v: velActual, fuera: ang != null && ang > 75 && d > 40 });
+      // fase 0: nada · 1: avisado · 2: pips · 3: ya lo pasaste
+      if (e.fase === 1 || e.fase === 2) {
+        if (d < e.dMin) { e.dMin = d; e.velMin = velActual; }
+        if (e.dMin <= 100 && ((ang != null && ang > 100 && d < 120) || (d > e.dMin + 15 && velActual > 5))) { pasado(r, e); continue; }
+        if (e.dMin > 100 && d > e.dMin + 100) { e.fase = 0; e.dMin = Infinity; if (cuenta && cuenta.id === r.id) pararCuenta(); } // doblaste antes
+      }
+      if (d > AVISO_MAX + 300) { e.fase = 0; e.dMin = Infinity; }
+      const delante = ang == null ? d < 120 : ang <= 40;
       const sentido = r.dir == null || rumboActual == null || difAng(r.dir, rumboActual) <= 60;
-      if (!delante || !sentido) continue;
+      if (!delante || !sentido || e.fase === 3) continue;
       if (!mejor || d < mejor.d) mejor = { r, d };
       if (velActual < 8) continue;
-      if (e.nivel < 1 && d <= ajustes.aviso1 && acercando) { e.nivel = 1; aviso(r, d, 1); }
-      if (e.nivel < 2 && d <= ajustes.aviso2 && acercando) { e.nivel = 2; aviso(r, d, 2); }
+      if (e.fase === 0 && acercando && d <= distAviso(velActual)) { e.fase = 1; e.dMin = d; e.velMin = velActual; aviso(r, d); }
+      if (e.fase === 1 && mideVelocidad(r) && d <= velActual / 3.6 * T_CUENTA + 3) { e.fase = 2; empezarCuenta(r, d); }
     }
     proximo = mejor;
     mostrarProximo(mejor);
     chequearExceso(mejor);
   }
-  function aviso(r, d, nivel) {
+  function aviso(r, d) {
     const t = TIPOS[r.tipo] || TIPOS.otro;
     const lim = tieneLimite(r) ? (r.vmaxFuente === 'estimado' ? '. Máxima probable ' : '. Máxima ') + r.vmax : '';
     const txt = t.nombre + ' a ' + redondear(d) + ' metros' + lim;
-    const excede = tieneLimite(r) && velActual > r.vmax + ajustes.tolerancia;
+    const excede = excedeRadar(r, velActual);
     const corto = (r.tipo === 'semaforo' ? 'SEMÁFORO' : r.tipo === 'video' ? 'CÁMARA' : 'RADAR') + ' A ' + redondear(d) + ' M';
-    mostrarAlerta(txt, (nivel === 2 || excede) ? 'fuerte' : '', corto);
+    mostrarAlerta(txt, (mideVelocidad(r) || excede) ? 'fuerte' : '', corto);
     if (!audioWeb()) return;
-    if (ajustes.sonido) pitido(nivel);
-    if (ajustes.voz && (nivel === 2 || !ajustes.sonido)) hablar(txt + (excede ? '. Bajá la velocidad.' : ''));
-    if (navigator.vibrate) { try { navigator.vibrate(nivel === 2 ? [200, 100, 200] : 150); } catch (e) { /* nada */ } }
+    // Las cámaras de semáforo y de control solo hablan (con la voz apagada, un pip para que no pasen de largo).
+    const conPip = ajustes.sonido && (mideVelocidad(r) || !ajustes.voz);
+    if (conPip) SONIDOS.aviso();
+    if (ajustes.voz) {
+      const dicho = txt + (excede ? '. Bajá la velocidad.' : '');
+      if (conPip) hablarLuego(dicho, 350); else hablar(dicho);
+    }
+    if (navigator.vibrate) { try { navigator.vibrate(mideVelocidad(r) ? [200, 100, 200] : 150); } catch (e) { /* nada */ } }
+  }
+  // Pips de los últimos segundos. Entre una posición del GPS y la siguiente, lo que falta se estima con la velocidad.
+  let cuenta = null;   // { id, r, d, t, v, fuera, timer }
+  function empezarCuenta(r, d) {
+    pararCuenta();
+    if (!ajustes.sonido || !ajustes.pipsCuenta || !audioWeb()) return;
+    cuenta = { id: r.id, r, d, t: Date.now(), v: velActual, fuera: false, timer: null };
+    pipCuenta();
+  }
+  function pararCuenta() { if (cuenta) { clearTimeout(cuenta.timer); cuenta = null; } }
+  function pipCuenta() {
+    const c = cuenta;
+    if (!c) return;
+    if (Date.now() - c.t > 15000) { pararCuenta(); return; }   // sin GPS hace rato
+    const v = c.v / 3.6;
+    let espera = 0.5;                                          // parado o mirando para otro lado: en silencio
+    if (v >= 1.5 && !c.fuera) {
+      const rest = (c.d - v * (Date.now() - c.t) / 1000) / v;
+      espera = 0.25;                                           // ya llegaste: espera a que quede atrás
+      if (rest > 0.15) {
+        if (hablando()) espera = 0.15;
+        else { const rapido = excedeRadar(c.r, velActual); SONIDOS.pip(rapido); espera = intervaloPip(rest, rapido); }
+      }
+    }
+    c.timer = setTimeout(pipCuenta, espera * 1000);
+  }
+  function pasado(r, e) {
+    e.fase = 3;
+    if (cuenta && cuenta.id === r.id) pararCuenta();
+    if (!mideVelocidad(r) || !ajustes.sonido || !ajustes.pipsCuenta || !audioWeb()) return;
+    if (excedeRadar(r, e.velMin)) SONIDOS.grave(); else SONIDOS.aprobado();
   }
   // Distancia a la línea más cercana que va en tu mismo sentido.
   function distLineas(p, lineas, rb) {
@@ -1126,10 +1286,13 @@
     $('proxTipo').textContent = t.nombre + (m.r.nombre ? ' · ' + m.r.nombre : '');
   }
   let ultimaAlarma = 0;
+  // Desde el aviso hasta pasar el radar. Mientras suenan los pips no hace falta: ya son más agudos.
   function chequearExceso(m) {
-    const exceso = !!(m && tieneLimite(m.r) && m.d <= ajustes.aviso1 && velActual > m.r.vmax + ajustes.tolerancia);
+    const e = m && estadoRadar.get(m.r.id);
+    const exceso = !!(e && (e.fase === 1 || e.fase === 2) && excedeRadar(m.r, velActual));
     $('hudVel').classList.toggle('exceso', exceso);
-    if (exceso && ajustes.alarmaExceso && audioWeb() && Date.now() - ultimaAlarma > 2500) { ultimaAlarma = Date.now(); pitido(3); }
+    const conPips = !!(m && cuenta && cuenta.id === m.r.id);
+    if (exceso && ajustes.alarmaExceso && audioWeb() && !conPips && !hablando() && Date.now() - ultimaAlarma > 2500) { ultimaAlarma = Date.now(); pitido(3); }
   }
 
   async function pedirWakeLock() {
@@ -1169,7 +1332,7 @@
   }
   function reiniciarSeguimiento() {
     siguiendo = true; primeraFix = true; posAnt = null; rumboActual = null; marcarSeguimiento();
-    estadoRadar.clear(); estadoPeaje.clear();
+    estadoRadar.clear(); estadoPeaje.clear(); pararCuenta();
     calleActual = null; calleCandidata = null; limiteActual = null; sinCalle = 0;
   }
   function iniciarViaje() {
@@ -1179,6 +1342,7 @@
     if (ajustes.voz && audioWeb()) hablar('Viaje iniciado. Te aviso cuando haya un radar adelante.');
     reiniciarSeguimiento();
     marcarViajeActivo(true);
+    mostrarCalle();
     const g = $('gpsEstado'); g.className = 'gps'; g.textContent = 'Buscando GPS…';
     watchId = navigator.geolocation.watchPosition(desdeGeo, errorGeo, { enableHighAccuracy: true, maximumAge: 1000, timeout: 20000 });
     pedirWakeLock();
@@ -1193,6 +1357,7 @@
     if (watchId != null) navigator.geolocation.clearWatch(watchId);
     watchId = null;
     if (simulacion) { clearInterval(simulacion); simulacion = null; }
+    pararCuenta();
     soltarWakeLock();
     if (hudActivo) cerrarHud();
     marcarViajeActivo(false);
@@ -1515,10 +1680,10 @@
     if (!hudActivo) return;
     $('hudVelNum').textContent = viajeActivo && posAnt ? Math.round(velActual) : '--';
     const bc = $('hudCalleBloque');
-    if (ajustes.mostrarLimite && limiteActual) {
+    if (ajustes.mostrarLimite && viajeActivo) {
       bc.hidden = false;
-      $('hudLim').textContent = limiteActual.v;
-      $('hudLim').classList.toggle('estimado', limiteActual.estimado);
+      $('hudLim').textContent = limiteActual ? limiteActual.v : '–';
+      $('hudLim').classList.toggle('estimado', !!(limiteActual && limiteActual.estimado));
     } else bc.hidden = true;
     const br = $('hudRadarBloque');
     if (proximo && proximo.d <= 2000) {
@@ -1553,7 +1718,7 @@
       const brng = obj.dir != null ? obj.dir : 45;
       const a = destino(obj.lat, obj.lon, (brng + 180) % 360, 1300), b = destino(obj.lat, obj.lon, brng, 600);
       recorrido = caminante([a, b]);
-      velSim = tieneLimite(obj) ? obj.vmax + 15 : 70;
+      velSim = tieneLimite(obj) ? obj.vmax : 70;
       descripcion = 'hacia ' + (obj.nombre || 'un radar');
     }
     cerrarHojas();
@@ -1561,6 +1726,7 @@
     audio(); tono(440, 0, 0.05, 0.001);
     reiniciarSeguimiento();
     marcarViajeActivo(true);
+    mostrarCalle();
     toast('Simulación a ' + Math.round(velSim) + ' km/h ' + descripcion + '.', 5000);
     if (ajustes.voz) hablar('Empieza la simulación.');
     const paso = velSim / 3.6;
@@ -1645,8 +1811,8 @@
     actualizarChipRuta();
   }
   const CAMPOS = [
-    ['ajAviso1', 'aviso1', 'num'], ['ajAviso2', 'aviso2', 'num'], ['ajTol', 'tolerancia', 'num'],
-    ['ajVoz', 'voz', 'check'], ['ajSonido', 'sonido', 'check'], ['ajExceso', 'alarmaExceso', 'check'], ['ajAvisarPeajes', 'avisarPeajes', 'check'],
+    ['ajAnticipacion', 'anticipacion', 'num'], ['ajAviso1', 'aviso1', 'num'], ['ajAviso2', 'aviso2', 'num'], ['ajTol', 'tolerancia', 'num'],
+    ['ajVoz', 'voz', 'check'], ['ajSonido', 'sonido', 'check'], ['ajPips', 'pipsCuenta', 'check'], ['ajExceso', 'alarmaExceso', 'check'], ['ajAvisarPeajes', 'avisarPeajes', 'check'],
     ['ajMostrarLimite', 'mostrarLimite', 'check'], ['ajLimiteAlarma', 'limiteAlarma', 'txt'],
     ['ajVerVel', 'verVelocidad', 'check'], ['ajVerCam', 'verCamaras', 'check'], ['ajVerOtros', 'verOtros', 'check'], ['ajVerPeajes', 'verPeajes', 'check'],
     ['ajRotar', 'rotarMapa', 'check'], ['ajModo', 'modoMapa', 'txt']
@@ -1655,6 +1821,11 @@
     for (const [id, k, tipo] of CAMPOS) {
       if (tipo === 'check') $(id).checked = !!ajustes[k]; else $(id).value = String(ajustes[k]);
     }
+    // Dentro de la app de Android actual los avisos los da la app, que todavía los da por distancia.
+    const nativosViejos = !!NATIVO && !avisosPorTiempo();
+    $('avisosTiempo').hidden = nativosViejos;
+    $('filaPips').hidden = nativosViejos;
+    $('avisosDistancia').hidden = !nativosViejos;
   }
   function guardarAjustes() {
     const antes = [ajustes.verVelocidad, ajustes.verCamaras, ajustes.verOtros, ajustes.verPeajes].join();
@@ -1664,6 +1835,7 @@
       else ajustes[k] = $(id).value;
     }
     ajustes.aviso2 = Math.min(ajustes.aviso2, ajustes.aviso1);
+    if (!ajustes.pipsCuenta) pararCuenta();
     LS.set('ajustes', ajustes);
     if (antes !== [ajustes.verVelocidad, ajustes.verCamaras, ajustes.verOtros, ajustes.verPeajes].join()) dibujarRadares();
     else sincronizarNativo();
@@ -1700,10 +1872,30 @@
     dibujarRadares(); mostrarNovedades();
     toast('Listo: los radares nuevos ya no se resaltan en el mapa.');
   };
+  // La secuencia completa de un radar: pip y voz, los pips de los últimos segundos y el sonido de aprobado.
+  let tPrueba = [];
+  function probarSecuencia() {
+    tPrueba.forEach(clearTimeout); tPrueba = [];
+    audio();
+    SONIDOS.aviso();
+    hablarLuego('Radar de velocidad a 250 metros. Máxima 60.', 350);
+    const inicio = Date.now();
+    const esperarVoz = () => {
+      if (hablando() && Date.now() - inicio < 9000) { tPrueba.push(setTimeout(esperarVoz, 200)); return; }
+      const t0 = Date.now() + 700;
+      const paso = () => {
+        const rest = T_CUENTA - (Date.now() - t0) / 1000;
+        if (rest <= 0.15) { tPrueba.push(setTimeout(SONIDOS.aprobado, 600)); return; }
+        SONIDOS.pip(false);
+        tPrueba.push(setTimeout(paso, intervaloPip(rest, false) * 1000));
+      };
+      tPrueba.push(setTimeout(paso, 700));
+    };
+    tPrueba.push(setTimeout(esperarVoz, 1200));
+  }
   $('btnProbarSonido').onclick = () => {
     if (NATIVO) { nat('probarSonido'); return; }
-    pitido(2);
-    setTimeout(() => hablar('Radar de velocidad a 250 metros. Máxima 60.'), 600);
+    probarSecuencia();
   };
   $('btnViaje').onclick = () => { if (viajeActivo) terminarViaje(); else iniciarViaje(); };
   $('btnCentrar').onclick = () => {
@@ -1737,12 +1929,19 @@
           ? [+q.lat.toFixed(6), +q.lon.toFixed(6), (q.nombre || '').slice(0, 60), q.dir == null ? -1 : Math.round(q.dir), q.ramal ? 1 : 0,
             q.ramal && Array.isArray(q.tramo) ? q.tramo : [], q.ramal && Array.isArray(q.otros) ? q.otros : []]
           : [+q.lat.toFixed(6), +q.lon.toFixed(6), (q.nombre || '').slice(0, 60)]),
-        ajustes: { aviso1: ajustes.aviso1, aviso2: ajustes.aviso2, tolerancia: ajustes.tolerancia, voz: ajustes.voz, sonido: ajustes.sonido, alarmaExceso: ajustes.alarmaExceso, avisarPeajes: ajustes.avisarPeajes && ajustes.verPeajes }
+        ajustes: {
+          aviso1: ajustes.aviso1, aviso2: ajustes.aviso2, anticipacion: ajustes.anticipacion, pipsCuenta: ajustes.pipsCuenta,
+          tolerancia: ajustes.tolerancia, voz: ajustes.voz, sonido: ajustes.sonido, alarmaExceso: ajustes.alarmaExceso,
+          avisarPeajes: ajustes.avisarPeajes && ajustes.verPeajes
+        }
       };
       nat('datos', JSON.stringify(datos));
     }, 400);
   }
   const peajesConSentido = () => nat('peajesConSentido') === true;
+  // Si la app de Android ya avisa según la velocidad, con pips al acercarte y sonido al pasar (todavía ninguna).
+  const avisosPorTiempo = () => nat('avisosPorTiempo') === true;
+  const apkVieja = () => !!NATIVO && !peajesConSentido();
   function revisarBateria() {
     if (NATIVO) $('bloqueBateria').hidden = nat('bateriaLibre') !== false;
   }
@@ -1793,6 +1992,7 @@
   if (NATIVO && nat('activo') === true) iniciarViaje();
   // Trae la lista del proyecto en segundo plano (no molesta si no hay conexión).
   bajarRepo().then(recalcularBase, () => { /* sin conexión: se usan los datos guardados */ });
+  setTimeout(() => guardadas.limpiar(), 8000);   // calles guardadas hace más de 60 días
 
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     navigator.serviceWorker.register('sw.js').catch(() => { /* sin modo sin conexión */ });

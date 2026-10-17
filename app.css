@@ -103,12 +103,16 @@ button { cursor: pointer; }
 .vel-num span { font-size: 54px; font-weight: 700; line-height: 1; letter-spacing: -0.5px; min-width: 1.1em; }
 .vel-num small { font-size: 16px; font-weight: 600; color: var(--fg-suave); }
 .senal-calle {
-  flex: none; width: 48px; height: 48px; border-radius: 50%;
-  background: #fff; border: 5px solid var(--peligro);
+  flex: none; width: 60px; height: 60px; border-radius: 50%;
+  background: #fff; border: 6px solid var(--peligro);
   display: grid; place-items: center;
-  font: 700 20px/1 var(--f-num); color: #111; font-variant-numeric: tabular-nums;
+  font: 700 27px/1 var(--f-num); color: #111; font-variant-numeric: tabular-nums;
 }
+.senal-calle.tres { font-size: 22px; letter-spacing: -0.5px; }
 .senal-calle.estimado { border-style: dashed; }
+.senal-calle.sin-dato { border-color: var(--otro); border-style: dashed; color: #6b7480; }
+.senal-calle.cambio { animation: cambio-limite .6s ease-out; }
+@keyframes cambio-limite { 0% { transform: scale(1.25); } 100% { transform: scale(1); } }
 .calle { font-size: 13px; font-weight: 600; margin-top: 4px; max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .gps { font-size: 12px; color: var(--fg-suave); margin-top: 2px; }
 .gps.bien::before, .gps.mal::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
@@ -457,7 +461,7 @@ details.nov-ant[open] summary { margin-bottom: 4px; }
 .hud-ctrl .btn-principal { margin-top: 10px; background: #ffc21a; color: #1b1400; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hud-vel.exceso, .alerta.fuerte, .mk.mk-nuevo, .btn-ubicacion.buscando svg { animation: none; }
+  .hud-vel.exceso, .alerta.fuerte, .mk.mk-nuevo, .btn-ubicacion.buscando svg, .senal-calle.cambio { animation: none; }
   .auto, #mapa.suave, #mapa.suave .mk, #mapa.suave .peaje-mk, #mapa.suave .destino-mk, .btn-brujula svg { transition: none; }
 }
 /* Pantallas angostas (iPhone SE, mini): la barra entra sin cortar "Terminar viaje". */

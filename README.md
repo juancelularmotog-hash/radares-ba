@@ -7,8 +7,8 @@ App web (instalable en iPhone y Android) que muestra los radares y peajes de CAB
 
 ## Qué hace
 
-- Avisos de radares con voz y pitidos (a la distancia que elijas), solo de los que están adelante y en tu sentido.
-- Límite de la calle por la que vas, con alarma si lo superás. Si la calle no tiene el dato cargado, se estima por la ley de tránsito (calles 40, avenidas 60, rutas 110) y se muestra punteado.
+- Avisos de radares según tu velocidad, solo de los que están adelante y en tu sentido: un pip y la voz unos 15 segundos antes de llegar (a 60 km/h, a unos 250 m; a 20 km/h, a unos 80 m; se elige 10, 15 o 20 segundos). En los radares de velocidad, además, pips cada vez más seguidos los últimos 5 segundos y un sonido al pasarlo: de aprobado, o grave si ibas por encima de la máxima. Las cámaras de semáforo y de control solo avisan con la voz. (En la app de Android esto llega con su próxima versión; mientras tanto avisa por distancia, como antes.)
+- Límite de la calle por la que vas, siempre a la vista durante el viaje (con un guion mientras lo busca), con alarma si lo superás. Si la calle no tiene el dato cargado, se estima por la ley de tránsito (calles 40, avenidas 60, rutas 110) y se muestra punteado. Las calles se bajan de OpenStreetMap mientras manejás y quedan guardadas en el celular 60 días.
 - Radares en tu ruta: buscás un destino y lista los radares y peajes del camino.
 - Peajes en el mapa y aviso a 1 km, solo de los que vas a pagar: los que cobran en tu mano y, si la cabina está en una subida o bajada, solo cuando ya entraste por ahí. La ficha de cada peaje dice en qué mano cobra, y si uno no cobra se puede ocultar.
 - Mapa que gira con el auto (botón de la brújula) y botón para volver a tu ubicación cuando estás mirando otra parte del mapa.
