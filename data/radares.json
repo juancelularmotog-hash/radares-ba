@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-16T19:28:03+00:00",
+ "generado": "2026-10-19T10:08:20+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -11,9 +11,7 @@
    "id": "ANSV",
    "url": "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales",
    "cantidad": 74,
-   "estado": "ok",
-   "equipos": 145,
-   "descartados": 4
+   "estado": "error: HTTP Error 500: Internal Server Error"
   },
   {
    "id": "PBA",
@@ -3588,8 +3586,8 @@
    "nombre": "Ruta Provincial 11",
    "fuente": "OSM",
    "osmFecha": "2026-04-05",
-   "vmaxFuente": "calle",
-   "dirInferida": true
+   "dirInferida": true,
+   "vmaxFuente": "calle"
   },
   {
    "id": "osm-n5553389079",
@@ -5325,13 +5323,13 @@
   {
    "id": "osm-n232584986",
    "lat": -34.638925,
-   "lon": -58.52122,
+   "lon": -58.521219,
    "tipo": "semaforo",
    "vmax": null,
    "dir": null,
    "nombre": "Avenida Rivadavia",
    "fuente": "OSM",
-   "osmFecha": "2021-06-11"
+   "osmFecha": "2026-10-17"
   },
   {
    "id": "osm-n11963024182",
