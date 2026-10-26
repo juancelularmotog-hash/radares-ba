@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-19T10:08:20+00:00",
+ "generado": "2026-10-26T10:51:20+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -11,14 +11,16 @@
    "id": "ANSV",
    "url": "https://www.argentina.gob.ar/seguridadvial/radares-fijos-y-moviles-autorizados-para-operar-en-rutas-nacionales",
    "cantidad": 74,
-   "estado": "error: HTTP Error 500: Internal Server Error"
+   "estado": "ok",
+   "equipos": 145,
+   "descartados": 4
   },
   {
    "id": "PBA",
    "url": "https://infraccionesba.gba.gob.ar/equiposDeConstatacion",
    "cantidad": 410,
    "estado": "ok",
-   "equipos": 649,
+   "equipos": 648,
    "descartados": 31,
    "corregidos": 2,
    "reubicadosPorANSV": 34
@@ -26,7 +28,7 @@
   {
    "id": "OSM",
    "url": "https://www.openstreetmap.org",
-   "cantidad": 700,
+   "cantidad": 706,
    "estado": "ok",
    "descartadosViejos": 334,
    "descartadosDudosos": 6
@@ -2924,8 +2926,7 @@
    "vmax": 60,
    "dir": null,
    "nombre": "AV. CABILDO - 4740",
-   "fuente": "CABA",
-   "vmaxFuente": "calle"
+   "fuente": "CABA"
   },
   {
    "id": "caba--34.53758,-58.45969-velocidad",
@@ -3004,6 +3005,54 @@
    "nombre": "Ruta Nacional 3 Don Juan Manuel de Rosas",
    "fuente": "OSM",
    "osmFecha": "2025-03-10"
+  },
+  {
+   "id": "osm-n14314325091",
+   "lat": -38.886758,
+   "lon": -62.077431,
+   "tipo": "velocidad",
+   "vmax": 40,
+   "dir": 165.0,
+   "nombre": "25 de Mayo",
+   "fuente": "OSM",
+   "osmFecha": "2026-10-24",
+   "vmaxFuente": "estimado"
+  },
+  {
+   "id": "osm-n14314325088",
+   "lat": -38.881758,
+   "lon": -62.078936,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": 75.0,
+   "nombre": "Bernardo de Irigoyen",
+   "fuente": "OSM",
+   "osmFecha": "2026-10-24",
+   "vmaxFuente": "estimado"
+  },
+  {
+   "id": "osm-n14314325089",
+   "lat": -38.880838,
+   "lon": -62.064563,
+   "tipo": "velocidad",
+   "vmax": 40,
+   "dir": 130.0,
+   "nombre": "Avenida Tucumán",
+   "fuente": "OSM",
+   "osmFecha": "2026-10-24",
+   "vmaxFuente": "calle"
+  },
+  {
+   "id": "osm-n14314325090",
+   "lat": -38.869462,
+   "lon": -62.080701,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": 165.0,
+   "nombre": "Juan José Paso",
+   "fuente": "OSM",
+   "osmFecha": "2026-10-24",
+   "vmaxFuente": "estimado"
   },
   {
    "id": "osm-n297140546",
@@ -4888,17 +4937,6 @@
    "osmFecha": "2024-10-02"
   },
   {
-   "id": "osm-n7369875835",
-   "lat": -34.719082,
-   "lon": -58.535222,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "El Hornero",
-   "fuente": "OSM",
-   "osmFecha": "2020-04-05"
-  },
-  {
    "id": "osm-n5003554686",
    "lat": -34.701714,
    "lon": -58.274012,
@@ -6581,7 +6619,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 70.0,
-   "nombre": "Avenida Juan Domingo Perón",
+   "nombre": "Avenida Intendente Municipal Comodoro Victoriano Martínez de Alegría",
    "fuente": "OSM",
    "osmFecha": "2022-08-24"
   },
@@ -6592,7 +6630,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 240.0,
-   "nombre": "Avenida Juan Domingo Perón",
+   "nombre": "Avenida Intendente Municipal Comodoro Victoriano Martínez de Alegría",
    "fuente": "OSM",
    "osmFecha": "2022-08-24"
   },
@@ -6603,7 +6641,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Avenida Juan Domingo Perón",
+   "nombre": "Avenida Intendente Municipal Comodoro Victoriano Martínez de Alegría",
    "fuente": "OSM",
    "osmFecha": "2022-08-09"
   },
@@ -7856,8 +7894,8 @@
    "dir": null,
    "nombre": "Ruta Provincial . 65, km 270,5",
    "fuente": "PBA",
-   "sentido": "ambos",
-   "detalle": "Controla los dos sentidos"
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
    "id": "pba--36.07375,-57.82006-velocidad",
@@ -9120,18 +9158,6 @@
    "detalle": "Controla los dos sentidos"
   },
   {
-   "id": "pba--34.75035,-58.58480-velocidad",
-   "lat": -34.75035,
-   "lon": -58.5848,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Provincial 21 y Calle El Pindo",
-   "fuente": "PBA",
-   "sentido": "descendente",
-   "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
-  },
-  {
    "id": "pba--34.73952,-58.56521-velocidad",
    "lat": -34.73952,
    "lon": -58.56521,
@@ -9218,13 +9244,25 @@
    "dirInferida": true
   },
   {
+   "id": "pba--34.71880,-58.53525-velocidad",
+   "lat": -34.718798,
+   "lon": -58.535249,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "El Hornero 1400",
+   "fuente": "PBA",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
+  },
+  {
    "id": "pba--34.70729,-58.53195-velocidad",
    "lat": -34.70729,
    "lon": -58.53195,
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Av. Mons. Bufano y Ruta Provincial 21",
+   "nombre": "Ruta Provincial Diego A. Maradona 6280",
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
