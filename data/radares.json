@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-26T10:51:20+00:00",
+ "generado": "2026-11-02T11:07:43+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -18,9 +18,9 @@
   {
    "id": "PBA",
    "url": "https://infraccionesba.gba.gob.ar/equiposDeConstatacion",
-   "cantidad": 410,
+   "cantidad": 411,
    "estado": "ok",
-   "equipos": 648,
+   "equipos": 649,
    "descartados": 31,
    "corregidos": 2,
    "reubicadosPorANSV": 34
@@ -1966,7 +1966,7 @@
    "lon": -58.454193,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": 242,
+   "dir": 243,
    "nombre": "AV. GAONA - 1852",
    "fuente": "CABA",
    "dirInferida": true,
@@ -5561,7 +5561,7 @@
    "lon": -58.391496,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 87,
+   "dir": 86,
    "nombre": "Avenida San Juan",
    "fuente": "OSM",
    "osmFecha": "2021-12-24",
@@ -5573,7 +5573,7 @@
    "lon": -58.389895,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 87,
+   "dir": 86,
    "nombre": "Radar Av. San Juan y Solís",
    "fuente": "OSM",
    "osmFecha": "2024-04-13",
@@ -5608,7 +5608,7 @@
    "lat": -34.614178,
    "lon": -60.497372,
    "tipo": "velocidad",
-   "vmax": 80,
+   "vmax": 60,
    "dir": null,
    "nombre": "Ruta Nacional 7 Libertador General San Martín",
    "fuente": "OSM",
@@ -6619,7 +6619,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 70.0,
-   "nombre": "Avenida Intendente Municipal Comodoro Victoriano Martínez de Alegría",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM",
    "osmFecha": "2022-08-24"
   },
@@ -6630,7 +6630,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": 240.0,
-   "nombre": "Avenida Intendente Municipal Comodoro Victoriano Martínez de Alegría",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM",
    "osmFecha": "2022-08-24"
   },
@@ -6641,7 +6641,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Avenida Intendente Municipal Comodoro Victoriano Martínez de Alegría",
+   "nombre": "Avenida Juan Domingo Perón",
    "fuente": "OSM",
    "osmFecha": "2022-08-09"
   },
@@ -8549,6 +8549,18 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia los km más altos)"
+  },
+  {
+   "id": "pba--35.01333,-58.40664-velocidad",
+   "lat": -35.013326,
+   "lon": -58.406637,
+   "tipo": "velocidad",
+   "vmax": 40,
+   "dir": null,
+   "nombre": "Av. Presidente Peron 1450",
+   "fuente": "PBA",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
   },
   {
    "id": "pba--34.99791,-58.37524-velocidad",
