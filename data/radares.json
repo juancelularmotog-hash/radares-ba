@@ -1,11 +1,11 @@
 {
- "generado": "2026-11-02T11:07:43+00:00",
+ "generado": "2026-11-09T10:47:01+00:00",
  "fuentes": [
   {
    "id": "CABA",
    "url": "https://data.buenosaires.gob.ar/dataset/camaras-fijas-control-vehicular",
    "cantidad": 224,
-   "estado": "ok"
+   "estado": "error: falta la columna tipo"
   },
   {
    "id": "ANSV",
@@ -18,9 +18,9 @@
   {
    "id": "PBA",
    "url": "https://infraccionesba.gba.gob.ar/equiposDeConstatacion",
-   "cantidad": 411,
+   "cantidad": 415,
    "estado": "ok",
-   "equipos": 649,
+   "equipos": 654,
    "descartados": 31,
    "corregidos": 2,
    "reubicadosPorANSV": 34
@@ -36,9 +36,9 @@
   {
    "id": "Peajes",
    "url": "https://www.openstreetmap.org",
-   "cantidad": 145,
+   "cantidad": 147,
    "estado": "ok",
-   "cabinas": 149,
+   "cabinas": 151,
    "enRamales": 79,
    "sinSentido": 10
   },
@@ -1533,7 +1533,7 @@
    "lon": -58.39362,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": 258,
+   "dir": 257,
    "nombre": "AV. JUAN DE GARAY - 2046",
    "fuente": "CABA",
    "dirInferida": true,
@@ -5317,7 +5317,7 @@
    "lon": -58.479926,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 46,
+   "dir": 51,
    "nombre": "Av. Directorio y Lacarra",
    "fuente": "OSM",
    "osmFecha": "2026-08-08",
@@ -8299,6 +8299,18 @@
    "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
+   "id": "pba--35.28049,-57.57372-velocidad",
+   "lat": -35.280491,
+   "lon": -57.573716,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Provincial 36, km 121",
+   "fuente": "PBA",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos: máx. 80 km/h ascendente y 100 km/h descendente"
+  },
+  {
    "id": "pba--35.22742,-57.71859-velocidad",
    "lat": -35.227422,
    "lon": -57.718593,
@@ -8414,6 +8426,18 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Ruta Provincial 210, km 55",
+   "fuente": "PBA",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "pba--35.06309,-57.55837-velocidad",
+   "lat": -35.063094,
+   "lon": -57.558373,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Provincial 11, km 59,5",
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia los km más bajos)"
@@ -8563,6 +8587,18 @@
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
   },
   {
+   "id": "pba--35.01182,-57.68944-velocidad",
+   "lat": -35.011824,
+   "lon": -57.689436,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Provincial 11, km 43",
+   "fuente": "PBA",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
    "id": "pba--34.99791,-58.37524-velocidad",
    "lat": -34.997914,
    "lon": -58.375236,
@@ -8633,6 +8669,18 @@
    "fuente": "PBA",
    "sentido": "ascendente",
    "detalle": "Controla el sentido ascendente (hacia la numeración más alta)"
+  },
+  {
+   "id": "pba--34.97436,-57.75236-velocidad",
+   "lat": -34.974361,
+   "lon": -57.752356,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Provincial 11, km 36",
+   "fuente": "PBA",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
    "id": "pba--34.96139,-58.37925-velocidad",
@@ -8909,7 +8957,7 @@
    "tipo": "velocidad",
    "vmax": 60,
    "dir": null,
-   "nombre": "Av. República Argentina 7450",
+   "nombre": "Av. Republica Argentina 7450",
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
@@ -12729,6 +12777,20 @@
    "dir": 217
   },
   {
+   "id": "peaje-n14355061267",
+   "lat": -37.702234,
+   "lon": -57.43961,
+   "nombre": "",
+   "dir": 8
+  },
+  {
+   "id": "peaje-n14355061266",
+   "lat": -37.702185,
+   "lon": -57.439879,
+   "nombre": "",
+   "dir": 189
+  },
+  {
    "id": "peaje-n246682739",
    "lat": -37.373021,
    "lon": -59.008032,
@@ -12810,7 +12872,7 @@
    "lat": -35.360441,
    "lon": -60.702915,
    "nombre": "",
-   "dir": 224
+   "dir": 225
   },
   {
    "id": "peaje-n253932149",
