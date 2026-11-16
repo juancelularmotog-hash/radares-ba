@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-09T10:47:01+00:00",
+ "generado": "2026-11-16T11:41:17+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -18,9 +18,9 @@
   {
    "id": "PBA",
    "url": "https://infraccionesba.gba.gob.ar/equiposDeConstatacion",
-   "cantidad": 415,
+   "cantidad": 419,
    "estado": "ok",
-   "equipos": 654,
+   "equipos": 660,
    "descartados": 31,
    "corregidos": 2,
    "reubicadosPorANSV": 34
@@ -28,7 +28,7 @@
   {
    "id": "OSM",
    "url": "https://www.openstreetmap.org",
-   "cantidad": 706,
+   "cantidad": 708,
    "estado": "ok",
    "descartadosViejos": 334,
    "descartadosDudosos": 6
@@ -39,7 +39,7 @@
    "cantidad": 147,
    "estado": "ok",
    "cabinas": 151,
-   "enRamales": 79,
+   "enRamales": 80,
    "sinSentido": 10
   },
   {
@@ -1533,7 +1533,7 @@
    "lon": -58.39362,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": 257,
+   "dir": 258,
    "nombre": "AV. JUAN DE GARAY - 2046",
    "fuente": "CABA",
    "dirInferida": true,
@@ -3203,14 +3203,14 @@
   },
   {
    "id": "osm-n1185490474",
-   "lat": -38.066802,
-   "lon": -57.547664,
+   "lat": -38.066788,
+   "lon": -57.54768,
    "tipo": "velocidad",
    "vmax": 60,
-   "dir": 189,
+   "dir": 188,
    "nombre": "Avenida de los Trabajadores",
    "fuente": "OSM",
-   "osmFecha": "2022-07-30",
+   "osmFecha": "2026-11-13",
    "dirInferida": true
   },
   {
@@ -3603,6 +3603,17 @@
    "osmFecha": "2024-06-20"
   },
   {
+   "id": "osm-n14362361277",
+   "lat": -36.462054,
+   "lon": -57.342895,
+   "tipo": "velocidad",
+   "vmax": 110,
+   "dir": null,
+   "nombre": "Ruta Provincial 11",
+   "fuente": "OSM",
+   "osmFecha": "2026-11-09"
+  },
+  {
    "id": "osm-n13709861620",
    "lat": -36.431036,
    "lon": -56.909609,
@@ -3738,6 +3749,17 @@
    "nombre": "Ruta Nacional 5",
    "fuente": "OSM",
    "osmFecha": "2022-04-11"
+  },
+  {
+   "id": "osm-n14362361278",
+   "lat": -35.699902,
+   "lon": -57.351797,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Provincial 11",
+   "fuente": "OSM",
+   "osmFecha": "2026-11-09"
   },
   {
    "id": "osm-n8362961413",
@@ -5317,7 +5339,7 @@
    "lon": -58.479926,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 51,
+   "dir": 46,
    "nombre": "Av. Directorio y Lacarra",
    "fuente": "OSM",
    "osmFecha": "2026-08-08",
@@ -5561,7 +5583,7 @@
    "lon": -58.391496,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 86,
+   "dir": 87,
    "nombre": "Avenida San Juan",
    "fuente": "OSM",
    "osmFecha": "2021-12-24",
@@ -5573,7 +5595,7 @@
    "lon": -58.389895,
    "tipo": "semaforo",
    "vmax": null,
-   "dir": 86,
+   "dir": 87,
    "nombre": "Radar Av. San Juan y Solís",
    "fuente": "OSM",
    "osmFecha": "2024-04-13",
@@ -5608,7 +5630,7 @@
    "lat": -34.614178,
    "lon": -60.497372,
    "tipo": "velocidad",
-   "vmax": 60,
+   "vmax": 80,
    "dir": null,
    "nombre": "Ruta Nacional 7 Libertador General San Martín",
    "fuente": "OSM",
@@ -6246,17 +6268,6 @@
    "fuente": "OSM",
    "osmFecha": "2020-09-18",
    "dirInferida": true
-  },
-  {
-   "id": "osm-n317601267",
-   "lat": -34.531394,
-   "lon": -58.928904,
-   "tipo": "velocidad",
-   "vmax": 60,
-   "dir": null,
-   "nombre": "Ruta Provincial 28 Gobernador Martín Rodríguez",
-   "fuente": "OSM",
-   "osmFecha": "2023-09-04"
   },
   {
    "id": "osm-n13568147264",
@@ -9424,6 +9435,18 @@
    "detalle": "Controla el sentido ascendente (hacia la numeración más alta)"
   },
   {
+   "id": "pba--34.69431,-58.96697-velocidad",
+   "lat": -34.694306,
+   "lon": -58.96697,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Provincial 24, km 49,1",
+   "fuente": "PBA",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos: máx. 100 km/h ascendente y 80 km/h descendente"
+  },
+  {
    "id": "pba--34.69055,-58.69316-velocidad",
    "lat": -34.69055,
    "lon": -58.69316,
@@ -9639,6 +9662,30 @@
    "fuente": "PBA",
    "sentido": "ambos",
    "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "pba--34.65285,-58.94460-velocidad",
+   "lat": -34.65285,
+   "lon": -58.9446,
+   "tipo": "velocidad",
+   "vmax": 100,
+   "dir": null,
+   "nombre": "Ruta Provincial 24, km 43",
+   "fuente": "PBA",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
+  },
+  {
+   "id": "pba--34.65201,-58.94533-velocidad",
+   "lat": -34.65201,
+   "lon": -58.94533,
+   "tipo": "velocidad",
+   "vmax": 80,
+   "dir": null,
+   "nombre": "Ruta Provincial 24, km 43",
+   "fuente": "PBA",
+   "sentido": "ascendente",
+   "detalle": "Controla el sentido ascendente (hacia los km más altos)"
   },
   {
    "id": "pba--34.64888,-58.62875-velocidad",
@@ -10387,6 +10434,18 @@
    "vmax": 80,
    "dir": null,
    "nombre": "Aut. Ing. Palazzo Colectora Este 14",
+   "fuente": "PBA",
+   "sentido": "ambos",
+   "detalle": "Controla los dos sentidos"
+  },
+  {
+   "id": "pba--34.53144,-58.92894-velocidad",
+   "lat": -34.531439,
+   "lon": -58.928939,
+   "tipo": "velocidad",
+   "vmax": 100,
+   "dir": null,
+   "nombre": "Ruta Provincial 28, km 8,9",
    "fuente": "PBA",
    "sentido": "ambos",
    "detalle": "Controla los dos sentidos"
@@ -13681,7 +13740,70 @@
    "lat": -34.651219,
    "lon": -58.352672,
    "nombre": "Estación Dock Sud",
-   "dir": 5
+   "dir": 4,
+   "ramal": true,
+   "tramo": [
+    [
+     [
+      -34.65362,
+      -58.35196
+     ],
+     [
+      -34.65315,
+      -58.35228
+     ],
+     [
+      -34.65258,
+      -58.35251
+     ],
+     [
+      -34.65166,
+      -58.35268
+     ],
+     [
+      -34.65122,
+      -58.35267
+     ]
+    ]
+   ],
+   "otros": [
+    [
+     [
+      -34.65362,
+      -58.35196
+     ],
+     [
+      -34.65341,
+      -58.35206
+     ],
+     [
+      -34.65336,
+      -58.35203
+     ],
+     [
+      -34.65405,
+      -58.35149
+     ],
+     [
+      -34.65407,
+      -58.35068
+     ]
+    ],
+    [
+     [
+      -34.65362,
+      -58.35196
+     ],
+     [
+      -34.65404,
+      -58.35182
+     ],
+     [
+      -34.65407,
+      -58.35068
+     ]
+    ]
+   ]
   },
   {
    "id": "peaje-n315202861",
