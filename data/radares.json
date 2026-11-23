@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-16T11:41:17+00:00",
+ "generado": "2026-11-23T22:23:37+00:00",
  "fuentes": [
   {
    "id": "CABA",
@@ -18,9 +18,9 @@
   {
    "id": "PBA",
    "url": "https://infraccionesba.gba.gob.ar/equiposDeConstatacion",
-   "cantidad": 419,
+   "cantidad": 420,
    "estado": "ok",
-   "equipos": 660,
+   "equipos": 661,
    "descartados": 31,
    "corregidos": 2,
    "reubicadosPorANSV": 34
@@ -28,7 +28,7 @@
   {
    "id": "OSM",
    "url": "https://www.openstreetmap.org",
-   "cantidad": 708,
+   "cantidad": 712,
    "estado": "ok",
    "descartadosViejos": 334,
    "descartadosDudosos": 6
@@ -6980,6 +6980,28 @@
    "osmFecha": "2021-10-15"
   },
   {
+   "id": "osm-n14383451633",
+   "lat": -34.009268,
+   "lon": -60.48604,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": 320.0,
+   "nombre": "Ruta Provincial 32 Ministro Rodolfo Moreno",
+   "fuente": "OSM",
+   "osmFecha": "2026-11-16"
+  },
+  {
+   "id": "osm-n14383451634",
+   "lat": -34.007801,
+   "lon": -60.487958,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": 145.0,
+   "nombre": "Ruta Provincial 32 Ministro Rodolfo Moreno",
+   "fuente": "OSM",
+   "osmFecha": "2026-11-16"
+  },
+  {
    "id": "osm-n10695262737",
    "lat": -33.952163,
    "lon": -58.953556,
@@ -6989,6 +7011,18 @@
    "nombre": "Complejo Ferrovial Zárate - Brazo Largo",
    "fuente": "OSM",
    "osmFecha": "2025-12-13",
+   "sentido": "ambos"
+  },
+  {
+   "id": "osm-n14383451631",
+   "lat": -33.940309,
+   "lon": -60.558869,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Presidente Doctor Arturo Frondizi",
+   "fuente": "OSM",
+   "osmFecha": "2026-11-16",
    "sentido": "ambos"
   },
   {
@@ -11621,6 +11655,18 @@
    "fuente": "PBA",
    "sentido": "descendente",
    "detalle": "Controla el sentido descendente (hacia la numeración más baja)"
+  },
+  {
+   "id": "pba--34.05841,-59.52132-velocidad",
+   "lat": -34.058412,
+   "lon": -59.521317,
+   "tipo": "velocidad",
+   "vmax": 60,
+   "dir": null,
+   "nombre": "Ruta Provincial 41, km 303",
+   "fuente": "PBA",
+   "sentido": "descendente",
+   "detalle": "Controla el sentido descendente (hacia los km más bajos)"
   },
   {
    "id": "pba--33.92343,-60.56783-velocidad",
